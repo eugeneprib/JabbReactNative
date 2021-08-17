@@ -5,8 +5,6 @@ import styles from 'src/styles/globalStyles'
 import store from './store'
 
 const App = (): React.ReactElement => {
-  console.log()
-
   return (
     <Provider store={store}>
       <SafeAreaView style={styles.container}>
