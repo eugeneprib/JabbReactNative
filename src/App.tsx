@@ -8,8 +8,8 @@ const App = (): React.ReactElement => {
   return (
     <Provider store={store}>
       <SafeAreaView style={styles.container}>
-        <Text style={styles.greeting}>
-          Hello there. This is the App</Text>
+          <Text style={styles.greeting}>
+              Hello there. This is the App</Text>
       </SafeAreaView>
     </Provider>
   )
