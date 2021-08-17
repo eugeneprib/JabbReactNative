@@ -24,5 +24,5 @@ plugins:
 rules: {
   react/prop-types: off,
   react/display-name: off,
-  no-console: 1
+  no-console: error
 }
