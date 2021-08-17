@@ -9,8 +9,7 @@ const App = (): React.ReactElement => {
     <Provider store={store}>
       <SafeAreaView style={styles.container}>
         <Text style={styles.greeting}>
-          Hello there. This is the App
-          </Text>
+          Hello there. This is the App</Text>
       </SafeAreaView>
     </Provider>
   )

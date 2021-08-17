@@ -1,12 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 type InitialState = {
-    data: unknown
+  data: unknown
 }
 
 const initialState: InitialState = {
-    data: {}
-};
+  data: {}
+}
 
 const userSlice = createSlice({
   name: 'user',
@@ -25,6 +25,4 @@ const userSlice = createSlice({
 
 const reducer = userSlice.reducer
 
-export {
-  reducer
-}
+export { reducer }
