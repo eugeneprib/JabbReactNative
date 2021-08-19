@@ -25,9 +25,8 @@ const Input: React.FC<Props> = ({
 const styles = StyleSheet.create({
     text: {
         color: '#f3427f',
-        marginBottom: 0,
         fontSize: 16,
     }
 });
 
-export default Input;
+export { Input };
