@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, Button as ReactButton, View, StyleSheet } from 'react-native';
+import { Button as ReactButton, View } from 'react-native';
 
 type Props = {
     label: string;
