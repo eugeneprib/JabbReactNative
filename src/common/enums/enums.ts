@@ -1,1 +1,1 @@
-export { ButtonType } from './ui/ui';
+export { ButtonType, ButtonColor } from './ui/ui';
