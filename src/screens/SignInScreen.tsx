@@ -11,9 +11,9 @@ import {
 import { StackNavigationProp } from '@react-navigation/stack'
 
 type RootStackParamList = {
-  Home: undefined
-  SignUpScreen: undefined
-  SignIn: undefined
+  Home: undefined;
+  SignUpScreen: undefined;
+  SignIn: undefined;
 }
 
 type LoginScreenNavigationProp = StackNavigationProp<
@@ -22,16 +22,16 @@ type LoginScreenNavigationProp = StackNavigationProp<
 >
 
 type Props = {
-  navigation: LoginScreenNavigationProp
+  navigation: LoginScreenNavigationProp;
 }
 
 const LoginScreen: React.FC<Props> = ({ navigation }) => {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleSignInSubmit = (): void => {
-    navigation.replace('Home')
-  }
+    navigation.replace('Home');
+  };
 
   return (
     <ScrollView>
