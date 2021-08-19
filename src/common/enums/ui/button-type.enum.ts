@@ -1,6 +1,6 @@
 enum ButtonType {
-    BUTTON = 'button',
-    SUBMIT = 'submit',
+  BUTTON = 'button',
+  SUBMIT = 'submit'
 }
 
-export { ButtonType };
+export { ButtonType }
