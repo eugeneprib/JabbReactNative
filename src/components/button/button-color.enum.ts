@@ -1,5 +1,6 @@
 enum ButtonColor {
-  PINK = '#f3427f'
+  PINK = '#f3427f',
+  WHITE = '#fff'
 }
 
 export { ButtonColor }

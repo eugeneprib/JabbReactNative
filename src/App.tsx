@@ -1,7 +1,7 @@
 import 'react-native-gesture-handler'
 import React from 'react'
 import { Provider } from 'react-redux'
-import { Alert, SafeAreaView, Text, View } from 'react-native'
+import { SafeAreaView, Text, View } from 'react-native'
 import styles from 'src/styles/globalStyles'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
