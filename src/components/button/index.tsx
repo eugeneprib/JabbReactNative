@@ -1,7 +1,7 @@
-import React from 'react';
-import { Button, Pressable, Text } from 'react-native';
-import { ButtonType } from './button-type.enum';
-import styles from './button-style';
+import React from 'react'
+import { Button, Pressable, Text } from 'react-native'
+import { ButtonType } from './button-type.enum'
+import styles from './button-style'
 
 type Props = {
   title: string
