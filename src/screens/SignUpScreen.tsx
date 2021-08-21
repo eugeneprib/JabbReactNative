@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux';
 import {
   TouchableOpacity,
   StyleSheet,
@@ -9,7 +8,6 @@ import {
   Button,
   ScrollView
 } from 'react-native'
-import { auth as authActions } from 'store/actions';
 import { StackNavigationProp } from '@react-navigation/stack'
 
 type RootStackParamList = {
@@ -18,29 +16,28 @@ type RootStackParamList = {
   SignIn: undefined;
 }
 
-type LoginScreenNavigationProp = StackNavigationProp<
+type RegistrationNavigationProp = StackNavigationProp<
   RootStackParamList,
-  'SignIn'
+  'SignUp'
 >
 
 type Props = {
-  navigation: LoginScreenNavigationProp;
+  navigation: RegistrationNavigationProp;
 }
 
-const LoginScreen: React.FC<Props> = ({ navigation }) => {
+const RegistrationScreen: React.FC<Props> = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const dispatch = useDispatch();
 
-  const handleSignInSubmit = (): void => {
-    dispatch(authActions.signIn({email, password}));
+  const handleSignUpSubmit = (): void => {
+    navigation.replace('Home');
   };
 
   return (
     <ScrollView>
       <View style={styles.container}>
         <View>
-          <Text style={styles.hello}>Hello There</Text>
+          <Text style={styles.hello}>Sign UPPPPP!!!!!!!!!!</Text>
           <Text style={styles.intro}>Welcome to Jabber</Text>
           <Text style={styles.lets}>Let&apos;s sign you in</Text>
           <TextInput
@@ -65,14 +62,14 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
         </View>
         <View style={styles.bottomBlock}>
           <View style={styles.row}>
-            <Text>Don’t have an account? </Text>
+            <Text>Already have an account? </Text>
             <TouchableOpacity
-              onPress={() => navigation.replace('SignUp')}
+              onPress={() => navigation.replace('SignIn')}
             >
-              <Text style={styles.link}>Sign up</Text>
+              <Text style={styles.link}>Sign in</Text>
             </TouchableOpacity>
           </View>
-          <Button title='Sign In' onPress={handleSignInSubmit} />
+          <Button title='Sign Up' onPress={handleSignUpSubmit} />
         </View>
       </View>
     </ScrollView>
@@ -123,4 +120,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default LoginScreen
+export default RegistrationScreen
