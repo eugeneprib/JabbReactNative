@@ -5,4 +5,4 @@ enum HeadingType {
   HUGE = 'huge'
 }
 
-export { HeadingType }
+export default HeadingType

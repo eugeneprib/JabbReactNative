@@ -1,12 +1,12 @@
 import { StyleProp, TextStyle } from 'react-native'
-import { HeadingType } from 'src/common/enums/enums'
+import { HeadingType } from 'src/common/enums'
 
-const getStyles = (type: HeadingType): StyleProp<TextStyle> => {
+const getStylesByType = (type: HeadingType): StyleProp<TextStyle> => {
   switch (type) {
     case HeadingType.SMALL: {
       return {
         fontWeight: 'bold',
-        fontSize: 2
+        fontSize: 22
       }
     }
     case HeadingType.MEDIUM: {
@@ -22,9 +22,12 @@ const getStyles = (type: HeadingType): StyleProp<TextStyle> => {
       }
     }
     case HeadingType.HUGE: {
-      return { fontWeight: 'bold', fontSize: 40 }
+      return {
+        fontWeight: 'bold',
+        fontSize: 40
+      }
     }
   }
 }
 
-export { getStyles }
+export default getStylesByType

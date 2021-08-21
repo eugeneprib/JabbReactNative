@@ -6,14 +6,13 @@ import Toast from 'react-native-toast-message'
 import styles from 'src/styles/globalStyles'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
-import { Heading } from './components/common/common'
-import { HeadingType } from './common/enums/enums'
+import { Heading } from './components'
 import store from './store'
 
 function HomeScreen() {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Heading type={HeadingType.LARGE}>Home Screen</Heading>
+      <Heading>Home Screen</Heading>
       <Text style={styles.greeting}>Hello there. This is the App!!!</Text>
     </View>
   )

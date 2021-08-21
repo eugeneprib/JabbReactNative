@@ -4,4 +4,4 @@ enum NotificationType {
   INFO = 'info'
 }
 
-export { NotificationType }
+export default NotificationType
