@@ -1,8 +1,8 @@
-import { ImageCreatePayloadKey } from 'src/common/enums'
+import { imageCreatePayloadKey } from 'src/common/enums'
 
-type ImageCreatePayload = {
-  [ImageCreatePayloadKey.URL]: string
-  [ImageCreatePayloadKey.PUBLIC_ID]: string
+type imageCreatePayload = {
+  [imageCreatePayloadKey.URL]: string
+  [imageCreatePayloadKey.PUBLIC_ID]: string
 }
 
-export type { ImageCreatePayload }
+export type { imageCreatePayload }

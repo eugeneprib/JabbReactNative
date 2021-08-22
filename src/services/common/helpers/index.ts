@@ -1,1 +1,1 @@
-export { getStringifiedQuery } from './http';
+export { getStringifiedQuery } from './http'

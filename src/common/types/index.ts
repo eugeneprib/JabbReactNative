@@ -1,9 +1,7 @@
-export type { RootState, AppDispatch, AsyncThunkConfig } from './app'
+export type { rootState, appDispatch, asyncThunkConfig } from './app'
 export type {
-  User,
-  UserCreatePayload,
-  UserEditPayload,
-  UserSignInPayload
+  user,
+  userSignInPayload
 } from './user'
-export type { SignResponse } from './sign'
-export type { Image, ImageCreatePayload } from './image'
+export type { signResponse } from './sign'
+export type { image, imageCreatePayload } from './image'

@@ -1,14 +1,11 @@
+import { httpMethod } from 'src/services/common'
 import {
-  HttpMethod
-} from 'src/services/common'
-import {
-  UserCreatePayload,
-  UserSignInPayload,
-  SignResponse,
-  User
+  userSignInPayload,
+  signResponse,
+  user
 } from 'src/common/types'
 import { Http } from 'src/services/http'
-import { ApiPath, AuthApiPath, ContentType } from 'src/services/common'
+import { apiPath, authApiPath, contentType } from 'src/services/common'
 
 type Constructor = {
   http: Http
@@ -24,35 +21,23 @@ class AuthApi {
     this.#apiPrefix = apiPrefix
   }
 
-  public signUp(payload: UserCreatePayload): Promise<SignResponse> {
+  public signIn(payload: userSignInPayload): Promise<signResponse> {
     return this.#http.load(
-      `${this.#apiPrefix}${ApiPath.AUTH}${AuthApiPath.SIGN_UP}`,
+      `${this.#apiPrefix}${apiPath.AUTH}${authApiPath.SIGN_IN}`,
       {
-        method: HttpMethod.POST,
-        contentType: ContentType.JSON,
+        method: httpMethod.POST,
+        contentType: contentType.JSON,
         payload: JSON.stringify(payload),
         hasAuth: false
       }
     )
   }
 
-  public signIn(payload: UserSignInPayload): Promise<SignResponse> {
+  public getCurrentUser(): Promise<user> {
     return this.#http.load(
-      `${this.#apiPrefix}${ApiPath.AUTH}${AuthApiPath.SIGN_IN}`,
+      `${this.#apiPrefix}${apiPath.AUTH}${authApiPath.CURRENT_USER}`,
       {
-        method: HttpMethod.POST,
-        contentType: ContentType.JSON,
-        payload: JSON.stringify(payload),
-        hasAuth: false
-      }
-    )
-  }
-
-  public getCurrentUser(): Promise<User> {
-    return this.#http.load(
-      `${this.#apiPrefix}${ApiPath.AUTH}${AuthApiPath.CURRENT_USER}`,
-      {
-        method: HttpMethod.GET
+        method: httpMethod.GET
       }
     )
   }

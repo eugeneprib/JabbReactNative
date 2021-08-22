@@ -1,1 +1,1 @@
-export { ImageCreatePayloadKey } from './image-create-payload-key.enum';
+export { imageCreatePayloadKey } from './image-create-payload-key.enum'

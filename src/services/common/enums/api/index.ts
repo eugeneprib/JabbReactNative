@@ -1,3 +1,3 @@
-export { ApiPath } from './api-path.enum'
-export { AuthApiPath } from './auth-api-path.enum'
-export { UsersApiPath } from './users-api-path.enum'
+export { apiPath } from './api-path.enum'
+export { authApiPath } from './auth-api-path.enum'
+export { usersApiPath } from './users-api-path.enum'

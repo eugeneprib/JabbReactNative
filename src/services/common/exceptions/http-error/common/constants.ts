@@ -1,3 +1,3 @@
-const DEFAULT_MESSAGE = 'Network Error';
+const DEFAULT_MESSAGE = 'Network Error'
 
-export { DEFAULT_MESSAGE };
+export { DEFAULT_MESSAGE }

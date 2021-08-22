@@ -1,5 +1,5 @@
-enum StorageKey {
-  TOKEN = 'token',
+enum storageKey {
+  TOKEN = 'token'
 }
 
-export { StorageKey };
+export { storageKey }

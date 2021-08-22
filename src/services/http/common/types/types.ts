@@ -1,1 +1,1 @@
-export type { GetHeadersProps } from './get-headers-params.type'
+export type { getHeadersProps } from './get-headers-params.type'

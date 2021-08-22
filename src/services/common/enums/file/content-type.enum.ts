@@ -1,5 +1,5 @@
-enum ContentType {
+enum contentType {
   JSON = 'application/json'
 }
 
-export { ContentType }
+export { contentType }

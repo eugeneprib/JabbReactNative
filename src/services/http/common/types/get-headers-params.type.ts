@@ -1,8 +1,8 @@
-import { ContentType } from "src/services/common"
+import { contentType } from 'src/services/common'
 
-type GetHeadersProps = {
-  contentType?: ContentType
+type getHeadersProps = {
+  contentType?: contentType
   hasAuth: boolean
 }
 
-export type { GetHeadersProps }
+export type { getHeadersProps }

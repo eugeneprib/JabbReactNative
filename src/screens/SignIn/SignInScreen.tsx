@@ -7,10 +7,11 @@ import {
   TextInput,
   Button,
   ScrollView,
-  Linking,
+  Linking
 } from 'react-native'
 import { signIn } from 'src/store/actions'
 import { StackNavigationProp } from '@react-navigation/stack'
+import { navigationScreens } from 'src/common/enums'
 import { styles } from './styles'
 
 type RootStackParamList = {
@@ -34,7 +35,7 @@ const SignInScreen: React.FC<Props> = ({ navigation }) => {
 
   const handleSignInSubmit = (): void => {
     dispatch(signIn({ email, password }))
-    navigation.replace('Home');
+    navigation.replace(navigationScreens.HOME)
   }
 
   return (
@@ -67,7 +68,9 @@ const SignInScreen: React.FC<Props> = ({ navigation }) => {
         <View style={styles.bottomBlock}>
           <View style={styles.row}>
             <Text>Don’t have an account? </Text>
-            <TouchableOpacity onPress={() => Linking.openURL('http://google.com')}>
+            <TouchableOpacity
+              onPress={() => Linking.openURL('http://google.com')}
+            >
               <Text style={styles.link}>Sign up</Text>
             </TouchableOpacity>
           </View>

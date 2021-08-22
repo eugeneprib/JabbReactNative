@@ -1,11 +1,11 @@
-import { ContentType, HttpMethod } from 'src/common/enums';
+import { contentType, httpMethod } from 'src/services/common/enums'
 
-type HttpOptions = {
-  method: HttpMethod;
-  contentType: ContentType;
-  payload: BodyInit | null;
-  hasAuth: boolean;
+type httpOptions = {
+  method: httpMethod
+  contentType: contentType
+  payload: BodyInit | null
+  hasAuth: boolean
   query: Record<string, string | number>
-};
+}
 
-export type { HttpOptions };
+export type { httpOptions }

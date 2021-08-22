@@ -1,43 +1,41 @@
 import { createReducer } from '@reduxjs/toolkit'
-import { DataStatus } from 'src/common/enums'
-import {
-  signIn, getCurrentUser, resetUser
-} from 'src/store/actions'
-import { User } from 'src/common/types'
+import { dataStatus } from 'src/common/enums'
+import { signIn, getCurrentUser, resetUser } from 'src/store/actions'
+import { user } from 'src/common/types'
 
 type State = {
-  dataStatus: DataStatus
-  user: User | null
+  dataStatus: dataStatus
+  user: user | null
 }
 
 const initialState: State = {
-  dataStatus: DataStatus.IDLE,
+  dataStatus: dataStatus.IDLE,
   user: null
 }
 
 const reducer = createReducer(initialState, (builder) => {
   builder.addCase(signIn.pending, (state) => {
-    state.dataStatus = DataStatus.PENDING
+    state.dataStatus = dataStatus.PENDING
   })
   builder.addCase(signIn.fulfilled, (state, action) => {
-    state.dataStatus = DataStatus.FULFILLED
+    state.dataStatus = dataStatus.FULFILLED
     state.user = action.payload
   })
   builder.addCase(signIn.rejected, (state) => {
-    state.dataStatus = DataStatus.REJECTED
+    state.dataStatus = dataStatus.REJECTED
   })
   builder.addCase(getCurrentUser.pending, (state) => {
-    state.dataStatus = DataStatus.PENDING
+    state.dataStatus = dataStatus.PENDING
   })
   builder.addCase(getCurrentUser.fulfilled, (state, action) => {
-    state.dataStatus = DataStatus.FULFILLED
+    state.dataStatus = dataStatus.FULFILLED
     state.user = action.payload
   })
   builder.addCase(getCurrentUser.rejected, (state) => {
-    state.dataStatus = DataStatus.REJECTED
+    state.dataStatus = dataStatus.REJECTED
   })
   builder.addCase(resetUser.fulfilled, (state) => {
-    state.dataStatus = DataStatus.IDLE
+    state.dataStatus = dataStatus.IDLE
     state.user = null
   })
 })

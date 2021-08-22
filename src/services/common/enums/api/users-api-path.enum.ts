@@ -1,6 +1,6 @@
-enum UsersApiPath {
+enum usersApiPath {
   ROOT = '/',
   $ID = '/:id'
 }
 
-export { UsersApiPath }
+export { usersApiPath }

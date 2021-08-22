@@ -1,3 +1,3 @@
-export { ApiPath, AuthApiPath, UsersApiPath } from './api'
-export { HttpCode, HttpMethod, HttpHeader } from './http'
-export { ContentType, FileExtension } from './file'
+export { apiPath, authApiPath, usersApiPath } from './api'
+export { httpCode, httpMethod, httpHeader } from './http'
+export { contentType, fileExtension } from './file'

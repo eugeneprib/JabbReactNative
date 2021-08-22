@@ -1,2 +1,2 @@
-export { StorageKey } from './storage-key.enum'
-export { DataStatus } from './data-status.enum'
+export { storageKey } from './storage-key.enum'
+export { dataStatus } from './data-status.enum'

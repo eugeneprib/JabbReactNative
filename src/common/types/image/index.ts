@@ -1,2 +1,2 @@
-export type { Image } from './image.type'
-export type { ImageCreatePayload } from './image-create-payload.type'
+export type { image } from './image.type'
+export type { imageCreatePayload } from './image-create-payload.type'

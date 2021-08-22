@@ -1,1 +1,1 @@
-export { signIn, getCurrentUser, resetUser } from './auth/actions';
+export { signIn, getCurrentUser, resetUser } from './auth/actions'

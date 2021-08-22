@@ -1,10 +1,10 @@
 import {
-  ApiPath,
-  ContentType,
-  HttpMethod,
-  UsersApiPath
-} from 'src/common/enums'
-import { User, UserEditPayload } from 'src/common/types'
+  apiPath,
+  contentType,
+  httpMethod,
+  usersApiPath
+} from 'src/services/common'
+import { user } from 'src/common/types'
 import { Http } from 'src/services/http'
 
 type Constructor = {
@@ -21,22 +21,11 @@ class UserApi {
     this.#apiPrefix = apiPrefix
   }
 
-  public getById(id: number): Promise<User> {
+  public getById(id: number): Promise<user> {
     return this.#http.load(
-      `${this.#apiPrefix}${ApiPath.USERS}${UsersApiPath.ROOT}${id}`,
+      `${this.#apiPrefix}${apiPath.USERS}${usersApiPath.ROOT}${id}`,
       {
-        method: HttpMethod.GET
-      }
-    )
-  }
-
-  public update(id: number, payload: UserEditPayload): Promise<User> {
-    return this.#http.load(
-      `${this.#apiPrefix}${ApiPath.USERS}${UsersApiPath.ROOT}${id}`,
-      {
-        method: HttpMethod.PUT,
-        contentType: ContentType.JSON,
-        payload: JSON.stringify(payload)
+        method: httpMethod.GET
       }
     )
   }

@@ -1,6 +1,6 @@
-enum ImageCreatePayloadKey {
+enum imageCreatePayloadKey {
   URL = 'url',
-  PUBLIC_ID = 'publicId',
+  PUBLIC_ID = 'publicId'
 }
 
-export { ImageCreatePayloadKey };
+export { imageCreatePayloadKey }
