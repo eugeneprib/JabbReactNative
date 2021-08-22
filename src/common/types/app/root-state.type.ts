@@ -1,5 +1,5 @@
-import { store } from 'store/store';
+import { store } from 'store/store'
 
-type RootState = ReturnType<typeof store.getState>;
+type RootState = ReturnType<typeof store.getState>
 
-export type { RootState };
+export type { RootState }

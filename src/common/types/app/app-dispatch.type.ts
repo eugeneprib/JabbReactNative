@@ -1,5 +1,5 @@
-import { store } from 'store/store';
+import { store } from 'store/store'
 
-type AppDispatch = typeof store.dispatch;
+type AppDispatch = typeof store.dispatch
 
-export type { AppDispatch };
+export type { AppDispatch }

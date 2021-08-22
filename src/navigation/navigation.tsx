@@ -2,7 +2,7 @@ import React from 'react'
 import { Text, View } from 'react-native'
 import styles from 'src/styles/globalStyles'
 import { createStackNavigator } from '@react-navigation/stack'
-import { SignInScreen, SignUpScreen }  from '../screens/screens'
+import { SignInScreen } from 'src/screens'
 
 function HomeScreen() {
   return (
@@ -23,16 +23,6 @@ const Navigation: React.FC = () => {
         component={SignInScreen}
         options={{
           title: 'Login',
-          cardStyle: {
-            backgroundColor: 'white'
-          }
-        }}
-      />
-      <Stack.Screen
-        name="SignUp"
-        component={SignUpScreen}
-        options={{
-          title: 'Registration',
           cardStyle: {
             backgroundColor: 'white'
           }

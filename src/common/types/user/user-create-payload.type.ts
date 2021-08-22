@@ -1,8 +1,8 @@
-import { UserPayloadKey } from '../../enums/enums';
-import { UserConfigurePayload } from './user-configure-payload.type';
+import { UserPayloadKey } from 'src/common/enums'
+import { UserConfigurePayload } from './user-configure-payload.type'
 
 type UserCreatePayload = UserConfigurePayload & {
-  [UserPayloadKey.PASSWORD]: string;
-};
+  [UserPayloadKey.PASSWORD]: string
+}
 
-export type { UserCreatePayload };
+export type { UserCreatePayload }

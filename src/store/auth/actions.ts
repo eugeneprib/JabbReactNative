@@ -1,45 +1,42 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import { UserCreatePayload, AsyncThunkConfig, User, UserSignInPayload } from 'common/types/types';
-import { StorageKey } from 'common/enums/enums';
-import { ActionType } from './common';
-import { NotificationMessage, NotificationTitle } from 'common/enums/enums';
+import { createAsyncThunk } from '@reduxjs/toolkit'
+import {
+  AsyncThunkConfig,
+  User,
+  UserSignInPayload
+} from 'src/common/types'
+import { StorageKey } from 'src/common/enums'
+import { ActionType } from './common'
 
-const signUp = createAsyncThunk<User, UserCreatePayload, AsyncThunkConfig>
-(ActionType.SIGN_UP, async (registerPayload, { extra }) => {
-  const { authApi, storageService, notificationService } = extra;
-  const { user, token } = await authApi.signUp(registerPayload);
+const signIn = createAsyncThunk<User, UserSignInPayload, AsyncThunkConfig>(
+  ActionType.SIGN_IN,
+  async (loginPayload, { extra }) => {
+    const { authApi, storageService } = extra
+    const { user, token } = await authApi.signIn(loginPayload)
 
-  storageService.setItem(StorageKey.TOKEN, token);
+    storageService.setItem(StorageKey.TOKEN, token)
 
-  notificationService.success(NotificationTitle.SUCCESS, NotificationMessage.USER_CREATED);
+    return user
+  }
+)
 
-  return user;
-});
+const getCurrentUser = createAsyncThunk<User, undefined, AsyncThunkConfig>(
+  ActionType.LOAD_USER,
+  async (_args, { extra }) => {
+    const { authApi } = extra
 
-const signIn = createAsyncThunk<User, UserSignInPayload, AsyncThunkConfig>
-(ActionType.SIGN_IN, async (loginPayload, { extra }) => {
-  const { authApi, storageService } = extra;
-  const { user, token } = await authApi.signIn(loginPayload);
+    const user = await authApi.getCurrentUser()
 
-  storageService.setItem(StorageKey.TOKEN, token);
+    return user
+  }
+)
 
-  return user;
-});
+const resetUser = createAsyncThunk<void, undefined, AsyncThunkConfig>(
+  ActionType.RESET_USER,
+  async (_args, { extra }) => {
+    const { storageService } = extra
 
-const getCurrentUser = createAsyncThunk<User, undefined, AsyncThunkConfig>
-(ActionType.LOAD_USER, async (_args, { extra }) => {
-  const { authApi } = extra;
+    storageService.removeItem(StorageKey.TOKEN)
+  }
+)
 
-  const user = await authApi.getCurrentUser();
-
-  return user;
-});
-
-const resetUser = createAsyncThunk<void, undefined, AsyncThunkConfig>
-(ActionType.RESET_USER, async (_args, { extra }) => {
-  const { storageService } = extra;
-
-  storageService.removeItem(StorageKey.TOKEN);
-});
-
-export { signUp, signIn, getCurrentUser, resetUser };
+export { signIn, getCurrentUser, resetUser }

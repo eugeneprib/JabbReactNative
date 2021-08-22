@@ -1,8 +1,8 @@
-import { ContentType } from '../../../../common/enums/enums';
+import { ContentType } from "src/services/common"
 
 type GetHeadersProps = {
-  contentType?: ContentType;
-  hasAuth: boolean;
-};
+  contentType?: ContentType
+  hasAuth: boolean
+}
 
-export type { GetHeadersProps };
+export type { GetHeadersProps }

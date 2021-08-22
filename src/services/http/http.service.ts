@@ -1,83 +1,91 @@
-import { HttpError } from 'exceptions/exceptions';
-import { HttpHeader, HttpMethod } from 'common/enums/enums';
-import { HttpOptions } from 'common/types/types';
-import { getStringifiedQuery } from 'helpers/helpers';
-import { GetHeadersProps } from './common/types/types';
-import { storage as storageService } from '../services';
+import { 
+  getStringifiedQuery, 
+  HttpError, 
+  HttpHeader, 
+  HttpMethod, 
+  HttpOptions 
+} from 'src/services/common'
+import { GetHeadersProps } from './common/types/types'
+import { storage as storageService } from 'src/services'
 
 type Constructor = {
-  storage: typeof storageService;
-};
+  storage: typeof storageService
+}
 
 class Http {
-  #storage: typeof storageService;
+  #storage: typeof storageService
 
   constructor({ storage }: Constructor) {
-    this.#storage = storage;
+    this.#storage = storage
   }
 
   load<T = unknown>(
     url: string,
-    options: Partial<HttpOptions> = {},
+    options: Partial<HttpOptions> = {}
   ): Promise<T> {
-    const { method = HttpMethod.GET, payload = null, contentType, hasAuth = true, query,
-    } = options;
+    const {
+      method = HttpMethod.GET,
+      payload = null,
+      contentType,
+      hasAuth = true,
+      query
+    } = options
     const headers = this.getHeaders({
       contentType,
-      hasAuth,
-    });
+      hasAuth
+    })
 
     return fetch(this.getUrl(url, query), {
       method,
       headers,
-      body: payload,
+      body: payload
     })
       .then(this.checkStatus)
       .then((res) => this.parseJSON<T>(res))
-      .catch(this.throwError);
+      .catch(this.throwError)
   }
 
   private getUrl(url: string, query?: Record<string, string | number>): string {
-    return `${url}${query ? `?${getStringifiedQuery(query)}`: ''}`;
+    return `${url}${query ? `?${getStringifiedQuery(query)}` : ''}`
   }
 
   private getHeaders({ contentType, hasAuth }: GetHeadersProps): Headers {
-    const headers = new Headers();
+    const headers = new Headers()
 
     if (contentType) {
-      headers.append(HttpHeader.CONTENT_TYPE, contentType);
+      headers.append(HttpHeader.CONTENT_TYPE, contentType)
     }
 
     if (hasAuth) {
-      const token = this.#storage.getItem();
+      const token = this.#storage.getItem()
 
-      headers.append(HttpHeader.AUTHORIZATION, `Bearer ${token}`);
+      headers.append(HttpHeader.AUTHORIZATION, `Bearer ${token}`)
     }
 
-    return headers;
+    return headers
   }
 
   private async checkStatus(response: Response): Promise<Response> {
     if (!response.ok) {
       const parsedException = await response.json().catch(() => ({
-        message: response.statusText,
-      }));
+        message: response.statusText
+      }))
 
       throw new HttpError({
         status: response.status,
-        message: parsedException?.message,
-      });
+        message: parsedException?.message
+      })
     }
-    return response;
+    return response
   }
 
   private parseJSON<T>(response: Response): Promise<T> {
-    return response.json();
+    return response.json()
   }
 
   private throwError(err: Error): never {
-    throw err;
+    throw err
   }
 }
 
-export { Http };
+export { Http }

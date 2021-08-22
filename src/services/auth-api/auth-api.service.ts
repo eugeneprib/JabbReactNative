@@ -1,29 +1,27 @@
 import {
-  ApiPath,
-  AuthApiPath,
-  ContentType,
-  HttpMethod,
-} from '../../common/enums/enums';
+  HttpMethod
+} from 'src/services/common'
 import {
   UserCreatePayload,
   UserSignInPayload,
   SignResponse,
-  User,
-} from '../../common/types/types';
-import { Http } from 'services/http/http.service';
+  User
+} from 'src/common/types'
+import { Http } from 'src/services/http'
+import { ApiPath, AuthApiPath, ContentType } from 'src/services/common'
 
 type Constructor = {
-  http: Http;
-  apiPrefix: string;
-};
+  http: Http
+  apiPrefix: string
+}
 
 class AuthApi {
-  #http: Http;
-  #apiPrefix: string;
+  #http: Http
+  #apiPrefix: string
 
   constructor({ http, apiPrefix }: Constructor) {
-    this.#http = http;
-    this.#apiPrefix = apiPrefix;
+    this.#http = http
+    this.#apiPrefix = apiPrefix
   }
 
   public signUp(payload: UserCreatePayload): Promise<SignResponse> {
@@ -33,9 +31,9 @@ class AuthApi {
         method: HttpMethod.POST,
         contentType: ContentType.JSON,
         payload: JSON.stringify(payload),
-        hasAuth: false,
-      },
-    );
+        hasAuth: false
+      }
+    )
   }
 
   public signIn(payload: UserSignInPayload): Promise<SignResponse> {
@@ -45,19 +43,19 @@ class AuthApi {
         method: HttpMethod.POST,
         contentType: ContentType.JSON,
         payload: JSON.stringify(payload),
-        hasAuth: false,
-      },
-    );
+        hasAuth: false
+      }
+    )
   }
 
   public getCurrentUser(): Promise<User> {
     return this.#http.load(
       `${this.#apiPrefix}${ApiPath.AUTH}${AuthApiPath.CURRENT_USER}`,
       {
-        method: HttpMethod.GET,
-      },
-    );
+        method: HttpMethod.GET
+      }
+    )
   }
 }
 
-export { AuthApi };
+export { AuthApi }

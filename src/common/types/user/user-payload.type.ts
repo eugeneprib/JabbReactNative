@@ -1,7 +1,7 @@
-import { UserPayloadKey } from '../../enums/enums';
+import { UserPayloadKey } from 'src/common/enums'
 
 type UserPayload = {
-  [UserPayloadKey.EMAIL]: string;
-};
+  [UserPayloadKey.EMAIL]: string
+}
 
-export type { UserPayload };
+export type { UserPayload }

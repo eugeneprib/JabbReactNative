@@ -1,10 +1,10 @@
-import { UserPayloadKey } from '../../enums/enums';
-import { UserConfigurePayload } from './user-configure-payload.type';
+import { UserPayloadKey } from 'src/common/enums'
+import { UserConfigurePayload } from './user-configure-payload.type'
 
 type UserEditPayload = UserConfigurePayload & {
-  [UserPayloadKey.BIO]: string;
-  [UserPayloadKey.IMAGE_DATA_URL]: string | null;
-  [UserPayloadKey.IMAGE_ID]: number | null;
-};
+  [UserPayloadKey.BIO]: string
+  [UserPayloadKey.IMAGE_DATA_URL]: string | null
+  [UserPayloadKey.IMAGE_ID]: number | null
+}
 
-export type { UserEditPayload };
+export type { UserEditPayload }

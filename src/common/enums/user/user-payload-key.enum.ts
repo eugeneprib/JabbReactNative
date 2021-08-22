@@ -8,7 +8,7 @@ enum UserPayloadKey {
   BIO = 'bio',
   IMAGE = 'image',
   IMAGE_DATA_URL = 'imageDataUrl',
-  IMAGE_ID = 'imageId',
+  IMAGE_ID = 'imageId'
 }
 
-export { UserPayloadKey };
+export { UserPayloadKey }
