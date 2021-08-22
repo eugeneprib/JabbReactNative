@@ -1,8 +1,8 @@
 import React from 'react'
 import { StyleProp, Text, TextStyle } from 'react-native'
-import { HeadingType } from 'src/common/enums'
-import { DEFAULT_STYLES, DEFAULT_TYPE } from './constants'
-import { getStylesByType } from './helpers'
+import { DEFAULT_STYLES, DEFAULT_TYPE } from './common/constants'
+import { HeadingType } from './common/enums'
+import { getStylesByType } from './common/helpers'
 
 type Props = {
   children: string

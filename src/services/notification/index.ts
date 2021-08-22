@@ -1,5 +1,5 @@
 import Toast from 'react-native-toast-message'
-import { NotificationType } from 'src/common/enums'
+import { NotificationType } from './common/enums'
 
 class Notification {
   #instance: typeof Toast
@@ -33,4 +33,4 @@ class Notification {
   }
 }
 
-export default Notification
+export { Notification }

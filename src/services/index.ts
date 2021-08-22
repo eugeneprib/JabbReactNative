@@ -1,4 +1,4 @@
-import Notification from './notification.service'
+import { Notification } from './notification'
 
 const notification = new Notification()
 

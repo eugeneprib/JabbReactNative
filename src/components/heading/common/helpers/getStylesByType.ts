@@ -1,5 +1,5 @@
 import { StyleProp, TextStyle } from 'react-native'
-import { HeadingType } from 'src/common/enums'
+import { HeadingType } from '../enums'
 
 const getStylesByType = (type: HeadingType): StyleProp<TextStyle> => {
   switch (type) {
@@ -30,4 +30,4 @@ const getStylesByType = (type: HeadingType): StyleProp<TextStyle> => {
   }
 }
 
-export default getStylesByType
+export { getStylesByType }
