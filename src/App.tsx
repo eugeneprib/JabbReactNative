@@ -12,7 +12,11 @@ import store from './store'
 function HomeScreen() {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Heading type={HeadingType.LARGE}>Home Screen</Heading>
+      <Heading
+        label="Home Screen"
+        type={HeadingType.LARGE}
+        style={{ marginBottom: 5 }}
+      />
       <Text style={styles.greeting}>Hello there. This is the App!!!</Text>
     </View>
   )
