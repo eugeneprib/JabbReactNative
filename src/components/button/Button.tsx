@@ -19,7 +19,7 @@ const Button: React.FC<Props> = ({ label, type = DEFAULT_TYPE, ...props }) => {
       style={[styles.touchable, typeStyles.touchable, props.style]}
       activeOpacity={ACTIVE_OPACITY}
     >
-      <Text style={[typeStyles.text]}>{label}</Text>
+      <Text style={[styles.text, typeStyles.text]}>{label}</Text>
     </TouchableOpacity>
   )
 }

@@ -1,13 +1,24 @@
 import { StyleSheet } from 'react-native'
 
 const styles = StyleSheet.create({
+  scrollView: {
+    flex: 1,
+    flexGrow: 1,
+    flexShrink: 1
+  },
   container: {
     flex: 1,
+    flexGrow: 1,
+    flexShrink: 1,
     marginTop: 50,
     marginBottom: 50,
     marginLeft: 25,
     marginRight: 25,
     justifyContent: 'center'
+  },
+  topBlock: {
+    flex: 1,
+    flexGrow: 1,
   },
   hello: {
     fontSize: 36,
@@ -41,7 +52,12 @@ const styles = StyleSheet.create({
   },
   link: {
     fontWeight: 'bold'
-  }
+  },
+  button: {
+    paddingTop: 15,
+    paddingBottom: 15,
+    alignItems: 'center'
+  },
 })
 
 export { styles }

@@ -4,8 +4,6 @@ import {
   TouchableOpacity,
   View,
   Text,
-  TextInput,
-  Button,
   ScrollView,
   Linking
 } from 'react-native'
@@ -14,6 +12,7 @@ import { StackNavigationProp } from '@react-navigation/stack'
 import { NavigationScreens } from 'src/common/enums'
 import { SignInValidationSchema } from './validation-schema'
 import { styles } from './styles'
+import { Heading, Input, Button, ButtonType } from 'src/components'
 
 type RootStackParamList = {
   Home: undefined
@@ -44,19 +43,19 @@ const SignIn: React.FC<Props> = ({ navigation }) => {
       )
       .catch(
         function (err) {
-
+            
         }
       );
   }
 
   return (
-    <ScrollView>
+    <ScrollView style={styles.scrollView}>
       <View style={styles.container}>
-        <View>
-          <Text style={styles.hello}>Hello There</Text>
-          <Text style={styles.intro}>Welcome to Jabber</Text>
-          <Text style={styles.lets}>Let&apos;s sign you in</Text>
-          <TextInput
+        <View style={styles.topBlock}>
+          <Heading style={styles.hello} label='Hello There' />
+          <Heading style={styles.intro} label='Welcome to Jabber' />
+          <Heading style={styles.lets} label='Let&apos;s sign you in' />
+          <Input
             style={styles.input}
             placeholder="email"
             returnKeyType="next"
@@ -67,7 +66,7 @@ const SignIn: React.FC<Props> = ({ navigation }) => {
             textContentType="emailAddress"
             keyboardType="email-address"
           />
-          <TextInput
+          <Input
             style={styles.input}
             placeholder="password"
             returnKeyType="done"
@@ -85,7 +84,12 @@ const SignIn: React.FC<Props> = ({ navigation }) => {
               <Text style={styles.link}>Sign up</Text>
             </TouchableOpacity>
           </View>
-          <Button title="Sign In" onPress={handleSignInSubmit} />
+          <Button 
+            label={'Sign in'} 
+            onPress={handleSignInSubmit}
+            style={styles.button}
+            type={ButtonType.PRIMARY}
+          />
         </View>
       </View>
     </ScrollView>
