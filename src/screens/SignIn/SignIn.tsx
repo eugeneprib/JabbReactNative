@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import {
-  TouchableOpacity,
   View,
   Text,
   ScrollView,
-  Linking
+  useWindowDimensions,
 } from 'react-native'
 import { signIn } from 'src/store/actions'
 import { StackNavigationProp } from '@react-navigation/stack'
@@ -33,6 +32,8 @@ const SignIn: React.FC<Props> = ({ navigation }) => {
   const [password, setPassword] = useState('')
   const dispatch = useDispatch()
 
+  const windowHeight = useWindowDimensions().height;
+
   const handleSignInSubmit = (): void => {
     SignInValidationSchema.validate({ email, password })
       .then(
@@ -49,7 +50,7 @@ const SignIn: React.FC<Props> = ({ navigation }) => {
   }
 
   return (
-    <ScrollView>
+    <ScrollView contentContainerStyle={{flexGrow: 1}} style={styles.scrollContainer}>
       <View style={styles.container}>
         <View>
           <Heading style={styles.hello} label='Hello There' />
