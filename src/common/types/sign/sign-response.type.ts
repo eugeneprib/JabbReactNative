@@ -1,8 +1,8 @@
-import { user } from 'src/common/types'
+import { User } from 'src/common/types'
 
-type signResponse = {
+type SignResponse = {
   token: string
-  user: user
+  user: User
 }
 
-export type { signResponse }
+export type { SignResponse }

@@ -1,2 +1,2 @@
-export { userPayloadKey } from './user-payload-key.enum'
-export { userRole } from './user-role.enum'
+export { UserPayloadKey } from './user-payload-key.enum'
+export { UserRole } from './user-role.enum'

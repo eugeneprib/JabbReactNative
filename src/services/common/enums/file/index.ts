@@ -1,2 +1,2 @@
-export { contentType } from './content-type.enum'
-export { fileExtension } from './file-extension'
+export { ContentType } from './content-type.enum'
+export { FileExtension } from './file-extension'

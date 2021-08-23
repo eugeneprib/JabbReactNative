@@ -1,4 +1,4 @@
-enum userPayloadKey {
+enum UserPayloadKey {
   FIRST_NAME = 'firstName',
   LAST_NAME = 'lastName',
   NICKNAME = 'nickname',
@@ -11,4 +11,4 @@ enum userPayloadKey {
   IMAGE_ID = 'imageId'
 }
 
-export { userPayloadKey }
+export { UserPayloadKey }

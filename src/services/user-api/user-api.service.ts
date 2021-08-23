@@ -1,10 +1,9 @@
 import {
-  apiPath,
-  contentType,
-  httpMethod,
-  usersApiPath
+  ApiPath,
+  HttpMethod,
+  UsersApiPath
 } from 'src/services/common'
-import { user } from 'src/common/types'
+import { User } from 'src/common/types'
 import { Http } from 'src/services/http'
 
 type Constructor = {
@@ -21,11 +20,11 @@ class UserApi {
     this.#apiPrefix = apiPrefix
   }
 
-  public getById(id: number): Promise<user> {
+  public getById(id: number): Promise<User> {
     return this.#http.load(
-      `${this.#apiPrefix}${apiPath.USERS}${usersApiPath.ROOT}${id}`,
+      `${this.#apiPrefix}${ApiPath.USERS}${UsersApiPath.ROOT}${id}`,
       {
-        method: httpMethod.GET
+        method: HttpMethod.GET
       }
     )
   }

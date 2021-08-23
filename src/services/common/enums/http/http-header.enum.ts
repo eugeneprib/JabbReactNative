@@ -1,6 +1,6 @@
-enum httpHeader {
+enum HttpHeader {
   CONTENT_TYPE = 'content-type',
   AUTHORIZATION = 'authorization'
 }
 
-export { httpHeader }
+export { HttpHeader }

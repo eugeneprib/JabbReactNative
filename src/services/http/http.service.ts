@@ -1,11 +1,11 @@
 import {
   getStringifiedQuery,
-  httpError,
-  httpHeader,
-  httpMethod,
-  httpOptions
+  HttpError,
+  HttpHeader,
+  HttpMethod,
+  HttpOptions
 } from 'src/services/common'
-import { getHeadersProps } from './common/types/types'
+import { GetHeadersProps } from './common/types/types'
 import { storage as storageService } from 'src/services'
 
 type Constructor = {
@@ -21,10 +21,10 @@ class Http {
 
   load<T = unknown>(
     url: string,
-    options: Partial<httpOptions> = {}
+    options: Partial<HttpOptions> = {}
   ): Promise<T> {
     const {
-      method = httpMethod.GET,
+      method = HttpMethod.GET,
       payload = null,
       contentType,
       hasAuth = true,
@@ -49,17 +49,17 @@ class Http {
     return `${url}${query ? `?${getStringifiedQuery(query)}` : ''}`
   }
 
-  private getHeaders({ contentType, hasAuth }: getHeadersProps): Headers {
+  private getHeaders({ contentType, hasAuth }: GetHeadersProps): Headers {
     const headers = new Headers()
 
     if (contentType) {
-      headers.append(httpHeader.CONTENT_TYPE, contentType)
+      headers.append(HttpHeader.CONTENT_TYPE, contentType)
     }
 
     if (hasAuth) {
       const token = this.#storage.getItem()
 
-      headers.append(httpHeader.AUTHORIZATION, `Bearer ${token}`)
+      headers.append(HttpHeader.AUTHORIZATION, `Bearer ${token}`)
     }
 
     return headers
@@ -71,7 +71,7 @@ class Http {
         message: response.statusText
       }))
 
-      throw new httpError({
+      throw new HttpError({
         status: response.status,
         message: parsedException?.message
       })

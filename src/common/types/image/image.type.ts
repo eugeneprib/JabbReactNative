@@ -1,4 +1,4 @@
-type image = {
+type Image = {
   id: number
   url: string
   publicId: string
@@ -6,4 +6,4 @@ type image = {
   updatedAt: string
 }
 
-export type { image }
+export type { Image }

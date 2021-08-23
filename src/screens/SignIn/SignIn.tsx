@@ -11,7 +11,8 @@ import {
 } from 'react-native'
 import { signIn } from 'src/store/actions'
 import { StackNavigationProp } from '@react-navigation/stack'
-import { navigationScreens } from 'src/common/enums'
+import { NavigationScreens } from 'src/common/enums'
+import { SignInValidationSchema } from './validation-schema'
 import { styles } from './styles'
 
 type RootStackParamList = {
@@ -34,8 +35,19 @@ const SignIn: React.FC<Props> = ({ navigation }) => {
   const dispatch = useDispatch()
 
   const handleSignInSubmit = (): void => {
-    dispatch(signIn({ email, password }))
-    navigation.replace(navigationScreens.HOME)
+    SignInValidationSchema.validate({ email, password })
+      .then(
+        function (payload) {
+          dispatch(signIn(payload))
+          navigation.replace(NavigationScreens.HOME)
+        }
+      )
+      .catch(
+        function (err) {
+          // console.log(JSON.stringify(err.message));
+          // send this error to toast notification
+        }
+      );
   }
 
   return (

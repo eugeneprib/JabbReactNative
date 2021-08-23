@@ -1,1 +1,1 @@
-export type { signResponse } from './sign-response.type'
+export type { SignResponse } from './sign-response.type'

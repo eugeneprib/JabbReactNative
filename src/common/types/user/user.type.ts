@@ -1,7 +1,7 @@
-import { image } from 'src/common/types'
-import { userRole } from 'src/common/enums'
+import { Image } from 'src/common/types'
+import { UserRole } from 'src/common/enums'
 
-type user = {
+type User = {
   id: number
   firstName: string
   lastName: string
@@ -13,8 +13,8 @@ type user = {
   bio: string
   createdAt: string
   updatedAt: string
-  image: image | null
-  role: userRole
+  image: Image | null
+  role: UserRole
 }
 
-export type { user }
+export type { User }

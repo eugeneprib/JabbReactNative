@@ -1,1 +1,1 @@
-export { httpError } from './http-error/http-error.exception'
+export { HttpError } from './http-error/http-error.exception'

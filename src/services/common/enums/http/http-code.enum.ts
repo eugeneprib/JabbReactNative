@@ -1,4 +1,4 @@
-enum httpCode {
+enum HttpCode {
   OK = 200,
   CREATED = 201,
   BAD_REQUEST = 400,
@@ -7,4 +7,4 @@ enum httpCode {
   INTERNAL_SERVER_ERROR = 500
 }
 
-export { httpCode }
+export { HttpCode }

@@ -1,8 +1,8 @@
-enum httpMethod {
+enum HttpMethod {
   GET = 'GET',
   POST = 'POST',
   PUT = 'PUT',
   DELETE = 'DELETE'
 }
 
-export { httpMethod }
+export { HttpMethod }

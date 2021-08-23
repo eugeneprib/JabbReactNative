@@ -1,8 +1,8 @@
-enum dataStatus {
+enum DataStatus {
   IDLE = 'idle',
   PENDING = 'pending',
   FULFILLED = 'fulfilled',
   REJECTED = 'rejected'
 }
 
-export { dataStatus }
+export { DataStatus }

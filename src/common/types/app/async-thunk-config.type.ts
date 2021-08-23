@@ -1,11 +1,11 @@
 import { extraArgument } from 'src/store'
-import { appDispatch } from './app-dispatch.type'
-import { rootState } from './root-state.type'
+import { AppDispatch } from './app-dispatch.type'
+import { RootState } from './root-state.type'
 
-type asyncThunkConfig = {
-  state: rootState
-  dispatch: appDispatch
+type AsyncThunkConfig = {
+  state: RootState
+  dispatch: AppDispatch
   extra: typeof extraArgument
 }
 
-export type { asyncThunkConfig }
+export type { AsyncThunkConfig }

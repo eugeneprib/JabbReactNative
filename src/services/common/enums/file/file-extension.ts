@@ -1,4 +1,4 @@
-enum fileExtension {
+enum FileExtension {
   JPG = 'jpg',
   PNG = 'png',
   SVG = 'svg',
@@ -7,4 +7,4 @@ enum fileExtension {
   WAV = 'wav'
 }
 
-export { fileExtension }
+export { FileExtension }

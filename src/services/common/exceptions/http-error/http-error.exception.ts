@@ -1,18 +1,18 @@
-import { httpCode } from 'src/services/common'
+import { HttpCode } from 'src/services/common'
 import { DEFAULT_MESSAGE } from './common/constants'
-import { customExceptionName } from './common/custom-exception-name.enum'
+import { CustomExceptionName } from './common/custom-exception-name.enum'
 
-class httpError extends Error {
-  status: httpCode
+class HttpError extends Error {
+  status: HttpCode
 
   constructor({
-    status = httpCode.INTERNAL_SERVER_ERROR,
+    status = HttpCode.INTERNAL_SERVER_ERROR,
     message = DEFAULT_MESSAGE
   } = {}) {
     super(message)
     this.status = status
-    this.name = customExceptionName.HTTP_ERROR
+    this.name = CustomExceptionName.HTTP_ERROR
   }
 }
 
-export { httpError }
+export { HttpError }

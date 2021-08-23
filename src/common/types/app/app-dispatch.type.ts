@@ -1,5 +1,5 @@
 import { store } from 'src/store'
 
-type appDispatch = typeof store.dispatch
+type AppDispatch = typeof store.dispatch
 
-export type { appDispatch }
+export type { AppDispatch }
