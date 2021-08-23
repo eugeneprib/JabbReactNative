@@ -1,0 +1,1 @@
+export { getStylesByType } from './getStylesByType'

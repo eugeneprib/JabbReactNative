@@ -3,6 +3,9 @@ import { Http } from './http'
 import { AuthApi } from './auth-api'
 import { Storage } from './storage'
 import { UserApi } from './user-api'
+import { Notification } from './notification'
+
+const notification = new Notification()
 
 const storage = new Storage({
   storage: Keychain
@@ -22,4 +25,4 @@ const userApi = new UserApi({
   apiPrefix: '/api/v1'
 })
 
-export { authApi, storage, userApi }
+export { authApi, storage, userApi, notification }
