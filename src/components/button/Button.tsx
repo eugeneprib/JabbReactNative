@@ -1,6 +1,5 @@
 import React from 'react'
-import { TouchableOpacity, TouchableOpacityProps } from 'react-native'
-import { Text } from 'react-native'
+import { Text, TouchableOpacity, TouchableOpacityProps } from 'react-native'
 import { DEFAULT_TYPE, ACTIVE_OPACITY } from './common/constants'
 import { ButtonType } from './common/enum'
 import { getStylesByType } from './common/helpers'

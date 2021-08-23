@@ -1,6 +1,11 @@
 import React, { useCallback } from 'react'
-import { TouchableOpacityProps } from 'react-native'
-import { Alert, Linking, TouchableOpacity, Text } from 'react-native'
+import {
+  TouchableOpacity,
+  Alert,
+  Linking,
+  Text,
+  TouchableOpacityProps
+} from 'react-native'
 
 type Props = {
   label: string
