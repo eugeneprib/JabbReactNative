@@ -3,6 +3,7 @@ import { StyleSheet } from 'react-native'
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    height: '100%',
     marginTop: 50,
     marginBottom: 50,
     marginLeft: 25,
@@ -35,9 +36,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginTop: 4,
     marginBottom: 10
-  },
-  forgot: {
-    fontSize: 13
   },
   link: {
     fontWeight: 'bold'

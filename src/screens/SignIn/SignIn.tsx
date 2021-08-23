@@ -12,7 +12,7 @@ import { StackNavigationProp } from '@react-navigation/stack'
 import { NavigationScreens } from 'src/common/enums'
 import { SignInValidationSchema } from './validation-schema'
 import { styles } from './styles'
-import { Heading, Input, Button, ButtonType } from 'src/components'
+import { Heading, Input, Button, ButtonType, Link } from 'src/components'
 
 type RootStackParamList = {
   Home: undefined
@@ -78,11 +78,7 @@ const SignIn: React.FC<Props> = ({ navigation }) => {
         <View style={styles.bottomBlock}>
           <View style={styles.row}>
             <Text>Don’t have an account? </Text>
-            <TouchableOpacity
-              onPress={() => Linking.openURL('http://google.com')}
-            >
-              <Text style={styles.link}>Sign up</Text>
-            </TouchableOpacity>
+            <Link label='Sign up' url={'http://google.com'} />
           </View>
           <Button 
             label={'Sign in'} 
