@@ -1,9 +1,5 @@
 import { httpMethod } from 'src/services/common'
-import {
-  userSignInPayload,
-  signResponse,
-  user
-} from 'src/common/types'
+import { userSignInPayload, signResponse, user } from 'src/common/types'
 import { Http } from 'src/services/http'
 import { apiPath, authApiPath, contentType } from 'src/services/common'
 

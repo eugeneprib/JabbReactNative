@@ -18,4 +18,4 @@ const store = configureStore({
   }
 })
 
-export { extraArgument, store };
+export { extraArgument, store }

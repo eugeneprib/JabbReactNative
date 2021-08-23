@@ -1,2 +1,2 @@
-export { SignInScreen } from './SignIn'
-export { HomeScreen } from './Home'
+export { SignIn } from './SignIn'
+export { Home } from './Home'

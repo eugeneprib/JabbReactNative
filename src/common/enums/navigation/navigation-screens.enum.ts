@@ -1,6 +1,6 @@
 enum navigationScreens {
   HOME = 'Home',
-  SIGN_IN = 'SignIn',
+  SIGN_IN = 'SignIn'
 }
 
 export { navigationScreens }

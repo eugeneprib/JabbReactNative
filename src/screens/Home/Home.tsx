@@ -1,13 +1,8 @@
 import React from 'react'
-import {
-  View,
-  Text,
-  ScrollView,
-} from 'react-native'
+import { View, Text, ScrollView } from 'react-native'
 import styles from 'src/styles/globalStyles'
 
-const HomeScreen: React.FC = () => {
-
+const Home: React.FC = () => {
   return (
     <ScrollView>
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -18,4 +13,4 @@ const HomeScreen: React.FC = () => {
   )
 }
 
-export default HomeScreen
+export default Home

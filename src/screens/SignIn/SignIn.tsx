@@ -19,16 +19,16 @@ type RootStackParamList = {
   SignIn: undefined
 }
 
-type LoginScreenNavigationProp = StackNavigationProp<
+type SignInScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
   'SignIn'
 >
 
 type Props = {
-  navigation: LoginScreenNavigationProp
+  navigation: SignInScreenNavigationProp
 }
 
-const SignInScreen: React.FC<Props> = ({ navigation }) => {
+const SignIn: React.FC<Props> = ({ navigation }) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const dispatch = useDispatch()
@@ -81,4 +81,4 @@ const SignInScreen: React.FC<Props> = ({ navigation }) => {
   )
 }
 
-export default SignInScreen
+export default SignIn
