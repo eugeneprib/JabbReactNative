@@ -44,8 +44,7 @@ const SignIn: React.FC<Props> = ({ navigation }) => {
       )
       .catch(
         function (err) {
-          // console.log(JSON.stringify(err.message));
-          // send this error to toast notification
+
         }
       );
   }

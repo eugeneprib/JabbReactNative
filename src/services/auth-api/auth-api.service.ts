@@ -18,7 +18,6 @@ class AuthApi {
   }
 
   public signIn(payload: UserSignInPayload): Promise<SignResponse> {
-    console.log(payload)
     return this.#http.load(
       `${this.#apiPrefix}${ApiPath.AUTH}${AuthApiPath.SIGN_IN}`,
       {
