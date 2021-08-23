@@ -1,6 +1,5 @@
 import React from 'react'
-import { TextProps } from 'react-native'
-import { Text } from 'react-native'
+import { Text, TextProps } from 'react-native'
 import { DEFAULT_TYPE } from './common/constants'
 import { HeadingType } from './common/enums'
 import { getStylesByType } from './common/helpers'
