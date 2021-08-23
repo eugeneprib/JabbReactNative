@@ -1,35 +1,26 @@
 import React from 'react'
-import { TextInputProps, ViewStyle } from 'react-native'
-import { Text, TextInput, View } from 'react-native'
+import { TextInput, TextInputProps, TextStyle } from 'react-native'
 import { styles } from './styles'
 
 type Props = {
-  label: string
-  value?: string
   hasMultipleRows?: boolean
   isSecure?: boolean
-  style?: ViewStyle
+  style?: TextStyle
 } & TextInputProps
 
 const Input: React.FC<Props> = ({
-  label,
-  value,
   isSecure = false,
   hasMultipleRows = false,
   style,
   ...props
 }) => {
   return (
-    <View style={style}>
-      <Text style={[styles.text]}>{label}</Text>
-      <TextInput
-        {...props}
-        value={value}
-        style={[styles.input]}
-        multiline={hasMultipleRows}
-        secureTextEntry={isSecure}
-      />
-    </View>
+    <TextInput
+      {...props}
+      style={[styles.input, style]}
+      multiline={hasMultipleRows}
+      secureTextEntry={isSecure}
+    />
   )
 }
 

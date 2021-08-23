@@ -1,8 +1,6 @@
-import { TextStyle, ViewStyle } from 'react-native'
+import { TextStyle } from 'react-native'
 
 type Styles = {
-  container?: ViewStyle
-  text?: TextStyle
   input?: TextStyle
 }
 
