@@ -49,9 +49,9 @@ const SignIn: React.FC<Props> = ({ navigation }) => {
   }
 
   return (
-    <ScrollView style={styles.scrollView}>
+    <ScrollView>
       <View style={styles.container}>
-        <View style={styles.topBlock}>
+        <View>
           <Heading style={styles.hello} label='Hello There' />
           <Heading style={styles.intro} label='Welcome to Jabber' />
           <Heading style={styles.lets} label='Let&apos;s sign you in' />
