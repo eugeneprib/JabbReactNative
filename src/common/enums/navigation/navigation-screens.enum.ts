@@ -1,6 +1,6 @@
-enum NavigationScreens {
+enum NavigationScreen {
   HOME = 'Home',
   SIGN_IN = 'SignIn'
 }
 
-export { NavigationScreens }
+export { NavigationScreen }

@@ -8,7 +8,7 @@ import {
 } from 'react-native'
 import { signIn } from 'src/store/actions'
 import { StackNavigationProp } from '@react-navigation/stack'
-import { NavigationScreens } from 'src/common/enums'
+import { NavigationScreen } from 'src/common/enums'
 import { SignInValidationSchema } from './validation-schema'
 import { styles } from './styles'
 import { Heading, Input, Button, ButtonType, Link } from 'src/components'
@@ -39,7 +39,7 @@ const SignIn: React.FC<Props> = ({ navigation }) => {
       .then(
         function (payload) {
           dispatch(signIn(payload))
-          navigation.replace(NavigationScreens.HOME)
+          navigation.replace(NavigationScreen.HOME)
         }
       )
       .catch(
@@ -79,7 +79,7 @@ const SignIn: React.FC<Props> = ({ navigation }) => {
         <View style={styles.bottomBlock}>
           <View style={styles.row}>
             <Text>Don’t have an account? </Text>
-            <Link label='Sign up' url={'http://google.com'} />
+            <Link label='Sign up' url='http://google.com' />
           </View>
           <Button 
             label={'Sign in'} 

@@ -1,15 +1,15 @@
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 import { SignIn, Home } from 'src/screens'
-import { NavigationScreens } from 'src/common/enums'
+import { NavigationScreen } from 'src/common/enums'
 
 const Stack = createStackNavigator()
 
 const Navigation: React.FC = () => {
   return (
-    <Stack.Navigator initialRouteName="SignInScreen">
+    <Stack.Navigator initialRouteName={NavigationScreen.SIGN_IN}>
       <Stack.Screen
-        name={NavigationScreens.SIGN_IN}
+        name={NavigationScreen.SIGN_IN}
         component={SignIn}
         options={{
           title: 'Login',
@@ -18,7 +18,7 @@ const Navigation: React.FC = () => {
           }
         }}
       />
-      <Stack.Screen name={NavigationScreens.HOME} component={Home} />
+      <Stack.Screen name={NavigationScreen.HOME} component={Home} />
     </Stack.Navigator>
   )
 }

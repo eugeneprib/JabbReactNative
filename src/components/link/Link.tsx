@@ -26,7 +26,7 @@ const Link: React.FC<Props> = ({ label, url, ...props }) => {
 
   return (
     <TouchableOpacity {...props} onPress={handlePress}>
-      <Text style={[styles.text]}>{label}</Text>
+      <Text style={styles.text}>{label}</Text>
     </TouchableOpacity>
   )
 }
