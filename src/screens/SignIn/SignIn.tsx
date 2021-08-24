@@ -8,10 +8,11 @@ import {
 } from 'react-native'
 import { signIn } from 'src/store/actions'
 import { StackNavigationProp } from '@react-navigation/stack'
-import { NavigationScreen } from 'src/common/enums'
+import { AppError, NavigationScreen } from 'src/common/enums'
 import { SignInValidationSchema } from './validation-schema'
 import { styles } from './styles'
 import { Heading, Input, Button, ButtonType, Link } from 'src/components'
+import { notification } from 'src/services'
 
 type RootStackParamList = {
   Home: undefined
@@ -42,7 +43,7 @@ const SignIn: React.FC<Props> = ({ navigation }) => {
       )
       .catch(
         function (err) {
-
+          notification.error(AppError.VALIDATION_ERROR, JSON.stringify(err.message));
         }
       );
   }
