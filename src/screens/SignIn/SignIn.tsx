@@ -4,7 +4,7 @@ import {
   View,
   Text,
   ScrollView,
-  useWindowDimensions,
+  KeyboardAvoidingView,
 } from 'react-native'
 import { signIn } from 'src/store/actions'
 import { StackNavigationProp } from '@react-navigation/stack'
@@ -32,8 +32,6 @@ const SignIn: React.FC<Props> = ({ navigation }) => {
   const [password, setPassword] = useState('')
   const dispatch = useDispatch()
 
-  const windowHeight = useWindowDimensions().height;
-
   const handleSignInSubmit = (): void => {
     SignInValidationSchema.validate({ email, password })
       .then(
@@ -44,52 +42,56 @@ const SignIn: React.FC<Props> = ({ navigation }) => {
       )
       .catch(
         function (err) {
-            
+
         }
       );
   }
 
   return (
-    <ScrollView contentContainerStyle={{flexGrow: 1}} style={styles.scrollContainer}>
-      <View style={styles.container}>
-        <View>
-          <Heading style={styles.hello} label='Hello There' />
-          <Heading style={styles.intro} label='Welcome to Jabber' />
-          <Heading style={styles.lets} label='Let&apos;s sign you in' />
-          <Input
-            style={styles.input}
-            placeholder="email"
-            returnKeyType="next"
-            value={email}
-            onChangeText={(text: string) => setEmail(text)}
-            autoCapitalize="none"
-            autoCompleteType="email"
-            textContentType="emailAddress"
-            keyboardType="email-address"
-          />
-          <Input
-            style={styles.input}
-            placeholder="password"
-            returnKeyType="done"
-            value={password}
-            onChangeText={(text: string) => setPassword(text)}
-            secureTextEntry
-          />
-        </View>
-        <View style={styles.bottomBlock}>
-          <View style={styles.row}>
-            <Text>Don’t have an account? </Text>
-            <Link label='Sign up' url='http://google.com' />
+    <KeyboardAvoidingView
+      contentContainerStyle={{ flexGrow: 1 }}
+      style={styles.keyBoardAvoidContainer}
+      behavior="height"
+    >
+      <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent:'space-between' }}>
+          <View>
+            <Heading style={styles.hello} label='Hello There' />
+            <Heading style={styles.intro} label='Welcome to Jabber' />
+            <Heading style={styles.lets} label='Let&apos;s sign you in' />
+            <Input
+              style={styles.input}
+              placeholder="email"
+              returnKeyType="next"
+              value={email}
+              onChangeText={(text: string) => setEmail(text)}
+              autoCapitalize="none"
+              autoCompleteType="email"
+              textContentType="emailAddress"
+              keyboardType="email-address"
+            />
+            <Input
+              style={styles.input}
+              placeholder="password"
+              returnKeyType="done"
+              value={password}
+              onChangeText={(text: string) => setPassword(text)}
+              secureTextEntry
+            />
           </View>
-          <Button 
-            label={'Sign in'} 
-            onPress={handleSignInSubmit}
-            style={styles.button}
-            type={ButtonType.PRIMARY}
-          />
-        </View>
-      </View>
-    </ScrollView>
+          <View style={styles.bottomBlock}>
+            <View style={styles.row}>
+              <Text>Don’t have an account? </Text>
+              <Link label='Sign up' url='http://google.com' />
+            </View>
+            <Button
+              label={'Sign in'}
+              onPress={handleSignInSubmit}
+              style={styles.button}
+              type={ButtonType.PRIMARY}
+            />
+          </View>
+      </ScrollView>
+    </KeyboardAvoidingView>
   )
 }
 

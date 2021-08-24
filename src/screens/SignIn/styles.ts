@@ -1,15 +1,12 @@
 import { StyleSheet } from 'react-native'
 
 const styles = StyleSheet.create({
-  scrollContainer: {
+  keyBoardAvoidContainer: {
+    flex:1,
     paddingTop: 50,
     paddingLeft: 25,
     paddingRight: 25,
     paddingBottom: 50
-  },
-  container: {
-    flex:1,
-    justifyContent: 'space-between',
   },
   hello: {
     fontSize: 36,
@@ -29,7 +26,7 @@ const styles = StyleSheet.create({
     marginBottom: 15
   },
   bottomBlock: {
-    marginTop: 25,
+    marginBottom: 25,
   },
   row: {
     flexDirection: 'row',
