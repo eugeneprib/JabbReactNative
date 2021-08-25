@@ -15,13 +15,13 @@ import { Heading, Input, Button, ButtonType, Link } from 'src/components'
 import { notification } from 'src/services'
 
 type RootStackParamList = {
-  Home: undefined
-  SignIn: undefined
+  [NavigationScreen.HOME]: undefined
+  [NavigationScreen.SIGN_IN]: undefined
 }
 
 type SignInScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
-  'SignIn'
+  NavigationScreen.SIGN_IN
 >
 
 type Props = {
@@ -61,10 +61,10 @@ const SignIn: React.FC<Props> = ({ navigation }) => {
             <Heading style={styles.lets} label='Let&apos;s sign you in' />
             <Input
               style={styles.input}
-              placeholder="email"
+              placeholder="Email"
               returnKeyType="next"
               value={email}
-              onChangeText={(text: string) => setEmail(text)}
+              onChangeText={setEmail}
               autoCapitalize="none"
               autoCompleteType="email"
               textContentType="emailAddress"
@@ -72,11 +72,11 @@ const SignIn: React.FC<Props> = ({ navigation }) => {
             />
             <Input
               style={styles.input}
-              placeholder="password"
+              placeholder="Password"
               returnKeyType="done"
               value={password}
-              onChangeText={(text: string) => setPassword(text)}
-              secureTextEntry
+              onChangeText={setPassword}
+              isSecure
             />
           </View>
           <View style={styles.bottomBlock}>
@@ -85,7 +85,7 @@ const SignIn: React.FC<Props> = ({ navigation }) => {
               <Link label='Sign up' url='http://google.com' />
             </View>
             <Button
-              label={'Sign in'}
+              label='Sign in'
               onPress={handleSignInSubmit}
               style={styles.button}
               type={ButtonType.PRIMARY}
