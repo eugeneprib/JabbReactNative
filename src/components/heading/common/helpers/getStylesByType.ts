@@ -6,28 +6,28 @@ const getStylesByType = (type: HeadingType): Styles => {
     case HeadingType.SMALL: {
       return {
         text: {
-          fontSize: 22
+          fontSize: 14
         }
       }
     }
     case HeadingType.MEDIUM: {
       return {
         text: {
-          fontSize: 28
+          fontSize: 22
         }
       }
     }
     case HeadingType.LARGE: {
       return {
         text: {
-          fontSize: 34
+          fontSize: 24
         }
       }
     }
     case HeadingType.HUGE: {
       return {
         text: {
-          fontSize: 40
+          fontSize: 34
         }
       }
     }
