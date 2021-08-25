@@ -1,1 +1,1 @@
-export type { Image } from './image.type'
+export type { Image } from './image'

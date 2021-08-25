@@ -8,11 +8,12 @@ import {
 } from 'react-native'
 import { signIn } from 'src/store/actions'
 import { StackNavigationProp } from '@react-navigation/stack'
+import { Heading, Input, Button, ButtonType, Link } from 'src/components'
+import { notification } from 'src/services'
+import { REGISTER_URL } from '../common'
 import { AppError, NavigationScreen } from 'src/common/enums'
 import { SignInValidationSchema } from './validation-schema'
 import { styles } from './styles'
-import { Heading, Input, Button, ButtonType, Link } from 'src/components'
-import { notification } from 'src/services'
 
 type RootStackParamList = {
   [NavigationScreen.HOME]: undefined
@@ -82,7 +83,7 @@ const SignIn: React.FC<Props> = ({ navigation }) => {
           <View style={styles.bottomBlock}>
             <View style={styles.row}>
               <Text>Don’t have an account? </Text>
-              <Link label='Sign up' url='http://google.com' />
+              <Link label='Register' url={REGISTER_URL} />
             </View>
             <Button
               label='Sign in'

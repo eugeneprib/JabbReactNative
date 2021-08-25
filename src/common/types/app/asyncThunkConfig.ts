@@ -1,6 +1,6 @@
 import { extraArgument } from 'src/store'
-import { AppDispatch } from './app-dispatch.type'
-import { RootState } from './root-state.type'
+import { AppDispatch } from './appDispatch'
+import { RootState } from './rootState'
 
 type AsyncThunkConfig = {
   state: RootState

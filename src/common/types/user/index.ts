@@ -1,2 +1,2 @@
-export type { User } from './user.type'
-export type { UserSignInPayload } from './user-sign-in-payload.type'
+export type { User } from './user'
+export type { UserSignInPayload } from './userSignInPayload'

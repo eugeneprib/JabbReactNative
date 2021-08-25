@@ -1,3 +1,3 @@
-export { DataStatus } from './data-status.enum'
-export { StorageKey } from './storage-key.enum'
-export { AppError } from './app-error.enum'
+export { DataStatus } from './dataStatus'
+export { StorageKey } from './storageKey'
+export { AppError } from './appError'

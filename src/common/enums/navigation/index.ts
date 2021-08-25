@@ -1,1 +1,1 @@
-export { NavigationScreen } from './navigation-screens.enum'
+export { NavigationScreen } from './navigationScreen'

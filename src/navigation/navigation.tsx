@@ -12,7 +12,7 @@ const Navigation: React.FC = () => {
         name={NavigationScreen.SIGN_IN}
         component={SignIn}
         options={{
-          title: 'Login',
+          headerShown: false,
           cardStyle: {
             backgroundColor: 'white'
           }

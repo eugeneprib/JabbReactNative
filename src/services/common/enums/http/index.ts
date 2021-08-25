@@ -1,3 +1,3 @@
-export { HttpCode } from './http-code.enum'
-export { HttpMethod } from './http-method.enum'
-export { HttpHeader } from './http-header.enum'
+export { HttpCode } from './httpCode'
+export { HttpMethod } from './httpMethod'
+export { HttpHeader } from './httpHeader'
