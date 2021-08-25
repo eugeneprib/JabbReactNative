@@ -1,6 +1,11 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { View, Text, ScrollView, KeyboardAvoidingView } from 'react-native'
+import {
+  View,
+  Text,
+  ScrollView,
+  KeyboardAvoidingView,
+} from 'react-native'
 import { signIn } from 'src/store/actions'
 import { StackNavigationProp } from '@react-navigation/stack'
 import { AppError, NavigationScreen } from 'src/common/enums'
@@ -30,16 +35,17 @@ const SignIn: React.FC<Props> = ({ navigation }) => {
 
   const handleSignInSubmit = (): void => {
     SignInValidationSchema.validate({ email, password })
-      .then(function (payload) {
-        dispatch(signIn(payload))
-        navigation.replace(NavigationScreen.HOME)
-      })
-      .catch(function (err) {
-        notification.error(
-          AppError.VALIDATION_ERROR,
-          JSON.stringify(err.message)
-        )
-      })
+      .then(
+        function (payload) {
+          dispatch(signIn(payload))
+          navigation.replace(NavigationScreen.HOME)
+        }
+      )
+      .catch(
+        function (err) {
+          notification.error(AppError.VALIDATION_ERROR, JSON.stringify(err.message));
+        }
+      );
   }
 
   return (
@@ -48,45 +54,43 @@ const SignIn: React.FC<Props> = ({ navigation }) => {
       style={styles.keyBoardAvoidContainer}
       behavior="height"
     >
-      <ScrollView
-        contentContainerStyle={{ flexGrow: 1, justifyContent: 'space-between' }}
-      >
-        <View>
-          <Heading style={styles.hello} label="Hello There" />
-          <Heading style={styles.intro} label="Welcome to Jabber" />
-          <Heading style={styles.lets} label="Let's sign you in" />
-          <Input
-            style={styles.input}
-            placeholder="Email"
-            returnKeyType="next"
-            value={email}
-            onChangeText={setEmail}
-            autoCapitalize="none"
-            autoCompleteType="email"
-            textContentType="emailAddress"
-            keyboardType="email-address"
-          />
-          <Input
-            style={styles.input}
-            placeholder="Password"
-            returnKeyType="done"
-            value={password}
-            onChangeText={setPassword}
-            isSecure
-          />
-        </View>
-        <View style={styles.bottomBlock}>
-          <View style={styles.row}>
-            <Text>Don’t have an account? </Text>
-            <Link label="Sign up" url="http://google.com" />
+      <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent:'space-between' }}>
+          <View>
+            <Heading style={styles.hello} label='Hello There' />
+            <Heading style={styles.intro} label='Welcome to Jabber' />
+            <Heading style={styles.lets} label='Let&apos;s sign you in' />
+            <Input
+              style={styles.input}
+              placeholder="Email"
+              returnKeyType="next"
+              value={email}
+              onChangeText={setEmail}
+              autoCapitalize="none"
+              autoCompleteType="email"
+              textContentType="emailAddress"
+              keyboardType="email-address"
+            />
+            <Input
+              style={styles.input}
+              placeholder="Password"
+              returnKeyType="done"
+              value={password}
+              onChangeText={setPassword}
+              isSecure
+            />
           </View>
-          <Button
-            label="Sign in"
-            onPress={handleSignInSubmit}
-            style={styles.button}
-            type={ButtonType.PRIMARY}
-          />
-        </View>
+          <View style={styles.bottomBlock}>
+            <View style={styles.row}>
+              <Text>Don’t have an account? </Text>
+              <Link label='Sign up' url='http://google.com' />
+            </View>
+            <Button
+              label='Sign in'
+              onPress={handleSignInSubmit}
+              style={styles.button}
+              type={ButtonType.PRIMARY}
+            />
+          </View>
       </ScrollView>
     </KeyboardAvoidingView>
   )

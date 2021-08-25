@@ -1,5 +1,5 @@
 enum AppError {
-  VALIDATION_ERROR = 'Validation error'
+  VALIDATION_ERROR = 'Validation error',
 }
 
 export { AppError }
