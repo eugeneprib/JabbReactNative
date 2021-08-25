@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native'
 
 const styles = StyleSheet.create({
   keyBoardAvoidContainer: {
-    flex:1,
+    flex: 1,
     paddingTop: 50,
     paddingLeft: 25,
     paddingRight: 25,
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     marginBottom: 15
   },
   bottomBlock: {
-    marginBottom: 25,
+    marginBottom: 25
   },
   row: {
     flexDirection: 'row',
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     paddingTop: 15,
     paddingBottom: 15,
     alignItems: 'center'
-  },
+  }
 })
 
 export { styles }

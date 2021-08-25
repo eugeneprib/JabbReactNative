@@ -1,8 +1,4 @@
-import {
-  ApiPath,
-  HttpMethod,
-  UsersApiPath
-} from 'src/services/common'
+import { ApiPath, HttpMethod, UsersApiPath } from 'src/services/common'
 import { User } from 'src/common/types'
 import { Http } from 'src/services/http'
 

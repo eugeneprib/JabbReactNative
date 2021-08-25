@@ -1,4 +1,4 @@
-import { object, string } from 'yup';
+import { object, string } from 'yup'
 
 const SignInSchema = object().shape({
   email: string()
@@ -8,7 +8,7 @@ const SignInSchema = object().shape({
   password: string()
     .trim()
     .required('Password is required')
-    .min(6, `Password must be 6 characters or longer`),
-});
+    .min(6, `Password must be 6 characters or longer`)
+})
 
 export { SignInSchema }

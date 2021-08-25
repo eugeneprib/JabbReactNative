@@ -9,7 +9,7 @@ interface Styles {
 export default StyleSheet.create<Styles>({
   container: {
     height: '100%',
-    backgroundColor: '#f1f1f1',
+    backgroundColor: '#f1f1f1'
   },
   greeting: {
     fontSize: 25,
