@@ -1,7 +1,7 @@
 import { StyleSheet, TextStyle } from 'react-native'
 
 type Styles = {
-  text?: TextStyle
+  text: TextStyle
 }
 
 const styles = StyleSheet.create<Styles>({

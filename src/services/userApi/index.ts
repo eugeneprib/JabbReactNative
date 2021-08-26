@@ -1,1 +1,1 @@
-export { UserApi } from './userApiService'
+export { UserApi } from './userApi'

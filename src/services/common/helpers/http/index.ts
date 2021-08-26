@@ -1,1 +1,1 @@
-export { getStringifiedQuery } from './getStringifiedQuery/getStringifiedQueryHelper'
+export { getStringifiedQuery } from './getStringifiedQuery/getStringifiedQuery'

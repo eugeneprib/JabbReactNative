@@ -1,1 +1,1 @@
-export { Storage } from './storage.service'
+export { Storage } from './storage'

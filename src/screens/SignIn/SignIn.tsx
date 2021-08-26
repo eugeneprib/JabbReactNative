@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import { View, Text, ScrollView, KeyboardAvoidingView } from 'react-native'
 import { signIn } from 'src/store/actions'
 import { StackNavigationProp } from '@react-navigation/stack'
-import { Heading, Input, Button, ButtonType, Link } from 'src/components'
+import { Heading, Input, Button, ButtonType, Link, HeadingType } from 'src/components'
 import { notification } from 'src/services'
 import { REGISTER_URL } from '../common'
 import { AppError, NavigationScreen } from 'src/common/enums'
@@ -52,9 +52,9 @@ const SignIn: React.FC<Props> = ({ navigation }) => {
         contentContainerStyle={styles.scrollView}
       >
         <View>
-          <Heading style={styles.hello} label="Hello There" />
-          <Heading style={styles.intro} label="Welcome to Jabber" />
-          <Heading style={styles.lets} label="Let's sign you in" />
+          <Heading type={HeadingType.HUGE} label="Hello There" />
+          <Text style={styles.intro}>Welcome to Jabber</Text>
+          <Text style={styles.lets}>Let's sign you in</Text>
           <Input
             style={styles.input}
             placeholder="Email"
