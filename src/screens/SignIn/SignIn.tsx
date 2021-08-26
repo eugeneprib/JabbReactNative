@@ -45,12 +45,11 @@ const SignIn: React.FC<Props> = ({ navigation }) => {
 
   return (
     <KeyboardAvoidingView
-      contentContainerStyle={{ flexGrow: 1 }}
       style={styles.keyBoardAvoidContainer}
       behavior="height"
     >
       <ScrollView
-        contentContainerStyle={{ flexGrow: 1, justifyContent: 'space-between' }}
+        contentContainerStyle={styles.scrollView}
       >
         <View>
           <Heading style={styles.hello} label="Hello There" />

@@ -8,5 +8,5 @@ export {
   UsersApiPath
 } from './enums'
 export type { HttpOptions } from './types'
-export { HttpError } from './exceptions/http-error/httpErrorException'
+export { HttpError } from './exceptions/httpError/httpErrorException'
 export { getStringifiedQuery } from './helpers'

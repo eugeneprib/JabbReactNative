@@ -6,7 +6,7 @@ import {
   Text,
   TouchableOpacityProps
 } from 'react-native'
-import { styles } from './styles'
+import styles from './styles'
 
 type Props = {
   label: string

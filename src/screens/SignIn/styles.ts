@@ -2,6 +2,7 @@ import { StyleSheet, TextStyle, ViewStyle } from 'react-native'
 
 type Styles = {
   keyBoardAvoidContainer: ViewStyle
+  scrollView: ViewStyle
   hello: TextStyle
   intro: TextStyle
   lets: TextStyle
@@ -19,6 +20,10 @@ const styles = StyleSheet.create<Styles>({
     paddingLeft: 25,
     paddingRight: 25,
     paddingBottom: 50
+  },
+  scrollView: {
+    flexGrow: 1, 
+    justifyContent: 'space-between'
   },
   hello: {
     fontSize: 36,
