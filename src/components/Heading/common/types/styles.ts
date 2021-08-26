@@ -1,7 +1,7 @@
 import { TextStyle } from 'react-native'
 
 type Styles = {
-  input?: TextStyle
+  text: TextStyle
 }
 
 export type { Styles }
