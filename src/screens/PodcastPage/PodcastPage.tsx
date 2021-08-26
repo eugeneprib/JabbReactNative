@@ -3,15 +3,11 @@ import {
   View,
   Text,
   Image,
-  StyleSheet,
-  Dimensions,
   ImageBackground
 } from 'react-native'
 import EpisodeElement from './components/episodeBlock'
-import styles from './styles'
 import { ScrollView } from 'react-native-gesture-handler'
-
-const win = Dimensions.get('window')
+import styles from './styles'
 
 const PodcastPage: React.FC = () => {
   const image = {
@@ -61,7 +57,7 @@ const PodcastPage: React.FC = () => {
       <View style={styles.episodesContainer}>
         <Text style={styles.episodesContainerTitle}>Episodes </Text>
         {a.map((val: any, ind: number) => {
-          return <EpisodeElement number={ind}/>
+          return <EpisodeElement number={ind} key={ind}/>
         })}
       </View>
     </ScrollView>
