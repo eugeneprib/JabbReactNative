@@ -13,17 +13,19 @@ type Props = {
     episode: Episode;
 }
 
+const INCREASE_VALUE_FOR_LIST = 1;
+
 const EpisodeElement: React.FC<Props> = ({number, episode}) => {
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity style={styles.container} activeOpacity={0.7}>
       <View style={styles.episodeNumberCont}>
-        <Text style={styles.episodeNumber}>Ep. {number+1}</Text>
+        <Text style={styles.episodeNumber}>Ep. {number+ INCREASE_VALUE_FOR_LIST}</Text>
       </View>
       <View style={styles.episodeInfo}>
         <Text style={styles.episodeInfoTitle}>{episode.name}</Text>
         <Text style={styles.episodeInfoDate}>{episode.createdAt}</Text>
       </View>
-      <TouchableOpacity>
+      <TouchableOpacity activeOpacity={0.7}>
         <PlayIcon width={35} />
       </TouchableOpacity>
     </TouchableOpacity>

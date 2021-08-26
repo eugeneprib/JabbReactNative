@@ -22,9 +22,7 @@ const styles = StyleSheet.create({
   },
   podcastName: {
     textAlign: 'center',
-    fontSize: 26,
     width: 250,
-    fontWeight: 'bold'
   },
   podcastAuthorText: {
     color: '#000',
@@ -50,8 +48,13 @@ const styles = StyleSheet.create({
     color: '#555'
   },
   episodeCounter: {
+    flexDirection: 'row',
+    justifyContent: 'center',
     alignItems: 'center',
     marginTop: 15,
+  },
+  edisodesCount : {
+    marginLeft: 5,
   },
   episodesContainer: {
     marginTop: 20,
