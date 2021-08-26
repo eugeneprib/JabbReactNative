@@ -16,13 +16,13 @@ const styles = StyleSheet.create({
     marginTop: 5,
     alignItems: 'center'
   },
-  podcasterNameContainer : {
+  podcasterNameContainer: {
     alignItems: 'center',
-    marginTop: 10,
+    marginTop: 10
   },
   podcastName: {
     textAlign: 'center',
-    width: 250,
+    width: 250
   },
   podcastAuthorText: {
     color: '#000',
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     elevation: 2,
     borderWidth: 2,
     borderRadius: 20,
-    borderColor: 'transparent',
+    borderColor: 'transparent'
   },
   description: {
     alignItems: 'center'
@@ -51,10 +51,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 15,
+    marginTop: 15
   },
-  edisodesCount : {
-    marginLeft: 5,
+  edisodesCount: {
+    marginLeft: 5
   },
   episodesContainer: {
     marginTop: 20,
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
   backButton: {
     position: 'absolute',
     top: -15,
-    left: 10,
+    left: 10
   }
 })
 

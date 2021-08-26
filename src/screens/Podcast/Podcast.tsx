@@ -95,7 +95,9 @@ const PodcastPage: React.FC<Props> = ({ podcast }) => {
       </View>
       <View style={styles.episodeCounter}>
         <CircleIcon width={5} />
-        <Text style={styles.edisodesCount}>{mockedPodacst.episodes.length} Episodes</Text>
+        <Text style={styles.edisodesCount}>
+          {mockedPodacst.episodes.length} Episodes
+        </Text>
       </View>
       <View style={styles.episodesContainer}>
         <Text style={styles.episodesContainerTitle}>Episodes </Text>
