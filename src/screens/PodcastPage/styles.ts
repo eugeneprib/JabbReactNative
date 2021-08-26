@@ -8,17 +8,21 @@ const styles = StyleSheet.create({
   },
   podcastLogo: {
     flex: 1,
-    height: 120,
-    width: 120,
-    borderRadius: 5
+    height: 150,
+    width: 150,
+    borderRadius: 20
   },
   podcastNameContainer: {
     marginTop: 5,
     alignItems: 'center'
   },
+  podcasterNameContainer : {
+    alignItems: 'center',
+    marginTop: 10,
+  },
   podcastName: {
     textAlign: 'center',
-    fontSize: 24,
+    fontSize: 26,
     width: 250,
     fontWeight: 'bold'
   },
@@ -32,8 +36,8 @@ const styles = StyleSheet.create({
     bottom: -60,
     elevation: 2,
     borderWidth: 2,
-    borderRadius: 5,
-    borderColor: 'transparent'
+    borderRadius: 20,
+    borderColor: 'transparent',
   },
   description: {
     alignItems: 'center'
@@ -47,7 +51,7 @@ const styles = StyleSheet.create({
   },
   episodeCounter: {
     alignItems: 'center',
-    marginTop: 20
+    marginTop: 15,
   },
   episodesContainer: {
     marginTop: 20,
@@ -60,10 +64,9 @@ const styles = StyleSheet.create({
     marginBottom: 20
   },
   backButton: {
-    backgroundColor: '#aaa',
-    width: 45,
-    height: 45,
-    margin: 10
+    position: 'absolute',
+    top: -15,
+    left: 10,
   }
 })
 

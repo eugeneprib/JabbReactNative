@@ -34,9 +34,6 @@ const styles = StyleSheet.create({
         marginTop: 10,
         color: '#555',
     },
-    episodePlay: {
-        flex: 0.1,
-    }
 })
 
 export default styles;

@@ -1,25 +1,32 @@
 import React from 'react'
-import { View, Text, Button } from 'react-native'
+import { View, Text, Button, TouchableOpacity } from 'react-native'
 import styles from './styles'
+import PlayIcon from 'src/assets/images/playEpisode.svg'
+
+type Episode = {
+  name: string;
+  createdAt: string;
+}
 
 type Props = {
     number: number;
+    episode: Episode;
 }
 
-const EpisodeElement: React.FC<Props> = ({number}) => {
+const EpisodeElement: React.FC<Props> = ({number, episode}) => {
   return (
-    <View style={styles.container}>
+    <TouchableOpacity style={styles.container}>
       <View style={styles.episodeNumberCont}>
         <Text style={styles.episodeNumber}>Ep. {number+1}</Text>
       </View>
       <View style={styles.episodeInfo}>
-        <Text style={styles.episodeInfoTitle}>Kingdom Dance</Text>
-        <Text style={styles.episodeInfoDate}>August 26, 2021</Text>
+        <Text style={styles.episodeInfoTitle}>{episode.name}</Text>
+        <Text style={styles.episodeInfoDate}>{episode.createdAt}</Text>
       </View>
-      <View style={styles.episodePlay}>
-        <Button title="a" onPress={()=>console.log('a')}></Button>
-      </View>
-    </View>
+      <TouchableOpacity>
+        <PlayIcon width={35} />
+      </TouchableOpacity>
+    </TouchableOpacity>
   )
 }
 
