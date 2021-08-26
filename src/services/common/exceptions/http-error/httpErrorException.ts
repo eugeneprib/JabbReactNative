@@ -1,4 +1,4 @@
-import { HttpCode } from 'src/services/common'
+import { HttpCode } from 'src/services/common/enums/index'
 import { DEFAULT_MESSAGE } from './common/constants'
 import { CustomExceptionName } from './common/customExceptionName'
 

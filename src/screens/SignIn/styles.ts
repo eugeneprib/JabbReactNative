@@ -14,11 +14,11 @@ type Styles = {
 
 const styles = StyleSheet.create<Styles>({
   keyBoardAvoidContainer: {
-    flex:1,
+    flex: 1,
     paddingTop: 50,
     paddingLeft: 25,
     paddingRight: 25,
-    paddingBottom: 50,
+    paddingBottom: 50
   },
   hello: {
     fontSize: 36,
@@ -38,7 +38,7 @@ const styles = StyleSheet.create<Styles>({
     marginBottom: 15
   },
   bottomBlock: {
-    marginBottom: 25,
+    marginBottom: 25
   },
   row: {
     flexDirection: 'row',
@@ -51,8 +51,8 @@ const styles = StyleSheet.create<Styles>({
   button: {
     paddingTop: 15,
     paddingBottom: 15,
-    alignItems: 'center',
-  },
+    alignItems: 'center'
+  }
 })
 
 export default styles

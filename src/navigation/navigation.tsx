@@ -18,7 +18,14 @@ const Navigation: React.FC = () => {
           }
         }}
       />
-      <Stack.Screen name={NavigationScreen.HOME} component={Home} />
+      <Stack.Screen
+        name={NavigationScreen.HOME}
+        component={Home}
+        options={{
+          headerShown: false,
+          cardStyle: { backgroundColor: '#fff' }
+        }}
+      />
     </Stack.Navigator>
   )
 }

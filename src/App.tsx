@@ -7,10 +7,6 @@ import { Navigation } from './navigation'
 import { NavigationContainer } from '@react-navigation/native'
 import { store } from './store'
 import styles from 'src/styles/globalStyles'
-import { createStackNavigator } from '@react-navigation/stack'
-import { Home } from './screens'
-
-const Stack = createStackNavigator()
 
 const App = (): React.ReactElement => {
   return (
@@ -18,16 +14,6 @@ const App = (): React.ReactElement => {
       <Provider store={store}>
         <SafeAreaView style={styles.container}>
           <Navigation />
-          <Stack.Navigator initialRouteName="Home">
-            <Stack.Screen
-              name="Home"
-              component={Home}
-              options={{
-                headerShown: false,
-                cardStyle: { backgroundColor: '#fff' }
-              }}
-            />
-          </Stack.Navigator>
           <Toast ref={(ref) => Toast.setRef(ref)} />
         </SafeAreaView>
       </Provider>
