@@ -1,1 +1,0 @@
-export { HeadingType } from './headingType'
