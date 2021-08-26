@@ -3,7 +3,8 @@ import {
   View,
   Text,
   Image,
-  ImageBackground
+  ImageBackground,
+  TouchableOpacity
 } from 'react-native'
 import { EpisodeBlock } from './components/'
 import { ScrollView } from 'react-native-gesture-handler'
@@ -55,9 +56,9 @@ const PodcastPage: React.FC<Props> = ({podcast}) => {
           resizeMode="cover"
           style={styles.podcastBackground}
         >
-          <View style={styles.backButton}>
+          <TouchableOpacity style={styles.backButton}>
             <BackButton width={40}/>
-          </View>
+          </TouchableOpacity>
           <View style={styles.podcastLogoContainer}>
           <Image
             source={{uri: mockedPodacst.image}}
