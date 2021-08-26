@@ -5,7 +5,7 @@ import {
   HttpMethod,
   HttpOptions
 } from 'src/services/common'
-import { GetHeadersProps } from './common/types/types'
+import { GetHeadersProps } from './common/types'
 import { storage as storageService } from 'src/services'
 
 type Constructor = {

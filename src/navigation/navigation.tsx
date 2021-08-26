@@ -7,22 +7,20 @@ const Stack = createStackNavigator()
 
 const Navigation: React.FC = () => {
   return (
-    <Stack.Navigator initialRouteName={NavigationScreen.SIGN_IN}>
+    <Stack.Navigator 
+      initialRouteName={NavigationScreen.SIGN_IN}
+      screenOptions={{
+        headerShown: false,
+        cardStyle: { backgroundColor: '#fff' }
+      }}
+    >
       <Stack.Screen
         name={NavigationScreen.SIGN_IN}
         component={SignIn}
-        options={{
-          headerShown: false,
-          cardStyle: { backgroundColor: '#fff' }
-        }}
       />
       <Stack.Screen
         name={NavigationScreen.HOME}
         component={Home}
-        options={{
-          headerShown: false,
-          cardStyle: { backgroundColor: '#fff' }
-        }}
       />
     </Stack.Navigator>
   )
