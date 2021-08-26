@@ -1,8 +1,8 @@
 import * as Keychain from 'react-native-keychain'
 import { Http } from './http'
-import { AuthApi } from './auth-api'
+import { AuthApi } from './authApi'
 import { Storage } from './storage'
-import { UserApi } from './user-api'
+import { UserApi } from './userApi'
 import { Notification } from './notification'
 
 const notification = new Notification()

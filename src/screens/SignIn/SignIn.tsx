@@ -12,8 +12,8 @@ import { Heading, Input, Button, ButtonType, Link } from 'src/components'
 import { notification } from 'src/services'
 import { REGISTER_URL } from '../common'
 import { AppError, NavigationScreen } from 'src/common/enums'
-import { SignInValidationSchema } from './validation-schema'
-import { styles } from './styles'
+import { SignInValidationSchema } from './validationSchema'
+import styles from './styles'
 
 type RootStackParamList = {
   [NavigationScreen.HOME]: undefined

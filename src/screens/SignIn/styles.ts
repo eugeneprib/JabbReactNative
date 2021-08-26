@@ -1,12 +1,24 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet, TextStyle, ViewStyle } from 'react-native'
 
-const styles = StyleSheet.create({
+type Styles = {
+  keyBoardAvoidContainer: ViewStyle
+  hello: TextStyle
+  intro: TextStyle
+  lets: TextStyle
+  input: TextStyle
+  bottomBlock: TextStyle
+  row: ViewStyle
+  link: ViewStyle
+  button: ViewStyle
+}
+
+const styles = StyleSheet.create<Styles>({
   keyBoardAvoidContainer: {
     flex:1,
     paddingTop: 50,
     paddingLeft: 25,
     paddingRight: 25,
-    paddingBottom: 50
+    paddingBottom: 50,
   },
   hello: {
     fontSize: 36,
@@ -39,8 +51,8 @@ const styles = StyleSheet.create({
   button: {
     paddingTop: 15,
     paddingBottom: 15,
-    alignItems: 'center'
+    alignItems: 'center',
   },
 })
 
-export { styles }
+export default styles

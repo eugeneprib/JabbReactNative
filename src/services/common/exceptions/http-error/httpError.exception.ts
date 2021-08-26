@@ -1,6 +1,6 @@
 import { HttpCode } from 'src/services/common'
 import { DEFAULT_MESSAGE } from './common/constants'
-import { CustomExceptionName } from './common/custom-exception-name.enum'
+import { CustomExceptionName } from './common/customExceptionName'
 
 class HttpError extends Error {
   status: HttpCode
