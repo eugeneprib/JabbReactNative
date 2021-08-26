@@ -2,9 +2,14 @@ import { StyleSheet } from 'react-native'
 import { Styles } from './common/types'
 
 const styles = StyleSheet.create<Styles>({
+  touchable: {
+    paddingVertical: 7,
+    paddingHorizontal: 15,
+    borderRadius: 5
+  },
   text: {
-    fontWeight: 'bold'
+    fontSize: 18
   }
 })
 
-export { styles }
+export default styles

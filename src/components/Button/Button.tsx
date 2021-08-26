@@ -3,7 +3,7 @@ import { Text, TouchableOpacity, TouchableOpacityProps } from 'react-native'
 import { DEFAULT_TYPE, ACTIVE_OPACITY } from './common/constants'
 import { ButtonType } from './common/enum'
 import { getStylesByType } from './common/helpers'
-import { styles } from './styles'
+import styles from './styles'
 
 type Props = {
   label: string

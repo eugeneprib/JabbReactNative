@@ -1,5 +1,8 @@
-import { StyleSheet } from 'react-native'
-import { Styles } from './common/types'
+import { StyleSheet, TextStyle } from 'react-native'
+
+type Styles = {
+  input: TextStyle
+}
 
 const styles = StyleSheet.create<Styles>({
   input: {
@@ -10,4 +13,4 @@ const styles = StyleSheet.create<Styles>({
   }
 })
 
-export { styles }
+export default styles

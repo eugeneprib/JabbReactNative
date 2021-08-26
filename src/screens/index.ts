@@ -1,2 +1,2 @@
-export { SignIn } from './SignIn'
-export { Home } from './Home'
+export { default as SignIn } from './SignIn'
+export { default as Home } from './Home'

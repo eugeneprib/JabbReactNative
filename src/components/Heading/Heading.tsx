@@ -3,7 +3,7 @@ import { Text, TextProps } from 'react-native'
 import { DEFAULT_TYPE } from './common/constants'
 import { HeadingType } from './common/enums'
 import { getStylesByType } from './common/helpers'
-import { styles } from './styles'
+import styles from './styles'
 
 type Props = {
   label: string
