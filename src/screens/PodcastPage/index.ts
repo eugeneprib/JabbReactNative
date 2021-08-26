@@ -1,1 +1,1 @@
-export { default as PodcastPage } from './PodcastPage';
+export { default } from './PodcastPage';
