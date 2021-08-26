@@ -13,9 +13,7 @@ const Navigation: React.FC = () => {
         component={SignIn}
         options={{
           headerShown: false,
-          cardStyle: {
-            backgroundColor: 'white'
-          }
+          cardStyle: { backgroundColor: '#fff' }
         }}
       />
       <Stack.Screen
