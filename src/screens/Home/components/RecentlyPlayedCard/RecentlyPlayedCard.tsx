@@ -1,8 +1,8 @@
-import React from 'react';
+import React from 'react'
 import { Image, Text, TouchableOpacity, View, ViewStyle } from 'react-native'
 import { Heading, HeadingType } from 'src/components'
 import TimeIcon from 'src/assets/images/time.svg'
-import { getFormattedDate } from './common/helpers';
+import { getFormattedDate } from './common/helpers'
 import styles from './styles'
 
 type Props = {

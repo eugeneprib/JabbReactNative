@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import { ImageBackground, Text, TouchableOpacity, View } from 'react-native'
 import { Heading, HeadingType } from 'src/components'
 import PlayIcon from 'src/assets/images/play.svg'

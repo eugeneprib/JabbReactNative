@@ -7,4 +7,4 @@ const styles = StyleSheet.create<Styles>({
   }
 })
 
-export default styles;
+export default styles

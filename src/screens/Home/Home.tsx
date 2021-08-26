@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import { ScrollView, Text, View } from 'react-native'
 import { Heading, HeadingType } from 'src/components'
 import {

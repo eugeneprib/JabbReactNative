@@ -1,1 +1,1 @@
-export { getFormattedDate } from "./getFormattedDate";
+export { getFormattedDate } from './getFormattedDate'

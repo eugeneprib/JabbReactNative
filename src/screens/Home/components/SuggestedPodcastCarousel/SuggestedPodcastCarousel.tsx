@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import { useWindowDimensions } from 'react-native'
 import Carousel from 'react-native-snap-carousel'
 import { CarouselItem, SuggestedPodcast } from './common/types'
