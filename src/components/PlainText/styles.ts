@@ -5,7 +5,7 @@ type Styles = {
   text: TextStyle
 }
 
-const styles: Styles = StyleSheet.create({
+const styles = StyleSheet.create<Styles>({
   text: {
     fontFamily: fonts.MainMedium
   }
