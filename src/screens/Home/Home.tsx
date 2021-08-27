@@ -41,7 +41,7 @@ const Home: React.FC = () => {
             type={HeadingType.MEDIUM}
           />
           <PlainText
-            label={`Find this week&apos;s hottest podcasts`}
+            label={`Find this week's hottest podcasts`}
             style={styles.headerText}
           />
         </View>

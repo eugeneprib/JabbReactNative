@@ -1,8 +1,9 @@
 import { StyleSheet } from 'react-native'
+import fonts from 'src/styles/fonts'
 
 const styles = StyleSheet.create({
   text: {
-    fontFamily: 'Raleway-Medium'
+    fontFamily: fonts.MainMedium
   }
 })
 
