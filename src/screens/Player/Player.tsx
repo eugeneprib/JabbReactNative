@@ -7,6 +7,8 @@ import TrackPlayer, {
   useTrackPlayerEvents
 } from 'react-native-track-player'
 import Slider from '@react-native-community/slider'
+import { DateFormatType, getFormattedDate } from 'src/helpers'
+import * as dateFns from 'date-fns'
 import PlayIcon from 'src/assets/images/play.svg'
 import StopIcon from 'src/assets/images/stop.svg'
 import PauseIcon from 'src/assets/images/pause.svg'
@@ -222,7 +224,12 @@ const Player: React.FC = () => {
         }}
       >
         <View style={{ width: '15%', alignItems: 'flex-end' }}>
-          <Text>{position}</Text>
+          <Text style={{ fontSize: 12 }}>
+            {getFormattedDate(
+              String(dateFns.addSeconds(new Date(0), position)),
+              DateFormatType.HOURS_MINUTES_SECONDS
+            )}
+          </Text>
         </View>
         <Slider
           style={{ width: '70%', height: 40 }}
@@ -235,7 +242,12 @@ const Player: React.FC = () => {
           onSlidingComplete={(seek) => onHandleSeekTo(seek)}
         />
         <View style={{ width: '15%' }}>
-          <Text>{duration}</Text>
+          <Text style={{ fontSize: 12 }}>
+            {getFormattedDate(
+              String(dateFns.addSeconds(new Date(0), duration)),
+              DateFormatType.HOURS_MINUTES_SECONDS
+            )}
+          </Text>
         </View>
       </View>
     </View>

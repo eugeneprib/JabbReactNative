@@ -6,11 +6,11 @@ import {
   ImageBackground,
   TouchableOpacity
 } from 'react-native'
-import { Heading, HeadingType } from 'src/components'
-import { EpisodeBlock } from './components'
 import { ScrollView } from 'react-native-gesture-handler'
 import BackButton from 'src/assets/images/backButton.svg'
 import CircleIcon from 'src/assets/images/circle.svg'
+import { Heading, HeadingType } from 'src/components'
+import { EpisodeBlock } from './components'
 import styles from './styles'
 
 type Episode = {
