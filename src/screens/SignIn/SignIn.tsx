@@ -4,7 +4,14 @@ import { View, Text, ScrollView, KeyboardAvoidingView } from 'react-native'
 import { StackNavigationProp } from '@react-navigation/stack'
 import { AppError, NavigationScreen } from 'src/common/enums'
 import { UserSignInPayload } from 'src/common/types'
-import { Heading, Input, Button, ButtonType, Link, HeadingType } from 'src/components'
+import {
+  Heading,
+  Input,
+  Button,
+  ButtonType,
+  Link,
+  HeadingType
+} from 'src/components'
 import { signIn } from 'src/store/actions'
 import { notification } from 'src/services'
 import { REGISTER_URL } from './common/constants'
@@ -49,9 +56,7 @@ const SignIn: React.FC<Props> = ({ navigation }) => {
       style={styles.keyBoardAvoidContainer}
       behavior="height"
     >
-      <ScrollView
-        contentContainerStyle={styles.scrollView}
-      >
+      <ScrollView contentContainerStyle={styles.scrollView}>
         <View>
           <Heading type={HeadingType.HUGE} label="Hello There" />
           <Text style={styles.intro}>Welcome to Jabber</Text>

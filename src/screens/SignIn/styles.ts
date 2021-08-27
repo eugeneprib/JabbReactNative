@@ -21,7 +21,7 @@ const styles = StyleSheet.create<Styles>({
     paddingBottom: 50
   },
   scrollView: {
-    flexGrow: 1, 
+    flexGrow: 1,
     justifyContent: 'space-between'
   },
   intro: {
