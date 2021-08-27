@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { View, Text, ScrollView, KeyboardAvoidingView } from 'react-native'
+import { View, ScrollView, KeyboardAvoidingView } from 'react-native'
 import { StackNavigationProp } from '@react-navigation/stack'
 import { AppError, NavigationScreen } from 'src/common/enums'
 import {
