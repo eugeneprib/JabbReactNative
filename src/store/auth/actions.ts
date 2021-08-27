@@ -3,11 +3,11 @@ import { AsyncThunkConfig, User, UserSignInPayload } from 'src/common/types'
 import { StorageKey } from 'src/common/enums'
 import { ActionType } from './common'
 
-const signIn = createAsyncThunk<User, UserSignInPayload, AsyncThunkConfig>(
+const signIn = createAsyncThunk<User, UserSignInPayload | undefined, AsyncThunkConfig>(
   ActionType.SIGN_IN,
   async (loginPayload, { extra }) => {
     const { authApi, storageService } = extra
-    const { user, token } = await authApi.signIn(loginPayload)
+    const { user, token } = await authApi.signIn(loginPayload as UserSignInPayload)
 
     storageService.setItem(StorageKey.TOKEN, token)
 
