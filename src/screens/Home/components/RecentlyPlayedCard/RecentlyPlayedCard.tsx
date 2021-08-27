@@ -34,10 +34,13 @@ const RecentlyPlayedCard: React.FC<Props> = ({
         <PlainText label={author} style={styles.author} />
         <View style={styles.date}>
           <TimeIcon width={10} />
-          <PlainText label={getFormattedDate(date)} style={styles.time} />
-          <Text style={styles.time}>
-            {getFormattedDate(date, DateFormatType.MONTH_DAY_HOURS_MINUTES)}
-          </Text>
+          <PlainText
+            label={getFormattedDate(
+              date,
+              DateFormatType.MONTH_DAY_HOURS_MINUTES
+            )}
+            style={styles.time}
+          />
         </View>
       </View>
     </TouchableOpacity>
