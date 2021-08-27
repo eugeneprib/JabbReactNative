@@ -6,6 +6,7 @@ import {
   Text,
   TouchableOpacityProps
 } from 'react-native'
+import styles from './styles'
 
 type Props = {
   label: string
@@ -25,7 +26,7 @@ const Link: React.FC<Props> = ({ label, url, ...props }) => {
 
   return (
     <TouchableOpacity {...props} onPress={handlePress}>
-      <Text>{label}</Text>
+      <Text style={styles.text}>{label}</Text>
     </TouchableOpacity>
   )
 }
