@@ -3,7 +3,7 @@ import { Styles } from './common/types'
 
 const styles = StyleSheet.create<Styles>({
   text: {
-    fontWeight: 'bold'
+    fontFamily: 'Raleway-Bold'
   }
 })
 
