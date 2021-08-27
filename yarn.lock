@@ -6139,6 +6139,11 @@ react-native-toast-message@^1.4.9:
   dependencies:
     prop-types "^15.7.2"
 
+react-native-track-player@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/react-native-track-player/-/react-native-track-player-2.0.3.tgz#a2648e2468f8502359b4678655573501d46f0c64"
+  integrity sha512-XV+92szbnf4FcByzfT62fN+iT9o0WhoMgDFl63Jf4gk6vw6VOFchPOoHKHW0XqgnO4vIit8CFc8u945l8vSSuQ==
+
 react-native@0.64.1:
   version "0.64.1"
   resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.64.1.tgz#cd38f5b47b085549686f34eb0c9dcd466f307635"
