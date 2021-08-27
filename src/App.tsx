@@ -8,12 +8,14 @@ import { Navigation } from './navigation'
 import { store } from './store'
 import styles from 'src/styles/globalStyles'
 
+import Tabs from './components/tabs'
+
 const App = (): React.ReactElement => {
   return (
     <NavigationContainer>
       <Provider store={store}>
         <SafeAreaView style={styles.container}>
-          <Navigation />
+          <Tabs />
           <Toast ref={(ref) => Toast.setRef(ref)} />
         </SafeAreaView>
       </Provider>
