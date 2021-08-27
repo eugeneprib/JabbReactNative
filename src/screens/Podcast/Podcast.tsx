@@ -1,7 +1,7 @@
 import React from 'react'
-import { View, Image, ImageBackground, TouchableOpacity } from 'react-native'
 import { Heading, HeadingType, PlainText } from 'src/components'
 import { EpisodeBlock } from './components'
+import { View, Image, ImageBackground, TouchableOpacity } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 import BackButton from 'src/assets/images/backButton.svg'
 import CircleIcon from 'src/assets/images/circle.svg'

@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux'
 import { View, ScrollView, KeyboardAvoidingView } from 'react-native'
 import { StackNavigationProp } from '@react-navigation/stack'
 import { AppError, NavigationScreen } from 'src/common/enums'
+import { UserSignInPayload } from 'src/common/types'
 import {
   Heading,
   Input,
@@ -39,7 +40,7 @@ const SignIn: React.FC<Props> = ({ navigation }) => {
 
   const handleSignInSubmit = (): void => {
     SignInValidationSchema.validate({ email, password })
-      .then(function (payload) {
+      .then(function (payload: UserSignInPayload | undefined) {
         dispatch(signIn(payload))
         navigation.replace(NavigationScreen.HOME)
       })
