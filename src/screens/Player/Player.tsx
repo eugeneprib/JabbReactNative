@@ -1,7 +1,17 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { View, Pressable, Text } from 'react-native'
-import TrackPlayer from 'react-native-track-player'
-import useTrackPlayerProgress from 'react-native-track-player'
+import TrackPlayer, {
+  useProgress,
+  Event,
+  Capability,
+  useTrackPlayerEvents
+} from 'react-native-track-player'
+import Slider from '@react-native-community/slider'
+import PlayIcon from 'src/assets/images/play.svg'
+import StopIcon from 'src/assets/images/stop.svg'
+import PauseIcon from 'src/assets/images/pause.svg'
+import RewindIcon from 'src/assets/images/rewind.svg'
+import ForwardIcon from 'src/assets/images/forward.svg'
 import styles from './styles'
 
 const mockedTrack = [
@@ -17,7 +27,7 @@ const mockedTrack = [
 ]
 
 const Player: React.FC = () => {
-  // const { position, bufferedPosition, duration } = useTrackPlayerProgress()
+  const { position, duration } = useProgress()
 
   const trackPlayerInit = async () => {
     await TrackPlayer.setupPlayer({
@@ -25,32 +35,70 @@ const Player: React.FC = () => {
     })
     return true
   }
+
+  // const events = [
+  //   Event.PlaybackTrackChanged,
+  //   Event.PlaybackQueueEnded,
+  //   Event.PlaybackError,
+  //   Event.RemotePause,
+  //   Event.RemoteNext,
+  //   Event.RemotePrevious,
+  //   Event.RemotePlay,
+  //   Event.RemotePause,
+  //   Event.RemoteStop,
+  //   Event.RemoteSeek,
+  //   Event.RemoteDuck,
+  // ];
+  // useTrackPlayerEvents(events, event => {
+  //   switch (event.type) {
+  //     case Event.RemoteDuck:
+  //       pauseSong();
+  //       break;
+  //     case Event.PlaybackError:
+  //       console.warn(
+  //         'An error occured while playing the current track.',
+  //         event,
+  //       );
+  //       break;
+  //     case Event.RemoteNext:
+  //       playNextSong();
+  //       break;
+  //     case Event.RemotePrevious:
+  //       playPrevSong();
+  //       break;
+  //     case Event.RemotePlay:
+  //       playSong();
+  //       break;
+  //     case Event.RemotePause:
+  //       pauseSong();
+  //       break;
+  //     case Event.RemoteStop:
+  //       pauseSong();
+  //       break;
+  //     case Event.RemoteSeek:
+  //       TrackPlayer.seekTo(event.position);
+  //       break;
+  //     default:
+  //   }
+  // });
+
   useEffect(() => {
     trackPlayerInit()
+    // TrackPlayer.registerPlaybackService(() => require('../../services/player'));
     TrackPlayer.updateOptions({
       stopWithApp: true,
-      alwaysPauseOnInterruption: true
-      // capabilities: [
-      //   TrackPlayer.CAPABILITY_PLAY,
-      //   TrackPlayer.CAPABILITY_PAUSE,
-      //   TrackPlayer.CAPABILITY_SEEK_TO,
-      //   TrackPlayer.CAPABILITY_SKIP_TO_NEXT,
-      //   TrackPlayer.CAPABILITY_SKIP_TO_PREVIOUS
-      // ],
-      // compactCapabilities: [
-      //   TrackPlayer.CAPABILITY_PLAY,
-      //   TrackPlayer.CAPABILITY_PAUSE,
-      //   TrackPlayer.CAPABILITY_SEEK_TO,
-      //   TrackPlayer.CAPABILITY_SKIP_TO_NEXT,
-      //   TrackPlayer.CAPABILITY_SKIP_TO_PREVIOUS
-      // ],
-      // notificationCapabilities: [
-      //   TrackPlayer.CAPABILITY_PLAY,
-      //   TrackPlayer.CAPABILITY_PAUSE,
-      //   TrackPlayer.CAPABILITY_SEEK_TO,
-      //   TrackPlayer.CAPABILITY_SKIP_TO_NEXT,
-      //   TrackPlayer.CAPABILITY_SKIP_TO_PREVIOUS
-      // ]
+      alwaysPauseOnInterruption: true,
+      capabilities: [Capability.Play, Capability.Pause, Capability.SeekTo],
+      compactCapabilities: [
+        Capability.Play,
+        Capability.Pause,
+        Capability.SeekTo
+      ],
+      notificationCapabilities: [
+        Capability.Play,
+        Capability.Pause,
+        Capability.SeekTo
+      ]
     })
   }, [])
 
@@ -64,6 +112,9 @@ const Player: React.FC = () => {
   const onPressPause = () => {
     TrackPlayer.pause()
   }
+  const onHandleSeekTo = (seconds: number) => {
+    TrackPlayer.seekTo(seconds)
+  }
 
   return (
     <View
@@ -71,74 +122,81 @@ const Player: React.FC = () => {
         backgroundColor: 'white',
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        padding: 25
       }}
     >
       <Pressable
         onPress={onPressFunction}
-        style={{ backgroundColor: '#6200ee', padding: 15, margin: 10 }}
+        style={{
+          backgroundColor: '#e1e1e1',
+          width: 36,
+          height: 36,
+          margin: 10,
+          borderRadius: 36,
+          justifyContent: 'center',
+          alignItems: 'center'
+        }}
       >
-        <Text
-          style={{
-            color: 'white',
-            width: 200,
-            fontWeight: 'bold',
-            fontSize: 16,
-            textAlign: 'center'
-          }}
-        >
-          Play
-        </Text>
+        <PlayIcon width={12} fill={'#595959'} />
       </Pressable>
 
       <Pressable
         onPress={onPressStop}
-        style={{ backgroundColor: '#000', padding: 15, margin: 10 }}
+        style={{
+          backgroundColor: '#e1e1e1',
+          width: 36,
+          height: 36,
+          margin: 10,
+          borderRadius: 36,
+          justifyContent: 'center',
+          alignItems: 'center'
+        }}
       >
-        <Text
-          style={{
-            color: 'white',
-            width: 200,
-            fontWeight: 'bold',
-            fontSize: 16,
-            textAlign: 'center'
-          }}
-        >
-          Stop
-        </Text>
+        <StopIcon width={12} height={12} fill={'#595959'} />
       </Pressable>
 
       <Pressable
         onPress={onPressPause}
-        style={{ backgroundColor: 'orange', padding: 15, margin: 10 }}
+        style={{
+          backgroundColor: '#e1e1e1',
+          width: 36,
+          height: 36,
+          margin: 10,
+          borderRadius: 36,
+          justifyContent: 'center',
+          alignItems: 'center'
+        }}
       >
-        <Text
-          style={{
-            color: 'white',
-            width: 200,
-            fontWeight: 'bold',
-            fontSize: 16,
-            textAlign: 'center'
-          }}
-        >
-          Pause
-        </Text>
+        <PauseIcon width={12} height={12} fill={'#595959'} />
       </Pressable>
       <Pressable
-        onPress={() => TrackPlayer.seekTo(12.5)}
-        style={{ backgroundColor: 'orange', padding: 15, margin: 10 }}
+        onPress={() => onHandleSeekTo(position + 15)}
+        style={{
+          backgroundColor: '#e1e1e1',
+          width: 36,
+          height: 36,
+          margin: 10,
+          borderRadius: 36,
+          justifyContent: 'center',
+          alignItems: 'center'
+        }}
       >
-        <Text
-          style={{
-            color: 'white',
-            width: 200,
-            fontWeight: 'bold',
-            fontSize: 16,
-            textAlign: 'center'
-          }}
-        >
-          Seek
-        </Text>
+        <RewindIcon width={12} height={12} fill={'#595959'} />
+      </Pressable>
+      <Pressable
+        onPress={() => onHandleSeekTo(position - 15)}
+        style={{
+          backgroundColor: '#e1e1e1',
+          width: 36,
+          height: 36,
+          margin: 10,
+          borderRadius: 36,
+          justifyContent: 'center',
+          alignItems: 'center'
+        }}
+      >
+        <ForwardIcon width={12} height={12} fill={'#595959'} />
       </Pressable>
       <Pressable
         onPress={() => TrackPlayer.setVolume(0.5)}
@@ -156,18 +214,31 @@ const Player: React.FC = () => {
           Volume
         </Text>
       </Pressable>
-
-      <View>
-        {/* <Text>
-          Track progress: {position} seconds out of {duration} total
-        </Text>
-        <Text>
-          Buffered progress: {bufferedPosition} seconds buffered out of{' '}
-          {duration} total
-        </Text> */}
+      <View
+        style={{
+          flex: 1,
+          flexDirection: 'row',
+          justifyContent: 'space-between'
+        }}
+      >
+        <View style={{ width: '15%', alignItems: 'flex-end' }}>
+          <Text>{position}</Text>
+        </View>
+        <Slider
+          style={{ width: '70%', height: 40 }}
+          minimumValue={0}
+          maximumValue={duration}
+          minimumTrackTintColor="#52527a"
+          maximumTrackTintColor="#52527a"
+          thumbTintColor="#52527a"
+          value={position}
+          onSlidingComplete={(seek) => onHandleSeekTo(seek)}
+        />
+        <View style={{ width: '15%' }}>
+          <Text>{duration}</Text>
+        </View>
       </View>
     </View>
   )
 }
-
 export default Player

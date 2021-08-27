@@ -1,6 +1,6 @@
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
-import { SignIn, Home } from 'src/screens'
+import { SignIn, Home, Player } from 'src/screens'
 import { NavigationScreen } from 'src/common/enums'
 
 const Stack = createStackNavigator()
@@ -8,7 +8,7 @@ const Stack = createStackNavigator()
 const Navigation: React.FC = () => {
   return (
     <Stack.Navigator
-      initialRouteName={NavigationScreen.SIGN_IN}
+      initialRouteName={NavigationScreen.PLAYER}
       screenOptions={{
         headerShown: false,
         cardStyle: { backgroundColor: '#fff' }
@@ -16,6 +16,7 @@ const Navigation: React.FC = () => {
     >
       <Stack.Screen name={NavigationScreen.SIGN_IN} component={SignIn} />
       <Stack.Screen name={NavigationScreen.HOME} component={Home} />
+      <Stack.Screen name={NavigationScreen.PLAYER} component={Player} />
     </Stack.Navigator>
   )
 }
