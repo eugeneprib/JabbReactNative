@@ -28,7 +28,7 @@ const EpisodeElement: React.FC<Props> = ({ number, episode }) => {
       <View style={styles.episodeInfo}>
         <Heading
           label={episode.name}
-          type={HeadingType.MEDIUM_LESS}
+          type={HeadingType.SMALL}
           style={styles.episodeInfoTitle}
         />
         <PlainText label={episode.createdAt} style={styles.episodeInfoDate} />
