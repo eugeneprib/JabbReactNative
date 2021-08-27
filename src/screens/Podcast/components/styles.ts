@@ -23,7 +23,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around'
   },
   episodeInfoTitle: {
-    fontSize: 16,
     width: 200
   },
   episodeInfoDate: {

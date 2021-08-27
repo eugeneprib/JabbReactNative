@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, TouchableOpacity } from 'react-native'
+import { View, TouchableOpacity } from 'react-native'
 import PlayIcon from 'src/assets/images/playEpisode.svg'
 import { Heading, HeadingType, PlainText } from 'src/components'
 import styles from './styles'
@@ -28,7 +28,7 @@ const EpisodeElement: React.FC<Props> = ({ number, episode }) => {
       <View style={styles.episodeInfo}>
         <Heading
           label={episode.name}
-          type={HeadingType.MEDIUM}
+          type={HeadingType.MEDIUM_LESS}
           style={styles.episodeInfoTitle}
         />
         <PlainText label={episode.createdAt} style={styles.episodeInfoDate} />

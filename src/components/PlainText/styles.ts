@@ -1,7 +1,11 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet, TextStyle } from 'react-native'
 import fonts from 'src/styles/fonts'
 
-const styles = StyleSheet.create({
+type Styles = {
+  text: TextStyle
+}
+
+const styles: Styles = StyleSheet.create({
   text: {
     fontFamily: fonts.MainMedium
   }

@@ -10,6 +10,13 @@ const getStylesByType = (type: HeadingType): Styles => {
         }
       }
     }
+    case HeadingType.MEDIUM_LESS: {
+      return {
+        text: {
+          fontSize: 16
+        }
+      }
+    }
     case HeadingType.MEDIUM: {
       return {
         text: {
