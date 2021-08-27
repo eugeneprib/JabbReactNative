@@ -61,9 +61,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 35
   },
   episodesContainerTitle: {
-    fontSize: 20,
     color: '#444',
-    fontWeight: 'bold',
     marginBottom: 20
   },
   backButton: {

@@ -15,8 +15,7 @@ const styles = StyleSheet.create({
   },
   episodeNumber: {
     textAlign: 'center',
-    fontSize: 12,
-    fontStyle: 'italic'
+    fontSize: 12
   },
   episodeInfo: {
     flex: 0.9,
@@ -24,12 +23,11 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around'
   },
   episodeInfoTitle: {
-    fontWeight: 'bold',
     fontSize: 16,
     width: 200
   },
   episodeInfoDate: {
-    fontSize: 10,
+    fontSize: 12,
     marginTop: 10,
     color: '#555'
   }

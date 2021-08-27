@@ -1,12 +1,6 @@
 import React from 'react'
-import {
-  View,
-  Text,
-  Image,
-  ImageBackground,
-  TouchableOpacity
-} from 'react-native'
-import { Heading, HeadingType } from 'src/components'
+import { View, Image, ImageBackground, TouchableOpacity } from 'react-native'
+import { Heading, HeadingType, PlainText } from 'src/components'
 import { EpisodeBlock } from './components'
 import { ScrollView } from 'react-native-gesture-handler'
 import BackButton from 'src/assets/images/backButton.svg'
@@ -88,19 +82,30 @@ const PodcastPage: React.FC<Props> = ({ podcast }) => {
         />
       </View>
       <View style={styles.podcasterNameContainer}>
-        <Text style={styles.podcastAuthorText}>{mockedPodacst.author}</Text>
+        <PlainText
+          label={mockedPodacst.author}
+          style={styles.podcastAuthorText}
+        />
       </View>
       <View style={styles.description}>
-        <Text style={styles.descriptionText}>{mockedPodacst.description}</Text>
+        <PlainText
+          label={mockedPodacst.description}
+          style={styles.descriptionText}
+        />
       </View>
       <View style={styles.episodeCounter}>
         <CircleIcon width={5} />
-        <Text style={styles.edisodesCount}>
-          {mockedPodacst.episodes.length} Episodes
-        </Text>
+        <PlainText
+          label={`${mockedPodacst.episodes.length} Episodes`}
+          style={styles.edisodesCount}
+        />
       </View>
       <View style={styles.episodesContainer}>
-        <Text style={styles.episodesContainerTitle}>Episodes </Text>
+        <Heading
+          type={HeadingType.MEDIUM}
+          label={`Episodes`}
+          style={styles.episodesContainerTitle}
+        />
         {mockedPodacst.episodes.map((episode: Episode, inx: number) => (
           <EpisodeBlock episode={episode} number={inx} key={episode.id} />
         ))}
