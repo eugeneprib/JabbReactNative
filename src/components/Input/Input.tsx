@@ -1,6 +1,6 @@
 import React from 'react'
 import { TextInput, TextInputProps, TextStyle } from 'react-native'
-import { styles } from './styles'
+import styles from './styles'
 
 type Props = {
   hasMultipleRows?: boolean

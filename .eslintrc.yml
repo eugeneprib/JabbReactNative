@@ -26,3 +26,9 @@ rules: {
   react/display-name: off,
   no-console: error
 }
+
+settings: {
+  react: {
+    version: 'detect',
+  }
+}

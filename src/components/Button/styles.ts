@@ -6,6 +6,9 @@ const styles = StyleSheet.create<Styles>({
     paddingVertical: 7,
     paddingHorizontal: 15,
     borderRadius: 5
+  },
+  text: {
+    fontSize: 18
   }
 })
 

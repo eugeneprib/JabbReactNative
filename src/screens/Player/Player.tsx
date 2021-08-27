@@ -17,7 +17,7 @@ const mockedTrack = [
 ]
 
 const Player: React.FC = () => {
-  const { position, bufferedPosition, duration } = useTrackPlayerProgress()
+  // const { position, bufferedPosition, duration } = useTrackPlayerProgress()
 
   const trackPlayerInit = async () => {
     await TrackPlayer.setupPlayer({
@@ -29,28 +29,28 @@ const Player: React.FC = () => {
     trackPlayerInit()
     TrackPlayer.updateOptions({
       stopWithApp: true,
-      alwaysPauseOnInterruption: true,
-      capabilities: [
-        TrackPlayer.CAPABILITY_PLAY,
-        TrackPlayer.CAPABILITY_PAUSE,
-        TrackPlayer.CAPABILITY_SEEK_TO,
-        TrackPlayer.CAPABILITY_SKIP_TO_NEXT,
-        TrackPlayer.CAPABILITY_SKIP_TO_PREVIOUS
-      ],
-      compactCapabilities: [
-        TrackPlayer.CAPABILITY_PLAY,
-        TrackPlayer.CAPABILITY_PAUSE,
-        TrackPlayer.CAPABILITY_SEEK_TO,
-        TrackPlayer.CAPABILITY_SKIP_TO_NEXT,
-        TrackPlayer.CAPABILITY_SKIP_TO_PREVIOUS
-      ],
-      notificationCapabilities: [
-        TrackPlayer.CAPABILITY_PLAY,
-        TrackPlayer.CAPABILITY_PAUSE,
-        TrackPlayer.CAPABILITY_SEEK_TO,
-        TrackPlayer.CAPABILITY_SKIP_TO_NEXT,
-        TrackPlayer.CAPABILITY_SKIP_TO_PREVIOUS
-      ]
+      alwaysPauseOnInterruption: true
+      // capabilities: [
+      //   TrackPlayer.CAPABILITY_PLAY,
+      //   TrackPlayer.CAPABILITY_PAUSE,
+      //   TrackPlayer.CAPABILITY_SEEK_TO,
+      //   TrackPlayer.CAPABILITY_SKIP_TO_NEXT,
+      //   TrackPlayer.CAPABILITY_SKIP_TO_PREVIOUS
+      // ],
+      // compactCapabilities: [
+      //   TrackPlayer.CAPABILITY_PLAY,
+      //   TrackPlayer.CAPABILITY_PAUSE,
+      //   TrackPlayer.CAPABILITY_SEEK_TO,
+      //   TrackPlayer.CAPABILITY_SKIP_TO_NEXT,
+      //   TrackPlayer.CAPABILITY_SKIP_TO_PREVIOUS
+      // ],
+      // notificationCapabilities: [
+      //   TrackPlayer.CAPABILITY_PLAY,
+      //   TrackPlayer.CAPABILITY_PAUSE,
+      //   TrackPlayer.CAPABILITY_SEEK_TO,
+      //   TrackPlayer.CAPABILITY_SKIP_TO_NEXT,
+      //   TrackPlayer.CAPABILITY_SKIP_TO_PREVIOUS
+      // ]
     })
   }, [])
 
@@ -158,13 +158,13 @@ const Player: React.FC = () => {
       </Pressable>
 
       <View>
-        <Text>
+        {/* <Text>
           Track progress: {position} seconds out of {duration} total
         </Text>
         <Text>
           Buffered progress: {bufferedPosition} seconds buffered out of{' '}
           {duration} total
-        </Text>
+        </Text> */}
       </View>
     </View>
   )
