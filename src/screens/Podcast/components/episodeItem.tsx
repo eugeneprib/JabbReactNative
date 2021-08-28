@@ -1,7 +1,8 @@
 import React from 'react'
-import { View, Text, TouchableOpacity } from 'react-native'
-import styles from './styles'
+import { View, TouchableOpacity } from 'react-native'
 import PlayIcon from 'src/assets/images/playEpisode.svg'
+import { Heading, HeadingType, PlainText } from 'src/components'
+import styles from './styles'
 
 type Episode = {
   name: string
@@ -19,13 +20,18 @@ const EpisodeElement: React.FC<Props> = ({ number, episode }) => {
   return (
     <TouchableOpacity style={styles.container} activeOpacity={0.7}>
       <View style={styles.episodeNumberCont}>
-        <Text style={styles.episodeNumber}>
-          Ep. {number + INCREASE_VALUE_FOR_LIST}
-        </Text>
+        <PlainText
+          label={`Ep. ${number + INCREASE_VALUE_FOR_LIST}`}
+          style={styles.episodeNumber}
+        />
       </View>
       <View style={styles.episodeInfo}>
-        <Text style={styles.episodeInfoTitle}>{episode.name}</Text>
-        <Text style={styles.episodeInfoDate}>{episode.createdAt}</Text>
+        <Heading
+          label={episode.name}
+          type={HeadingType.SMALL}
+          style={styles.episodeInfoTitle}
+        />
+        <PlainText label={episode.createdAt} style={styles.episodeInfoDate} />
       </View>
       <TouchableOpacity activeOpacity={0.7}>
         <PlayIcon width={35} />
