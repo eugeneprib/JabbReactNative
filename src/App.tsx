@@ -7,15 +7,16 @@ import { NavigationContainer } from '@react-navigation/native'
 import { Navigation } from './navigation'
 import { store } from './store'
 import styles from 'src/styles/globalStyles'
+import { TabsNavigator } from './components'
 
-import Tabs from './components/tabs'
+const isSigned = true
 
 const App = (): React.ReactElement => {
   return (
     <NavigationContainer>
       <Provider store={store}>
         <SafeAreaView style={styles.container}>
-          <Tabs />
+          {isSigned ? <TabsNavigator /> : <Navigation />}
           <Toast ref={(ref) => Toast.setRef(ref)} />
         </SafeAreaView>
       </Provider>

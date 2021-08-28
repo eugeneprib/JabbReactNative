@@ -12,7 +12,7 @@ const Tab = createBottomTabNavigator()
 const Tabs: React.FC = () => {
   return (
     <Tab.Navigator
-      initialRouteName={NavigationScreen.SIGN_IN}
+      initialRouteName={NavigationScreen.HOME}
       screenOptions={{
         headerShown: false,
         tabBarShowLabel: false,
@@ -20,12 +20,10 @@ const Tabs: React.FC = () => {
         tabBarActiveTintColor: '#fff',
         tabBarStyle: {
           backgroundColor: 'rgba(25,25,25,0.95)',
-          position: 'absolute',
-          bottom: 10,
-          left: 10,
           height: 70,
-          right: 10,
           borderRadius: 10,
+          marginBottom: 10,
+          marginHorizontal: 10,
           elevation: 5
         }
       }}
