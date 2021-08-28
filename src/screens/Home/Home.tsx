@@ -1,6 +1,6 @@
 import React from 'react'
-import { ScrollView, Text, View } from 'react-native'
-import { Heading, HeadingType } from 'src/components'
+import { ScrollView, View } from 'react-native'
+import { Heading, HeadingType, PlainText } from 'src/components'
 import {
   PopularSingleCard,
   RecentlyPlayedCard,
@@ -40,9 +40,10 @@ const Home: React.FC = () => {
             label="Hey, Den"
             type={HeadingType.MEDIUM}
           />
-          <Text style={styles.headerText}>
-            Find this week&apos;s hottest podcasts
-          </Text>
+          <PlainText
+            label={`Find this week's hottest podcasts`}
+            style={styles.headerText}
+          />
         </View>
         <UserAvatar
           source="https://ca.slack-edge.com/T025CKYU9R7-U0261G9DKRN-0714d7d9b1ae-512"
@@ -56,7 +57,7 @@ const Home: React.FC = () => {
         />
       </View>
       <View style={styles.block}>
-        <Text style={styles.title}>Recenlty Played</Text>
+        <PlainText label={`Recently Played`} style={styles.title} />
         <RecentlyPlayedCard
           title="Kingdom Dance Kingdom Dance Kingdom Dance Kingdom Dance Kingdom Dance"
           author="Eugenius"
@@ -73,7 +74,7 @@ const Home: React.FC = () => {
         />
       </View>
       <View style={styles.block}>
-        <Text style={styles.title}>Popular Singles</Text>
+        <PlainText label={`Popular Singles`} style={styles.title} />
         <View style={styles.popular}>
           <PopularSingleCard
             title="About Knowing Nothing"

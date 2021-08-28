@@ -1,6 +1,6 @@
 import React from 'react'
+import { Heading, HeadingType, PlainText } from 'src/components'
 import { Image, Text, TouchableOpacity, View, ViewStyle } from 'react-native'
-import { Heading, HeadingType } from 'src/components'
 import { getFormattedDate, DateFormatType } from 'src/helpers'
 import TimeIcon from 'src/assets/images/time.svg'
 import styles from './styles'
@@ -31,12 +31,16 @@ const RecentlyPlayedCard: React.FC<Props> = ({
       <Image source={{ uri: source }} style={styles.image} />
       <View>
         <Heading label={title} type={HeadingType.SMALL} numberOfLines={2} />
-        <Text style={styles.author}>{author}</Text>
+        <PlainText label={author} style={styles.author} />
         <View style={styles.date}>
           <TimeIcon width={10} />
-          <Text style={styles.time}>
-            {getFormattedDate(date, DateFormatType.MONTH_DAY_HOURS_MINUTES)}
-          </Text>
+          <PlainText
+            label={getFormattedDate(
+              date,
+              DateFormatType.MONTH_DAY_HOURS_MINUTES
+            )}
+            style={styles.time}
+          />
         </View>
       </View>
     </TouchableOpacity>

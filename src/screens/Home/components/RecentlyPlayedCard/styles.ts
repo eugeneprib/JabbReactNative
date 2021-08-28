@@ -25,7 +25,7 @@ const styles = StyleSheet.create<Styles>({
     fontSize: 20
   },
   author: {
-    fontSize: 9,
+    fontSize: 12,
     color: '#7C7C7C'
   },
   date: {
@@ -34,7 +34,7 @@ const styles = StyleSheet.create<Styles>({
   },
   time: {
     marginLeft: 4,
-    fontSize: 9
+    fontSize: 10
   }
 })
 
