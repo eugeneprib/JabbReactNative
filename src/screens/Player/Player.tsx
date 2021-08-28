@@ -1,16 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { View, Pressable, Text } from 'react-native'
-import TrackPlayer, {
-  useProgress,
-  Event,
-  Capability,
-  useTrackPlayerEvents
-} from 'react-native-track-player'
+import { View, Pressable, Text, ScrollView } from 'react-native'
+import TrackPlayer, { useProgress, Capability } from 'react-native-track-player'
 import Slider from '@react-native-community/slider'
 import { DateFormatType, getFormattedDate } from 'src/helpers'
 import * as dateFns from 'date-fns'
+import ArrowIcon from 'src/assets/images/arrow_back.svg'
 import PlayIcon from 'src/assets/images/play.svg'
-import StopIcon from 'src/assets/images/stop.svg'
 import PauseIcon from 'src/assets/images/pause.svg'
 import RewindIcon from 'src/assets/images/rewind.svg'
 import ForwardIcon from 'src/assets/images/forward.svg'
@@ -30,6 +25,7 @@ const mockedTrack = [
 
 const Player: React.FC = () => {
   const { position, duration } = useProgress()
+  const [isPlaying, setPlaying] = useState(false)
 
   const trackPlayerInit = async () => {
     await TrackPlayer.setupPlayer({
@@ -38,55 +34,8 @@ const Player: React.FC = () => {
     return true
   }
 
-  // const events = [
-  //   Event.PlaybackTrackChanged,
-  //   Event.PlaybackQueueEnded,
-  //   Event.PlaybackError,
-  //   Event.RemotePause,
-  //   Event.RemoteNext,
-  //   Event.RemotePrevious,
-  //   Event.RemotePlay,
-  //   Event.RemotePause,
-  //   Event.RemoteStop,
-  //   Event.RemoteSeek,
-  //   Event.RemoteDuck,
-  // ];
-  // useTrackPlayerEvents(events, event => {
-  //   switch (event.type) {
-  //     case Event.RemoteDuck:
-  //       pauseSong();
-  //       break;
-  //     case Event.PlaybackError:
-  //       console.warn(
-  //         'An error occured while playing the current track.',
-  //         event,
-  //       );
-  //       break;
-  //     case Event.RemoteNext:
-  //       playNextSong();
-  //       break;
-  //     case Event.RemotePrevious:
-  //       playPrevSong();
-  //       break;
-  //     case Event.RemotePlay:
-  //       playSong();
-  //       break;
-  //     case Event.RemotePause:
-  //       pauseSong();
-  //       break;
-  //     case Event.RemoteStop:
-  //       pauseSong();
-  //       break;
-  //     case Event.RemoteSeek:
-  //       TrackPlayer.seekTo(event.position);
-  //       break;
-  //     default:
-  //   }
-  // });
-
   useEffect(() => {
     trackPlayerInit()
-    // TrackPlayer.registerPlaybackService(() => require('../../services/player'));
     TrackPlayer.updateOptions({
       stopWithApp: true,
       alwaysPauseOnInterruption: true,
@@ -107,150 +56,183 @@ const Player: React.FC = () => {
   const onPressFunction = () => {
     TrackPlayer.add(mockedTrack)
     TrackPlayer.play()
-  }
-  const onPressStop = () => {
-    TrackPlayer.stop()
+    setPlaying(true)
   }
   const onPressPause = () => {
     TrackPlayer.pause()
+    setPlaying(false)
   }
   const onHandleSeekTo = (seconds: number) => {
     TrackPlayer.seekTo(seconds)
   }
 
   return (
-    <View
-      style={{
-        backgroundColor: 'white',
+    <ScrollView
+      contentContainerStyle={{
         flex: 1,
-        justifyContent: 'center',
         alignItems: 'center',
         padding: 25
       }}
     >
-      <Pressable
-        onPress={onPressFunction}
-        style={{
-          backgroundColor: '#e1e1e1',
-          width: 36,
-          height: 36,
-          margin: 10,
-          borderRadius: 36,
-          justifyContent: 'center',
-          alignItems: 'center'
-        }}
-      >
-        <PlayIcon width={12} fill={'#595959'} />
-      </Pressable>
-
-      <Pressable
-        onPress={onPressStop}
-        style={{
-          backgroundColor: '#e1e1e1',
-          width: 36,
-          height: 36,
-          margin: 10,
-          borderRadius: 36,
-          justifyContent: 'center',
-          alignItems: 'center'
-        }}
-      >
-        <StopIcon width={12} height={12} fill={'#595959'} />
-      </Pressable>
-
-      <Pressable
-        onPress={onPressPause}
-        style={{
-          backgroundColor: '#e1e1e1',
-          width: 36,
-          height: 36,
-          margin: 10,
-          borderRadius: 36,
-          justifyContent: 'center',
-          alignItems: 'center'
-        }}
-      >
-        <PauseIcon width={12} height={12} fill={'#595959'} />
-      </Pressable>
-      <Pressable
-        onPress={() => onHandleSeekTo(position + 15)}
-        style={{
-          backgroundColor: '#e1e1e1',
-          width: 36,
-          height: 36,
-          margin: 10,
-          borderRadius: 36,
-          justifyContent: 'center',
-          alignItems: 'center'
-        }}
-      >
-        <RewindIcon width={12} height={12} fill={'#595959'} />
-      </Pressable>
-      <Pressable
-        onPress={() => onHandleSeekTo(position - 15)}
-        style={{
-          backgroundColor: '#e1e1e1',
-          width: 36,
-          height: 36,
-          margin: 10,
-          borderRadius: 36,
-          justifyContent: 'center',
-          alignItems: 'center'
-        }}
-      >
-        <ForwardIcon width={12} height={12} fill={'#595959'} />
-      </Pressable>
-      <Pressable
-        onPress={() => TrackPlayer.setVolume(0.5)}
-        style={{ backgroundColor: 'orange', padding: 15, margin: 10 }}
-      >
-        <Text
-          style={{
-            color: 'white',
-            width: 200,
-            fontWeight: 'bold',
-            fontSize: 16,
-            textAlign: 'center'
-          }}
-        >
-          Volume
-        </Text>
-      </Pressable>
       <View
         style={{
-          flex: 1,
+          flex: 0.1,
           flexDirection: 'row',
-          justifyContent: 'space-between'
+          width: '100%',
+          backgroundColor: 'blue',
+          alignItems: 'center',
+          justifyContent: 'center',
+          position: 'relative'
         }}
       >
-        <View style={{ width: '15%', alignItems: 'flex-end' }}>
-          <Text style={{ fontSize: 12 }}>
-            {getFormattedDate(
-              String(dateFns.addSeconds(new Date(0), position)),
-              DateFormatType.HOURS_MINUTES_SECONDS
-            )}
-          </Text>
+        <Pressable
+          onPress={onPressFunction}
+          style={{
+            position: 'absolute',
+            left: 0,
+            top: '5%',
+            backgroundColor: '#e1e1e1',
+            width: 36,
+            height: 36,
+            margin: 10,
+            borderRadius: 36,
+            justifyContent: 'center',
+            alignItems: 'center'
+          }}
+        >
+          <ArrowIcon width={12} fill={'#595959'} />
+        </Pressable>
+        <Text>Now Plaing</Text>
+      </View>
+      <View
+        style={{ flex: 0.4, width: '100%', backgroundColor: 'yellow' }}
+      ></View>
+      <View
+        style={{
+          flexDirection: 'column',
+          flex: 0.25,
+          width: '100%',
+          backgroundColor: 'green'
+        }}
+      ></View>
+      <View
+        style={{
+          flexDirection: 'column',
+          flex: 0.25,
+          width: '100%',
+          backgroundColor: 'red',
+          justifyContent: 'center',
+          alignItems: 'center',
+          alignContent: 'center'
+        }}
+      >
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-between'
+          }}
+        >
+          <View style={{ width: '15%', alignItems: 'flex-end' }}>
+            <Text style={{ fontSize: 12 }}>
+              {getFormattedDate(
+                String(dateFns.addSeconds(new Date(0), position)),
+                DateFormatType.HOURS_MINUTES_SECONDS
+              )}
+            </Text>
+          </View>
+          <Slider
+            style={{ width: '70%', height: 40 }}
+            minimumValue={0}
+            maximumValue={duration}
+            minimumTrackTintColor="#52527a"
+            maximumTrackTintColor="#52527a"
+            thumbTintColor="#52527a"
+            value={position}
+            onSlidingComplete={(seek) => onHandleSeekTo(seek)}
+          />
+          <View style={{ width: '15%' }}>
+            <Text style={{ fontSize: 12 }}>
+              {getFormattedDate(
+                String(dateFns.addSeconds(new Date(0), duration)),
+                DateFormatType.HOURS_MINUTES_SECONDS
+              )}
+            </Text>
+          </View>
         </View>
-        <Slider
-          style={{ width: '70%', height: 40 }}
-          minimumValue={0}
-          maximumValue={duration}
-          minimumTrackTintColor="#52527a"
-          maximumTrackTintColor="#52527a"
-          thumbTintColor="#52527a"
-          value={position}
-          onSlidingComplete={(seek) => onHandleSeekTo(seek)}
-        />
-        <View style={{ width: '15%' }}>
-          <Text style={{ fontSize: 12 }}>
-            {getFormattedDate(
-              String(dateFns.addSeconds(new Date(0), duration)),
-              DateFormatType.HOURS_MINUTES_SECONDS
-            )}
-          </Text>
+        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+          <Pressable
+            onPress={() => onHandleSeekTo(position - 15)}
+            style={{
+              width: 36,
+              height: 36,
+              margin: 10,
+              borderRadius: 36,
+              justifyContent: 'center',
+              alignItems: 'center',
+              position: 'relative'
+            }}
+          >
+            <RewindIcon
+              style={{ position: 'absolute', top: 6 }}
+              width={26}
+              height={26}
+              fill={'#595959'}
+            />
+          </Pressable>
+          {!isPlaying && (
+            <Pressable
+              onPress={onPressFunction}
+              style={{
+                backgroundColor: '#e1e1e1',
+                width: 46,
+                height: 46,
+                margin: 10,
+                borderRadius: 46,
+                justifyContent: 'center',
+                alignItems: 'center'
+              }}
+            >
+              <PlayIcon width={12} fill={'#595959'} />
+            </Pressable>
+          )}
+          {isPlaying && (
+            <Pressable
+              onPress={onPressPause}
+              style={{
+                backgroundColor: '#e1e1e1',
+                width: 46,
+                height: 46,
+                margin: 10,
+                borderRadius: 46,
+                justifyContent: 'center',
+                alignItems: 'center'
+              }}
+            >
+              <PauseIcon width={12} height={12} fill={'#595959'} />
+            </Pressable>
+          )}
+          <Pressable
+            onPress={() => onHandleSeekTo(position + 15)}
+            style={{
+              width: 36,
+              height: 36,
+              margin: 10,
+              borderRadius: 36,
+              justifyContent: 'center',
+              alignItems: 'center',
+              position: 'relative'
+            }}
+          >
+            <ForwardIcon
+              style={{ position: 'absolute', top: 6 }}
+              width={26}
+              height={26}
+              fill={'#595959'}
+            />
+          </Pressable>
         </View>
       </View>
-    </View>
+    </ScrollView>
   )
 }
 export default Player
