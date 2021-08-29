@@ -5,21 +5,21 @@ import { ApiPath, AuthApiPath, ContentType } from 'src/services/common'
 
 type Constructor = {
   http: Http
-  apiPrefix: string
+  apiPath: string
 }
 
 class AuthApi {
   #http: Http
-  #apiPrefix: string
+  #apiPath: string
 
-  constructor({ http, apiPrefix }: Constructor) {
+  constructor({ http, apiPath }: Constructor) {
     this.#http = http
-    this.#apiPrefix = apiPrefix
+    this.#apiPath = apiPath
   }
 
   public signIn(payload: UserSignInPayload): Promise<SignResponse> {
     return this.#http.load(
-      `${this.#apiPrefix}${ApiPath.AUTH}${AuthApiPath.SIGN_IN}`,
+      `${this.#apiPath}${ApiPath.AUTH}${AuthApiPath.SIGN_IN}`,
       {
         method: HttpMethod.POST,
         contentType: ContentType.JSON,
@@ -31,7 +31,7 @@ class AuthApi {
 
   public getCurrentUser(): Promise<User> {
     return this.#http.load(
-      `${this.#apiPrefix}${ApiPath.AUTH}${AuthApiPath.CURRENT_USER}`,
+      `${this.#apiPath}${ApiPath.AUTH}${AuthApiPath.CURRENT_USER}`,
       {
         method: HttpMethod.GET
       }
