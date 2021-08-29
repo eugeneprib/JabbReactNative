@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { View, Text, ScrollView, KeyboardAvoidingView } from 'react-native'
-import { StackNavigationProp } from '@react-navigation/stack'
-import { AppError, NavigationScreen } from 'src/common/enums'
+import { AppError } from 'src/common/enums'
 import { UserSignInPayload } from 'src/common/types'
 import {
   Heading,
@@ -18,30 +17,16 @@ import { REGISTER_URL } from './common/constants'
 import { SignInValidationSchema } from './validationSchema'
 import styles from './styles'
 
-type RootStackParamList = {
-  [NavigationScreen.HOME]: undefined
-  [NavigationScreen.SIGN_IN]: undefined
-}
+const SignIn: React.FC = () => {
+  const dispatch = useDispatch()
 
-type SignInScreenNavigationProp = StackNavigationProp<
-  RootStackParamList,
-  NavigationScreen.SIGN_IN
->
-
-type Props = {
-  navigation: SignInScreenNavigationProp
-}
-
-const SignIn: React.FC<Props> = ({ navigation }) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const dispatch = useDispatch()
 
   const handleSignInSubmit = (): void => {
     SignInValidationSchema.validate({ email, password })
       .then(function (payload: UserSignInPayload | undefined) {
         dispatch(signIn(payload))
-        navigation.replace(NavigationScreen.HOME)
       })
       .catch(function (err) {
         notification.error(
