@@ -37,7 +37,7 @@ const navigation: React.FC = () => {
         tabBarInactiveTintColor: '#fff',
         tabBarActiveTintColor: '#fff',
         tabBarStyle: {
-          backgroundColor: 'rgba(25,25,25,0.95)',
+          backgroundColor: 'rgb(35,35,35)',
           height: 70,
           borderRadius: 10,
           marginBottom: 10,
@@ -51,21 +51,20 @@ const navigation: React.FC = () => {
         component={Home}
         options={{
           tabBarIcon: ({ focused }) => {
-            if (focused) {
-              return (
-                <View style={styles.viewContainer}>
-                  <HomeIcon width={17} />
-                  <Text style={styles.textNavigation}>Home</Text>
-                </View>
-              )
-            } else {
-              return (
-                <View style={styles.viewContainer}>
-                  <HomeIcon width={17} opacity={0.2} />
-                  <Text style={styles.textNavigationWithOpacity}>Home</Text>
-                </View>
-              )
-            }
+            return (
+              <View style={styles.viewContainer}>
+                <HomeIcon width={17} opacity={focused ? 1 : 0.2} />
+                <Text
+                  style={
+                    focused
+                      ? styles.textNavigation
+                      : styles.textNavigationWithOpacity
+                  }
+                >
+                  Home
+                </Text>
+              </View>
+            )
           }
         }}
       />
@@ -74,23 +73,20 @@ const navigation: React.FC = () => {
         component={PodcastPage}
         options={{
           tabBarIcon: ({ focused }) => {
-            if (focused) {
-              return (
-                <View style={styles.viewContainer}>
-                  <Play width={17} />
-                  <Text style={styles.textNavigation}>Listening</Text>
-                </View>
-              )
-            } else {
-              return (
-                <View style={styles.viewContainer}>
-                  <Play width={17} opacity={0.2} />
-                  <Text style={styles.textNavigationWithOpacity}>
-                    Listening
-                  </Text>
-                </View>
-              )
-            }
+            return (
+              <View style={styles.viewContainer}>
+                <Play width={17} opacity={focused ? 1 : 0.2} />
+                <Text
+                  style={
+                    focused
+                      ? styles.textNavigation
+                      : styles.textNavigationWithOpacity
+                  }
+                >
+                  Listening
+                </Text>
+              </View>
+            )
           }
         }}
       />
@@ -99,21 +95,20 @@ const navigation: React.FC = () => {
         component={SignIn}
         options={{
           tabBarIcon: ({ focused }) => {
-            if (focused) {
-              return (
-                <View style={styles.viewContainer}>
-                  <User width={17} />
-                  <Text style={styles.textNavigation}>Me</Text>
-                </View>
-              )
-            } else {
-              return (
-                <View style={styles.viewContainer}>
-                  <User width={17} opacity={0.2} />
-                  <Text style={styles.textNavigationWithOpacity}>Me</Text>
-                </View>
-              )
-            }
+            return (
+              <View style={styles.viewContainer}>
+                <User width={17} opacity={focused ? 1 : 0.2} />
+                <Text
+                  style={
+                    focused
+                      ? styles.textNavigation
+                      : styles.textNavigationWithOpacity
+                  }
+                >
+                  Me
+                </Text>
+              </View>
+            )
           }
         }}
       />
