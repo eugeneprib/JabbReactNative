@@ -19,13 +19,13 @@ import { SignInValidationSchema } from './validationSchema'
 import styles from './styles'
 
 type RootStackParamList = {
-  [NavigationScreen.HOME]: undefined
+  [NavigationScreen.TABS_NAV]: undefined
   [NavigationScreen.SIGN_IN]: undefined
 }
 
 type SignInScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
-  NavigationScreen.SIGN_IN
+  NavigationScreen.TABS_NAV
 >
 
 type Props = {
@@ -41,7 +41,7 @@ const SignIn: React.FC<Props> = ({ navigation }) => {
     SignInValidationSchema.validate({ email, password })
       .then(function (payload: UserSignInPayload | undefined) {
         dispatch(signIn(payload))
-        navigation.replace(NavigationScreen.HOME)
+        navigation.replace(NavigationScreen.TABS_NAV)
       })
       .catch(function (err) {
         notification.error(
