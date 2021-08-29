@@ -1,6 +1,12 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet, ViewStyle, TextStyle } from 'react-native'
 
-const styles = StyleSheet.create({
+type Styles = {
+  viewContainer: ViewStyle
+  textNavigation: TextStyle
+  textNavigationWithOpacity: TextStyle
+}
+
+const styles = StyleSheet.create<Styles>({
   viewContainer: { alignItems: 'center', flexDirection: 'row' },
   textNavigation: { color: '#fff', marginLeft: 10, fontSize: 12 },
   textNavigationWithOpacity: {

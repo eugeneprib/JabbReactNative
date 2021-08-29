@@ -2,32 +2,15 @@ import React from 'react'
 import { View, Text } from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { Home, PodcastPage, SignIn } from 'src/screens'
-import { createStackNavigator } from '@react-navigation/stack'
 import { NavigationScreen } from 'src/common/enums'
 import HomeIcon from 'src/assets/images/home.svg'
 import Play from 'src/assets/images/playNavigation.svg'
 import User from 'src/assets/images/meIcon.svg'
 import styles from './styles'
 
-const Stack = createStackNavigator()
 const Tab = createBottomTabNavigator()
 
-const Nav: React.FC = () => {
-  return (
-    <Stack.Navigator
-      initialRouteName={NavigationScreen.SIGN_IN}
-      screenOptions={{
-        headerShown: false,
-        cardStyle: { backgroundColor: '#fff' }
-      }}
-    >
-      <Stack.Screen name={NavigationScreen.SIGN_IN} component={SignIn} />
-      <Stack.Screen name={NavigationScreen.TABS_NAV} component={navigation} />
-    </Stack.Navigator>
-  )
-}
-
-const navigation: React.FC = () => {
+const TabNavigation: React.FC = () => {
   return (
     <Tab.Navigator
       initialRouteName={NavigationScreen.HOME}
@@ -47,7 +30,7 @@ const navigation: React.FC = () => {
       }}
     >
       <Tab.Screen
-        name="Home"
+        name={NavigationScreen.HOME}
         component={Home}
         options={{
           tabBarIcon: ({ focused }) => {
@@ -61,7 +44,7 @@ const navigation: React.FC = () => {
                       : styles.textNavigationWithOpacity
                   }
                 >
-                  Home
+                  {NavigationScreen.HOME}
                 </Text>
               </View>
             )
@@ -69,7 +52,7 @@ const navigation: React.FC = () => {
         }}
       />
       <Tab.Screen
-        name="Listening"
+        name={NavigationScreen.LISTENING}
         component={PodcastPage}
         options={{
           tabBarIcon: ({ focused }) => {
@@ -83,7 +66,7 @@ const navigation: React.FC = () => {
                       : styles.textNavigationWithOpacity
                   }
                 >
-                  Listening
+                  {NavigationScreen.LISTENING}
                 </Text>
               </View>
             )
@@ -91,7 +74,7 @@ const navigation: React.FC = () => {
         }}
       />
       <Tab.Screen
-        name="MyProfile"
+        name={NavigationScreen.MY_PROFILE}
         component={SignIn}
         options={{
           tabBarIcon: ({ focused }) => {
@@ -105,7 +88,7 @@ const navigation: React.FC = () => {
                       : styles.textNavigationWithOpacity
                   }
                 >
-                  Me
+                  {NavigationScreen.MY_PROFILE}
                 </Text>
               </View>
             )
@@ -116,4 +99,4 @@ const navigation: React.FC = () => {
   )
 }
 
-export default Nav
+export default TabNavigation
