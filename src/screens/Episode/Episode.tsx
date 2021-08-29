@@ -55,14 +55,18 @@ type Props = {
   navigation: EpisodeScreenNavigationProp
 }
 
-const EpisodePage: React.FC<Props> = ({ navigation }) => {
+const Episode: React.FC<Props> = ({ navigation }) => {
+  const handleBackToPodcast = () => {
+    navigation.replace(NavigationScreen.PODCAST)
+  }
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.header}>
         <TouchableOpacity
           style={styles.backButton}
           activeOpacity={0.7}
-          onPress={() => navigation.replace(NavigationScreen.PODCAST)}
+          onPress={handleBackToPodcast}
         >
           <BackButton width={40} />
         </TouchableOpacity>
@@ -94,4 +98,4 @@ const EpisodePage: React.FC<Props> = ({ navigation }) => {
   )
 }
 
-export default EpisodePage
+export default Episode

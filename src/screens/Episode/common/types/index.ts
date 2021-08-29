@@ -1,1 +1,1 @@
-export type { PlayerEpisode } from './formattedEpisode'
+export type { PlayerEpisode } from './playerEpisode'
