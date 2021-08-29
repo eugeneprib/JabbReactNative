@@ -1,1 +1,1 @@
-export { default as Navigation } from './stackNavigation'
+export { default as Navigation } from './StackNavigation'

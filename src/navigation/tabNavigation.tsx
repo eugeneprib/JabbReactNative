@@ -33,66 +33,60 @@ const TabNavigation: React.FC = () => {
         name={NavigationScreen.HOME}
         component={Home}
         options={{
-          tabBarIcon: ({ focused }) => {
-            return (
-              <View style={styles.viewContainer}>
-                <HomeIcon width={17} opacity={focused ? 1 : 0.2} />
-                <Text
-                  style={
-                    focused
-                      ? styles.textNavigation
-                      : styles.textNavigationWithOpacity
-                  }
-                >
-                  {NavigationScreen.HOME}
-                </Text>
-              </View>
-            )
-          }
+          tabBarIcon: ({ focused }) => (
+            <View style={styles.viewContainer}>
+              <HomeIcon width={17} opacity={focused ? 1 : 0.2} />
+              <Text
+                style={
+                  focused
+                    ? styles.textNavigation
+                    : styles.textNavigationWithOpacity
+                }
+              >
+                {NavigationScreen.HOME}
+              </Text>
+            </View>
+          )
         }}
       />
       <Tab.Screen
         name={NavigationScreen.LISTENING}
         component={PodcastPage}
         options={{
-          tabBarIcon: ({ focused }) => {
-            return (
-              <View style={styles.viewContainer}>
-                <Play width={17} opacity={focused ? 1 : 0.2} />
-                <Text
-                  style={
-                    focused
-                      ? styles.textNavigation
-                      : styles.textNavigationWithOpacity
-                  }
-                >
-                  {NavigationScreen.LISTENING}
-                </Text>
-              </View>
-            )
-          }
+          tabBarIcon: ({ focused }) => (
+            <View style={styles.viewContainer}>
+              <Play width={17} opacity={focused ? 1 : 0.2} />
+              <Text
+                style={
+                  focused
+                    ? styles.textNavigation
+                    : styles.textNavigationWithOpacity
+                }
+              >
+                {NavigationScreen.LISTENING}
+              </Text>
+            </View>
+          )
         }}
       />
       <Tab.Screen
         name={NavigationScreen.MY_PROFILE}
         component={SignIn}
         options={{
-          tabBarIcon: ({ focused }) => {
-            return (
-              <View style={styles.viewContainer}>
-                <User width={17} opacity={focused ? 1 : 0.2} />
-                <Text
-                  style={
-                    focused
-                      ? styles.textNavigation
-                      : styles.textNavigationWithOpacity
-                  }
-                >
-                  {NavigationScreen.MY_PROFILE}
-                </Text>
-              </View>
-            )
-          }
+          tabBarIcon: ({ focused }) => (
+            <View style={styles.viewContainer}>
+              <User width={17} opacity={focused ? 1 : 0.2} />
+              <Text
+                style={
+                  focused
+                    ? styles.textNavigation
+                    : styles.textNavigationWithOpacity
+                }
+              >
+                {NavigationScreen.MY_PROFILE}
+              </Text>
+            </View>
+          )
         }}
       />
     </Tab.Navigator>

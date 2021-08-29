@@ -2,7 +2,7 @@ import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 import { NavigationScreen } from 'src/common/enums'
 import { SignIn } from 'src/screens'
-import TabNavigation from './tabNavigation'
+import TabNavigation from './TabNavigation'
 
 const Stack = createStackNavigator()
 
