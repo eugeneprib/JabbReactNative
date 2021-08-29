@@ -3,12 +3,13 @@ import { StyleSheet, TextStyle, ViewStyle } from 'react-native'
 type Styles = {
   sliderWrapper: ViewStyle
   positionWrapper: ViewStyle
+  durationWrapper: ViewStyle
   row: ViewStyle
+  slider: ViewStyle
   jumpButton: ViewStyle
   jumpIcon: ViewStyle
   controlButton: ViewStyle
   time: TextStyle
-  duration: ViewStyle
 }
 
 const styles = StyleSheet.create<Styles>({
@@ -20,9 +21,18 @@ const styles = StyleSheet.create<Styles>({
     width: '15%',
     alignItems: 'flex-end'
   },
+  durationWrapper: {
+    width: '15%',
+    alignItems: 'flex-start'
+  },
   row: {
     flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  slider: {
+    width: '70%',
+    height: 40
   },
   jumpButton: {
     width: 36,
@@ -48,8 +58,7 @@ const styles = StyleSheet.create<Styles>({
   },
   time: {
     fontSize: 12
-  },
-  duration: {}
+  }
 })
 
 export default styles

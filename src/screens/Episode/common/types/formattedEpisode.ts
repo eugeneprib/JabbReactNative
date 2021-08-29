@@ -1,4 +1,4 @@
-type FormattedEpisodeData = {
+type PlayerEpisode = {
   id: string
   url: string
   title: string
@@ -6,4 +6,4 @@ type FormattedEpisodeData = {
   artwork: string
 }
 
-export type { FormattedEpisodeData }
+export type { PlayerEpisode }

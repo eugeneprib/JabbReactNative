@@ -1,6 +1,7 @@
-export type { FormattedEpisodeData } from './types'
+export type { PlayerEpisode } from './types'
 export {
   TIME_SHIFT_IN_SECONDS,
   DEFAULT_EPISODE_IMAGE,
-  DEFAULT_EPISODE_TRACK
+  DEFAULT_EPISODE_TRACK,
+  DEFAULT_START_TIME
 } from './constants'

@@ -2,7 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { View, Pressable } from 'react-native'
 import TrackPlayer, { useProgress, Capability } from 'react-native-track-player'
 import Slider from '@react-native-community/slider'
-import { FormattedEpisodeData } from 'src/screens/Episode/common'
+import {
+  DEFAULT_START_TIME,
+  PlayerEpisode,
+  TIME_SHIFT_IN_SECONDS
+} from 'src/screens/Episode/common'
 import { getTime } from 'src/screens/Episode/helpers'
 import { PlainText } from 'src/components'
 import PlayIcon from 'src/assets/images/play.svg'
@@ -12,7 +16,7 @@ import ForwardIcon from 'src/assets/images/forward.svg'
 import styles from './styles'
 
 type Props = {
-  episode: FormattedEpisodeData
+  episode: PlayerEpisode
 }
 
 const Player: React.FC<Props> = ({ episode }) => {
@@ -55,14 +59,14 @@ const Player: React.FC<Props> = ({ episode }) => {
   }
 
   return (
-    <>
+    <View>
       <View style={styles.sliderWrapper}>
         <View style={styles.positionWrapper}>
           <PlainText label={getTime(position)} style={styles.time} />
         </View>
         <Slider
-          style={{ width: '70%', height: 40 }}
-          minimumValue={0}
+          style={styles.slider}
+          minimumValue={DEFAULT_START_TIME}
           maximumValue={duration}
           minimumTrackTintColor="#52527a"
           maximumTrackTintColor="#52527a"
@@ -70,13 +74,13 @@ const Player: React.FC<Props> = ({ episode }) => {
           value={position}
           onSlidingComplete={(seek) => onHandleSeekTo(seek)}
         />
-        <View style={styles.duration}>
+        <View style={styles.durationWrapper}>
           <PlainText label={getTime(duration)} />
         </View>
       </View>
       <View style={styles.row}>
         <Pressable
-          onPress={() => onHandleSeekTo(position - 15)}
+          onPress={() => onHandleSeekTo(position - TIME_SHIFT_IN_SECONDS)}
           style={styles.jumpButton}
         >
           <RewindIcon
@@ -99,7 +103,7 @@ const Player: React.FC<Props> = ({ episode }) => {
         )}
 
         <Pressable
-          onPress={() => onHandleSeekTo(position + 15)}
+          onPress={() => onHandleSeekTo(position + TIME_SHIFT_IN_SECONDS)}
           style={styles.jumpButton}
         >
           <ForwardIcon
@@ -110,7 +114,7 @@ const Player: React.FC<Props> = ({ episode }) => {
           />
         </Pressable>
       </View>
-    </>
+    </View>
   )
 }
 export default Player

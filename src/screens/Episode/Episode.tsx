@@ -8,7 +8,7 @@ import {
 import { StackNavigationProp } from '@react-navigation/stack'
 import { NavigationScreen } from 'src/common/enums'
 import { RootStackParamList, Image } from 'src/common/types'
-import { dataChanger } from './helpers'
+import { mapEpisodeToPlayerEpisode } from './helpers'
 import { Heading, HeadingType, PlainText } from 'src/components'
 import { DEFAULT_EPISODE_IMAGE } from './common'
 import Player from './components/Player'
@@ -56,13 +56,6 @@ type Props = {
 }
 
 const EpisodePage: React.FC<Props> = ({ navigation }) => {
-  let episodeImageURL
-  if (mockedEpisode.image === null) {
-    episodeImageURL = DEFAULT_EPISODE_IMAGE
-  } else {
-    episodeImageURL = mockedEpisode.image.url
-  }
-
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.header}>
@@ -77,7 +70,7 @@ const EpisodePage: React.FC<Props> = ({ navigation }) => {
       </View>
 
       <ImageBackground
-        source={{ uri: episodeImageURL }}
+        source={{ uri: mockedEpisode.image?.url ?? DEFAULT_EPISODE_IMAGE }}
         resizeMode="cover"
         style={styles.image}
       />
@@ -92,7 +85,7 @@ const EpisodePage: React.FC<Props> = ({ navigation }) => {
 
       <View style={styles.playerWrapper}>
         {mockedEpisode.record ? (
-          <Player episode={dataChanger(mockedEpisode)} />
+          <Player episode={mapEpisodeToPlayerEpisode(mockedEpisode)} />
         ) : (
           <PlainText label="There's no any record yet." />
         )}
