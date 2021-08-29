@@ -1,7 +1,8 @@
 enum NavigationScreen {
   HOME = 'Home',
   SIGN_IN = 'SignIn',
-  PLAYER = 'Player'
+  PODCAST = 'Podcast',
+  EPISODE = 'Episode'
 }
 
 export { NavigationScreen }
