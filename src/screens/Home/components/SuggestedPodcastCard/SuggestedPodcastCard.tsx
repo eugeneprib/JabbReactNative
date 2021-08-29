@@ -1,6 +1,6 @@
 import React from 'react'
-import { ImageBackground, Text, TouchableOpacity, View } from 'react-native'
-import { Heading, HeadingType } from 'src/components'
+import { ImageBackground, TouchableOpacity, View } from 'react-native'
+import { Heading, HeadingType, PlainText } from 'src/components'
 import PlayIcon from 'src/assets/images/play.svg'
 import styles from './styles'
 
@@ -20,7 +20,7 @@ const SuggestedPodcastCard: React.FC<Props> = ({
   return (
     <ImageBackground source={{ uri: source }} style={styles.container}>
       <View style={styles.overlay}>
-        <Text style={styles.author}>{author}</Text>
+        <PlainText label={author} style={styles.author} />
         <View style={styles.description}>
           <Heading
             label={title}

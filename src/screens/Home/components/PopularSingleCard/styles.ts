@@ -28,7 +28,7 @@ const styles = StyleSheet.create<Styles>({
   author: {
     marginBottom: 6,
     color: '#EFEFEF',
-    fontSize: 9
+    fontSize: 12
   },
   title: {
     color: '#EFEFEF'
