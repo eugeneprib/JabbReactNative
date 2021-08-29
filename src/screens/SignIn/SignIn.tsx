@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { View, Text, ScrollView, KeyboardAvoidingView } from 'react-native'
+import { View, ScrollView, KeyboardAvoidingView } from 'react-native'
 import { AppError } from 'src/common/enums'
 import { UserSignInPayload } from 'src/common/types'
 import {
@@ -9,7 +9,8 @@ import {
   Button,
   ButtonType,
   Link,
-  HeadingType
+  HeadingType,
+  PlainText
 } from 'src/components'
 import { signIn } from 'src/store/actions'
 import { notification } from 'src/services'
@@ -44,8 +45,8 @@ const SignIn: React.FC = () => {
       <ScrollView contentContainerStyle={styles.scrollView}>
         <View>
           <Heading type={HeadingType.HUGE} label="Hello There" />
-          <Text style={styles.intro}>Welcome to Jabber</Text>
-          <Text style={styles.lets}>Let&apos;s sign you in</Text>
+          <PlainText label={'Welcome to Jabber'} style={styles.intro} />
+          <PlainText label={`Let's sign you in`} style={styles.lets} />
           <Input
             style={styles.input}
             placeholder="Email"
@@ -68,7 +69,7 @@ const SignIn: React.FC = () => {
         </View>
         <View style={styles.bottomBlock}>
           <View style={styles.row}>
-            <Text>Don&apos;t have an account? </Text>
+            <PlainText label={`Don’t have an account? `} />
             <Link label="Register" url={REGISTER_URL} />
           </View>
           <Button
