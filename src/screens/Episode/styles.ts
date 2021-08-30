@@ -8,7 +8,7 @@ type Styles = {
   imageWrapper: ViewStyle
   image: ViewStyle
   designationBlock: ViewStyle
-  description: TextStyle
+  episodesName: TextStyle
   playerWrapper: ViewStyle
 }
 
@@ -44,6 +44,7 @@ const styles = StyleSheet.create<Styles>({
     borderRadius: 20,
     backgroundColor: '#EEE',
     justifyContent: 'center',
+    alignItems: 'center',
     overflow: 'hidden',
     marginTop: 15
   },
@@ -55,7 +56,7 @@ const styles = StyleSheet.create<Styles>({
     justifyContent: 'center',
     paddingTop: 10
   },
-  description: {
+  episodesName: {
     marginTop: 10
   },
   playerWrapper: {

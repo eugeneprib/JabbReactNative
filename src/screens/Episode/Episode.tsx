@@ -1,18 +1,13 @@
 import React from 'react'
-import {
-  View,
-  ScrollView,
-  ImageBackground,
-  TouchableOpacity
-} from 'react-native'
+import { View, ImageBackground, TouchableOpacity } from 'react-native'
 import { StackNavigationProp } from '@react-navigation/stack'
 import { NavigationScreen } from 'src/common/enums'
-import { RootStackParamList, Image } from 'src/common/types'
+import { RootStackParamList } from 'src/common/types'
 import { mapEpisodeToPlayerEpisode } from './helpers'
 import { Heading, HeadingType, PlainText } from 'src/components'
-import { DEFAULT_EPISODE_IMAGE } from './common'
 import Player from './components/Player'
 import BackButton from 'src/assets/images/backButton.svg'
+import DefaultImage from 'src/assets/images/defaultImage.svg'
 import styles from './styles'
 
 const mockedEpisode = {
@@ -53,15 +48,16 @@ type EpisodeScreenNavigationProp = StackNavigationProp<
 
 type Props = {
   navigation: EpisodeScreenNavigationProp
+  podcastName?: string
 }
 
-const Episode: React.FC<Props> = ({ navigation }) => {
+const Episode: React.FC<Props> = ({ navigation, podcastName }) => {
   const handleBackToPodcast = () => {
     navigation.replace(NavigationScreen.PODCAST)
   }
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <View style={styles.container}>
       <View style={styles.header}>
         <TouchableOpacity
           style={styles.backButton}
@@ -74,17 +70,21 @@ const Episode: React.FC<Props> = ({ navigation }) => {
       </View>
 
       <ImageBackground
-        source={{ uri: mockedEpisode.image?.url ?? DEFAULT_EPISODE_IMAGE }}
+        source={{ uri: mockedEpisode.image?.url ?? undefined }}
         resizeMode="cover"
         style={styles.image}
-      />
+      >
+        {!mockedEpisode.image && <DefaultImage />}
+      </ImageBackground>
 
       <View style={styles.designationBlock}>
-        <Heading label={mockedEpisode.name} type={HeadingType.LARGE} />
-        <PlainText
-          label={mockedEpisode.description}
-          style={styles.description}
+        <Heading
+          label={podcastName ? podcastName : mockedEpisode.name}
+          type={HeadingType.LARGE}
         />
+        {podcastName && (
+          <PlainText label={mockedEpisode.name} style={styles.episodesName} />
+        )}
       </View>
 
       <View style={styles.playerWrapper}>
@@ -94,7 +94,7 @@ const Episode: React.FC<Props> = ({ navigation }) => {
           <PlainText label="There's no any record yet." />
         )}
       </View>
-    </ScrollView>
+    </View>
   )
 }
 

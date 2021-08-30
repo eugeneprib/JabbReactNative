@@ -44,16 +44,13 @@ const Player: React.FC<Props> = ({ episode }) => {
       ]
     })
     TrackPlayer.add(episode)
-  }, [])
+  }, [episode])
 
-  const onPressPlay = () => {
-    TrackPlayer.play()
-    setPlaying(true)
+  const onHandleControlPlayer = () => {
+    isPlaying ? TrackPlayer.pause() : TrackPlayer.play()
+    setPlaying(!isPlaying)
   }
-  const onPressPause = () => {
-    TrackPlayer.pause()
-    setPlaying(false)
-  }
+
   const onHandleSeekTo = (seconds: number) => {
     TrackPlayer.seekTo(seconds)
   }
@@ -88,32 +85,16 @@ const Player: React.FC<Props> = ({ episode }) => {
       </View>
       <View style={styles.row}>
         <Pressable onPress={onHandleRewind} style={styles.jumpButton}>
-          <RewindIcon
-            style={styles.jumpIcon}
-            width={26}
-            height={26}
-            fill="#595959"
-          />
+          <RewindIcon style={styles.jumpIcon} width={26} height={26} />
         </Pressable>
 
-        {!isPlaying && (
-          <Pressable onPress={onPressPlay} style={styles.controlButton}>
-            <PlayIcon width={12} fill="#595959" />
-          </Pressable>
-        )}
-        {isPlaying && (
-          <Pressable onPress={onPressPause} style={styles.controlButton}>
-            <PauseIcon width={12} height={12} fill="#595959" />
-          </Pressable>
-        )}
+        <Pressable onPress={onHandleControlPlayer} style={styles.controlButton}>
+          {!isPlaying && <PlayIcon width={12} />}
+          {isPlaying && <PauseIcon width={12} />}
+        </Pressable>
 
         <Pressable onPress={onHandleForward} style={styles.jumpButton}>
-          <ForwardIcon
-            style={styles.jumpIcon}
-            width={26}
-            height={26}
-            fill="#595959"
-          />
+          <ForwardIcon style={styles.jumpIcon} width={26} height={26} />
         </Pressable>
       </View>
     </View>
