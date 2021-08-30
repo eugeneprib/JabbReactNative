@@ -1,9 +1,9 @@
 import { Episode } from 'src/common/types'
+import { PlayerEpisode } from '../common/types'
 import {
   DEFAULT_EPISODE_TRACK,
-  DEFAULT_EPISODE_IMAGE,
-  PlayerEpisode
-} from '../common'
+  DEFAULT_EPISODE_IMAGE
+} from '../common/constants'
 
 const mapEpisodeToPlayerEpisode = (episode: Episode): PlayerEpisode => {
   return {

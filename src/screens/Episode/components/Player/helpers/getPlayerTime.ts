@@ -1,9 +1,13 @@
 import * as dateFns from 'date-fns'
 import { DateFormatType, getFormattedDate } from 'src/helpers'
-import { UNIX_TIME_START, TIME_SEPARATOR } from '../../../common'
+import {
+  UNIX_TIME_START,
+  TIME_SEPARATOR,
+  HOUR_IS_NOT_EXISTS
+} from '../../../common/constants'
 
 const checkHourExist = (hours: string): boolean => {
-  return hours !== '00'
+  return hours !== HOUR_IS_NOT_EXISTS
 }
 
 const getPlayerTime = (timestamp: number): string => {

@@ -6,9 +6,9 @@ import { getPlayerTime } from '../Player/helpers'
 import { PlainText } from 'src/components'
 import {
   DEFAULT_START_TIME,
-  PlayerEpisode,
   TIME_SHIFT_IN_SECONDS
-} from 'src/screens/Episode/common'
+} from 'src/screens/Episode/common/constants'
+import { PlayerEpisode } from 'src/screens/Episode/common/types'
 import PlayIcon from 'src/assets/images/play.svg'
 import PauseIcon from 'src/assets/images/pause.svg'
 import RewindIcon from 'src/assets/images/rewind.svg'
