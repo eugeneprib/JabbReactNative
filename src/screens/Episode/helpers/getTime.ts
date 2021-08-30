@@ -1,6 +1,6 @@
 import * as dateFns from 'date-fns'
-import { UNIX_TIME_START, TIME_SEPARATOR } from '../common'
 import { DateFormatType, getFormattedDate } from 'src/helpers'
+import { UNIX_TIME_START, TIME_SEPARATOR } from '../common'
 
 const checkHourExist = (hours: string): boolean => {
   return hours !== '00'
@@ -15,13 +15,12 @@ const getTime = (timestamp: number): string => {
   const splittedTime = formattedTime.split(TIME_SEPARATOR)
   const [hours, minutes, seconds] = splittedTime
 
-  const isHourExist = checkHourExist(hours)
-  let time = minutes + TIME_SEPARATOR + seconds
-  if (isHourExist) {
-    time = hours + TIME_SEPARATOR + minutes + TIME_SEPARATOR + seconds
+  const minutesAndSeconds = minutes + TIME_SEPARATOR + seconds
+  if (!checkHourExist(hours)) {
+    return minutesAndSeconds
   }
 
-  return time
+  return hours + TIME_SEPARATOR + minutesAndSeconds
 }
 
 export { getTime }

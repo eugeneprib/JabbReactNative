@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { View, Pressable } from 'react-native'
 import TrackPlayer, { useProgress, Capability } from 'react-native-track-player'
 import Slider from '@react-native-community/slider'
+import { getTime } from 'src/screens/Episode/helpers'
+import { PlainText } from 'src/components'
 import {
   DEFAULT_START_TIME,
   PlayerEpisode,
   TIME_SHIFT_IN_SECONDS
 } from 'src/screens/Episode/common'
-import { getTime } from 'src/screens/Episode/helpers'
-import { PlainText } from 'src/components'
 import PlayIcon from 'src/assets/images/play.svg'
 import PauseIcon from 'src/assets/images/pause.svg'
 import RewindIcon from 'src/assets/images/rewind.svg'
@@ -46,7 +46,7 @@ const Player: React.FC<Props> = ({ episode }) => {
     TrackPlayer.add(episode)
   }, [])
 
-  const onPressFunction = () => {
+  const onPressPlay = () => {
     TrackPlayer.play()
     setPlaying(true)
   }
@@ -56,6 +56,14 @@ const Player: React.FC<Props> = ({ episode }) => {
   }
   const onHandleSeekTo = (seconds: number) => {
     TrackPlayer.seekTo(seconds)
+  }
+
+  const onHandleRewind = () => {
+    TrackPlayer.seekTo(position - TIME_SHIFT_IN_SECONDS)
+  }
+
+  const onHandleForward = () => {
+    TrackPlayer.seekTo(position + TIME_SHIFT_IN_SECONDS)
   }
 
   return (
@@ -72,17 +80,14 @@ const Player: React.FC<Props> = ({ episode }) => {
           maximumTrackTintColor="#52527a"
           thumbTintColor="#52527a"
           value={position}
-          onSlidingComplete={(seek) => onHandleSeekTo(seek)}
+          onSlidingComplete={onHandleSeekTo}
         />
         <View style={styles.durationWrapper}>
           <PlainText label={getTime(duration)} />
         </View>
       </View>
       <View style={styles.row}>
-        <Pressable
-          onPress={() => onHandleSeekTo(position - TIME_SHIFT_IN_SECONDS)}
-          style={styles.jumpButton}
-        >
+        <Pressable onPress={onHandleRewind} style={styles.jumpButton}>
           <RewindIcon
             style={styles.jumpIcon}
             width={26}
@@ -92,7 +97,7 @@ const Player: React.FC<Props> = ({ episode }) => {
         </Pressable>
 
         {!isPlaying && (
-          <Pressable onPress={onPressFunction} style={styles.controlButton}>
+          <Pressable onPress={onPressPlay} style={styles.controlButton}>
             <PlayIcon width={12} fill="#595959" />
           </Pressable>
         )}
@@ -102,10 +107,7 @@ const Player: React.FC<Props> = ({ episode }) => {
           </Pressable>
         )}
 
-        <Pressable
-          onPress={() => onHandleSeekTo(position + TIME_SHIFT_IN_SECONDS)}
-          style={styles.jumpButton}
-        >
+        <Pressable onPress={onHandleForward} style={styles.jumpButton}>
           <ForwardIcon
             style={styles.jumpIcon}
             width={26}

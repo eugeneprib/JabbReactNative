@@ -1,2 +1,2 @@
-export { mapEpisodeToPlayerEpisode } from './dataChanger'
+export { mapEpisodeToPlayerEpisode } from './mapEpisodeToPlayerEpisode'
 export { getTime } from './getTime'
