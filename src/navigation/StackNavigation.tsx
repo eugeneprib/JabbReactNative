@@ -51,7 +51,7 @@ const StackNavigation: React.FC = () => {
     >
       {hasUser ? (
         <Stack.Screen
-          name={NavigationScreen.TABS_NAV}
+          name={NavigationScreen.TO_TABS_NAVIGATOR}
           component={TabNavigation}
         />
       ) : (
