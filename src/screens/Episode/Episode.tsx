@@ -70,7 +70,7 @@ const Episode: React.FC<Props> = ({ navigation, podcastName }) => {
       </View>
 
       <ImageBackground
-        source={{ uri: mockedEpisode.image?.url ?? undefined }}
+        source={{ uri: mockedEpisode.image?.url }}
         resizeMode="cover"
         style={styles.image}
       >
@@ -79,7 +79,7 @@ const Episode: React.FC<Props> = ({ navigation, podcastName }) => {
 
       <View style={styles.designationBlock}>
         <Heading
-          label={podcastName ? podcastName : mockedEpisode.name}
+          label={podcastName ?? mockedEpisode.name}
           type={HeadingType.LARGE}
         />
         {podcastName && (

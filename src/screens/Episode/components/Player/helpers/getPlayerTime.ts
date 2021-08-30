@@ -1,12 +1,12 @@
 import * as dateFns from 'date-fns'
 import { DateFormatType, getFormattedDate } from 'src/helpers'
-import { UNIX_TIME_START, TIME_SEPARATOR } from '../common'
+import { UNIX_TIME_START, TIME_SEPARATOR } from '../../../common'
 
 const checkHourExist = (hours: string): boolean => {
   return hours !== '00'
 }
 
-const getTime = (timestamp: number): string => {
+const getPlayerTime = (timestamp: number): string => {
   const formattedTime = getFormattedDate(
     String(dateFns.addSeconds(new Date(UNIX_TIME_START), timestamp)),
     DateFormatType.HOURS_MINUTES_SECONDS
@@ -23,4 +23,4 @@ const getTime = (timestamp: number): string => {
   return hours + TIME_SEPARATOR + minutesAndSeconds
 }
 
-export { getTime }
+export { getPlayerTime }

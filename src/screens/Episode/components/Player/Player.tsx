@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { View, Pressable } from 'react-native'
 import TrackPlayer, { useProgress, Capability } from 'react-native-track-player'
 import Slider from '@react-native-community/slider'
-import { getTime } from 'src/screens/Episode/helpers'
+import { getPlayerTime } from '../Player/helpers'
 import { PlainText } from 'src/components'
 import {
   DEFAULT_START_TIME,
@@ -67,7 +67,7 @@ const Player: React.FC<Props> = ({ episode }) => {
     <View>
       <View style={styles.sliderWrapper}>
         <View style={styles.positionWrapper}>
-          <PlainText label={getTime(position)} style={styles.time} />
+          <PlainText label={getPlayerTime(position)} style={styles.time} />
         </View>
         <Slider
           style={styles.slider}
@@ -80,7 +80,7 @@ const Player: React.FC<Props> = ({ episode }) => {
           onSlidingComplete={onHandleSeekTo}
         />
         <View style={styles.durationWrapper}>
-          <PlainText label={getTime(duration)} />
+          <PlainText label={getPlayerTime(duration)} />
         </View>
       </View>
       <View style={styles.row}>
@@ -89,8 +89,7 @@ const Player: React.FC<Props> = ({ episode }) => {
         </Pressable>
 
         <Pressable onPress={onHandleControlPlayer} style={styles.controlButton}>
-          {!isPlaying && <PlayIcon width={12} />}
-          {isPlaying && <PauseIcon width={12} />}
+          {isPlaying ? <PauseIcon width={12} /> : <PlayIcon width={12} />}
         </Pressable>
 
         <Pressable onPress={onHandleForward} style={styles.jumpButton}>
