@@ -3,7 +3,7 @@ import { View, Text } from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { NavigationScreen } from 'src/common/enums'
 import { tabOptions } from './common/tabOptions'
-import { Pages } from './common/tabPages'
+import { tabPages } from './common/tabPages'
 import styles from './styles'
 
 const Tab = createBottomTabNavigator()
@@ -14,7 +14,7 @@ const TabNavigation: React.FC = () => {
       initialRouteName={NavigationScreen.HOME}
       screenOptions={tabOptions}
     >
-      {Pages.map((tab, inx) => {
+      {tabPages.map((tab, inx) => {
         return (
           <Tab.Screen
             name={tab.name}

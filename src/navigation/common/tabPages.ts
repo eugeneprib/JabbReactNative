@@ -11,7 +11,7 @@ type Prop = {
   Icon: React.FC<SvgProps>
 }
 
-export const Pages: Prop[] = [
+export const tabPages: Prop[] = [
   {
     name: NavigationScreen.HOME,
     component: Home,
