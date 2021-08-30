@@ -7,6 +7,12 @@ module.exports = {
         rootPathPrefix: 'src',
         rootPathSuffix: 'src'
       }
+    ],
+    [
+      'module:react-native-dotenv',
+      {
+        moduleName: 'react-native-dotenv'
+      }
     ]
   ]
 }

@@ -1,23 +1,62 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { useAppSelector } from 'src/hooks'
 import { createStackNavigator } from '@react-navigation/stack'
 import { SignIn, Home, Episode, Podcast } from 'src/screens'
-import { NavigationScreen } from 'src/common/enums'
+import { NavigationScreen, StorageKey } from 'src/common/enums'
+import { storage } from 'src/services'
+import { getCurrentUser } from 'src/store/actions'
 
 const Stack = createStackNavigator()
 
 const Navigation: React.FC = () => {
+  const { user } = useAppSelector(({ auth }) => ({
+    user: auth.user
+  }))
+
+  const dispatch = useDispatch()
+
+  const [isFirstLoading, setIsFirstLoading] = useState(true)
+  const [token, setToken] = useState<string | null>(null)
+
+  const hasToken = Boolean(token)
+  const hasUser = Boolean(user)
+
+  const isUserExistsAndNotLoaded = hasToken && !hasUser
+
+  useEffect(() => {
+    storage
+      .getItem(StorageKey.TOKEN)
+      .then(setToken)
+      .then(() => setIsFirstLoading(false))
+  }, [])
+
+  useEffect(() => {
+    if (token) {
+      dispatch(getCurrentUser())
+    }
+  }, [token])
+
+  if (isFirstLoading || isUserExistsAndNotLoaded) {
+    return null
+  }
+
   return (
     <Stack.Navigator
-      initialRouteName={NavigationScreen.EPISODE}
       screenOptions={{
         cardStyle: { backgroundColor: '#fff' },
         headerShown: false
       }}
     >
-      <Stack.Screen name={NavigationScreen.SIGN_IN} component={SignIn} />
-      <Stack.Screen name={NavigationScreen.HOME} component={Home} />
-      <Stack.Screen name={NavigationScreen.PODCAST} component={Podcast} />
-      <Stack.Screen name={NavigationScreen.EPISODE} component={Episode} />
+      {hasUser ? (
+        <>
+          <Stack.Screen name={NavigationScreen.HOME} component={Home} />
+          <Stack.Screen name={NavigationScreen.PODCAST} component={Podcast} />
+          <Stack.Screen name={NavigationScreen.EPISODE} component={Episode} />
+        </>
+      ) : (
+        <Stack.Screen name={NavigationScreen.SIGN_IN} component={SignIn} />
+      )}
     </Stack.Navigator>
   )
 }
