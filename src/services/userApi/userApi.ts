@@ -4,21 +4,21 @@ import { Http } from 'src/services/http'
 
 type Constructor = {
   http: Http
-  apiPrefix: string
+  apiPath: string
 }
 
 class UserApi {
   #http: Http
-  #apiPrefix: string
+  #apiPath: string
 
-  constructor({ http, apiPrefix }: Constructor) {
+  constructor({ http, apiPath }: Constructor) {
     this.#http = http
-    this.#apiPrefix = apiPrefix
+    this.#apiPath = apiPath
   }
 
   public getById(id: number): Promise<User> {
     return this.#http.load(
-      `${this.#apiPrefix}${ApiPath.USERS}${UsersApiPath.ROOT}${id}`,
+      `${this.#apiPath}${ApiPath.USERS}${UsersApiPath.ROOT}${id}`,
       {
         method: HttpMethod.GET
       }

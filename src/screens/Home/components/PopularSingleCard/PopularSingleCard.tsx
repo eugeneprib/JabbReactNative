@@ -1,12 +1,11 @@
 import React from 'react'
 import {
-  Text,
   View,
   ImageStyle,
   ImageBackground,
   TouchableOpacity
 } from 'react-native'
-import { Heading, HeadingType } from 'src/components'
+import { Heading, HeadingType, PlainText } from 'src/components'
 import styles from './styles'
 
 type Props = {
@@ -32,7 +31,7 @@ const PopularSingleCard: React.FC<Props> = ({
     >
       <ImageBackground source={{ uri: source }} style={styles.background}>
         <View style={styles.overlay}>
-          <Text style={styles.author}>{author}</Text>
+          <PlainText label={author} style={styles.author} />
           <Heading
             label={title}
             type={HeadingType.SMALL}
