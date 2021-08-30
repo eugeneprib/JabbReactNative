@@ -1,4 +1,5 @@
-import * as Keychain from 'react-native-keychain'
+import EncryptedStorage from 'react-native-encrypted-storage'
+import { ENV } from 'src/common/enums'
 import { Http } from './http'
 import { AuthApi } from './authApi'
 import { Storage } from './storage'
@@ -8,7 +9,7 @@ import { Notification } from './notification'
 const notification = new Notification()
 
 const storage = new Storage({
-  storage: Keychain
+  storage: EncryptedStorage
 })
 
 const http = new Http({
@@ -17,12 +18,12 @@ const http = new Http({
 
 const authApi = new AuthApi({
   http,
-  apiPrefix: '/api/v1'
+  apiPath: ENV.API_PATH
 })
 
 const userApi = new UserApi({
   http,
-  apiPrefix: '/api/v1'
+  apiPath: ENV.API_PATH
 })
 
 export { authApi, storage, userApi, notification }

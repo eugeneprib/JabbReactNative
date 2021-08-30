@@ -22,10 +22,7 @@ const getCurrentUser = createAsyncThunk<User, undefined, AsyncThunkConfig>(
   ActionType.LOAD_USER,
   async (_args, { extra }) => {
     const { authApi } = extra
-
-    const user = await authApi.getCurrentUser()
-
-    return user
+    return await authApi.getCurrentUser()
   }
 )
 
@@ -33,8 +30,7 @@ const resetUser = createAsyncThunk<void, undefined, AsyncThunkConfig>(
   ActionType.RESET_USER,
   async (_args, { extra }) => {
     const { storageService } = extra
-
-    storageService.removeItem()
+    storageService.removeItem(StorageKey.TOKEN)
   }
 )
 

@@ -7,6 +7,7 @@ import {
 } from 'src/services/common'
 import { GetHeadersProps } from './common/types'
 import { storage as storageService } from 'src/services'
+import { StorageKey } from 'src/common/enums'
 
 type Constructor = {
   storage: typeof storageService
@@ -19,7 +20,7 @@ class Http {
     this.#storage = storage
   }
 
-  load<T = unknown>(
+  async load<T = unknown>(
     url: string,
     options: Partial<HttpOptions> = {}
   ): Promise<T> {
@@ -30,7 +31,8 @@ class Http {
       hasAuth = true,
       query
     } = options
-    const headers = this.getHeaders({
+
+    const headers = await this.getHeaders({
       contentType,
       hasAuth
     })
@@ -49,7 +51,10 @@ class Http {
     return `${url}${query ? `?${getStringifiedQuery(query)}` : ''}`
   }
 
-  private getHeaders({ contentType, hasAuth }: GetHeadersProps): Headers {
+  private async getHeaders({
+    contentType,
+    hasAuth
+  }: GetHeadersProps): Promise<Headers> {
     const headers = new Headers()
 
     if (contentType) {
@@ -57,8 +62,7 @@ class Http {
     }
 
     if (hasAuth) {
-      const token = this.#storage.getItem()
-
+      const token = await this.#storage.getItem(StorageKey.TOKEN)
       headers.append(HttpHeader.AUTHORIZATION, `Bearer ${token}`)
     }
 
@@ -76,6 +80,7 @@ class Http {
         message: parsedException?.message
       })
     }
+
     return response
   }
 
