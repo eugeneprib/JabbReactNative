@@ -51,12 +51,12 @@ const StackNavigation: React.FC = () => {
     >
       {hasUser ? (
         <>
-          <Stack.Screen name={NavigationScreen.PODCAST} component={Podcast} />
-          <Stack.Screen name={NavigationScreen.EPISODE} component={Episode} />
           <Stack.Screen
             name={NavigationScreen.TO_TABS_NAVIGATOR}
             component={TabNavigation}
           />
+          <Stack.Screen name={NavigationScreen.PODCAST} component={Podcast} />
+          <Stack.Screen name={NavigationScreen.EPISODE} component={Episode} />
         </>
       ) : (
         <Stack.Screen name={NavigationScreen.SIGN_IN} component={SignIn} />
