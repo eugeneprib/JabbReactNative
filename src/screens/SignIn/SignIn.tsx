@@ -26,10 +26,10 @@ const SignIn: React.FC = () => {
 
   const handleSignInSubmit = (): void => {
     SignInValidationSchema.validate({ email, password })
-      .then(function (payload: UserSignInPayload | undefined) {
+      .then((payload: UserSignInPayload) => {
         dispatch(signIn(payload))
       })
-      .catch(function (err) {
+      .catch((err) => {
         notification.error(
           AppError.VALIDATION_ERROR,
           JSON.stringify(err.message)
@@ -45,7 +45,7 @@ const SignIn: React.FC = () => {
       <ScrollView contentContainerStyle={styles.scrollView}>
         <View>
           <Heading type={HeadingType.HUGE} label="Hello There" />
-          <PlainText label={'Welcome to Jabber'} style={styles.intro} />
+          <PlainText label="Welcome to Jabber" style={styles.intro} />
           <PlainText label={`Let's sign you in`} style={styles.lets} />
           <Input
             style={styles.input}
