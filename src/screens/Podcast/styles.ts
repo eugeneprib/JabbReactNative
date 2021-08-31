@@ -1,6 +1,28 @@
-import { StyleSheet } from 'react-native'
+import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from 'react-native'
 
-const styles = StyleSheet.create({
+type Styles = {
+  scrollView: ViewStyle
+  podcastBackground: ViewStyle
+  podcastLogo: ImageStyle
+  podcastNameContainer: ViewStyle
+  podcasterNameContainer: ViewStyle
+  podcastName: ViewStyle
+  podcastAuthorText: TextStyle
+  podcastLogoContainer: ViewStyle
+  description: ViewStyle
+  descriptionText: TextStyle
+  episodeCounter: ViewStyle
+  edisodesCount: TextStyle
+  episodesContainer: ViewStyle
+  episodesContainerTitle: ViewStyle
+  backButton: ViewStyle
+  nothing: ViewStyle
+}
+
+const styles = StyleSheet.create<Styles>({
+  scrollView: {
+    flexGrow: 1
+  },
   podcastBackground: {
     flex: 1,
     height: 150,
@@ -57,6 +79,7 @@ const styles = StyleSheet.create({
     marginLeft: 5
   },
   episodesContainer: {
+    flex: 1,
     marginTop: 20,
     paddingHorizontal: 35
   },
@@ -68,6 +91,12 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: -15,
     left: 10
+  },
+  nothing: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 })
 

@@ -1,22 +1,18 @@
 import React from 'react'
 import { View, TouchableOpacity } from 'react-native'
+import { Episode } from 'src/common/types'
+import { INCREASE_VALUE_FOR_LIST } from './common/constants'
+import { getFormattedDate, DateFormatType } from 'src/helpers'
 import PlayIcon from 'src/assets/images/playEpisode.svg'
 import { Heading, HeadingType, PlainText } from 'src/components'
 import styles from './styles'
-
-type Episode = {
-  name: string
-  createdAt: string
-}
 
 type Props = {
   number: number
   episode: Episode
 }
 
-const INCREASE_VALUE_FOR_LIST = 1
-
-const EpisodeElement: React.FC<Props> = ({ number, episode }) => {
+const EpisodeItem: React.FC<Props> = ({ number, episode }) => {
   return (
     <TouchableOpacity style={styles.container} activeOpacity={0.7}>
       <View style={styles.episodeNumberCont}>
@@ -31,7 +27,13 @@ const EpisodeElement: React.FC<Props> = ({ number, episode }) => {
           type={HeadingType.SMALL}
           style={styles.episodeInfoTitle}
         />
-        <PlainText label={episode.createdAt} style={styles.episodeInfoDate} />
+        <PlainText
+          label={getFormattedDate(
+            episode.createdAt,
+            DateFormatType.MONTH_DAY_YEAR
+          )}
+          style={styles.episodeInfoDate}
+        />
       </View>
       <TouchableOpacity activeOpacity={0.7}>
         <PlayIcon width={35} />
@@ -40,4 +42,4 @@ const EpisodeElement: React.FC<Props> = ({ number, episode }) => {
   )
 }
 
-export default EpisodeElement
+export default EpisodeItem
