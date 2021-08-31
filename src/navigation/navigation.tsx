@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { useAppSelector } from 'src/hooks'
 import { createStackNavigator } from '@react-navigation/stack'
+import { useAppSelector } from 'src/hooks'
 import { SignIn, Home, Episode, Podcast } from 'src/screens'
 import { NavigationScreen, StorageKey } from 'src/common/enums'
 import { storage } from 'src/services'
