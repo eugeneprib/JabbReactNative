@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react'
 import { View, Pressable } from 'react-native'
 import TrackPlayer, { useProgress, Capability } from 'react-native-track-player'
 import Slider from '@react-native-community/slider'
-import { getPlayerTime } from '../Player/helpers'
+import { getPlayerTime } from './common/helpers'
 import { PlainText } from 'src/components'
 import {
   DEFAULT_START_TIME,
-  TIME_SHIFT_IN_SECONDS
-} from 'src/screens/Episode/common/constants'
-import { PlayerEpisode } from 'src/screens/Episode/common/types'
+  TIME_SHIFT_IN_SECONDS,
+  BASE_SLIDER_COLOUR
+} from './common/constants'
+import { PlayerEpisode } from 'src/common/types/player'
 import PlayIcon from 'src/assets/images/play.svg'
 import PauseIcon from 'src/assets/images/pause.svg'
 import RewindIcon from 'src/assets/images/rewind.svg'
@@ -73,9 +74,9 @@ const Player: React.FC<Props> = ({ episode }) => {
           style={styles.slider}
           minimumValue={DEFAULT_START_TIME}
           maximumValue={duration}
-          minimumTrackTintColor="#52527a"
-          maximumTrackTintColor="#52527a"
-          thumbTintColor="#52527a"
+          minimumTrackTintColor={BASE_SLIDER_COLOUR}
+          maximumTrackTintColor={BASE_SLIDER_COLOUR}
+          thumbTintColor={BASE_SLIDER_COLOUR}
           value={position}
           onSlidingComplete={onHandleSeekTo}
         />

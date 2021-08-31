@@ -4,7 +4,7 @@ import {
   UNIX_TIME_START,
   TIME_SEPARATOR,
   HOUR_IS_NOT_EXISTS
-} from '../../../common/constants'
+} from '../constants'
 
 const checkHourExist = (hours: string): boolean => {
   return hours !== HOUR_IS_NOT_EXISTS
@@ -20,6 +20,7 @@ const getPlayerTime = (timestamp: number): string => {
   const [hours, minutes, seconds] = splittedTime
 
   const minutesAndSeconds = minutes + TIME_SEPARATOR + seconds
+
   if (!checkHourExist(hours)) {
     return minutesAndSeconds
   }

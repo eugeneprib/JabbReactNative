@@ -1,5 +1,5 @@
 import { Episode } from 'src/common/types'
-import { PlayerEpisode } from '../common/types'
+import { PlayerEpisode } from 'src/common/types/player'
 import {
   DEFAULT_EPISODE_TRACK,
   DEFAULT_EPISODE_IMAGE
