@@ -1,6 +1,16 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { ScrollView, View } from 'react-native'
+import { useDispatch } from 'react-redux'
 import { Heading, HeadingType, PlainText } from 'src/components'
+import { useAppSelector } from 'src/hooks'
+import {
+  loadSuggestedPodcasts,
+  loadRecentlyPlayedEpisodes
+} from 'src/store/actions'
+import {
+  sliceRecentlyPlayedEpisodes,
+  sliceSuggestedPodcasts
+} from './common/helpers'
 import {
   PopularSingleCard,
   RecentlyPlayedCard,
@@ -9,35 +19,32 @@ import {
 } from './components'
 import { styles } from './styles'
 
-const suggestedPodcasts = [
-  {
-    title: "Cartoon's Soundtracks",
-    author: 'Eugenius',
-    source:
-      'http://res.cloudinary.com/hmqu8gtpn/image/upload/v1629474209/2/wqbm1x3q0h6ea2ebrnze.jpg'
-  },
-  {
-    title: 'World of music',
-    author: 'artem',
-    source:
-      'http://res.cloudinary.com/hmqu8gtpn/image/upload/v1629094506/19/cvtjr8llimhroma8dmyi.png'
-  },
-  {
-    title: 'Country Roads',
-    author: 'Eugenius',
-    source:
-      'http://res.cloudinary.com/hmqu8gtpn/image/upload/v1629451213/2/xrfr3aklucw8jpyivsmu.jpg'
-  }
-]
-
 const Home: React.FC = () => {
+  const { user, suggestedPodcasts, recentlyPlayedEpisodes } = useAppSelector(
+    ({ auth, home }) => ({
+      user: auth.user,
+      suggestedPodcasts: home.suggestedPodcasts,
+      recentlyPlayedEpisodes: home.recentlyPlayedEpisodes
+    })
+  )
+
+  const dispatch = useDispatch()
+
+  const hasSuggestedPodcasts = Boolean(suggestedPodcasts.length)
+  const hasRecentlyPlayedEpisodes = Boolean(recentlyPlayedEpisodes.length)
+
+  useEffect(() => {
+    dispatch(loadSuggestedPodcasts())
+    dispatch(loadRecentlyPlayedEpisodes())
+  }, [])
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.header}>
         <View>
           <Heading
             style={styles.userName}
-            label="Hey, Den"
+            label={`Hey, ${user?.nickname}`}
             type={HeadingType.MEDIUM}
           />
           <PlainText
@@ -45,36 +52,35 @@ const Home: React.FC = () => {
             style={styles.headerText}
           />
         </View>
-        <UserAvatar
-          source="https://ca.slack-edge.com/T025CKYU9R7-U0261G9DKRN-0714d7d9b1ae-512"
-          style={styles.profile}
-        />
+        <UserAvatar source={user?.image?.url} style={styles.profile} />
+      </View>
+      {hasSuggestedPodcasts && (
+        <View style={styles.block}>
+          <SuggestedPodcastCarousel
+            data={sliceSuggestedPodcasts(suggestedPodcasts)}
+            screenPadding={Number(styles.container.padding)}
+          />
+        </View>
+      )}
+      <View style={styles.block}>
+        <PlainText label="Recently Played" style={styles.title} />
+        {hasRecentlyPlayedEpisodes ? (
+          sliceRecentlyPlayedEpisodes(recentlyPlayedEpisodes).map((episode) => (
+            <RecentlyPlayedCard
+              {...episode}
+              key={episode.id}
+              style={styles.recentlyPlayedCard}
+            />
+          ))
+        ) : (
+          <PlainText
+            label="There is no recently played episodes yet"
+            style={styles.placeholder}
+          />
+        )}
       </View>
       <View style={styles.block}>
-        <SuggestedPodcastCarousel
-          data={suggestedPodcasts}
-          screenPadding={Number(styles.container.padding)}
-        />
-      </View>
-      <View style={styles.block}>
-        <PlainText label={`Recently Played`} style={styles.title} />
-        <RecentlyPlayedCard
-          title="Kingdom Dance Kingdom Dance Kingdom Dance Kingdom Dance Kingdom Dance"
-          author="Eugenius"
-          date="2021-08-21T13:45:54.000Z"
-          source="http://res.cloudinary.com/hmqu8gtpn/image/upload/v1629474371/2/ujhl5sifotk2rrz9nl6a.jpg"
-          style={styles.recentlyPlayedCard}
-        />
-        <RecentlyPlayedCard
-          title="You are Welcome"
-          author="Eugenius"
-          date="2021-08-22T15:12:34.000Z"
-          source="http://res.cloudinary.com/hmqu8gtpn/image/upload/v1629474747/2/ob8eswfbgvcxtfgnwuks.jpg"
-          style={styles.recentlyPlayedCard}
-        />
-      </View>
-      <View style={styles.block}>
-        <PlainText label={`Popular Singles`} style={styles.title} />
+        <PlainText label="Popular Singles" style={styles.title} />
         <View style={styles.popular}>
           <PopularSingleCard
             title="About Knowing Nothing"
