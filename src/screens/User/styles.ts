@@ -53,8 +53,8 @@ const styles = StyleSheet.create<Styles>({
     backgroundColor: '#eee'
   },
   imagePodcast: {
-    width: 85,
-    height: 85
+    width: 90,
+    height: 90
   },
   podcastItemTextContainer: {
     paddingHorizontal: 15,

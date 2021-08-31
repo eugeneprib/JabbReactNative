@@ -1,76 +1,35 @@
 import React from 'react'
-import {
-  View,
-  Image,
-  FlatList,
-  ImageBackground,
-  TouchableOpacity
-} from 'react-native'
+import { View, Image, TouchableOpacity, Linking } from 'react-native'
+import { useDispatch, useSelector } from 'react-redux'
+import { resetUser } from 'src/store/actions'
 import { ScrollView } from 'react-native-gesture-handler'
 import { Heading, HeadingType, PlainText } from 'src/components'
+import { User, Podcast } from './common'
+import { MockedUser, MockedPodcasts } from './mockedData'
 import Check from 'src/assets/images/checkMark.svg'
 import AtMark from 'src/assets/images/atMark.svg'
 import styles from './styles'
-
-import { User, Podcast } from './common'
 
 type Props = {
   podcasts: Podcast[]
   user: User
 }
 
-const MockedUser: User = {
-  firstname: 'Yevhenii',
-  surname: 'Cheremisin',
-  nickname: 'Eugenius',
-  email: 'eucheremisin@gmail.com',
-  image:
-    'http://res.cloudinary.com/hmqu8gtpn/image/upload/v1629464038/2/yhyck6w6nzrfkorkqlxv.jpg'
-}
-
-const MockedPodcasts: Podcast[] = [
-  {
-    name: `Cartoon's Soundtracks`,
-    author: MockedUser.nickname,
-    image:
-      'http://res.cloudinary.com/hmqu8gtpn/image/upload/v1629474124/2/ttp0xygzbdyrn0yyxfnk.jpg'
-  },
-  {
-    name: `Game of Thrones`,
-    author: MockedUser.nickname,
-    image:
-      'http://res.cloudinary.com/hmqu8gtpn/image/upload/v1628514060/2/ghhobbuga6qppv2brze1.jpg'
-  },
-  {
-    name: `Country Roads`,
-    author: MockedUser.nickname,
-    image:
-      'http://res.cloudinary.com/hmqu8gtpn/image/upload/v1628675258/2/lcwrvci7ti2hcqrwa5lh.jpg'
-  },
-  {
-    name: `Calm Waves`,
-    author: MockedUser.nickname,
-    image:
-      'http://res.cloudinary.com/hmqu8gtpn/image/upload/v1628675351/2/h2nbpynwbb2lm1qldjpk.jpg'
-  },
-  {
-    name: `Classic Party`,
-    author: MockedUser.nickname,
-    image:
-      'http://res.cloudinary.com/hmqu8gtpn/image/upload/v1628675741/2/ehbf6m8pokibhkxvori0.jpg'
-  }
-]
-
 const userPageInfo: Props = {
   podcasts: MockedPodcasts,
   user: MockedUser
 }
 
-const handleLogOut = () => {
-  return 0
-}
-
 const PodcastPage: React.FC<Props> = () => {
+  const dispatch = useDispatch()
+
+  const handleLogOut = () => {
+    dispatch(resetUser())
+  }
+  const { currentUser } = useSelector(({ auth }: any) => ({
+    currentUser: auth.user
+  }))
+
   return (
     <ScrollView style={styles.container}>
       <View>
@@ -82,7 +41,7 @@ const PodcastPage: React.FC<Props> = () => {
           <Image
             width={118}
             height={118}
-            source={{ uri: userPageInfo.user.image }}
+            source={{ uri: currentUser.image.url }}
             style={styles.image}
           />
         </View>
@@ -99,13 +58,21 @@ const PodcastPage: React.FC<Props> = () => {
                 label={userPageInfo.user.nickname}
               />
             </View>
-            <View style={styles.userInfoItem}>
+            <TouchableOpacity
+              activeOpacity={0.7}
+              style={styles.userInfoItem}
+              onPress={() =>
+                Linking.openURL(
+                  `mailto://${userPageInfo.user.email}}&subject=abcdefg&body=body`
+                )
+              }
+            >
               <AtMark width={15} />
               <PlainText
                 style={styles.userInfoItemText}
                 label={userPageInfo.user.email}
               />
-            </View>
+            </TouchableOpacity>
           </View>
         </View>
       </View>
@@ -127,8 +94,8 @@ const PodcastPage: React.FC<Props> = () => {
               />
               <View style={styles.podcastItemTextContainer}>
                 <Heading
-                  style={{ fontSize: 18 }}
-                  type={HeadingType.MEDIUM}
+                  style={{ fontSize: 19 }}
+                  type={HeadingType.LARGE}
                   label={podcast.name}
                 />
                 <PlainText

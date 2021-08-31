@@ -53,7 +53,7 @@ type Props = {
   podcast: Podcast
 }
 
-const PodcastPage: React.FC<Props> = ({ podcast }) => {
+const PodcastPage: React.FC<Props> = () => {
   return (
     <ScrollView>
       <View>
