@@ -18,7 +18,7 @@ import BackButton from 'src/assets/images/backButton.svg'
 import CircleIcon from 'src/assets/images/circle.svg'
 import styles from './styles'
 
-const PodcastPage: React.FC = () => {
+const Podcast: React.FC = () => {
   const id = 47
 
   const { podcast, episodes } = useAppSelector(({ podcast }) => ({
@@ -118,4 +118,4 @@ const PodcastPage: React.FC = () => {
   )
 }
 
-export default PodcastPage
+export default Podcast
