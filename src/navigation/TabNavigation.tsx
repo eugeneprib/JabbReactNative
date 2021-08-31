@@ -21,9 +21,10 @@ const TabNavigation: React.FC = () => {
             component={tab.component}
             key={inx}
             options={{
+              tabBarHideOnKeyboard: true,
               tabBarIcon: ({ focused }) => (
                 <View style={styles.viewContainer}>
-                  <tab.Icon width={17} opacity={focused ? 1 : 0.2} />
+                  <tab.Icon width={17} opacity={focused ? 1 : 0.3} />
                   <Text
                     style={
                       focused

@@ -8,9 +8,9 @@ type Styles = {
 
 const styles = StyleSheet.create<Styles>({
   viewContainer: { alignItems: 'center', flexDirection: 'row' },
-  textNavigation: { color: '#fff', marginLeft: 10, fontSize: 12 },
+  textNavigation: { color: '#000', marginLeft: 10, fontSize: 12 },
   textNavigationWithOpacity: {
-    color: '#ffffff66',
+    color: '#00000066',
     marginLeft: 10,
     fontSize: 12
   }
