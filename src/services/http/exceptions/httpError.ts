@@ -1,6 +1,5 @@
-import { HttpCode } from 'src/services/common/enums/index'
-import { DEFAULT_MESSAGE } from './common/constants'
-import { CustomExceptionName } from './common/customExceptionName'
+import { DEFAULT_MESSAGE } from '../common/constants'
+import { CustomExceptionName, HttpCode } from '../common/enums'
 
 class HttpError extends Error {
   status: HttpCode
