@@ -1,7 +1,7 @@
-import { SuggestedPodcast } from './suggestedPodcast'
+import { Podcast } from 'src/common/types'
 
 type CarouselItem = {
-  item: SuggestedPodcast
+  item: Podcast
   index: number
 }
 
