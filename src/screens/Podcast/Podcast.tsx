@@ -49,11 +49,7 @@ const mockedPodacst: Podcast = {
   ]
 }
 
-type Props = {
-  podcast: Podcast
-}
-
-const PodcastPage: React.FC<Props> = ({ podcast }) => {
+const Podcast: React.FC = () => {
   return (
     <ScrollView>
       <View>
@@ -114,4 +110,4 @@ const PodcastPage: React.FC<Props> = ({ podcast }) => {
   )
 }
 
-export default PodcastPage
+export default Podcast
