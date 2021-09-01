@@ -56,7 +56,6 @@ const StackNavigation: React.FC = () => {
             component={TabNavigation}
           />
           <Stack.Screen name={NavigationScreen.PODCAST} component={Podcast} />
-          <Stack.Screen name={NavigationScreen.HOME} component={Home} />
           <Stack.Screen name={NavigationScreen.EPISODE} component={Episode} />
         </>
       ) : (

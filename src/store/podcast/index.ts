@@ -9,6 +9,7 @@ type State = {
   episodes: Episode[]
   episodesDataStatus: DataStatus
   totalCount: number
+  hasMoreEpisodes: boolean
 }
 
 const initialState: State = {
@@ -16,7 +17,8 @@ const initialState: State = {
   podcast: null,
   episodes: [],
   episodesDataStatus: DataStatus.IDLE,
-  totalCount: 0
+  totalCount: 0,
+  hasMoreEpisodes: true
 }
 
 const podcastSlice = createSlice({
@@ -40,8 +42,14 @@ const podcastSlice = createSlice({
     })
     builder.addCase(loadEpisodesByPodcastId.fulfilled, (state, action) => {
       state.episodesDataStatus = DataStatus.FULFILLED
-      state.episodes = action.payload.results
+      state.episodes = state.episodes.concat(action.payload.results)
       state.totalCount = action.payload.totalCount
+      if (
+        state.episodes.length === state.totalCount ||
+        state.episodes.length > state.totalCount
+      ) {
+        state.hasMoreEpisodes = false
+      }
     })
     builder.addCase(loadEpisodesByPodcastId.rejected, (state) => {
       state.episodesDataStatus = DataStatus.REJECTED

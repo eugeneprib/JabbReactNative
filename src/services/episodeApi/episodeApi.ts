@@ -52,15 +52,6 @@ class EpisodeApi {
       }
     )
   }
-
-  public delete(id: number): Promise<Episode> {
-    return this.#http.load(
-      `${this.#apiPath}${ApiPath.EPISODES}${EpisodesApiPath.ROOT}${id}`,
-      {
-        method: HttpMethod.DELETE
-      }
-    )
-  }
 }
 
 export { EpisodeApi }

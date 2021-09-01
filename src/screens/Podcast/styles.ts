@@ -1,7 +1,9 @@
 import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from 'react-native'
 
 type Styles = {
-  scrollView: ViewStyle
+  preloaderWrapper: ViewStyle
+  container: ViewStyle
+  podcastBackgroundWrapper: ViewStyle
   podcastBackground: ViewStyle
   podcastLogo: ImageStyle
   podcastNameContainer: ViewStyle
@@ -17,16 +19,21 @@ type Styles = {
   episodesContainerTitle: ViewStyle
   backButton: ViewStyle
   nothing: ViewStyle
-  preloaderWrapper: ViewStyle
 }
 
 const styles = StyleSheet.create<Styles>({
-  scrollView: {
-    flexGrow: 1
+  container: {
+    flexGrow: 1,
+    flexDirection: 'column',
+    paddingBottom: 25
+  },
+  podcastBackgroundWrapper: {
+    position: 'relative',
+    height: 250
   },
   podcastBackground: {
     flex: 1,
-    height: 150,
+    height: '100%',
     marginBottom: 65
   },
   podcastLogo: {
@@ -37,15 +44,16 @@ const styles = StyleSheet.create<Styles>({
   },
   podcastNameContainer: {
     marginTop: 5,
-    alignItems: 'center'
+    alignItems: 'center',
+    paddingHorizontal: 35
   },
   podcasterNameContainer: {
     alignItems: 'center',
-    marginTop: 10
+    marginTop: 10,
+    paddingHorizontal: 35
   },
   podcastName: {
-    textAlign: 'center',
-    width: 250
+    textAlign: 'center'
   },
   podcastAuthorText: {
     color: '#000',
@@ -54,8 +62,8 @@ const styles = StyleSheet.create<Styles>({
   podcastLogoContainer: {
     position: 'absolute',
     alignSelf: 'center',
-    bottom: -60,
-    elevation: 2,
+    bottom: -70,
+    elevation: 3,
     borderWidth: 2,
     borderRadius: 20,
     borderColor: 'transparent'
@@ -74,7 +82,8 @@ const styles = StyleSheet.create<Styles>({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 15
+    marginTop: 15,
+    paddingHorizontal: 35
   },
   edisodesCount: {
     marginLeft: 5
@@ -100,7 +109,8 @@ const styles = StyleSheet.create<Styles>({
     alignItems: 'center'
   },
   preloaderWrapper: {
-    flex: 1,
+    flexGrow: 1,
+    height: '100%',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center'

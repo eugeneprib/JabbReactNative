@@ -1,54 +1,66 @@
-import React, { useEffect, useCallback } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import {
   View,
-  ScrollView,
-  FlatList,
   Image,
   ImageBackground,
-  TouchableOpacity,
-  ActivityIndicator
+  ActivityIndicator,
+  TouchableOpacity
 } from 'react-native'
 import { useAppSelector } from 'src/hooks'
+import { DEFAULT_IMAGE_BASE64 } from 'src/common/constants/defaultImage'
 import {
   DEFAULT_EPISODES_PAGINATION,
-  DEFAULT_IMAGE
-} from 'src/common/constants'
-import { Episode } from 'src/common/types'
+  DEFAULT_EPISODES_LIMIT
+} from './common/constants'
 import { DataStatus } from 'src/common/enums'
 import {
   loadPodcast as loadPodcastAction,
   loadEpisodesByPodcastId as loadEpisodesByPodcastIdAction
 } from 'src/store/actions'
 import { Heading, HeadingType, PlainText } from 'src/components'
-import { EpisodeItem } from './components/EpisodeItem'
+import { EpisodeList } from './components'
 import BackButton from 'src/assets/images/backButton.svg'
 import CircleIcon from 'src/assets/images/circle.svg'
 import styles from './styles'
 
-const Podcast: React.FC = () => {
-  const id = 137
+const id = 137
 
-  const { podcast, episodes, dataStatus, totalCount } = useAppSelector(
-    ({ podcast }) => ({
+const Podcast: React.FC = () => {
+  const { podcast, episodes, dataStatus, totalCount, hasMoreEpisodes } =
+    useAppSelector(({ podcast }) => ({
       podcast: podcast.podcast,
       episodes: podcast.episodes,
       dataStatus: podcast.dataStatus,
-      totalCount: podcast.totalCount
-    })
-  )
-  const hasEpisodes = Boolean(episodes?.length)
+      totalCount: podcast.totalCount,
+      hasMoreEpisodes: podcast.hasMoreEpisodes
+    }))
+
   const isLoading = dataStatus === DataStatus.PENDING
+
   const dispatch = useDispatch()
 
-  useEffect(() => {
-    dispatch(loadPodcastAction(Number(id)))
+  const fetchEpisodes = (pagination = DEFAULT_EPISODES_PAGINATION) => {
     dispatch(
       loadEpisodesByPodcastIdAction({
         podcastId: Number(id),
-        filter: DEFAULT_EPISODES_PAGINATION
+        filter: pagination
       })
     )
+  }
+
+  const onHandleLoadingEpisodes = () => {
+    if (hasMoreEpisodes) {
+      fetchEpisodes({
+        offset: episodes.length,
+        limit: DEFAULT_EPISODES_LIMIT
+      })
+    }
+  }
+
+  useEffect(() => {
+    dispatch(loadPodcastAction(Number(id)))
+    onHandleLoadingEpisodes()
   }, [])
 
   if (isLoading) {
@@ -60,12 +72,12 @@ const Podcast: React.FC = () => {
   }
 
   return (
-    <ScrollView contentContainerStyle={styles.scrollView}>
+    <View style={styles.container}>
       {podcast ? (
         <>
-          <View>
+          <View style={styles.podcastBackgroundWrapper}>
             <ImageBackground
-              source={{ uri: podcast.cover?.url ?? DEFAULT_IMAGE }}
+              source={{ uri: podcast.cover?.url ?? DEFAULT_IMAGE_BASE64 }}
               resizeMode="cover"
               style={styles.podcastBackground}
             >
@@ -74,7 +86,7 @@ const Podcast: React.FC = () => {
               </TouchableOpacity>
               <View style={styles.podcastLogoContainer}>
                 <Image
-                  source={{ uri: podcast.image?.url ?? DEFAULT_IMAGE }}
+                  source={{ uri: podcast.image?.url ?? DEFAULT_IMAGE_BASE64 }}
                   resizeMode="cover"
                   style={styles.podcastLogo}
                 />
@@ -113,18 +125,11 @@ const Podcast: React.FC = () => {
               label={`Episodes`}
               style={styles.episodesContainerTitle}
             />
-            {hasEpisodes ? (
-              episodes.map((episode: Episode, inx: number) => (
-                <EpisodeItem episode={episode} number={inx} key={episode.id} />
-              ))
-            ) : (
-              <View style={styles.nothing}>
-                <Heading
-                  type={HeadingType.SMALL}
-                  label={'Oops. There is no episodes here'}
-                />
-              </View>
-            )}
+
+            <EpisodeList
+              episodes={episodes}
+              onEndReached={onHandleLoadingEpisodes}
+            />
           </View>
         </>
       ) : (
@@ -135,7 +140,7 @@ const Podcast: React.FC = () => {
           />
         </View>
       )}
-    </ScrollView>
+    </View>
   )
 }
 

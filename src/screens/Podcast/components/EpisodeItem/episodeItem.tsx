@@ -1,23 +1,22 @@
 import React from 'react'
 import { View, TouchableOpacity } from 'react-native'
 import { Episode } from 'src/common/types'
-import { INCREASE_VALUE_FOR_LIST } from './common/constants'
 import { getFormattedDate, DateFormatType } from 'src/helpers'
 import PlayIcon from 'src/assets/images/playEpisode.svg'
 import { Heading, HeadingType, PlainText } from 'src/components'
 import styles from './styles'
 
 type Props = {
-  number: number
+  episodePosition: number
   episode: Episode
 }
 
-const EpisodeItem: React.FC<Props> = ({ number, episode }) => {
+const EpisodeItem: React.FC<Props> = ({ episodePosition, episode }) => {
   return (
     <TouchableOpacity style={styles.container} activeOpacity={0.7}>
       <View style={styles.episodeNumberCont}>
         <PlainText
-          label={`Ep. ${number + INCREASE_VALUE_FOR_LIST}`}
+          label={`Ep. ${episodePosition}`}
           style={styles.episodeNumber}
         />
       </View>
