@@ -17,6 +17,7 @@ type Styles = {
   episodesContainerTitle: ViewStyle
   backButton: ViewStyle
   nothing: ViewStyle
+  preloaderWrapper: ViewStyle
 }
 
 const styles = StyleSheet.create<Styles>({
@@ -93,6 +94,12 @@ const styles = StyleSheet.create<Styles>({
     left: 10
   },
   nothing: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  preloaderWrapper: {
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',

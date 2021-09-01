@@ -1,13 +1,21 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useCallback } from 'react'
 import { useDispatch } from 'react-redux'
-import { View, Image, ImageBackground, TouchableOpacity } from 'react-native'
-import { ScrollView } from 'react-native-gesture-handler'
+import {
+  View,
+  ScrollView,
+  FlatList,
+  Image,
+  ImageBackground,
+  TouchableOpacity,
+  ActivityIndicator
+} from 'react-native'
 import { useAppSelector } from 'src/hooks'
 import {
   DEFAULT_EPISODES_PAGINATION,
   DEFAULT_IMAGE
 } from 'src/common/constants'
 import { Episode } from 'src/common/types'
+import { DataStatus } from 'src/common/enums'
 import {
   loadPodcast as loadPodcastAction,
   loadEpisodesByPodcastId as loadEpisodesByPodcastIdAction
@@ -21,11 +29,16 @@ import styles from './styles'
 const Podcast: React.FC = () => {
   const id = 137
 
-  const { podcast, episodes } = useAppSelector(({ podcast }) => ({
-    podcast: podcast.podcast,
-    episodes: podcast.episodes
-  }))
+  const { podcast, episodes, dataStatus, totalCount } = useAppSelector(
+    ({ podcast }) => ({
+      podcast: podcast.podcast,
+      episodes: podcast.episodes,
+      dataStatus: podcast.dataStatus,
+      totalCount: podcast.totalCount
+    })
+  )
   const hasEpisodes = Boolean(episodes?.length)
+  const isLoading = dataStatus === DataStatus.PENDING
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -37,6 +50,19 @@ const Podcast: React.FC = () => {
       })
     )
   }, [])
+
+  if (isLoading) {
+    return (
+      <View style={styles.preloaderWrapper}>
+        <ActivityIndicator size={'large'} color="#f3427f" />
+      </View>
+    )
+  }
+
+  // const keyExtractor = useCallback(item => item.id.toString(),[])
+  // const renderEpisode = (item: Episode) => {
+  //   // <EpisodeItem episode={item} number={inx} />
+  // }
 
   return (
     <ScrollView contentContainerStyle={styles.scrollView}>
@@ -82,7 +108,7 @@ const Podcast: React.FC = () => {
           <View style={styles.episodeCounter}>
             <CircleIcon width={5} />
             <PlainText
-              label={`${episodes.length} Episodes`}
+              label={`${totalCount} Episodes`}
               style={styles.edisodesCount}
             />
           </View>
@@ -93,6 +119,11 @@ const Podcast: React.FC = () => {
               style={styles.episodesContainerTitle}
             />
             {hasEpisodes ? (
+              // <FlatList
+              //   data={episodes}
+              //   keyExtractor={keyExtractor}
+              //   renderItem={renderEpisode}
+              // />
               episodes.map((episode: Episode, inx: number) => (
                 <EpisodeItem episode={episode} number={inx} key={episode.id} />
               ))
