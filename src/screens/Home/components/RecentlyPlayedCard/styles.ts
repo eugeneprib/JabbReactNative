@@ -15,10 +15,10 @@ const styles = StyleSheet.create<Styles>({
     alignItems: 'flex-start'
   },
   image: {
-    width: 65,
-    height: 65,
+    width: 80,
+    height: 80,
     marginRight: 20,
-    borderRadius: 15,
+    borderRadius: 20,
     backgroundColor: '#EEE'
   },
   label: {
