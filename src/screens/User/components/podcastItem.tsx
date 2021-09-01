@@ -2,7 +2,7 @@ import React from 'react'
 import { View, Image, TouchableOpacity } from 'react-native'
 import { Heading, HeadingType, PlainText } from 'src/components'
 import { Podcast } from 'src/common/types'
-import styles from '../styles'
+import styles from './styles'
 
 type Props = {
   podcast: Podcast

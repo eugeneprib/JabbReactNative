@@ -4,14 +4,11 @@ type Styles = {
   container: ViewStyle
   userInfoContaienr: ViewStyle
   image: ImageStyle
-  imagePodcast: ImageStyle
   nameContainer: TextStyle
   userInfoItem: ViewStyle
   userInfoItemText: TextStyle
   userInfoItemTextDelete: TextStyle
   userDataContainer: ViewStyle
-  podcastItem: ViewStyle
-  podcastItemTextContainer: ViewStyle
   logOutButton: ViewStyle
   userContacts: ViewStyle
 }
@@ -50,21 +47,6 @@ const styles = StyleSheet.create<Styles>({
   userDataContainer: {
     marginVertical: 40,
     color: '#fff'
-  },
-  podcastItem: {
-    marginTop: 13,
-    flexDirection: 'row',
-    borderRadius: 20,
-    overflow: 'hidden',
-    backgroundColor: '#eee'
-  },
-  imagePodcast: {
-    width: 90,
-    height: 90
-  },
-  podcastItemTextContainer: {
-    paddingHorizontal: 15,
-    paddingVertical: 10
   },
   logOutButton: {
     marginTop: 35,
