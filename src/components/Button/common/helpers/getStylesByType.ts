@@ -6,7 +6,7 @@ const getStylesByType = (type: ButtonType): Styles => {
     case ButtonType.PRIMARY: {
       return {
         touchable: {
-          backgroundColor: '#f3427f'
+          backgroundColor: '#1E1E1E'
         },
         text: {
           color: 'white'

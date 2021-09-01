@@ -1,4 +1,5 @@
 import { StyleSheet, TextStyle } from 'react-native'
+import fonts from 'src/styles/fonts'
 
 type Styles = {
   text: TextStyle
@@ -6,7 +7,7 @@ type Styles = {
 
 const styles = StyleSheet.create<Styles>({
   text: {
-    fontWeight: 'bold'
+    fontFamily: fonts.MainMedium
   }
 })
 

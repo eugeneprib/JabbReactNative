@@ -3,55 +3,54 @@ import { StyleSheet, TextStyle, ViewStyle } from 'react-native'
 type Styles = {
   keyBoardAvoidContainer: ViewStyle
   scrollView: ViewStyle
-  intro: TextStyle
-  lets: TextStyle
+  intro: ViewStyle
+  introText: TextStyle
   input: TextStyle
   bottomBlock: TextStyle
-  row: ViewStyle
-  link: ViewStyle
+  registerBlock: ViewStyle
+  registerDescription: TextStyle
+  registerText: TextStyle
   button: ViewStyle
 }
 
 const styles = StyleSheet.create<Styles>({
   keyBoardAvoidContainer: {
     flex: 1,
-    paddingTop: 50,
-    paddingLeft: 25,
-    paddingRight: 25,
-    paddingBottom: 50
+    padding: 25
   },
   scrollView: {
     flexGrow: 1,
     justifyContent: 'space-between'
   },
   intro: {
-    fontSize: 18
+    marginTop: 16,
+    marginBottom: 47
   },
-  lets: {
-    fontSize: 18,
-    marginBottom: 40
+  introText: {
+    fontSize: 22
   },
   input: {
-    borderWidth: 1,
-    borderColor: '#EBEBEB',
-    borderRadius: 4,
-    marginBottom: 15
+    marginBottom: 17
   },
   bottomBlock: {
+    alignItems: 'center',
     marginBottom: 25
   },
-  row: {
+  registerBlock: {
     flexDirection: 'row',
+    alignItems: 'center',
     marginTop: 4,
-    marginBottom: 10
+    marginBottom: 24
   },
-  link: {
-    fontWeight: 'bold'
+  registerText: {
+    fontSize: 15
+  },
+  registerDescription: {
+    marginRight: 3,
+    color: '#9A9A9A'
   },
   button: {
-    paddingTop: 15,
-    paddingBottom: 15,
-    alignItems: 'center'
+    width: '100%'
   }
 })
 
