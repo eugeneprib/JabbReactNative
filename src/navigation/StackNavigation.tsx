@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { useAppSelector } from 'src/hooks'
 import { createStackNavigator } from '@react-navigation/stack'
-import { SignIn, Home } from 'src/screens'
+import { useAppSelector } from 'src/hooks'
+import { SignIn, Home, Episode, Podcast } from 'src/screens'
 import { NavigationScreen, StorageKey } from 'src/common/enums'
+import TabNavigation from './TabNavigation'
 import { storage } from 'src/services'
 import { getCurrentUser } from 'src/store/actions'
 
 const Stack = createStackNavigator()
 
-const Navigation: React.FC = () => {
+const StackNavigation: React.FC = () => {
   const { user } = useAppSelector(({ auth }) => ({
     user: auth.user
   }))
@@ -44,12 +45,19 @@ const Navigation: React.FC = () => {
   return (
     <Stack.Navigator
       screenOptions={{
-        headerShown: false,
-        cardStyle: { backgroundColor: '#fff' }
+        cardStyle: { backgroundColor: '#fff' },
+        headerShown: false
       }}
     >
       {hasUser ? (
-        <Stack.Screen name={NavigationScreen.HOME} component={Home} />
+        <>
+          <Stack.Screen
+            name={NavigationScreen.TO_TABS_NAVIGATOR}
+            component={TabNavigation}
+          />
+          <Stack.Screen name={NavigationScreen.PODCAST} component={Podcast} />
+          <Stack.Screen name={NavigationScreen.EPISODE} component={Episode} />
+        </>
       ) : (
         <Stack.Screen name={NavigationScreen.SIGN_IN} component={SignIn} />
       )}
@@ -57,4 +65,4 @@ const Navigation: React.FC = () => {
   )
 }
 
-export default Navigation
+export default StackNavigation
