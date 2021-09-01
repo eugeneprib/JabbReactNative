@@ -59,11 +59,6 @@ const Podcast: React.FC = () => {
     )
   }
 
-  // const keyExtractor = useCallback(item => item.id.toString(),[])
-  // const renderEpisode = (item: Episode) => {
-  //   // <EpisodeItem episode={item} number={inx} />
-  // }
-
   return (
     <ScrollView contentContainerStyle={styles.scrollView}>
       {podcast ? (
@@ -119,11 +114,6 @@ const Podcast: React.FC = () => {
               style={styles.episodesContainerTitle}
             />
             {hasEpisodes ? (
-              // <FlatList
-              //   data={episodes}
-              //   keyExtractor={keyExtractor}
-              //   renderItem={renderEpisode}
-              // />
               episodes.map((episode: Episode, inx: number) => (
                 <EpisodeItem episode={episode} number={inx} key={episode.id} />
               ))
