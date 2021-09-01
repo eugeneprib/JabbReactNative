@@ -1,6 +1,4 @@
-import { Image } from '../image'
-import { Record } from '../record'
-import { Shownote } from '../shownote'
+import { Image, Shownote, Record } from 'src/common/types'
 
 type Episode = {
   id: number
@@ -9,11 +7,11 @@ type Episode = {
   imageId: number | null
   image: Image | null
   record: Record | null
-  status: 'published' | 'staging' | 'live'
+  status: string
   podcastId: number
   createdAt: string
   updatedAt: string
-  type: 'public' | 'private' | 'unlisted'
+  type: string
   shownotes: Shownote[]
   description: string
 }

@@ -1,7 +1,7 @@
 type Record = {
   id: number
   fileUrl: string
-  fileSize: number
+  fileSize: string
   episodeId: number
   createdAt: string
   updatedAt: string

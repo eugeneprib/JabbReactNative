@@ -8,3 +8,6 @@ export type {
   EpisodeQueryPayload,
   LoadEpisodesByPodcastIdPayload
 } from './episode'
+export type { Record } from './record'
+export type { Shownote } from './shownote'
+export type { RootStackParamList } from './navigation'

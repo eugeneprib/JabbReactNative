@@ -1,9 +1,4 @@
-import {
-  ApiPath,
-  EpisodesApiPath,
-  ContentType,
-  HttpMethod
-} from '../common/enums'
+import { ApiPath, EpisodesApiPath, HttpMethod } from '../common/enums'
 import { Http } from 'src/services/http'
 import {
   Episode,
