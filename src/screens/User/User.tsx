@@ -1,7 +1,5 @@
 import React from 'react'
 import { View, Image, TouchableOpacity, Linking } from 'react-native'
-import { useDispatch, useSelector } from 'react-redux'
-import { resetUser } from 'src/store/actions'
 import { ScrollView } from 'react-native-gesture-handler'
 import { Heading, HeadingType, PlainText } from 'src/components'
 import { User, Podcast } from './common'
@@ -20,15 +18,10 @@ const userPageInfo: Props = {
   user: MockedUser
 }
 
-const PodcastPage: React.FC<Props> = () => {
-  const dispatch = useDispatch()
-
+const UserPage: React.FC<Props> = () => {
   const handleLogOut = () => {
-    dispatch(resetUser())
+    return 0
   }
-  const { currentUser } = useSelector(({ auth }: any) => ({
-    currentUser: auth.user
-  }))
 
   return (
     <ScrollView style={styles.container}>
@@ -41,7 +34,7 @@ const PodcastPage: React.FC<Props> = () => {
           <Image
             width={118}
             height={118}
-            source={{ uri: currentUser.image.url }}
+            source={{ uri: MockedUser.image }}
             style={styles.image}
           />
         </View>
@@ -120,4 +113,4 @@ const PodcastPage: React.FC<Props> = () => {
   )
 }
 
-export default PodcastPage
+export default UserPage
