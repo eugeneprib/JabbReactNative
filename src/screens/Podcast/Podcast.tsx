@@ -19,7 +19,7 @@ import CircleIcon from 'src/assets/images/circle.svg'
 import styles from './styles'
 
 const Podcast: React.FC = () => {
-  const id = 47
+  const id = 137
 
   const { podcast, episodes } = useAppSelector(({ podcast }) => ({
     podcast: podcast.podcast,
