@@ -24,12 +24,12 @@ const SignIn: React.FC = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const handleSignInSubmit = (): void => {
+  const handleSubmit = (): void => {
     SignInValidationSchema.validate({ email, password })
-      .then(function (payload: UserSignInPayload | undefined) {
+      .then((payload: UserSignInPayload) => {
         dispatch(signIn(payload))
       })
-      .catch(function (err) {
+      .catch((err) => {
         notification.error(
           AppError.VALIDATION_ERROR,
           JSON.stringify(err.message)
@@ -45,8 +45,10 @@ const SignIn: React.FC = () => {
       <ScrollView contentContainerStyle={styles.scrollView}>
         <View>
           <Heading type={HeadingType.HUGE} label="Hello There" />
-          <PlainText label={'Welcome to Jabber'} style={styles.intro} />
-          <PlainText label={`Let's sign you in`} style={styles.lets} />
+          <View style={styles.intro}>
+            <PlainText label={'Welcome to Jabber'} style={styles.introText} />
+            <PlainText label={`Let's sign you in`} style={styles.introText} />
+          </View>
           <Input
             style={styles.input}
             placeholder="Email"
@@ -68,13 +70,20 @@ const SignIn: React.FC = () => {
           />
         </View>
         <View style={styles.bottomBlock}>
-          <View style={styles.row}>
-            <PlainText label={`Don’t have an account? `} />
-            <Link label="Register" url={REGISTER_URL} />
+          <View style={styles.registerBlock}>
+            <PlainText
+              label={`Don’t have an account? `}
+              style={[styles.registerText, styles.registerDescription]}
+            />
+            <Link
+              label="Register"
+              url={REGISTER_URL}
+              textStyle={styles.registerText}
+            />
           </View>
           <Button
             label="Sign in"
-            onPress={handleSignInSubmit}
+            onPress={handleSubmit}
             style={styles.button}
             type={ButtonType.PRIMARY}
           />

@@ -27,7 +27,7 @@ const getStylesByType = (type: HeadingType): Styles => {
     case HeadingType.HUGE: {
       return {
         text: {
-          fontSize: 34
+          fontSize: 44
         }
       }
     }
