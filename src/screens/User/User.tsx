@@ -1,5 +1,7 @@
 import React from 'react'
 import { View, Image, TouchableOpacity, Linking, FlatList } from 'react-native'
+import { useDispatch, useSelector } from 'react-redux'
+import { resetUser } from 'src/store/actions'
 import { Heading, HeadingType, PlainText } from 'src/components'
 import { Podcast, User } from 'src/common/types'
 import PodcastItem from './components'
@@ -20,9 +22,14 @@ const userPageInfo: Props = {
 }
 
 const UserPage: React.FC<Props> = () => {
+  const dispatch = useDispatch()
+
   const handleLogOut = () => {
-    return 0
+    dispatch(resetUser())
   }
+  const { currentUser } = useSelector(({ auth }: any) => ({
+    currentUser: auth.user
+  }))
 
   const handleOpenMail = async () => {
     await Linking.openURL(
