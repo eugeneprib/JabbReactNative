@@ -1,11 +1,12 @@
 import React from 'react'
-import { View, Image, TouchableOpacity, Linking } from 'react-native'
-import { ScrollView } from 'react-native-gesture-handler'
+import { View, Image, TouchableOpacity, Linking, FlatList } from 'react-native'
 import { Heading, HeadingType, PlainText } from 'src/components'
-import { User, Podcast } from './common'
+import { Podcast, User } from 'src/common/types'
+import PodcastItem from './components'
 import { MockedUser, MockedPodcasts } from './mockedData'
 import Check from 'src/assets/images/checkMark.svg'
 import AtMark from 'src/assets/images/atMark.svg'
+import LogOut from 'src/assets/images/iconmonstr-log-out-16.svg'
 import styles from './styles'
 
 type Props = {
@@ -23,8 +24,12 @@ const UserPage: React.FC<Props> = () => {
     return 0
   }
 
+  const renderItem = ({ item }: { item: Podcast }) => (
+    <PodcastItem podcast={item} />
+  )
+
   return (
-    <ScrollView style={styles.container}>
+    <View style={styles.container}>
       <View>
         <Heading type={HeadingType.LARGE} label="Profile" />
       </View>
@@ -34,14 +39,14 @@ const UserPage: React.FC<Props> = () => {
           <Image
             width={118}
             height={118}
-            source={{ uri: MockedUser.image }}
+            source={{ uri: userPageInfo.user.image?.url }}
             style={styles.image}
           />
         </View>
         <View style={styles.nameContainer}>
           <Heading
             type={HeadingType.MEDIUM}
-            label={`${userPageInfo.user.firstname} ${userPageInfo.user.surname}`}
+            label={`${userPageInfo.user.firstName} ${userPageInfo.user.lastName}`}
           />
           <View style={styles.userContacts}>
             <View style={styles.userInfoItem}>
@@ -66,50 +71,31 @@ const UserPage: React.FC<Props> = () => {
                 label={userPageInfo.user.email}
               />
             </TouchableOpacity>
+            <TouchableOpacity
+              activeOpacity={0.7}
+              style={styles.userInfoItem}
+              onPress={handleLogOut}
+            >
+              <LogOut width={15} />
+              <PlainText
+                style={styles.userInfoItemTextDelete}
+                label={'Log out'}
+              />
+            </TouchableOpacity>
           </View>
         </View>
       </View>
 
       <View style={styles.userDataContainer}>
         <Heading type={HeadingType.MEDIUM} label="Podcasts" />
-        {userPageInfo.podcasts.map((podcast, inx) => {
-          return (
-            <TouchableOpacity
-              activeOpacity={0.7}
-              style={styles.podcastItem}
-              key={inx}
-            >
-              <Image
-                width={85}
-                height={85}
-                source={{ uri: podcast.image }}
-                style={styles.imagePodcast}
-              />
-              <View style={styles.podcastItemTextContainer}>
-                <Heading
-                  style={{ fontSize: 19 }}
-                  type={HeadingType.LARGE}
-                  label={podcast.name}
-                />
-                <PlainText
-                  style={{ fontSize: 12, marginTop: 5 }}
-                  label={podcast.author}
-                />
-              </View>
-            </TouchableOpacity>
-          )
-        })}
-        <View>
-          <TouchableOpacity
-            onPress={handleLogOut}
-            activeOpacity={0.4}
-            style={styles.logOutButton}
-          >
-            <Heading type={HeadingType.SMALL} label="Log Out" />
-          </TouchableOpacity>
-        </View>
+        <FlatList
+          data={userPageInfo.podcasts}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.name}
+          contentContainerStyle={{ paddingBottom: 160 }}
+        />
       </View>
-    </ScrollView>
+    </View>
   )
 }
 

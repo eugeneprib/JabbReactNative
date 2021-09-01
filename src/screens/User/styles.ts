@@ -8,6 +8,7 @@ type Styles = {
   nameContainer: TextStyle
   userInfoItem: ViewStyle
   userInfoItemText: TextStyle
+  userInfoItemTextDelete: TextStyle
   userDataContainer: ViewStyle
   podcastItem: ViewStyle
   podcastItemTextContainer: ViewStyle
@@ -40,6 +41,11 @@ const styles = StyleSheet.create<Styles>({
     color: '#7E7E7E',
     marginBottom: 4,
     marginLeft: 10
+  },
+  userInfoItemTextDelete: {
+    marginBottom: 4,
+    marginLeft: 10,
+    color: '#ff7777'
   },
   userDataContainer: {
     marginVertical: 40,
