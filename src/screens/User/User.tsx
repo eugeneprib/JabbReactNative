@@ -24,6 +24,12 @@ const UserPage: React.FC<Props> = () => {
     return 0
   }
 
+  const handleOpenMail = async () => {
+    await Linking.openURL(
+      `mailto://${userPageInfo.user.email}}&subject=abcdefg&body=body`
+    )
+  }
+
   const renderItem = ({ item }: { item: Podcast }) => (
     <PodcastItem podcast={item} />
   )
@@ -59,11 +65,7 @@ const UserPage: React.FC<Props> = () => {
             <TouchableOpacity
               activeOpacity={0.7}
               style={styles.userInfoItem}
-              onPress={() =>
-                Linking.openURL(
-                  `mailto://${userPageInfo.user.email}}&subject=abcdefg&body=body`
-                )
-              }
+              onPress={handleOpenMail}
             >
               <AtMark width={15} />
               <PlainText
@@ -92,7 +94,7 @@ const UserPage: React.FC<Props> = () => {
           data={userPageInfo.podcasts}
           renderItem={renderItem}
           keyExtractor={(item) => item.name}
-          contentContainerStyle={{ paddingBottom: 160 }}
+          contentContainerStyle={styles.FlatListContainer}
         />
       </View>
     </View>

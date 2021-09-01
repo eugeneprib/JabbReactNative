@@ -11,6 +11,7 @@ type Styles = {
   userDataContainer: ViewStyle
   logOutButton: ViewStyle
   userContacts: ViewStyle
+  FlatListContainer: ViewStyle
 }
 
 const styles = StyleSheet.create<Styles>({
@@ -60,6 +61,9 @@ const styles = StyleSheet.create<Styles>({
   },
   userContacts: {
     marginTop: 5
+  },
+  FlatListContainer: {
+    paddingBottom: 160
   }
 })
 
