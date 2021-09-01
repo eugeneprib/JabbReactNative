@@ -6,6 +6,7 @@ import {
   storage as storageService,
   secureStorage as secureStorageService
 } from 'src/services'
+import { handleError as handleErrorMiddleware } from 'src/middleware'
 
 const extraArgument = {
   authApi,
@@ -21,7 +22,7 @@ const store = configureStore({
       thunk: {
         extraArgument
       }
-    })
+    }).concat(handleErrorMiddleware)
   }
 })
 
