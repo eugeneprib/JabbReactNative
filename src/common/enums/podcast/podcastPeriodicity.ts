@@ -1,7 +1,8 @@
 enum PodcastPeriodicity {
   WEEKLY = 'weekly',
   DAILY = 'daily',
-  MONTHLY = 'monthly'
+  MONTHLY = 'monthly',
+  AUTO = 'auto'
 }
 
 export { PodcastPeriodicity }
