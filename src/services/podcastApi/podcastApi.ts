@@ -1,6 +1,7 @@
-import { ApiPath, PodcastsApiPath, HttpMethod } from '../common/enums'
+import { ApiPath, HttpMethod } from 'src/common/enums'
 import { Podcast } from 'src/common/types'
 import { Http } from 'src/services/http'
+import { PodcastsApiPath } from './common/enums'
 
 type Constructor = {
   http: Http
