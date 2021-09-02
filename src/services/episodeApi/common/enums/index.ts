@@ -1,1 +1,1 @@
-export { EpisodeApiPath } from './episodeApiPath'
+export { EpisodesApiPath } from './episodesApiPath'
