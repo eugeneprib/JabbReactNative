@@ -6,9 +6,10 @@ import { secureStorage } from 'src/services'
 import { SignIn, Episode, Podcast } from 'src/screens'
 import { getCurrentUser } from 'src/store/actions'
 import { NavigationScreen, SecureStorageKey } from 'src/common/enums'
-import TabNavigation from './TabNavigation'
+import { RootStackParamList } from 'src/common/types'
+import { TabNavigation } from './components'
 
-const Stack = createStackNavigator()
+const Stack = createStackNavigator<RootStackParamList>()
 
 const StackNavigation: React.FC = () => {
   const { user } = useAppSelector(({ auth }) => ({
