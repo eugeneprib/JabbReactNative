@@ -1,18 +1,25 @@
 import React from 'react'
 import { View, Image, TouchableOpacity } from 'react-native'
 import { Heading, HeadingType, PlainText } from 'src/components'
+import { StackNavigationProp } from '@react-navigation/stack'
 import { NavigationScreen } from 'src/common/enums'
+import { RootStackParamList } from 'src/common/types'
 import { Podcast } from 'src/common/types'
 import styles from './styles'
 
+type EpisodeScreenNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  NavigationScreen.MY_PROFILE
+>
+
 type Props = {
   podcast: Podcast
-  navigation: any
+  navigation: EpisodeScreenNavigationProp
 }
 
 const Item: React.FC<Props> = ({ podcast, navigation }) => {
   const handleBackToPodcast = () => {
-    navigation.navigate(NavigationScreen.PODCAST, { id: podcast.id })
+    navigation.navigate(NavigationScreen.PODCAST)
   }
 
   return (
