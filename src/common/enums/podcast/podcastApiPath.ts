@@ -3,4 +3,4 @@ enum PodcastsApiPath {
   $ID = '/:id',
   USERS = '/users'
 }
-export default PodcastsApiPath
+export { PodcastsApiPath }
