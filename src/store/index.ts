@@ -2,17 +2,19 @@ import { configureStore } from '@reduxjs/toolkit'
 import rootReducer from './rootReducer'
 import {
   authApi,
-  storage as storageService,
+  episodeApi,
   podcastApi,
-  episodeApi
+  storage as storageService,
+  secureStorage as secureStorageService
 } from 'src/services'
 import { handleError as handleErrorMiddleware } from 'src/middleware'
 
 const extraArgument = {
   authApi,
-  storageService,
+  episodeApi,
   podcastApi,
-  episodeApi
+  storageService,
+  secureStorageService
 }
 
 const store = configureStore({

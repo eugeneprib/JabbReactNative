@@ -1,3 +1,4 @@
 const ARRAY_OFFSET = 1
+const FIRST_ARRAY_IDX = 0
 
-export { ARRAY_OFFSET }
+export { FIRST_ARRAY_IDX, ARRAY_OFFSET }

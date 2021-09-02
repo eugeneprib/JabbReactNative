@@ -4,4 +4,4 @@ enum PodcastType {
   UNLISTED = 'unlisted'
 }
 
-export default PodcastType
+export { PodcastType }

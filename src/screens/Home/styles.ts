@@ -3,6 +3,7 @@ import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from 'react-native'
 type Styles = {
   container: ViewStyle
   title: TextStyle
+  placeholder: TextStyle
   block: ViewStyle
   header: ViewStyle
   userName: TextStyle
@@ -21,6 +22,9 @@ const styles = StyleSheet.create<Styles>({
     marginBottom: 5,
     fontSize: 15,
     color: '#575757'
+  },
+  placeholder: {
+    color: '#2A2A2A'
   },
   block: {
     marginTop: 30

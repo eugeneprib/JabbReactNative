@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { createStackNavigator } from '@react-navigation/stack'
 import { useAppSelector } from 'src/hooks'
+import { secureStorage } from 'src/services'
 import { SignIn, Episode, Podcast } from 'src/screens'
-import { NavigationScreen, StorageKey } from 'src/common/enums'
-import TabNavigation from './TabNavigation'
-import { storage } from 'src/services'
 import { getCurrentUser } from 'src/store/actions'
+import { NavigationScreen, SecureStorageKey } from 'src/common/enums'
+import TabNavigation from './TabNavigation'
 
 const Stack = createStackNavigator()
 
@@ -26,8 +26,8 @@ const StackNavigation: React.FC = () => {
   const isUserExistsAndNotLoaded = hasToken && !hasUser
 
   useEffect(() => {
-    storage
-      .getItem(StorageKey.TOKEN)
+    secureStorage
+      .getItem(SecureStorageKey.TOKEN)
       .then(setToken)
       .then(() => setIsFirstLoading(false))
   }, [])
