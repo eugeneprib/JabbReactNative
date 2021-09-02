@@ -11,3 +11,5 @@ export type {
 export type { Record } from './record'
 export type { Shownote } from './shownote'
 export type { RootStackParamList } from './navigation'
+export type { Genre } from './genre'
+export type { Podcast } from './podcast'

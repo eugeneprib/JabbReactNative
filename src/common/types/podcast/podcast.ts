@@ -1,6 +1,5 @@
-import { Image } from '../image'
-import { User } from '../user'
-import { Genre } from '../genre'
+import { Image, User, Genre } from 'src/common/types'
+import { PodcastPeriodicity, PodcastType } from 'src/common/enums'
 
 type Podcast = {
   id: number
@@ -13,11 +12,11 @@ type Podcast = {
   createdAt: string
   updatedAt: string
   description: string
-  type: 'public' | 'private' | 'unlisted'
+  type: PodcastType
   genreId: number | null
   user: User
   genre: Genre | null
-  periodicity: 'weekly' | 'daily' | 'monthly'
+  periodicity: PodcastPeriodicity
 }
 
 export type { Podcast }
