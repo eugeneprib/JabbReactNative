@@ -1,27 +1,20 @@
 import React, { useEffect } from 'react'
 import { View, Image, TouchableOpacity, Linking, FlatList } from 'react-native'
 import { useDispatch } from 'react-redux'
+import PodcastItem from './components'
+import { UserScreenNavigationProp } from './common'
 import { useAppSelector } from 'src/hooks'
 import { RootState } from 'src/common/types'
 import { resetUser, loadPodcasts } from 'src/store/actions'
-import { StackNavigationProp } from '@react-navigation/stack'
-import { NavigationScreen } from 'src/common/enums'
-import { RootStackParamList } from 'src/common/types'
 import { Heading, HeadingType, PlainText } from 'src/components'
 import { Podcast } from 'src/common/types'
-import PodcastItem from './components'
 import Check from 'src/assets/images/checkMark.svg'
 import AtMark from 'src/assets/images/atMark.svg'
 import LogOut from 'src/assets/images/iconmonstr-log-out-16.svg'
 import styles from './styles'
 
-type EpisodeScreenNavigationProp = StackNavigationProp<
-  RootStackParamList,
-  NavigationScreen.MY_PROFILE
->
-
 type Props = {
-  navigation: EpisodeScreenNavigationProp
+  navigation: UserScreenNavigationProp
 }
 
 const UserPage: React.FC<Props> = ({ navigation }) => {
@@ -41,11 +34,11 @@ const UserPage: React.FC<Props> = ({ navigation }) => {
   }, [user?.id])
 
   const handleOpenMail = async () => {
-    await Linking.openURL(`mailto://${user?.email}}&subject=abcdefg&body=body`)
+    await Linking.openURL(`mailto://${user?.email}}`)
   }
 
   const renderItem = ({ item }: { item: Podcast }) => (
-    <PodcastItem podcast={item} navigation={navigation} />
+    <PodcastItem podcast={item} />
   )
 
   return (

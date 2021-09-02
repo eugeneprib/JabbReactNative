@@ -1,24 +1,19 @@
 import React from 'react'
 import { View, Image, TouchableOpacity } from 'react-native'
 import { Heading, HeadingType, PlainText } from 'src/components'
-import { StackNavigationProp } from '@react-navigation/stack'
+import { useNavigation } from '@react-navigation/core'
 import { NavigationScreen } from 'src/common/enums'
-import { RootStackParamList } from 'src/common/types'
 import { Podcast } from 'src/common/types'
 import styles from './styles'
 
-type EpisodeScreenNavigationProp = StackNavigationProp<
-  RootStackParamList,
-  NavigationScreen.MY_PROFILE
->
-
 type Props = {
   podcast: Podcast
-  navigation: EpisodeScreenNavigationProp
 }
 
-const Item: React.FC<Props> = ({ podcast, navigation }) => {
-  const handleBackToPodcast = () => {
+const Item: React.FC<Props> = ({ podcast }) => {
+  const navigation = useNavigation()
+
+  const handleToPodcast = () => {
     navigation.navigate(NavigationScreen.PODCAST)
   }
 
@@ -26,7 +21,7 @@ const Item: React.FC<Props> = ({ podcast, navigation }) => {
     <TouchableOpacity
       activeOpacity={0.7}
       style={styles.podcastItem}
-      onPress={handleBackToPodcast}
+      onPress={handleToPodcast}
     >
       <Image
         width={85}
