@@ -2,8 +2,8 @@ import React from 'react'
 import { View, TouchableOpacity } from 'react-native'
 import { Episode } from 'src/common/types'
 import { getFormattedDate, DateFormatType } from 'src/helpers'
-import PlayIcon from 'src/assets/images/playEpisode.svg'
 import { Heading, HeadingType, PlainText } from 'src/components'
+import PlayIcon from 'src/assets/images/playEpisode.svg'
 import styles from './styles'
 
 type Props = {
