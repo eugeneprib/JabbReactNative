@@ -2,11 +2,11 @@ import React from 'react'
 import { View, Image, TouchableOpacity, Linking, FlatList } from 'react-native'
 import { Heading, HeadingType, PlainText } from 'src/components'
 import { Podcast, User } from 'src/common/types'
-import PodcastItem from './components'
 import { MockedUser, MockedPodcasts } from './mockedData'
 import Check from 'src/assets/images/checkMark.svg'
 import AtMark from 'src/assets/images/atMark.svg'
 import LogOut from 'src/assets/images/iconmonstr-log-out-16.svg'
+import PodcastItem from './components'
 import styles from './styles'
 
 type Props = {
