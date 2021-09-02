@@ -1,4 +1,5 @@
 export { DataStatus } from './dataStatus'
-export { StorageKey } from './storageKey'
+export { SecureStorageKey } from './secureStorageKey'
 export { AppError } from './appError'
+export { StorageKey } from './storageKey'
 export { ENV } from './env'

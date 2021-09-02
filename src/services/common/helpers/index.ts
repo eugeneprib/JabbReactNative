@@ -1,1 +1,0 @@
-export { getStringifiedQuery } from './http'

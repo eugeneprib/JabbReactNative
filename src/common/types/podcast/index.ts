@@ -1,1 +1,3 @@
-export type { default as Podcast } from './podcast'
+export type { Podcast } from './podcast'
+export type { PodcastLoadFilter } from './podcastLoadFilter'
+export type { PodcastQueryPayload } from './podcastQueryPayload'

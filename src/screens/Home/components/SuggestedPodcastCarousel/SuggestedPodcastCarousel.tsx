@@ -1,12 +1,13 @@
 import React from 'react'
 import { useWindowDimensions } from 'react-native'
 import Carousel from 'react-native-snap-carousel'
-import { CarouselItem, SuggestedPodcast } from './common/types'
+import { Podcast } from 'src/common/types'
+import { CarouselItem } from './common/types'
 import { getCarouselItemWidth, getCarouselWidth } from './common/helpers'
 import SuggestedPodcastCard from '../SuggestedPodcastCard'
 
 type Props = {
-  data: SuggestedPodcast[]
+  data: Podcast[]
   screenPadding: number
 }
 
@@ -14,9 +15,13 @@ const SuggestedPodcastCarousel: React.FC<Props> = ({ data, screenPadding }) => {
   const { width } = useWindowDimensions()
 
   const renderCarouselItem = ({
-    item: { title, author, source }
+    item: { name, user, image }
   }: CarouselItem) => (
-    <SuggestedPodcastCard title={title} author={author} source={source} />
+    <SuggestedPodcastCard
+      title={name}
+      author={user.nickname}
+      source={image?.url}
+    />
   )
 
   return (

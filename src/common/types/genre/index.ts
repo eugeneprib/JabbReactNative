@@ -1,1 +1,1 @@
-export type { default as Genre } from './genre'
+export type { Genre } from './genre'

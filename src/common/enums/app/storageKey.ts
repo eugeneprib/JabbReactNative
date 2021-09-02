@@ -1,5 +1,5 @@
 enum StorageKey {
-  TOKEN = 'token'
+  RECENTLY_PLAYED_EPISODES = 'recentlyPlayedEpisodes'
 }
 
 export { StorageKey }

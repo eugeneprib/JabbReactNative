@@ -6,4 +6,4 @@ type Genre = {
   updatedAt: string
 }
 
-export default Genre
+export type { Genre }
