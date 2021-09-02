@@ -3,3 +3,4 @@ export {
   loadSuggestedPodcasts,
   loadRecentlyPlayedEpisodes
 } from './home/actions'
+export { loadEpisodePayload, resetState } from './episode/actions'
