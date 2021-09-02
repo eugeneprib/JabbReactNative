@@ -1,6 +1,6 @@
 import React from 'react'
-import { Heading, HeadingType, PlainText } from 'src/components'
 import { Image, TouchableOpacity, View, ViewStyle } from 'react-native'
+import { Heading, HeadingType, PlainText } from 'src/components'
 import { getFormattedDate, DateFormatType } from 'src/helpers'
 import TimeIcon from 'src/assets/images/time.svg'
 import styles from './styles'

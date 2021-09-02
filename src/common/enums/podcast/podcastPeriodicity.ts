@@ -5,4 +5,4 @@ enum PodcastPeriodicity {
   AUTO = 'auto'
 }
 
-export default PodcastPeriodicity
+export { PodcastPeriodicity }

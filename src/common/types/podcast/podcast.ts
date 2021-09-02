@@ -1,5 +1,5 @@
-import { Image, User, Genre } from 'src/common/types'
 import { PodcastPeriodicity, PodcastType } from 'src/common/enums'
+import { Image, User, Genre } from 'src/common/types'
 
 type Podcast = {
   id: number
@@ -19,4 +19,4 @@ type Podcast = {
   periodicity: PodcastPeriodicity
 }
 
-export default Podcast
+export type { Podcast }
