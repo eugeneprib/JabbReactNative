@@ -4,7 +4,6 @@ import {
   authApi,
   episodeApi,
   podcastApi,
-  episodeApi,
   storage as storageService,
   secureStorage as secureStorageService
 } from 'src/services'
@@ -14,7 +13,6 @@ const extraArgument = {
   authApi,
   episodeApi,
   podcastApi,
-  episodeApi,
   storageService,
   secureStorageService
 }
