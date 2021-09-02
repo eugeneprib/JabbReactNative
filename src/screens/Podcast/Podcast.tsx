@@ -1,5 +1,8 @@
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
+import { useRoute } from '@react-navigation/native'
+import { useNavigation } from '@react-navigation/native'
+import { RouteProp } from '@react-navigation/native'
 import {
   View,
   Image,
@@ -13,7 +16,8 @@ import {
   DEFAULT_EPISODES_PAGINATION,
   DEFAULT_EPISODES_LIMIT
 } from './common/constants'
-import { DataStatus } from 'src/common/enums'
+import { DataStatus, NavigationScreen } from 'src/common/enums'
+import { RootStackParamList } from 'src/common/types'
 import {
   loadPodcast as loadPodcastAction,
   loadEpisodesByPodcastId as loadEpisodesByPodcastIdAction
@@ -24,7 +28,10 @@ import BackButton from 'src/assets/images/backButton.svg'
 import CircleIcon from 'src/assets/images/circle.svg'
 import styles from './styles'
 
-const id = 137
+type PodcastScreenRouteProp = RouteProp<
+  RootStackParamList,
+  NavigationScreen.PODCAST
+>
 
 const Podcast: React.FC = () => {
   const { podcast, episodes, dataStatus, totalCount, hasMoreEpisodes } =
@@ -36,6 +43,9 @@ const Podcast: React.FC = () => {
       hasMoreEpisodes: podcast.hasMoreEpisodes
     }))
 
+  const route = useRoute<PodcastScreenRouteProp>()
+  const navigation = useNavigation()
+
   const isLoading = dataStatus === DataStatus.PENDING
 
   const dispatch = useDispatch()
@@ -43,7 +53,7 @@ const Podcast: React.FC = () => {
   const fetchEpisodes = (pagination = DEFAULT_EPISODES_PAGINATION) => {
     dispatch(
       loadEpisodesByPodcastIdAction({
-        podcastId: Number(id),
+        podcastId: Number(route.params.id),
         filter: pagination
       })
     )
@@ -59,7 +69,7 @@ const Podcast: React.FC = () => {
   }
 
   useEffect(() => {
-    dispatch(loadPodcastAction(Number(id)))
+    dispatch(loadPodcastAction(Number(route.params.id)))
     handleLoadEpisodes()
   }, [])
 
@@ -69,6 +79,10 @@ const Podcast: React.FC = () => {
         <ActivityIndicator size="large" color="#f3427f" />
       </View>
     )
+  }
+
+  const handleGoToHome = () => {
+    navigation.navigate(NavigationScreen.HOME)
   }
 
   return (
@@ -81,7 +95,11 @@ const Podcast: React.FC = () => {
               resizeMode="cover"
               style={styles.podcastBackground}
             >
-              <TouchableOpacity style={styles.backButton} activeOpacity={0.7}>
+              <TouchableOpacity
+                onPress={handleGoToHome}
+                style={styles.backButton}
+                activeOpacity={0.7}
+              >
                 <BackButton width={40} />
               </TouchableOpacity>
               <View style={styles.podcastLogoContainer}>
