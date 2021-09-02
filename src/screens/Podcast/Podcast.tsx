@@ -15,10 +15,14 @@ import {
   DEFAULT_EPISODES_LIMIT
 } from './common/constants'
 import { DataStatus, NavigationScreen } from 'src/common/enums'
-import { PodcastRouteProp, PodcastNavigationProp } from './common/types'
+import {
+  PodcastScreenRouteProp,
+  PodcastScreenNavigationProp
+} from './common/types'
 import {
   loadPodcast as loadPodcastAction,
-  loadEpisodesByPodcastId as loadEpisodesByPodcastIdAction
+  loadEpisodesByPodcastId as loadEpisodesByPodcastIdAction,
+  resetState as resetStateAction
 } from 'src/store/actions'
 import { Heading, HeadingType, PlainText } from 'src/components'
 import { EpisodeList, NoPodcast } from './components'
@@ -36,8 +40,8 @@ const Podcast: React.FC = () => {
       hasMoreEpisodes: podcast.hasMoreEpisodes
     }))
 
-  const route = useRoute<PodcastRouteProp>()
-  const navigation = useNavigation<PodcastNavigationProp>()
+  const route = useRoute<PodcastScreenRouteProp>()
+  const navigation = useNavigation<PodcastScreenNavigationProp>()
 
   const isLoading = dataStatus === DataStatus.PENDING
 
@@ -64,6 +68,9 @@ const Podcast: React.FC = () => {
   useEffect(() => {
     dispatch(loadPodcastAction(Number(route.params.id)))
     handleLoadEpisodes()
+    return () => {
+      dispatch(resetStateAction())
+    }
   }, [])
 
   if (isLoading) {
@@ -75,6 +82,7 @@ const Podcast: React.FC = () => {
   }
 
   const handleNavigateToHome = () => {
+    // dispatch(resetStateAction())
     navigation.navigate(NavigationScreen.HOME)
   }
 

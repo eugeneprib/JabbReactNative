@@ -1,2 +1,2 @@
-export type { PodcastRouteProp } from './podcastRouteProp'
-export type { PodcastNavigationProp } from './podcastNavigationProp'
+export type { PodcastScreenRouteProp } from './podcastScreenRouteProp'
+export type { PodcastScreenNavigationProp } from './podcastScreenNavigationProp'

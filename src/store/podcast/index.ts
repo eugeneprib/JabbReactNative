@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { DataStatus } from 'src/common/enums'
 import { Episode, Podcast } from 'src/common/types'
-import { loadPodcast, loadEpisodesByPodcastId } from './actions'
+import { loadPodcast, loadEpisodesByPodcastId, resetState } from './actions'
 
 type State = {
   dataStatus: DataStatus
@@ -54,6 +54,9 @@ const podcastSlice = createSlice({
     })
     builder.addCase(loadEpisodesByPodcastId.rejected, (state) => {
       state.episodesDataStatus = DataStatus.REJECTED
+    })
+    builder.addCase(resetState, (state) => {
+      Object.assign(state, initialState)
     })
   }
 })

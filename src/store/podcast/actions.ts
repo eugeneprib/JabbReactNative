@@ -1,4 +1,4 @@
-import { createAsyncThunk } from '@reduxjs/toolkit'
+import { createAsyncThunk, createAction } from '@reduxjs/toolkit'
 import {
   Podcast,
   AsyncThunkConfig,
@@ -33,4 +33,6 @@ const loadEpisodesByPodcastId = createAsyncThunk<
   }
 )
 
-export { loadPodcast, loadEpisodesByPodcastId }
+const resetState = createAction(ActionType.RESET_STATE)
+
+export { loadPodcast, loadEpisodesByPodcastId, resetState }
