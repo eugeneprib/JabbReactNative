@@ -8,7 +8,7 @@ import {
 import { useDispatch } from 'react-redux'
 import { useAppSelector } from 'src/hooks'
 import { Heading, HeadingType, PlainText } from 'src/components'
-import { loadEpisodePayload, resetState } from 'src/store/actions'
+import { loadEpisodePayload, resetEpisodeState } from 'src/store/actions'
 import { DataStatus } from 'src/common/enums'
 import BackButton from 'src/assets/images/backButton.svg'
 import DefaultImage from 'src/assets/images/defaultImage.svg'
@@ -35,15 +35,15 @@ const Episode: React.FC<Props> = ({ navigation, route, podcastName }) => {
   const dispatch = useDispatch()
 
   const isLoading = dataStatus === DataStatus.PENDING
-  const episodeId = route.params.id
+  const { id, playback } = route.params
 
   useEffect(() => {
-    dispatch(loadEpisodePayload(episodeId))
+    dispatch(loadEpisodePayload(id))
 
     return () => {
-      dispatch(resetState())
+      dispatch(resetEpisodeState())
     }
-  }, [episodeId])
+  }, [id])
 
   const handleBack = () => {
     navigation.goBack()
@@ -95,7 +95,10 @@ const Episode: React.FC<Props> = ({ navigation, route, podcastName }) => {
 
       <View style={styles.playerWrapper}>
         {episode.record ? (
-          <Player episode={mapEpisodeToPlayerEpisode(episode)} />
+          <Player
+            episode={mapEpisodeToPlayerEpisode(episode)}
+            startToPlay={playback}
+          />
         ) : (
           <PlainText label="There's no any record yet." />
         )}

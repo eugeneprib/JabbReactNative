@@ -22,7 +22,7 @@ import {
 import {
   loadPodcast as loadPodcastAction,
   loadEpisodesByPodcastId as loadEpisodesByPodcastIdAction,
-  resetState as resetStateAction
+  resetPodcastState as resetPodcastStateAction
 } from 'src/store/actions'
 import { Heading, HeadingType, PlainText } from 'src/components'
 import { EpisodeList, NoPodcast } from './components'
@@ -69,7 +69,7 @@ const Podcast: React.FC = () => {
     dispatch(loadPodcastAction(Number(route.params.id)))
     handleLoadEpisodes()
     return () => {
-      dispatch(resetStateAction())
+      dispatch(resetPodcastStateAction())
     }
   }, [])
 
@@ -82,7 +82,6 @@ const Podcast: React.FC = () => {
   }
 
   const handleNavigateToHome = () => {
-    // dispatch(resetStateAction())
     navigation.navigate(NavigationScreen.HOME)
   }
 

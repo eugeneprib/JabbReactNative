@@ -2,37 +2,38 @@ import React, { useEffect, useState } from 'react'
 import { View, Pressable } from 'react-native'
 import TrackPlayer, { useProgress, Capability } from 'react-native-track-player'
 import Slider from '@react-native-community/slider'
-import { getPlayerTime } from './common/helpers'
 import { PlainText } from 'src/components'
-import {
-  DEFAULT_START_TIME,
-  TIME_SHIFT_IN_SECONDS,
-  BASE_SLIDER_COLOUR
-} from './common/constants'
 import { PlayerEpisode } from 'src/common/types/player'
 import PlayIcon from 'src/assets/images/play.svg'
 import PauseIcon from 'src/assets/images/pause.svg'
 import RewindIcon from 'src/assets/images/rewind.svg'
 import ForwardIcon from 'src/assets/images/forward.svg'
+import { getPlayerTime } from './common/helpers'
+import {
+  DEFAULT_START_TIME,
+  TIME_SHIFT_IN_SECONDS,
+  BASE_SLIDER_COLOUR
+} from './common/constants'
 import styles from './styles'
 
 type Props = {
   episode: PlayerEpisode
+  startToPlay?: boolean
 }
 
-const Player: React.FC<Props> = ({ episode }) => {
+const Player: React.FC<Props> = ({ episode, startToPlay = false }) => {
   const { position, duration } = useProgress()
-  const [isPlaying, setPlaying] = useState(false)
+  const [isPlaying, setPlaying] = useState(startToPlay)
 
   const trackPlayerInit = async () => {
     await TrackPlayer.setupPlayer({
       maxCacheSize: 1048576
     })
-    return true
   }
 
   useEffect(() => {
     trackPlayerInit()
+
     TrackPlayer.updateOptions({
       stopWithApp: false,
       alwaysPauseOnInterruption: true,
@@ -44,8 +45,13 @@ const Player: React.FC<Props> = ({ episode }) => {
         Capability.Stop
       ]
     })
+
     TrackPlayer.add(episode)
-  }, [episode])
+
+    if (startToPlay) {
+      TrackPlayer.play()
+    }
+  }, [])
 
   const onHandleControlPlayer = () => {
     isPlaying ? TrackPlayer.pause() : TrackPlayer.play()

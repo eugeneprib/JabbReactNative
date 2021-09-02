@@ -57,7 +57,7 @@ const styles = StyleSheet.create<Styles>({
     alignItems: 'center'
   },
   time: {
-    fontSize: 12
+    fontSize: 14
   }
 })
 
