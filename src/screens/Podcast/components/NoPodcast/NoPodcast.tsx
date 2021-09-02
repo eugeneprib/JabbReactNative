@@ -3,7 +3,7 @@ import { View } from 'react-native'
 import { Heading, HeadingType } from 'src/components'
 import styles from './styles'
 
-const NoPodcast = () => {
+const NoPodcast: React.FC = () => {
   return (
     <View style={styles.nothing}>
       <Heading
