@@ -5,6 +5,7 @@ import { AuthApi } from './authApi'
 import { Storage } from './storage'
 import { UserApi } from './userApi'
 import { Notification } from './notification'
+import { PodcastApi } from './podcast'
 
 const notification = new Notification()
 
@@ -26,4 +27,9 @@ const userApi = new UserApi({
   apiPath: ENV.API_PATH
 })
 
-export { authApi, storage, userApi, notification }
+const podcastApi = new PodcastApi({
+  http,
+  apiPath: ENV.API_PATH
+})
+
+export { authApi, storage, userApi, notification, podcastApi }
