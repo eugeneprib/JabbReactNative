@@ -2,6 +2,7 @@ import React from 'react'
 import { FlatList } from 'react-native'
 import { EpisodeItem, NoEpisodes } from '../'
 import { CLEARANCE_FOR_ADDITIONAL_LOADING } from './common/constants'
+import { RenderItem } from './common/types'
 import { ARRAY_OFFSET } from 'src/common/constants/array'
 import { Episode } from 'src/common/types'
 import styles from './styles'
@@ -11,16 +12,11 @@ type Props = {
   onEndReached: () => void
 }
 
-type RenderItem = {
-  item: Episode
-  index: number
-}
-
 const EpisodeList: React.FC<Props> = ({ episodes, onEndReached }) => {
   const keyExtractor = (item: Episode) => item.id.toString()
 
   const renderItem = ({ item, index }: RenderItem) => (
-    <EpisodeItem episode={item} episodePosition={index + ARRAY_OFFSET} />
+    <EpisodeItem episode={item} position={index + ARRAY_OFFSET} />
   )
 
   return (

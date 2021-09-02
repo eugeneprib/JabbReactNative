@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { useRoute } from '@react-navigation/native'
-import { useNavigation } from '@react-navigation/native'
-import { RouteProp } from '@react-navigation/native'
+import { useRoute, useNavigation } from '@react-navigation/native'
 import {
   View,
   Image,
@@ -17,7 +15,7 @@ import {
   DEFAULT_EPISODES_LIMIT
 } from './common/constants'
 import { DataStatus, NavigationScreen } from 'src/common/enums'
-import { RootStackParamList } from 'src/common/types'
+import { PodcastRouteProp, PodcastNavigationProp } from './common/types'
 import {
   loadPodcast as loadPodcastAction,
   loadEpisodesByPodcastId as loadEpisodesByPodcastIdAction
@@ -27,11 +25,6 @@ import { EpisodeList, NoPodcast } from './components'
 import BackButton from 'src/assets/images/backButton.svg'
 import CircleIcon from 'src/assets/images/circle.svg'
 import styles from './styles'
-
-type PodcastScreenRouteProp = RouteProp<
-  RootStackParamList,
-  NavigationScreen.PODCAST
->
 
 const Podcast: React.FC = () => {
   const { podcast, episodes, dataStatus, totalCount, hasMoreEpisodes } =
@@ -43,8 +36,8 @@ const Podcast: React.FC = () => {
       hasMoreEpisodes: podcast.hasMoreEpisodes
     }))
 
-  const route = useRoute<PodcastScreenRouteProp>()
-  const navigation = useNavigation()
+  const route = useRoute<PodcastRouteProp>()
+  const navigation = useNavigation<PodcastNavigationProp>()
 
   const isLoading = dataStatus === DataStatus.PENDING
 
@@ -81,7 +74,7 @@ const Podcast: React.FC = () => {
     )
   }
 
-  const handleGoToHome = () => {
+  const handleNavigateToHome = () => {
     navigation.navigate(NavigationScreen.HOME)
   }
 
@@ -96,7 +89,7 @@ const Podcast: React.FC = () => {
               style={styles.podcastBackground}
             >
               <TouchableOpacity
-                onPress={handleGoToHome}
+                onPress={handleNavigateToHome}
                 style={styles.backButton}
                 activeOpacity={0.7}
               >
@@ -143,7 +136,6 @@ const Podcast: React.FC = () => {
               label="Episodes"
               style={styles.episodesContainerTitle}
             />
-
             <EpisodeList
               episodes={episodes}
               onEndReached={handleLoadEpisodes}

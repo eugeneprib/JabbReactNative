@@ -3,6 +3,7 @@ import { useWindowDimensions } from 'react-native'
 import Carousel from 'react-native-snap-carousel'
 import { useNavigation } from '@react-navigation/native'
 import { Podcast } from 'src/common/types'
+import { PodcastNavigationProp } from 'src/screens/Podcast/common/types'
 import { CarouselItem } from './common/types'
 import { NavigationScreen } from 'src/common/enums'
 import { getCarouselItemWidth, getCarouselWidth } from './common/helpers'
@@ -15,12 +16,12 @@ type Props = {
 
 const SuggestedPodcastCarousel: React.FC<Props> = ({ data, screenPadding }) => {
   const { width } = useWindowDimensions()
-  const navigation = useNavigation()
+  const navigation = useNavigation<PodcastNavigationProp>()
 
   const renderCarouselItem = ({
     item: { name, user, image, id }
   }: CarouselItem) => {
-    const handleGoToPodcast = () => {
+    const handleNavigateToPodcast = () => {
       navigation.navigate(NavigationScreen.PODCAST, { id })
     }
 
@@ -29,7 +30,7 @@ const SuggestedPodcastCarousel: React.FC<Props> = ({ data, screenPadding }) => {
         title={name}
         author={user.nickname}
         source={image?.url}
-        onPress={handleGoToPodcast}
+        onPress={handleNavigateToPodcast}
       />
     )
   }

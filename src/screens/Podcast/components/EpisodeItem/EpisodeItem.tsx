@@ -7,18 +7,15 @@ import { Heading, HeadingType, PlainText } from 'src/components'
 import styles from './styles'
 
 type Props = {
-  episodePosition: number
+  position: number
   episode: Episode
 }
 
-const EpisodeItem: React.FC<Props> = ({ episodePosition, episode }) => {
+const EpisodeItem: React.FC<Props> = ({ position, episode }) => {
   return (
     <TouchableOpacity style={styles.container} activeOpacity={0.7}>
       <View style={styles.episodeNumberCont}>
-        <PlainText
-          label={`Ep. ${episodePosition}`}
-          style={styles.episodeNumber}
-        />
+        <PlainText label={`Ep. ${position}`} style={styles.episodeNumber} />
       </View>
       <View style={styles.episodeInfo}>
         <Heading
