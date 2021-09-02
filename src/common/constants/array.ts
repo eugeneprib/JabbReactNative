@@ -1,3 +1,3 @@
-const INCREASE_VALUE_FOR_LIST = 1
+const ARRAY_OFFSET = 1
 
-export { INCREASE_VALUE_FOR_LIST }
+export { ARRAY_OFFSET }

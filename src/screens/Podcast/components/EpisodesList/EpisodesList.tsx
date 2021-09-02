@@ -1,8 +1,8 @@
 import React from 'react'
 import { FlatList } from 'react-native'
-import { EpisodeItem, NoEpisodes } from './../index'
+import { EpisodeItem, NoEpisodes } from '../'
 import { CLEARANCE_FOR_ADDITIONAL_LOADING } from './common/constants'
-import { INCREASE_VALUE_FOR_LIST } from 'src/common/constants/array'
+import { ARRAY_OFFSET } from 'src/common/constants/array'
 import { Episode } from 'src/common/types'
 import styles from './styles'
 
@@ -20,10 +20,7 @@ const EpisodeList: React.FC<Props> = ({ episodes, onEndReached }) => {
   const keyExtractor = (item: Episode) => item.id.toString()
 
   const renderItem = ({ item, index }: RenderItem) => (
-    <EpisodeItem
-      episode={item}
-      episodePosition={index + INCREASE_VALUE_FOR_LIST}
-    />
+    <EpisodeItem episode={item} episodePosition={index + ARRAY_OFFSET} />
   )
 
   return (
