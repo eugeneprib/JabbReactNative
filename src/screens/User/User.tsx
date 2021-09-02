@@ -17,7 +17,7 @@ type Props = {
   navigation: UserScreenNavigationProp
 }
 
-const UserPage: React.FC<Props> = ({ navigation }) => {
+const User: React.FC<Props> = ({ navigation }) => {
   const dispatch = useDispatch()
 
   const handleLogOut = () => {
@@ -108,4 +108,4 @@ const UserPage: React.FC<Props> = ({ navigation }) => {
   )
 }
 
-export default UserPage
+export default User
