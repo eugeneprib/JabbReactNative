@@ -6,6 +6,7 @@ type RootStackParamList = {
   [NavigationScreen.PODCAST]: undefined
   [NavigationScreen.EPISODE]: undefined
   [NavigationScreen.TO_TABS_NAVIGATOR]: undefined
+  [NavigationScreen.MY_PROFILE]: undefined
 }
 
 export type { RootStackParamList }

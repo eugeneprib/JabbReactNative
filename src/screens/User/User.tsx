@@ -1,44 +1,51 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { View, Image, TouchableOpacity, Linking, FlatList } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
-import { resetUser } from 'src/store/actions'
+import { resetUser, loadPodcasts } from 'src/store/actions'
+import { StackNavigationProp } from '@react-navigation/stack'
+import { NavigationScreen } from 'src/common/enums'
+import { RootStackParamList } from 'src/common/types'
 import { Heading, HeadingType, PlainText } from 'src/components'
-import { Podcast, User } from 'src/common/types'
+import { Podcast } from 'src/common/types'
 import PodcastItem from './components'
-import { MockedUser, MockedPodcasts } from './mockedData'
 import Check from 'src/assets/images/checkMark.svg'
 import AtMark from 'src/assets/images/atMark.svg'
 import LogOut from 'src/assets/images/iconmonstr-log-out-16.svg'
 import styles from './styles'
 
+type EpisodeScreenNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  NavigationScreen.MY_PROFILE
+>
+
 type Props = {
-  podcasts: Podcast[]
-  user: User
+  navigation: EpisodeScreenNavigationProp
 }
 
-const userPageInfo: Props = {
-  podcasts: MockedPodcasts,
-  user: MockedUser
-}
-
-const UserPage: React.FC<Props> = () => {
+const UserPage: React.FC<Props> = ({ navigation }) => {
   const dispatch = useDispatch()
 
   const handleLogOut = () => {
     dispatch(resetUser())
   }
-  const { currentUser } = useSelector(({ auth }: any) => ({
-    currentUser: auth.user
+
+  const { currentUser, podcasts } = useSelector(({ auth, user }: any) => ({
+    currentUser: auth.user,
+    podcasts: user.podcasts
   }))
+
+  useEffect(() => {
+    dispatch(loadPodcasts(currentUser.id))
+  }, [currentUser.id])
 
   const handleOpenMail = async () => {
     await Linking.openURL(
-      `mailto://${userPageInfo.user.email}}&subject=abcdefg&body=body`
+      `mailto://${currentUser.email}}&subject=abcdefg&body=body`
     )
   }
 
   const renderItem = ({ item }: { item: Podcast }) => (
-    <PodcastItem podcast={item} />
+    <PodcastItem podcast={item} navigation={navigation} />
   )
 
   return (
@@ -52,21 +59,21 @@ const UserPage: React.FC<Props> = () => {
           <Image
             width={118}
             height={118}
-            source={{ uri: userPageInfo.user.image?.url }}
+            source={{ uri: currentUser.image?.url }}
             style={styles.image}
           />
         </View>
         <View style={styles.nameContainer}>
           <Heading
             type={HeadingType.MEDIUM}
-            label={`${userPageInfo.user.firstName} ${userPageInfo.user.lastName}`}
+            label={`${currentUser.firstName} ${currentUser.lastName}`}
           />
           <View style={styles.userContacts}>
             <View style={styles.userInfoItem}>
               <Check width={15} />
               <PlainText
                 style={styles.userInfoItemText}
-                label={userPageInfo.user.nickname}
+                label={currentUser.nickname}
               />
             </View>
             <TouchableOpacity
@@ -77,7 +84,7 @@ const UserPage: React.FC<Props> = () => {
               <AtMark width={15} />
               <PlainText
                 style={styles.userInfoItemText}
-                label={userPageInfo.user.email}
+                label={currentUser.email}
               />
             </TouchableOpacity>
             <TouchableOpacity
@@ -98,7 +105,7 @@ const UserPage: React.FC<Props> = () => {
       <View style={styles.userDataContainer}>
         <Heading type={HeadingType.MEDIUM} label="Podcasts" />
         <FlatList
-          data={userPageInfo.podcasts}
+          data={podcasts}
           renderItem={renderItem}
           keyExtractor={(item) => item.name}
           contentContainerStyle={styles.FlatListContainer}
