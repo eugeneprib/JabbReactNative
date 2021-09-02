@@ -7,7 +7,7 @@ type Styles = {
 
 const styles = StyleSheet.create<Styles>({
   text: {
-    fontFamily: fonts.MainMedium
+    fontFamily: fonts.MainRegular
   }
 })
 

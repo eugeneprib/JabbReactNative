@@ -4,16 +4,18 @@ import {
   Alert,
   Linking,
   Text,
-  TouchableOpacityProps
+  TouchableOpacityProps,
+  TextStyle
 } from 'react-native'
 import styles from './styles'
 
 type Props = {
   label: string
   url: string
+  textStyle: TextStyle
 } & TouchableOpacityProps
 
-const Link: React.FC<Props> = ({ label, url, ...props }) => {
+const Link: React.FC<Props> = ({ label, url, textStyle, ...props }) => {
   const handlePress = useCallback(async () => {
     const isSupported = await Linking.canOpenURL(url)
 
@@ -26,7 +28,7 @@ const Link: React.FC<Props> = ({ label, url, ...props }) => {
 
   return (
     <TouchableOpacity {...props} onPress={handlePress}>
-      <Text style={styles.text}>{label}</Text>
+      <Text style={[styles.text, textStyle]}>{label}</Text>
     </TouchableOpacity>
   )
 }
