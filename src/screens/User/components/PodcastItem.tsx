@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Image, TouchableOpacity } from 'react-native'
-import { Heading, HeadingType, PlainText } from 'src/components'
 import { useNavigation } from '@react-navigation/core'
+import { Heading, HeadingType, PlainText } from 'src/components'
 import { NavigationScreen } from 'src/common/enums'
 import { Podcast } from 'src/common/types'
 import styles from './styles'
