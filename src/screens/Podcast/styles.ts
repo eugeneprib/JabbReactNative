@@ -1,9 +1,39 @@
-import { StyleSheet } from 'react-native'
+import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from 'react-native'
 
-const styles = StyleSheet.create({
+type Styles = {
+  preloaderWrapper: ViewStyle
+  container: ViewStyle
+  podcastBackgroundWrapper: ViewStyle
+  podcastBackground: ViewStyle
+  podcastLogo: ImageStyle
+  podcastNameContainer: ViewStyle
+  podcasterNameContainer: ViewStyle
+  podcastName: ViewStyle
+  podcastAuthorText: TextStyle
+  podcastLogoContainer: ViewStyle
+  description: ViewStyle
+  descriptionText: TextStyle
+  episodeCounter: ViewStyle
+  edisodesCount: TextStyle
+  episodesContainer: ViewStyle
+  episodesContainerTitle: ViewStyle
+  backButton: ViewStyle
+  nothing: ViewStyle
+}
+
+const styles = StyleSheet.create<Styles>({
+  container: {
+    flexGrow: 1,
+    flexDirection: 'column',
+    paddingBottom: 25
+  },
+  podcastBackgroundWrapper: {
+    position: 'relative',
+    height: 250
+  },
   podcastBackground: {
     flex: 1,
-    height: 150,
+    height: '100%',
     marginBottom: 65
   },
   podcastLogo: {
@@ -14,15 +44,16 @@ const styles = StyleSheet.create({
   },
   podcastNameContainer: {
     marginTop: 5,
-    alignItems: 'center'
+    alignItems: 'center',
+    paddingHorizontal: 35
   },
   podcasterNameContainer: {
     alignItems: 'center',
-    marginTop: 10
+    marginTop: 10,
+    paddingHorizontal: 35
   },
   podcastName: {
-    textAlign: 'center',
-    width: 250
+    textAlign: 'center'
   },
   podcastAuthorText: {
     color: '#000',
@@ -31,8 +62,8 @@ const styles = StyleSheet.create({
   podcastLogoContainer: {
     position: 'absolute',
     alignSelf: 'center',
-    bottom: -60,
-    elevation: 2,
+    bottom: -70,
+    elevation: 3,
     borderWidth: 2,
     borderRadius: 20,
     borderColor: 'transparent'
@@ -51,12 +82,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 15
+    marginTop: 15,
+    paddingHorizontal: 35
   },
   edisodesCount: {
     marginLeft: 5
   },
   episodesContainer: {
+    flex: 1,
     marginTop: 20,
     paddingHorizontal: 35
   },
@@ -68,6 +101,19 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: -15,
     left: 10
+  },
+  nothing: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  preloaderWrapper: {
+    flexGrow: 1,
+    height: '100%',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 })
 

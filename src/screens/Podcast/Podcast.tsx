@@ -1,112 +1,159 @@
-import React from 'react'
-import { View, Image, ImageBackground, TouchableOpacity } from 'react-native'
-import { ScrollView } from 'react-native-gesture-handler'
+import React, { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { useRoute, useNavigation } from '@react-navigation/native'
+import {
+  View,
+  Image,
+  ImageBackground,
+  ActivityIndicator,
+  TouchableOpacity
+} from 'react-native'
+import { useAppSelector } from 'src/hooks'
+import { DEFAULT_IMAGE_BASE64 } from 'src/common/constants/defaultImage'
+import {
+  DEFAULT_EPISODES_PAGINATION,
+  DEFAULT_EPISODES_LIMIT
+} from './common/constants'
+import { DataStatus, NavigationScreen } from 'src/common/enums'
+import {
+  PodcastScreenRouteProp,
+  PodcastScreenNavigationProp
+} from './common/types'
+import {
+  loadPodcast as loadPodcastAction,
+  loadEpisodesByPodcastId as loadEpisodesByPodcastIdAction,
+  resetState as resetStateAction
+} from 'src/store/actions'
 import { Heading, HeadingType, PlainText } from 'src/components'
-import { EpisodeBlock } from './components'
+import { EpisodeList, NoPodcast } from './components'
 import BackButton from 'src/assets/images/backButton.svg'
 import CircleIcon from 'src/assets/images/circle.svg'
 import styles from './styles'
 
-type Episode = {
-  id: number
-  name: string
-  createdAt: string
-}
-
-type Podcast = {
-  image: string
-  background: string
-  name: string
-  author: string
-  description: string
-  episodes: Episode[]
-}
-
-const mockedPodacst: Podcast = {
-  background:
-    'http://res.cloudinary.com/hmqu8gtpn/image/upload/v1629474209/2/wqbm1x3q0h6ea2ebrnze.jpg',
-  image:
-    'http://res.cloudinary.com/hmqu8gtpn/image/upload/v1629474124/2/ttp0xygzbdyrn0yyxfnk.jpg',
-  name: 'Cartoon Soundtracks',
-  author: 'Eugenius',
-  description: "Cartoon's Soundtracks Disney, Dreamworks and others",
-  episodes: [
-    {
-      id: 1,
-      name: 'Kingdom Dance',
-      createdAt: 'August 16, 2021'
-    },
-    {
-      id: 2,
-      name: 'You are Welcome',
-      createdAt: 'August 20, 2021'
-    },
-    {
-      id: 3,
-      name: 'This is Berk',
-      createdAt: 'August 26, 2021'
-    }
-  ]
-}
-
 const Podcast: React.FC = () => {
+  const { podcast, episodes, dataStatus, totalCount, hasMoreEpisodes } =
+    useAppSelector(({ podcast }) => ({
+      podcast: podcast.podcast,
+      episodes: podcast.episodes,
+      dataStatus: podcast.dataStatus,
+      totalCount: podcast.totalCount,
+      hasMoreEpisodes: podcast.hasMoreEpisodes
+    }))
+
+  const route = useRoute<PodcastScreenRouteProp>()
+  const navigation = useNavigation<PodcastScreenNavigationProp>()
+
+  const isLoading = dataStatus === DataStatus.PENDING
+
+  const dispatch = useDispatch()
+
+  const fetchEpisodes = (pagination = DEFAULT_EPISODES_PAGINATION) => {
+    dispatch(
+      loadEpisodesByPodcastIdAction({
+        podcastId: Number(route.params.id),
+        filter: pagination
+      })
+    )
+  }
+
+  const handleLoadEpisodes = () => {
+    if (hasMoreEpisodes) {
+      fetchEpisodes({
+        offset: episodes.length,
+        limit: DEFAULT_EPISODES_LIMIT
+      })
+    }
+  }
+
+  useEffect(() => {
+    dispatch(loadPodcastAction(Number(route.params.id)))
+    handleLoadEpisodes()
+    return () => {
+      dispatch(resetStateAction())
+    }
+  }, [])
+
+  if (isLoading) {
+    return (
+      <View style={styles.preloaderWrapper}>
+        <ActivityIndicator size="large" color="#f3427f" />
+      </View>
+    )
+  }
+
+  const handleNavigateToHome = () => {
+    // dispatch(resetStateAction())
+    navigation.navigate(NavigationScreen.HOME)
+  }
+
   return (
-    <ScrollView>
-      <View>
-        <ImageBackground
-          source={{ uri: mockedPodacst.background }}
-          resizeMode="cover"
-          style={styles.podcastBackground}
-        >
-          <TouchableOpacity style={styles.backButton} activeOpacity={0.7}>
-            <BackButton width={40} />
-          </TouchableOpacity>
-          <View style={styles.podcastLogoContainer}>
-            <Image
-              source={{ uri: mockedPodacst.image }}
+    <View style={styles.container}>
+      {podcast ? (
+        <>
+          <View style={styles.podcastBackgroundWrapper}>
+            <ImageBackground
+              source={{ uri: podcast.cover?.url ?? DEFAULT_IMAGE_BASE64 }}
               resizeMode="cover"
-              style={styles.podcastLogo}
+              style={styles.podcastBackground}
+            >
+              <TouchableOpacity
+                onPress={handleNavigateToHome}
+                style={styles.backButton}
+                activeOpacity={0.7}
+              >
+                <BackButton width={40} />
+              </TouchableOpacity>
+              <View style={styles.podcastLogoContainer}>
+                <Image
+                  source={{ uri: podcast.image?.url ?? DEFAULT_IMAGE_BASE64 }}
+                  resizeMode="cover"
+                  style={styles.podcastLogo}
+                />
+              </View>
+            </ImageBackground>
+          </View>
+          <View style={styles.podcastNameContainer}>
+            <Heading
+              label={podcast.name}
+              type={HeadingType.LARGE}
+              style={styles.podcastName}
             />
           </View>
-        </ImageBackground>
-      </View>
-      <View style={styles.podcastNameContainer}>
-        <Heading
-          label={mockedPodacst.name}
-          type={HeadingType.LARGE}
-          style={styles.podcastName}
-        />
-      </View>
-      <View style={styles.podcasterNameContainer}>
-        <PlainText
-          label={mockedPodacst.author}
-          style={styles.podcastAuthorText}
-        />
-      </View>
-      <View style={styles.description}>
-        <PlainText
-          label={mockedPodacst.description}
-          style={styles.descriptionText}
-        />
-      </View>
-      <View style={styles.episodeCounter}>
-        <CircleIcon width={5} />
-        <PlainText
-          label={`${mockedPodacst.episodes.length} Episodes`}
-          style={styles.edisodesCount}
-        />
-      </View>
-      <View style={styles.episodesContainer}>
-        <Heading
-          type={HeadingType.MEDIUM}
-          label={`Episodes`}
-          style={styles.episodesContainerTitle}
-        />
-        {mockedPodacst.episodes.map((episode: Episode, inx: number) => (
-          <EpisodeBlock episode={episode} number={inx} key={episode.id} />
-        ))}
-      </View>
-    </ScrollView>
+          <View style={styles.podcasterNameContainer}>
+            <PlainText
+              label={podcast.user.nickname}
+              style={styles.podcastAuthorText}
+            />
+          </View>
+          <View style={styles.description}>
+            <PlainText
+              label={podcast.description}
+              style={styles.descriptionText}
+            />
+          </View>
+          <View style={styles.episodeCounter}>
+            <CircleIcon width={5} />
+            <PlainText
+              label={`${totalCount} Episodes`}
+              style={styles.edisodesCount}
+            />
+          </View>
+          <View style={styles.episodesContainer}>
+            <Heading
+              type={HeadingType.MEDIUM}
+              label="Episodes"
+              style={styles.episodesContainerTitle}
+            />
+            <EpisodeList
+              episodes={episodes}
+              onEndReached={handleLoadEpisodes}
+            />
+          </View>
+        </>
+      ) : (
+        <NoPodcast />
+      )}
+    </View>
   )
 }
 
