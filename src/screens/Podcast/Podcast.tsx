@@ -83,7 +83,7 @@ const Podcast: React.FC = () => {
 
   const handleNavigateToHome = () => {
     // dispatch(resetStateAction())
-    navigation.navigate(NavigationScreen.HOME)
+    navigation.goBack()
   }
 
   return (
