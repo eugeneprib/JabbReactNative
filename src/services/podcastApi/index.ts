@@ -1,7 +1,8 @@
 import { ApiPath, HttpMethod } from 'src/common/enums'
 import { PodcastLoadFilter, PodcastQueryPayload } from 'src/common/types'
 import { Http } from 'src/services/http'
-import { PodcastsApiPath } from './common/enums'
+import { Podcast } from 'src/common/types'
+import { PodcastsApiPath } from 'src/common/enums'
 
 type Constructor = {
   http: Http
@@ -23,6 +24,15 @@ class PodcastApi {
       {
         method: HttpMethod.GET,
         query: payload
+      }
+    )
+  }
+
+  public getAllByUserId(userId: number): Promise<Podcast[]> {
+    return this.#http.load(
+      `${this.#apiPath}${ApiPath.PODCASTS}${PodcastsApiPath.USERS}/${userId}`,
+      {
+        method: HttpMethod.GET
       }
     )
   }

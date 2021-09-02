@@ -3,7 +3,6 @@ import rootReducer from './rootReducer'
 import {
   authApi,
   storage as storageService,
-  userApi,
   podcastApi,
   secureStorage as secureStorageService
 } from 'src/services'
@@ -12,7 +11,6 @@ import { handleError as handleErrorMiddleware } from 'src/middleware'
 const extraArgument = {
   authApi,
   podcastApi,
-  userApi,
   storageService,
   secureStorageService
 }

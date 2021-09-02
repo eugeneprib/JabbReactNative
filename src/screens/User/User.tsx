@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react'
 import { View, Image, TouchableOpacity, Linking, FlatList } from 'react-native'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
+import { useAppSelector } from 'src/hooks'
+import { RootState } from 'src/common/types'
 import { resetUser, loadPodcasts } from 'src/store/actions'
 import { StackNavigationProp } from '@react-navigation/stack'
 import { NavigationScreen } from 'src/common/enums'
@@ -29,19 +31,17 @@ const UserPage: React.FC<Props> = ({ navigation }) => {
     dispatch(resetUser())
   }
 
-  const { currentUser, podcasts } = useSelector(({ auth, user }: any) => ({
-    currentUser: auth.user,
+  const { user, podcasts } = useAppSelector(({ auth, user }: RootState) => ({
+    user: auth.user,
     podcasts: user.podcasts
   }))
 
   useEffect(() => {
-    dispatch(loadPodcasts(currentUser.id))
-  }, [currentUser.id])
+    dispatch(loadPodcasts(Number(user?.id)))
+  }, [user?.id])
 
   const handleOpenMail = async () => {
-    await Linking.openURL(
-      `mailto://${currentUser.email}}&subject=abcdefg&body=body`
-    )
+    await Linking.openURL(`mailto://${user?.email}}&subject=abcdefg&body=body`)
   }
 
   const renderItem = ({ item }: { item: Podcast }) => (
@@ -59,21 +59,21 @@ const UserPage: React.FC<Props> = ({ navigation }) => {
           <Image
             width={118}
             height={118}
-            source={{ uri: currentUser.image?.url }}
+            source={{ uri: user?.image?.url }}
             style={styles.image}
           />
         </View>
         <View style={styles.nameContainer}>
           <Heading
             type={HeadingType.MEDIUM}
-            label={`${currentUser.firstName} ${currentUser.lastName}`}
+            label={`${user?.firstName} ${user?.lastName}`}
           />
           <View style={styles.userContacts}>
             <View style={styles.userInfoItem}>
               <Check width={15} />
               <PlainText
                 style={styles.userInfoItemText}
-                label={currentUser.nickname}
+                label={String(user?.nickname)}
               />
             </View>
             <TouchableOpacity
@@ -84,7 +84,7 @@ const UserPage: React.FC<Props> = ({ navigation }) => {
               <AtMark width={15} />
               <PlainText
                 style={styles.userInfoItemText}
-                label={currentUser.email}
+                label={String(user?.email)}
               />
             </TouchableOpacity>
             <TouchableOpacity
