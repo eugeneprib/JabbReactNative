@@ -19,7 +19,7 @@ import {
   loadEpisodesByPodcastId as loadEpisodesByPodcastIdAction
 } from 'src/store/actions'
 import { Heading, HeadingType, PlainText } from 'src/components'
-import { EpisodeList } from './components'
+import { EpisodeList, NoPodcast } from './components'
 import BackButton from 'src/assets/images/backButton.svg'
 import CircleIcon from 'src/assets/images/circle.svg'
 import styles from './styles'
@@ -49,7 +49,7 @@ const Podcast: React.FC = () => {
     )
   }
 
-  const onHandleLoadingEpisodes = () => {
+  const handleLoadEpisodes = () => {
     if (hasMoreEpisodes) {
       fetchEpisodes({
         offset: episodes.length,
@@ -60,13 +60,13 @@ const Podcast: React.FC = () => {
 
   useEffect(() => {
     dispatch(loadPodcastAction(Number(id)))
-    onHandleLoadingEpisodes()
+    handleLoadEpisodes()
   }, [])
 
   if (isLoading) {
     return (
       <View style={styles.preloaderWrapper}>
-        <ActivityIndicator size={'large'} color="#f3427f" />
+        <ActivityIndicator size="large" color="#f3427f" />
       </View>
     )
   }
@@ -122,23 +122,18 @@ const Podcast: React.FC = () => {
           <View style={styles.episodesContainer}>
             <Heading
               type={HeadingType.MEDIUM}
-              label={`Episodes`}
+              label="Episodes"
               style={styles.episodesContainerTitle}
             />
 
             <EpisodeList
               episodes={episodes}
-              onEndReached={onHandleLoadingEpisodes}
+              onEndReached={handleLoadEpisodes}
             />
           </View>
         </>
       ) : (
-        <View style={styles.nothing}>
-          <Heading
-            type={HeadingType.LARGE}
-            label={'Oops. There is no such podcast'}
-          />
-        </View>
+        <NoPodcast />
       )}
     </View>
   )

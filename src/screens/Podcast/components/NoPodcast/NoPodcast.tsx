@@ -3,15 +3,15 @@ import { View } from 'react-native'
 import { Heading, HeadingType } from 'src/components'
 import styles from './styles'
 
-const NoEpisodes = () => {
+const NoPodcast = () => {
   return (
     <View style={styles.nothing}>
       <Heading
-        type={HeadingType.SMALL}
-        label="Oops. There is no episodes here"
+        type={HeadingType.LARGE}
+        label="Oops. There is no such podcast"
       />
     </View>
   )
 }
 
-export default NoEpisodes
+export default NoPodcast
