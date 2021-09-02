@@ -1,6 +1,15 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet, TextStyle, ViewStyle } from 'react-native'
 
-const styles = StyleSheet.create({
+type Styles = {
+  container: ViewStyle
+  episodeNumberCont: ViewStyle
+  episodeNumber: TextStyle
+  episodeInfo: ViewStyle
+  episodeInfoTitle: ViewStyle
+  episodeInfoDate: TextStyle
+}
+
+const styles = StyleSheet.create<Styles>({
   container: {
     flexDirection: 'row',
     justifyContent: 'space-around',
