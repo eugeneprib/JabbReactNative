@@ -10,19 +10,21 @@ import { PodcastScreenNavigationProp } from '../../common/types'
 import styles from './styles'
 
 type Props = {
-  position: number
   episode: Episode
+  position: number
+  author: string
 }
 
-const EpisodeItem: React.FC<Props> = ({ position, episode }) => {
+const EpisodeItem: React.FC<Props> = ({ episode, position, author }) => {
   const navigation = useNavigation<PodcastScreenNavigationProp>()
 
   const handleNavigateToEpisode = () => {
-    navigation.navigate(NavigationScreen.EPISODE, { id: episode.id })
+    navigation.navigate(NavigationScreen.EPISODE, { author, id: episode.id })
   }
 
   const handleNavigateToEpisodeAndPlay = () => {
     navigation.navigate(NavigationScreen.EPISODE, {
+      author,
       id: episode.id,
       playback: true
     })

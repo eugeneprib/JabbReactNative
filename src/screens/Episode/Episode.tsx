@@ -8,7 +8,11 @@ import {
 import { useDispatch } from 'react-redux'
 import { useAppSelector } from 'src/hooks'
 import { Heading, HeadingType, PlainText } from 'src/components'
-import { loadEpisodePayload, resetEpisodeState } from 'src/store/actions'
+import {
+  loadEpisodePayload,
+  resetEpisodeState,
+  addToRecentlyPlayed
+} from 'src/store/actions'
 import { DataStatus } from 'src/common/enums'
 import BackButton from 'src/assets/images/backButton.svg'
 import DefaultImage from 'src/assets/images/defaultImage.svg'
@@ -16,7 +20,10 @@ import {
   EpisodeScreenNavigationProp,
   EpisodeScreenRouteProp
 } from './common/types'
-import { mapEpisodeToPlayerEpisode } from './helpers'
+import {
+  mapEpisodeToPlayerEpisode,
+  mapEpisodeToRecentlyPlayedEpisode
+} from './helpers'
 import Player from './components/Player'
 import styles from './styles'
 
@@ -35,7 +42,7 @@ const Episode: React.FC<Props> = ({ navigation, route, podcastName }) => {
   const dispatch = useDispatch()
 
   const isLoading = dataStatus === DataStatus.PENDING
-  const { id, playback } = route.params
+  const { id, author, playback } = route.params
 
   useEffect(() => {
     dispatch(loadEpisodePayload(id))
@@ -44,6 +51,13 @@ const Episode: React.FC<Props> = ({ navigation, route, podcastName }) => {
       dispatch(resetEpisodeState())
     }
   }, [id])
+
+  useEffect(() => {
+    if (episode) {
+      const mappedEpisode = mapEpisodeToRecentlyPlayedEpisode(episode, author)
+      dispatch(addToRecentlyPlayed(mappedEpisode))
+    }
+  }, [episode])
 
   const handleBack = () => {
     navigation.goBack()
@@ -96,7 +110,7 @@ const Episode: React.FC<Props> = ({ navigation, route, podcastName }) => {
       <View style={styles.playerWrapper}>
         {episode.record ? (
           <Player
-            episode={mapEpisodeToPlayerEpisode(episode)}
+            episode={mapEpisodeToPlayerEpisode(episode, author)}
             startToPlay={playback}
           />
         ) : (

@@ -145,6 +145,7 @@ const Podcast: React.FC = () => {
             />
             <EpisodeList
               episodes={episodes}
+              author={podcast.user.nickname}
               onEndReached={handleLoadEpisodes}
             />
           </View>

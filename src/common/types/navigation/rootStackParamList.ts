@@ -5,7 +5,11 @@ type RootStackParamList = {
   [NavigationScreen.HOME]: undefined
   [NavigationScreen.MY_PROFILE]: undefined
   [NavigationScreen.PODCAST]: { id: number }
-  [NavigationScreen.EPISODE]: { id: number; playback?: boolean }
+  [NavigationScreen.EPISODE]: {
+    id: number
+    author: string
+    playback?: boolean
+  }
   [NavigationScreen.TO_TABS_NAVIGATOR]: undefined
 }
 

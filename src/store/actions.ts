@@ -10,5 +10,6 @@ export {
 } from './home/actions'
 export {
   loadEpisodePayload,
+  addToRecentlyPlayed,
   resetState as resetEpisodeState
 } from './episode/actions'
