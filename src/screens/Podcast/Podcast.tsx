@@ -25,19 +25,27 @@ import CircleIcon from 'src/assets/images/circle.svg'
 import styles from './styles'
 
 const Podcast: React.FC = () => {
-  const { podcast, episodes, dataStatus, totalCount, hasMoreEpisodes } =
-    useAppSelector(({ podcast }) => ({
-      podcast: podcast.podcast,
-      episodes: podcast.episodes,
-      dataStatus: podcast.dataStatus,
-      totalCount: podcast.totalCount,
-      hasMoreEpisodes: podcast.hasMoreEpisodes
-    }))
+  const {
+    podcast,
+    episodes,
+    dataStatus,
+    totalCount,
+    hasMoreEpisodes,
+    episodesDataStatus
+  } = useAppSelector(({ podcast }) => ({
+    podcast: podcast.podcast,
+    episodes: podcast.episodes,
+    dataStatus: podcast.dataStatus,
+    totalCount: podcast.totalCount,
+    hasMoreEpisodes: podcast.hasMoreEpisodes,
+    episodesDataStatus: podcast.episodesDataStatus
+  }))
 
   const route = useRoute<PodcastScreenRouteProp>()
   const navigation = useNavigation<PodcastScreenNavigationProp>()
 
   const isLoading = dataStatus === DataStatus.PENDING
+  const isEpisodesFetching = episodesDataStatus === DataStatus.PENDING
 
   const dispatch = useDispatch()
 
@@ -67,12 +75,12 @@ const Podcast: React.FC = () => {
     }
   }, [])
 
-  if (isLoading) {
-    return <Spinner wrapperStyle={styles.spinner} />
-  }
-
   const handleNavigateToHome = () => {
     navigation.navigate(NavigationScreen.HOME)
+  }
+
+  if (isLoading) {
+    return <Spinner wrapperStyle={styles.spinner} />
   }
 
   return (
@@ -136,6 +144,7 @@ const Podcast: React.FC = () => {
             <EpisodeList
               episodes={episodes}
               onEndReached={handleLoadEpisodes}
+              isEpisodesFetching={isEpisodesFetching}
             />
           </View>
         </>

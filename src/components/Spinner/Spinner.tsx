@@ -5,7 +5,7 @@ import { SpinnerType, SpinnerSize } from './common/enum'
 import { getStylesByType } from './common/helpers'
 
 type Props = {
-  wrapperStyle: ViewStyle
+  wrapperStyle?: ViewStyle
   type?: SpinnerType
   size?: SpinnerSize
 }
