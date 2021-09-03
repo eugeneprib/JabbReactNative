@@ -12,6 +12,7 @@ type Styles = {
   logOutButton: ViewStyle
   userContacts: ViewStyle
   FlatListContainer: ViewStyle
+  loadingContainer: ViewStyle
 }
 
 const styles = StyleSheet.create<Styles>({
@@ -48,6 +49,13 @@ const styles = StyleSheet.create<Styles>({
   userDataContainer: {
     marginVertical: 40,
     color: '#fff'
+  },
+  loadingContainer: {
+    flexGrow: 1,
+    height: '100%',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   logOutButton: {
     marginTop: 35,

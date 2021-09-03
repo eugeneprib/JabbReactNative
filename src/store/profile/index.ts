@@ -1,4 +1,4 @@
-import { createReducer, createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 import { DataStatus } from 'src/common/enums'
 import { Podcast, User } from 'src/common/types'
 import { loadPodcasts } from './action'

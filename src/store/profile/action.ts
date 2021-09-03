@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { Podcast, AsyncThunkConfig, User } from 'src/common/types'
+import { Podcast, AsyncThunkConfig } from 'src/common/types'
 import { ActionType } from './common'
 
 const loadPodcasts = createAsyncThunk<Podcast[], number, AsyncThunkConfig>(

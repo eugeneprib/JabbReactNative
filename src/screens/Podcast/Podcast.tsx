@@ -14,7 +14,7 @@ import {
   DEFAULT_EPISODES_PAGINATION,
   DEFAULT_EPISODES_LIMIT
 } from './common/constants'
-import { DataStatus, NavigationScreen } from 'src/common/enums'
+import { DataStatus } from 'src/common/enums'
 import {
   PodcastScreenRouteProp,
   PodcastScreenNavigationProp
@@ -82,7 +82,6 @@ const Podcast: React.FC = () => {
   }
 
   const handleNavigateToHome = () => {
-    // dispatch(resetStateAction())
     navigation.goBack()
   }
 

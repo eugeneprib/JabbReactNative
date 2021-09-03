@@ -1,5 +1,5 @@
 export { signIn, getCurrentUser, resetUser } from './auth/actions'
-export { loadPodcasts } from './userProfile/action'
+export { loadPodcasts } from './profile/action'
 export {
   loadPodcast,
   loadEpisodesByPodcastId,
