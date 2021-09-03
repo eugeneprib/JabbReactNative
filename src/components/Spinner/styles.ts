@@ -9,7 +9,6 @@ const styles = StyleSheet.create<Styles>({
   defaultWrapper: {
     flexGrow: 1,
     height: '100%',
-    flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center'
   }
