@@ -80,7 +80,7 @@ const Podcast: React.FC = () => {
   }
 
   if (isLoading) {
-    return <Spinner wrapperStyle={styles.spinner} />
+    return <Spinner />
   }
 
   return (

@@ -30,11 +30,7 @@ const EpisodeList: React.FC<Props> = ({
   }
 
   const renderEmptyComponent = () => {
-    return isEpisodesFetching ? (
-      <Spinner wrapperStyle={styles.emptyComponentSpinnerWrapper} />
-    ) : (
-      <NoEpisodes />
-    )
+    return isEpisodesFetching ? <Spinner /> : <NoEpisodes />
   }
 
   return (

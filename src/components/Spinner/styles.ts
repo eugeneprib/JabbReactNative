@@ -1,17 +1,15 @@
 import { StyleSheet, ViewStyle } from 'react-native'
+import fonts from 'src/styles/fonts'
 
 type Styles = {
-  flatList: ViewStyle
-  flatListFooter: ViewStyle
+  defaultWrapper: ViewStyle
 }
 
 const styles = StyleSheet.create<Styles>({
-  flatList: {
-    flexGrow: 1
-  },
-  flatListFooter: {
-    flex: 1,
-    paddingBottom: 15,
+  defaultWrapper: {
+    flexGrow: 1,
+    height: '100%',
+    flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center'
   }
