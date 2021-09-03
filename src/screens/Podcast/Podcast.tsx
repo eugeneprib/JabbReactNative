@@ -1,13 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { useRoute, useNavigation } from '@react-navigation/native'
-import {
-  View,
-  Image,
-  ImageBackground,
-  ActivityIndicator,
-  TouchableOpacity
-} from 'react-native'
+import { View, Image, ImageBackground, TouchableOpacity } from 'react-native'
 import { useAppSelector } from 'src/hooks'
 import { DEFAULT_IMAGE_BASE64 } from 'src/common/constants/defaultImage'
 import {
@@ -24,7 +18,7 @@ import {
   loadEpisodesByPodcastId as loadEpisodesByPodcastIdAction,
   resetState as resetStateAction
 } from 'src/store/actions'
-import { Heading, HeadingType, PlainText } from 'src/components'
+import { Heading, HeadingType, PlainText, Spinner } from 'src/components'
 import { EpisodeList, NoPodcast } from './components'
 import BackButton from 'src/assets/images/backButton.svg'
 import CircleIcon from 'src/assets/images/circle.svg'
@@ -43,8 +37,8 @@ const Podcast: React.FC = () => {
   const route = useRoute<PodcastScreenRouteProp>()
   const navigation = useNavigation<PodcastScreenNavigationProp>()
 
-  const isLoading = dataStatus === DataStatus.PENDING
-
+  // const isLoading = dataStatus === DataStatus.PENDING
+  const isLoading = true
   const dispatch = useDispatch()
 
   const fetchEpisodes = (pagination = DEFAULT_EPISODES_PAGINATION) => {
@@ -74,11 +68,7 @@ const Podcast: React.FC = () => {
   }, [])
 
   if (isLoading) {
-    return (
-      <View style={styles.preloaderWrapper}>
-        <ActivityIndicator size="large" color="#f3427f" />
-      </View>
-    )
+    return <Spinner />
   }
 
   const handleNavigateToHome = () => {
