@@ -1,4 +1,4 @@
-import { BASE_APP_COLOUR, SECONDARY_APP_COLOUR } from '../constants'
+import { BASE_APP_COLOUR, SECONDARY_APP_COLOUR } from 'src/common/constants'
 import { SpinnerType } from '../enum'
 
 const getStylesByType = (type: SpinnerType): string => {

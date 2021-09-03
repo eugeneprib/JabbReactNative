@@ -1,3 +1,4 @@
+import { BASE_APP_COLOUR, SECONDARY_APP_COLOUR } from 'src/common/constants'
 import { ButtonType } from '../enum'
 import { Styles } from '../types'
 
@@ -6,7 +7,7 @@ const getStylesByType = (type: ButtonType): Styles => {
     case ButtonType.PRIMARY: {
       return {
         touchable: {
-          backgroundColor: '#1E1E1E'
+          backgroundColor: BASE_APP_COLOUR
         },
         text: {
           color: 'white'
@@ -16,7 +17,7 @@ const getStylesByType = (type: ButtonType): Styles => {
     case ButtonType.SECONDARY: {
       return {
         touchable: {
-          borderColor: '#f3427f',
+          borderColor: SECONDARY_APP_COLOUR,
           borderWidth: 2
         },
         text: {
