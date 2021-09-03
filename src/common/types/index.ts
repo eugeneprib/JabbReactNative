@@ -1,10 +1,11 @@
 export type { RootState, AppDispatch, AsyncThunkConfig } from './app'
-export type { RecentlyPlayedEpisode } from './episode'
 export type { Image } from './image'
 export type {
   Episode,
   EpisodeQueryPayload,
-  LoadEpisodesByPodcastIdPayload
+  LoadEpisodesByPodcastIdPayload,
+  PlayerEpisode,
+  RecentlyPlayedEpisode
 } from './episode'
 export type { Podcast, PodcastLoadFilter, PodcastQueryPayload } from './podcast'
 export type { SignResponse } from './sign'
