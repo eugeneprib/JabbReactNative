@@ -1,59 +1,82 @@
-import React from 'react'
-import { View, ImageBackground, TouchableOpacity } from 'react-native'
-import { StackNavigationProp } from '@react-navigation/stack'
-import { NavigationScreen } from 'src/common/enums'
-import { RootStackParamList } from 'src/common/types'
-import { mapEpisodeToPlayerEpisode } from './helpers'
+import React, { useEffect } from 'react'
+import {
+  View,
+  ImageBackground,
+  TouchableOpacity,
+  ActivityIndicator
+} from 'react-native'
+import { useDispatch } from 'react-redux'
+import { useAppSelector } from 'src/hooks'
 import { Heading, HeadingType, PlainText } from 'src/components'
-import Player from './components/Player'
+import {
+  loadEpisodePayload,
+  resetEpisodeState,
+  addToRecentlyPlayed
+} from 'src/store/actions'
+import { DataStatus } from 'src/common/enums'
 import BackButton from 'src/assets/images/backButton.svg'
 import DefaultImage from 'src/assets/images/defaultImage.svg'
+import {
+  EpisodeScreenNavigationProp,
+  EpisodeScreenRouteProp
+} from './common/types'
+import {
+  mapEpisodeToPlayerEpisode,
+  mapEpisodeToRecentlyPlayedEpisode
+} from './helpers'
+import Player from './components/Player'
 import styles from './styles'
-
-const mockedEpisode = {
-  id: 4,
-  name: 'second episode',
-  userId: 1,
-  podcastId: 3,
-  createdAt: '2021-08-28T09:50:06.000Z',
-  updatedAt: '2021-08-28T09:50:06.000Z',
-  description: 'second episode description',
-  type: 'public',
-  imageId: 17,
-  status: 'published',
-  record: {
-    id: 3,
-    fileUrl:
-      'http://res.cloudinary.com/vitaliy-jabber/video/upload/v1630144209/1/qrpust4yx7nbulscxvs2.mp3',
-    fileSize: '13401776.00',
-    episodeId: 4,
-    createdAt: '2021-08-28T09:50:10.000Z',
-    updatedAt: '2021-08-28T09:50:10.000Z',
-    publicId: '1/qrpust4yx7nbulscxvs2'
-  },
-  image: {
-    id: 17,
-    publicId: '1/ypdhtawxc9s6fx5afkl3',
-    url: 'http://res.cloudinary.com/vitaliy-jabber/image/upload/v1630144205/1/ypdhtawxc9s6fx5afkl3.jpg',
-    createdAt: '2021-08-28T09:50:06.000Z',
-    updatedAt: '2021-08-28T09:50:06.000Z'
-  },
-  shownotes: []
-}
-
-type EpisodeScreenNavigationProp = StackNavigationProp<
-  RootStackParamList,
-  NavigationScreen.EPISODE
->
 
 type Props = {
   navigation: EpisodeScreenNavigationProp
-  podcastName?: string
+  route: EpisodeScreenRouteProp
+  podcastName: string
 }
 
-const Episode: React.FC<Props> = ({ navigation, podcastName }) => {
-  const handleBackToPodcast = () => {
-    navigation.replace(NavigationScreen.PODCAST)
+const Episode: React.FC<Props> = ({ navigation, route, podcastName }) => {
+  const { episode, dataStatus } = useAppSelector(({ episode }) => ({
+    episode: episode.data,
+    dataStatus: episode.dataStatus
+  }))
+
+  const dispatch = useDispatch()
+
+  const isLoading = dataStatus === DataStatus.PENDING
+  const { id, author, playback } = route.params
+
+  useEffect(() => {
+    dispatch(loadEpisodePayload(id))
+
+    return () => {
+      dispatch(resetEpisodeState())
+    }
+  }, [id])
+
+  useEffect(() => {
+    if (episode) {
+      const mappedEpisode = mapEpisodeToRecentlyPlayedEpisode(episode, author)
+      dispatch(addToRecentlyPlayed(mappedEpisode))
+    }
+  }, [episode])
+
+  const handleBack = () => {
+    navigation.goBack()
+  }
+
+  if (isLoading) {
+    return (
+      <View style={styles.center}>
+        <ActivityIndicator size="large" color="#f3427f" />
+      </View>
+    )
+  }
+
+  if (!episode) {
+    return (
+      <View style={styles.center}>
+        <PlainText label="Oops, there is no such episode." />
+      </View>
+    )
   }
 
   return (
@@ -62,7 +85,7 @@ const Episode: React.FC<Props> = ({ navigation, podcastName }) => {
         <TouchableOpacity
           style={styles.backButton}
           activeOpacity={0.7}
-          onPress={handleBackToPodcast}
+          onPress={handleBack}
         >
           <BackButton width={40} />
         </TouchableOpacity>
@@ -70,26 +93,26 @@ const Episode: React.FC<Props> = ({ navigation, podcastName }) => {
       </View>
 
       <ImageBackground
-        source={{ uri: mockedEpisode.image?.url }}
+        source={{ uri: episode?.image?.url }}
         resizeMode="cover"
         style={styles.image}
       >
-        {!mockedEpisode.image && <DefaultImage />}
+        {!episode.image && <DefaultImage />}
       </ImageBackground>
 
       <View style={styles.designationBlock}>
-        <Heading
-          label={podcastName ?? mockedEpisode.name}
-          type={HeadingType.LARGE}
-        />
+        <Heading label={podcastName ?? episode.name} type={HeadingType.LARGE} />
         {podcastName && (
-          <PlainText label={mockedEpisode.name} style={styles.episodesName} />
+          <PlainText label={episode.name} style={styles.episodesName} />
         )}
       </View>
 
       <View style={styles.playerWrapper}>
-        {mockedEpisode.record ? (
-          <Player episode={mapEpisodeToPlayerEpisode(mockedEpisode)} />
+        {episode.record ? (
+          <Player
+            episode={mapEpisodeToPlayerEpisode(episode, author)}
+            startToPlay={playback}
+          />
         ) : (
           <PlainText label="There's no any record yet." />
         )}

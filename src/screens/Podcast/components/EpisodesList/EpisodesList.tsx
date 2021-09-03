@@ -9,14 +9,19 @@ import styles from './styles'
 
 type Props = {
   episodes: Episode[]
+  author: string
   onEndReached: () => void
 }
 
-const EpisodeList: React.FC<Props> = ({ episodes, onEndReached }) => {
+const EpisodeList: React.FC<Props> = ({ episodes, author, onEndReached }) => {
   const keyExtractor = (item: Episode) => item.id.toString()
 
   const renderItem = ({ item, index }: RenderItem) => (
-    <EpisodeItem episode={item} position={index + ARRAY_OFFSET} />
+    <EpisodeItem
+      episode={item}
+      author={author}
+      position={index + ARRAY_OFFSET}
+    />
   )
 
   return (
