@@ -1,5 +1,4 @@
 import { StyleSheet, ViewStyle } from 'react-native'
-import fonts from 'src/styles/fonts'
 
 type Styles = {
   defaultWrapper: ViewStyle
