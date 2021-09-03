@@ -37,8 +37,8 @@ const Podcast: React.FC = () => {
   const route = useRoute<PodcastScreenRouteProp>()
   const navigation = useNavigation<PodcastScreenNavigationProp>()
 
-  // const isLoading = dataStatus === DataStatus.PENDING
-  const isLoading = true
+  const isLoading = dataStatus === DataStatus.PENDING
+
   const dispatch = useDispatch()
 
   const fetchEpisodes = (pagination = DEFAULT_EPISODES_PAGINATION) => {
@@ -68,11 +68,10 @@ const Podcast: React.FC = () => {
   }, [])
 
   if (isLoading) {
-    return <Spinner />
+    return <Spinner wrapperStyle={styles.spinner} />
   }
 
   const handleNavigateToHome = () => {
-    // dispatch(resetStateAction())
     navigation.navigate(NavigationScreen.HOME)
   }
 

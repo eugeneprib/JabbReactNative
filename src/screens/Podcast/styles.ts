@@ -1,6 +1,7 @@
 import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from 'react-native'
 
 type Styles = {
+  spinner: ViewStyle
   container: ViewStyle
   podcastBackgroundWrapper: ViewStyle
   podcastBackground: ViewStyle
@@ -21,6 +22,13 @@ type Styles = {
 }
 
 const styles = StyleSheet.create<Styles>({
+  spinner: {
+    flexGrow: 1,
+    height: '100%',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
   container: {
     flexGrow: 1,
     flexDirection: 'column',
