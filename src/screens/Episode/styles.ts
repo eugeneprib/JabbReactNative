@@ -2,6 +2,7 @@ import { StyleSheet, TextStyle, ViewStyle } from 'react-native'
 
 type Styles = {
   container: ViewStyle
+  center: ViewStyle
   header: ViewStyle
   backButton: ViewStyle
   headerText: TextStyle
@@ -18,6 +19,12 @@ const styles = StyleSheet.create<Styles>({
     alignItems: 'center',
     padding: 25,
     position: 'relative'
+  },
+  center: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 25
   },
   header: {
     flex: 0.1,

@@ -16,7 +16,7 @@ import {
 import {
   loadPodcast as loadPodcastAction,
   loadEpisodesByPodcastId as loadEpisodesByPodcastIdAction,
-  resetState as resetStateAction
+  resetPodcastState as resetPodcastStateAction
 } from 'src/store/actions'
 import { Heading, HeadingType, PlainText, Spinner } from 'src/components'
 import { EpisodeList, NoPodcast } from './components'
@@ -71,7 +71,7 @@ const Podcast: React.FC = () => {
     dispatch(loadPodcastAction(Number(route.params.id)))
     handleLoadEpisodes()
     return () => {
-      dispatch(resetStateAction())
+      dispatch(resetPodcastStateAction())
     }
   }, [])
 
@@ -143,6 +143,7 @@ const Podcast: React.FC = () => {
             />
             <EpisodeList
               episodes={episodes}
+              author={podcast.user.nickname}
               onEndReached={handleLoadEpisodes}
               isEpisodesFetching={isEpisodesFetching}
             />

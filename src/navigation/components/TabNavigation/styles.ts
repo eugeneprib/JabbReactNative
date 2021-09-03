@@ -10,7 +10,7 @@ const styles = StyleSheet.create<Styles>({
   viewContainer: { alignItems: 'center', flexDirection: 'row' },
   textNavigation: { color: '#000', marginLeft: 10, fontSize: 12 },
   textNavigationWithOpacity: {
-    color: '#00000066',
+    color: '#000',
     marginLeft: 10,
     fontSize: 12
   }

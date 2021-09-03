@@ -10,19 +10,25 @@ import { Spinner } from 'src/components'
 
 type Props = {
   episodes: Episode[]
+  author: string
   onEndReached: () => void
   isEpisodesFetching: boolean
 }
 
 const EpisodeList: React.FC<Props> = ({
   episodes,
+  author,
   onEndReached,
   isEpisodesFetching = false
 }) => {
   const keyExtractor = (item: Episode) => item.id.toString()
 
   const renderItem = ({ item, index }: RenderItem) => (
-    <EpisodeItem episode={item} position={index + ARRAY_OFFSET} />
+    <EpisodeItem
+      episode={item}
+      author={author}
+      position={index + ARRAY_OFFSET}
+    />
   )
 
   const renderFooterComponent = () => {
