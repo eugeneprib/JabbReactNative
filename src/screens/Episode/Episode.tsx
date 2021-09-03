@@ -7,7 +7,7 @@ import {
 } from 'react-native'
 import { useDispatch } from 'react-redux'
 import { useAppSelector } from 'src/hooks'
-import { Heading, HeadingType, PlainText } from 'src/components'
+import { Heading, HeadingType, PlainText, Spinner } from 'src/components'
 import {
   loadEpisodePayload,
   resetEpisodeState,
@@ -64,11 +64,7 @@ const Episode: React.FC<Props> = ({ navigation, route, podcastName }) => {
   }
 
   if (isLoading) {
-    return (
-      <View style={styles.center}>
-        <ActivityIndicator size="large" color="#f3427f" />
-      </View>
-    )
+    return <Spinner />
   }
 
   if (!episode) {
