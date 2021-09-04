@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react'
 import { ScrollView, View } from 'react-native'
+import { useNavigation } from '@react-navigation/core'
 import { useDispatch } from 'react-redux'
 import { Heading, HeadingType, PlainText } from 'src/components'
+import { NavigationScreen } from 'src/common/enums'
 import { useAppSelector } from 'src/hooks'
 import {
   loadSuggestedPodcasts,
@@ -38,6 +40,12 @@ const Home: React.FC = () => {
     dispatch(loadRecentlyPlayedEpisodes())
   }, [])
 
+  const navigation = useNavigation()
+
+  const handleNavigateProfile = () => {
+    navigation.navigate(NavigationScreen.MY_PROFILE)
+  }
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.header}>
@@ -52,7 +60,11 @@ const Home: React.FC = () => {
             style={styles.headerText}
           />
         </View>
-        <UserAvatar source={user?.image?.url} style={styles.profile} />
+        <UserAvatar
+          source={user?.image?.url}
+          style={styles.profile}
+          onPress={handleNavigateProfile}
+        />
       </View>
       {hasSuggestedPodcasts && (
         <View style={styles.block}>

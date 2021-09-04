@@ -81,7 +81,7 @@ const Podcast: React.FC = () => {
     )
   }
 
-  const handleNavigateHome = () => {
+  const handleNavigateBack = () => {
     navigation.goBack()
   }
 
@@ -96,7 +96,7 @@ const Podcast: React.FC = () => {
               style={styles.podcastBackground}
             >
               <TouchableOpacity
-                onPress={handleNavigateHome}
+                onPress={handleNavigateBack}
                 style={styles.backButton}
                 activeOpacity={0.7}
               >
