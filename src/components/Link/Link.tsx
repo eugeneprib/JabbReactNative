@@ -7,6 +7,7 @@ import {
   TouchableOpacityProps,
   TextStyle
 } from 'react-native'
+import { ACTIVE_OPACITY } from 'src/common/constants'
 import styles from './styles'
 
 type Props = {
@@ -27,7 +28,11 @@ const Link: React.FC<Props> = ({ label, url, textStyle, ...props }) => {
   }, [url])
 
   return (
-    <TouchableOpacity {...props} onPress={handlePress}>
+    <TouchableOpacity
+      {...props}
+      activeOpacity={ACTIVE_OPACITY}
+      onPress={handlePress}
+    >
       <Text style={[styles.text, textStyle]}>{label}</Text>
     </TouchableOpacity>
   )

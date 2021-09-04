@@ -5,6 +5,7 @@ import {
   ImageBackground,
   TouchableOpacity
 } from 'react-native'
+import { ACTIVE_OPACITY } from 'src/common/constants'
 import { Heading, HeadingType, PlainText } from 'src/components'
 import styles from './styles'
 
@@ -25,7 +26,7 @@ const PopularSingleCard: React.FC<Props> = ({
 }) => {
   return (
     <TouchableOpacity
-      activeOpacity={0.7}
+      activeOpacity={ACTIVE_OPACITY}
       style={[styles.container, style]}
       onPress={onPress}
     >
