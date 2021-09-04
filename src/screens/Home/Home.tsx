@@ -1,12 +1,16 @@
 import React, { useEffect } from 'react'
 import { ScrollView, View } from 'react-native'
 import { useDispatch } from 'react-redux'
+import { useNavigation } from '@react-navigation/native'
+import { NavigationScreen } from 'src/common/enums'
 import { Heading, HeadingType, PlainText } from 'src/components'
 import { useAppSelector } from 'src/hooks'
 import {
   loadSuggestedPodcasts,
-  loadRecentlyPlayedEpisodes
+  loadRecentlyPlayedEpisodes,
+  loadPopularEpisodes
 } from 'src/store/actions'
+import { PodcastScreenNavigationProp } from '../Podcast/common/types'
 import {
   sliceRecentlyPlayedEpisodes,
   sliceSuggestedPodcasts
@@ -20,15 +24,16 @@ import {
 import { styles } from './styles'
 
 const Home: React.FC = () => {
-  const { user, suggestedPodcasts, recentlyPlayedEpisodes } = useAppSelector(
-    ({ auth, home }) => ({
+  const { user, suggestedPodcasts, recentlyPlayedEpisodes, popularEpisodes } =
+    useAppSelector(({ auth, home }) => ({
       user: auth.user,
       suggestedPodcasts: home.suggestedPodcasts,
-      recentlyPlayedEpisodes: home.recentlyPlayedEpisodes
-    })
-  )
+      recentlyPlayedEpisodes: home.recentlyPlayedEpisodes,
+      popularEpisodes: home.popular
+    }))
 
   const dispatch = useDispatch()
+  const navigation = useNavigation<PodcastScreenNavigationProp>()
 
   const hasSuggestedPodcasts = Boolean(suggestedPodcasts.length)
   const hasRecentlyPlayedEpisodes = Boolean(recentlyPlayedEpisodes.length)
@@ -36,7 +41,12 @@ const Home: React.FC = () => {
   useEffect(() => {
     dispatch(loadSuggestedPodcasts())
     dispatch(loadRecentlyPlayedEpisodes())
+    dispatch(loadPopularEpisodes())
   }, [])
+
+  const handleNavigateToEpisode = (author: string, id: number) => {
+    navigation.navigate(NavigationScreen.EPISODE, { author, id })
+  }
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
@@ -82,17 +92,17 @@ const Home: React.FC = () => {
       <View style={styles.block}>
         <PlainText label="Popular Singles" style={styles.title} />
         <View style={styles.popular}>
-          <PopularSingleCard
-            title="About Knowing Nothing"
-            author="John Snow"
-            source="http://res.cloudinary.com/hmqu8gtpn/image/upload/v1629360713/19/swkh7sxam77huzrowebb.jpg"
-            style={styles.popularFirst}
-          />
-          <PopularSingleCard
-            title="The Last of Us"
-            author="Eugenius"
-            source="http://res.cloudinary.com/hmqu8gtpn/image/upload/v1629475407/2/binrglfxwxztrxjkcoap.png"
-          />
+          {popularEpisodes.map((episode, index) => (
+            <PopularSingleCard
+              id={episode.id}
+              position={index}
+              key={episode.id}
+              title={episode.name}
+              author="author here" //fix when change backend
+              source={episode.image?.url}
+              onPress={handleNavigateToEpisode}
+            />
+          ))}
         </View>
       </View>
     </ScrollView>

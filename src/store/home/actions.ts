@@ -3,7 +3,8 @@ import { StorageKey } from 'src/common/enums'
 import {
   AsyncThunkConfig,
   PodcastQueryPayload,
-  RecentlyPlayedEpisode
+  RecentlyPlayedEpisode,
+  Episode
 } from 'src/common/types'
 import { ActionType } from './common'
 
@@ -32,4 +33,19 @@ const loadRecentlyPlayedEpisodes = createAsyncThunk<
   return episodesAsJson ? JSON.parse(episodesAsJson) : []
 })
 
-export { loadSuggestedPodcasts, loadRecentlyPlayedEpisodes }
+const loadPopularEpisodes = createAsyncThunk<
+  Episode[],
+  undefined,
+  AsyncThunkConfig
+>(ActionType.LOAD_POPULAR, async (_args, { extra }) => {
+  const { episodeApi } = extra
+  const episodes = await episodeApi.getPopular()
+
+  return episodes
+})
+
+export {
+  loadSuggestedPodcasts,
+  loadRecentlyPlayedEpisodes,
+  loadPopularEpisodes
+}

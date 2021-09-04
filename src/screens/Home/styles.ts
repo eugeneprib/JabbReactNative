@@ -11,7 +11,6 @@ type Styles = {
   profile: ViewStyle
   recentlyPlayedCard: ViewStyle
   popular: ViewStyle
-  popularFirst: ImageStyle
 }
 
 const styles = StyleSheet.create<Styles>({
@@ -54,10 +53,8 @@ const styles = StyleSheet.create<Styles>({
   popular: {
     marginTop: 10,
     flexDirection: 'row',
-    justifyContent: 'space-between'
-  },
-  popularFirst: {
-    marginRight: 15
+    justifyContent: 'space-between',
+    flexWrap: 'wrap'
   }
 })
 
