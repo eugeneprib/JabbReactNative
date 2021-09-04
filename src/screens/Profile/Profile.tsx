@@ -115,7 +115,7 @@ const Profile: React.FC = () => {
 
       <View style={styles.userDataContainer}>
         <Heading type={HeadingType.MEDIUM} label="Podcasts" />
-        {!podcasts ? (
+        {podcasts ? (
           <FlatList
             data={podcasts}
             renderItem={renderItem}
