@@ -43,9 +43,10 @@ const Profile: React.FC = () => {
     return null
   }
 
+  const hasUser = Boolean(user)
   const isLoading = dataStatus === DataStatus.PENDING
 
-  if (isLoading) {
+  if (!hasUser && isLoading) {
     return (
       <View style={styles.loadingContainer}>
         <ActivityIndicator size="large" color="#f3427f" />
