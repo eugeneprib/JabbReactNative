@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { useRoute, useNavigation } from '@react-navigation/native'
 import {
   View,
   Image,
@@ -8,6 +7,7 @@ import {
   ActivityIndicator,
   TouchableOpacity
 } from 'react-native'
+import { useRoute, useNavigation } from '@react-navigation/native'
 import { useAppSelector } from 'src/hooks'
 import { DEFAULT_IMAGE_BASE64 } from 'src/common/constants/defaultImage'
 import {
@@ -25,6 +25,7 @@ import {
   resetPodcastState as resetPodcastStateAction
 } from 'src/store/actions'
 import { Heading, HeadingType, PlainText } from 'src/components'
+import { ACTIVE_OPACITY } from 'src/common/constants'
 import { EpisodeList, NoPodcast } from './components'
 import BackButton from 'src/assets/images/backButton.svg'
 import CircleIcon from 'src/assets/images/circle.svg'
@@ -98,7 +99,7 @@ const Podcast: React.FC = () => {
               <TouchableOpacity
                 onPress={handleNavigateToHome}
                 style={styles.backButton}
-                activeOpacity={0.7}
+                activeOpacity={ACTIVE_OPACITY}
               >
                 <BackButton width={40} />
               </TouchableOpacity>
@@ -146,6 +147,7 @@ const Podcast: React.FC = () => {
             <EpisodeList
               episodes={episodes}
               author={podcast.user.nickname}
+              podcast={podcast.name}
               onEndReached={handleLoadEpisodes}
             />
           </View>
