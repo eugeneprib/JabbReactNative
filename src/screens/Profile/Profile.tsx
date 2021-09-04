@@ -28,10 +28,10 @@ const Profile: React.FC = () => {
   }
 
   const { user, podcasts, dataStatus } = useAppSelector(
-    ({ auth, user }: RootState) => ({
+    ({ auth, profile }: RootState) => ({
       user: auth.user,
-      podcasts: user.podcasts,
-      dataStatus: user.dataStatus
+      podcasts: profile.podcasts,
+      dataStatus: profile.dataStatus
     })
   )
 
@@ -43,10 +43,9 @@ const Profile: React.FC = () => {
     return null
   }
 
-  const hasUser = Boolean(user)
   const isLoading = dataStatus === DataStatus.PENDING
 
-  if (!hasUser && isLoading) {
+  if (isLoading) {
     return (
       <View style={styles.loadingContainer}>
         <ActivityIndicator size="large" color="#f3427f" />

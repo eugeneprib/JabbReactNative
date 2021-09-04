@@ -6,17 +6,15 @@ import { loadPodcasts } from './action'
 type State = {
   dataStatus: DataStatus
   podcasts: Podcast[]
-  user: User | null
 }
 
 const initialState: State = {
   dataStatus: DataStatus.IDLE,
-  podcasts: [],
-  user: null
+  podcasts: []
 }
 
-const userSlice = createSlice({
-  name: 'user',
+const profileSlice = createSlice({
+  name: 'profile',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
@@ -33,6 +31,6 @@ const userSlice = createSlice({
   }
 })
 
-const reducer = userSlice.reducer
+const reducer = profileSlice.reducer
 
 export { reducer }
