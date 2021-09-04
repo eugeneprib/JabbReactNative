@@ -95,6 +95,7 @@ const styles = StyleSheet.create<Styles>({
   },
   episodesContainerTitle: {
     color: '#444',
+    fontSize: 20,
     marginBottom: 20
   },
   backButton: {
