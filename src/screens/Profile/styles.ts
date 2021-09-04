@@ -13,12 +13,18 @@ type Styles = {
   userContacts: ViewStyle
   FlatListContainer: ViewStyle
   loadingContainer: ViewStyle
+  center: ViewStyle
 }
 
 const styles = StyleSheet.create<Styles>({
   container: {
     padding: 20,
     flex: 1
+  },
+  center: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 50
   },
   userInfoContaienr: {
     marginTop: 25,

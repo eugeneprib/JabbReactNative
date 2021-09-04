@@ -115,12 +115,18 @@ const Profile: React.FC = () => {
 
       <View style={styles.userDataContainer}>
         <Heading type={HeadingType.MEDIUM} label="Podcasts" />
-        <FlatList
-          data={podcasts}
-          renderItem={renderItem}
-          keyExtractor={(item) => item.name}
-          contentContainerStyle={styles.FlatListContainer}
-        />
+        {!podcasts ? (
+          <FlatList
+            data={podcasts}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.name}
+            contentContainerStyle={styles.FlatListContainer}
+          />
+        ) : (
+          <View style={styles.center}>
+            <PlainText label="Oops! There's nothing here." />
+          </View>
+        )}
       </View>
     </View>
   )
