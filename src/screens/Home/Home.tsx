@@ -42,7 +42,7 @@ const Home: React.FC = () => {
 
   const navigation = useNavigation()
 
-  const handleNavigateProfile = () => {
+  const handleNavigateToProfile = () => {
     navigation.navigate(NavigationScreen.MY_PROFILE)
   }
 
@@ -63,7 +63,7 @@ const Home: React.FC = () => {
         <UserAvatar
           source={user?.image?.url}
           style={styles.profile}
-          onPress={handleNavigateProfile}
+          onPress={handleNavigateToProfile}
         />
       </View>
       {hasSuggestedPodcasts && (
