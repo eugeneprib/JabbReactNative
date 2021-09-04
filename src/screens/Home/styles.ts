@@ -20,7 +20,7 @@ const styles = StyleSheet.create<Styles>({
   },
   title: {
     marginBottom: 5,
-    fontSize: 15,
+    fontSize: 18,
     color: '#575757'
   },
   placeholder: {

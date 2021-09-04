@@ -7,6 +7,6 @@ interface Styles {
 export default StyleSheet.create<Styles>({
   container: {
     height: '100%',
-    backgroundColor: '#fff'
+    backgroundColor: '#f3f3f3'
   }
 })
