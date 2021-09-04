@@ -44,7 +44,7 @@ const Podcast: React.FC = () => {
   const route = useRoute<PodcastScreenRouteProp>()
   const navigation = useNavigation<PodcastScreenNavigationProp>()
 
-  const isLoading = dataStatus === DataStatus.PENDING
+  const isPodcastFetching = dataStatus === DataStatus.PENDING
   const isEpisodesFetching = episodesDataStatus === DataStatus.PENDING
 
   const dispatch = useDispatch()
@@ -79,7 +79,7 @@ const Podcast: React.FC = () => {
     navigation.navigate(NavigationScreen.HOME)
   }
 
-  if (isLoading) {
+  if (isPodcastFetching) {
     return <Spinner />
   }
 
