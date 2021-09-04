@@ -43,8 +43,6 @@ const Podcast: React.FC = () => {
   const route = useRoute<PodcastScreenRouteProp>()
   const navigation = useNavigation<PodcastScreenNavigationProp>()
 
-  const DEFAULT_PODCAST_BACKGROUND = 'http://hexcolor16.com/eeeeee-200x200.png'
-
   const isLoading = dataStatus === DataStatus.PENDING
 
   const dispatch = useDispatch()
@@ -93,7 +91,7 @@ const Podcast: React.FC = () => {
         <>
           <View style={styles.podcastBackgroundWrapper}>
             <ImageBackground
-              source={{ uri: podcast.cover?.url ?? DEFAULT_PODCAST_BACKGROUND }}
+              source={{ uri: podcast.cover?.url ?? DEFAULT_IMAGE_BASE64 }}
               resizeMode="cover"
               style={styles.podcastBackground}
             >
