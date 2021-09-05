@@ -6,7 +6,7 @@ import {
   TouchableOpacity
 } from 'react-native'
 import { Heading, HeadingType, PlainText } from 'src/components'
-import { EVEN_RATIO } from './common/constants'
+import { DIVISION_REMAINDER, EVEN_RATIO } from './common/constants'
 import styles from './styles'
 
 type Props = {
@@ -28,7 +28,7 @@ const PopularSingleCard: React.FC<Props> = ({
   style,
   onPress
 }) => {
-  const isCardRight = Boolean(position % EVEN_RATIO !== 0)
+  const isCardRight = Boolean(position % EVEN_RATIO !== DIVISION_REMAINDER)
 
   const handleNavigateToEpisode = () => {
     onPress(author, id)

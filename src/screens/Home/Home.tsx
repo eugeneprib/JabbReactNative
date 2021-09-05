@@ -11,7 +11,7 @@ import {
   loadRecentlyPlayedEpisodes,
   loadPopularEpisodes
 } from 'src/store/actions'
-import { PodcastScreenNavigationProp } from '../Podcast/common/types'
+import { HomeScreenNavigationProp } from './common/types'
 import {
   sliceRecentlyPlayedEpisodes,
   sliceSuggestedPodcasts
@@ -40,7 +40,7 @@ const Home: React.FC = () => {
   }))
 
   const dispatch = useDispatch()
-  const navigation = useNavigation<PodcastScreenNavigationProp>()
+  const navigation = useNavigation<HomeScreenNavigationProp>()
 
   const hasSuggestedPodcasts = Boolean(suggestedPodcasts.length)
   const hasRecentlyPlayedEpisodes = Boolean(recentlyPlayedEpisodes.length)
@@ -110,7 +110,7 @@ const Home: React.FC = () => {
               position={index}
               key={episode.id}
               title={episode.name}
-              author="author here" //fix when change backend
+              author={'user author'} //{episode.user.nickname}
               source={episode.image?.url}
               onPress={handleNavigateToEpisode}
             />

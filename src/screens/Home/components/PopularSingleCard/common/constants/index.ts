@@ -1,3 +1,4 @@
 const EVEN_RATIO = 2
+const DIVISION_REMAINDER = 0
 
-export { EVEN_RATIO }
+export { EVEN_RATIO, DIVISION_REMAINDER }
