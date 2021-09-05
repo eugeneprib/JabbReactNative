@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
 import { ScrollView, View } from 'react-native'
 import { useDispatch } from 'react-redux'
-import { Heading, HeadingType, PlainText } from 'src/components'
+import { DataStatus } from 'src/common/enums'
+import { Heading, HeadingType, PlainText, Spinner } from 'src/components'
 import { useAppSelector } from 'src/hooks'
 import {
   loadSuggestedPodcasts,
@@ -20,23 +21,28 @@ import {
 import { styles } from './styles'
 
 const Home: React.FC = () => {
-  const { user, suggestedPodcasts, recentlyPlayedEpisodes } = useAppSelector(
-    ({ auth, home }) => ({
+  const { user, suggestedPodcasts, recentlyPlayedEpisodes, dataStatus } =
+    useAppSelector(({ auth, home }) => ({
       user: auth.user,
       suggestedPodcasts: home.suggestedPodcasts,
-      recentlyPlayedEpisodes: home.recentlyPlayedEpisodes
-    })
-  )
+      recentlyPlayedEpisodes: home.recentlyPlayedEpisodes,
+      dataStatus: home.dataStatus
+    }))
 
   const dispatch = useDispatch()
 
   const hasSuggestedPodcasts = Boolean(suggestedPodcasts.length)
   const hasRecentlyPlayedEpisodes = Boolean(recentlyPlayedEpisodes.length)
+  const isLoading = dataStatus === DataStatus.PENDING
 
   useEffect(() => {
     dispatch(loadSuggestedPodcasts())
     dispatch(loadRecentlyPlayedEpisodes())
   }, [])
+
+  if (isLoading) {
+    return <Spinner />
+  }
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
