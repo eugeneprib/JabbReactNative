@@ -1,13 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { useRoute, useNavigation } from '@react-navigation/native'
-import {
-  View,
-  Image,
-  ImageBackground,
-  ActivityIndicator,
-  TouchableOpacity
-} from 'react-native'
+import { View, Image, ImageBackground, TouchableOpacity } from 'react-native'
 import { useAppSelector } from 'src/hooks'
 import { DEFAULT_IMAGE_BASE64 } from 'src/common/constants/defaultImage'
 import {
@@ -24,26 +18,34 @@ import {
   loadEpisodesByPodcastId as loadEpisodesByPodcastIdAction,
   resetPodcastState as resetPodcastStateAction
 } from 'src/store/actions'
-import { Heading, HeadingType, PlainText } from 'src/components'
+import { Heading, HeadingType, PlainText, Spinner } from 'src/components'
 import { EpisodeList, NoPodcast } from './components'
 import BackButton from 'src/assets/images/backButton.svg'
 import CircleIcon from 'src/assets/images/circle.svg'
 import styles from './styles'
 
 const Podcast: React.FC = () => {
-  const { podcast, episodes, dataStatus, totalCount, hasMoreEpisodes } =
-    useAppSelector(({ podcast }) => ({
-      podcast: podcast.podcast,
-      episodes: podcast.episodes,
-      dataStatus: podcast.dataStatus,
-      totalCount: podcast.totalCount,
-      hasMoreEpisodes: podcast.hasMoreEpisodes
-    }))
+  const {
+    podcast,
+    episodes,
+    dataStatus,
+    totalCount,
+    hasMoreEpisodes,
+    episodesDataStatus
+  } = useAppSelector(({ podcast }) => ({
+    podcast: podcast.podcast,
+    episodes: podcast.episodes,
+    dataStatus: podcast.dataStatus,
+    totalCount: podcast.totalCount,
+    hasMoreEpisodes: podcast.hasMoreEpisodes,
+    episodesDataStatus: podcast.episodesDataStatus
+  }))
 
   const route = useRoute<PodcastScreenRouteProp>()
   const navigation = useNavigation<PodcastScreenNavigationProp>()
 
-  const isLoading = dataStatus === DataStatus.PENDING
+  const isPodcastFetching = dataStatus === DataStatus.PENDING
+  const isEpisodesFetching = episodesDataStatus === DataStatus.PENDING
 
   const dispatch = useDispatch()
 
@@ -73,16 +75,12 @@ const Podcast: React.FC = () => {
     }
   }, [])
 
-  if (isLoading) {
-    return (
-      <View style={styles.preloaderWrapper}>
-        <ActivityIndicator size="large" color="#f3427f" />
-      </View>
-    )
-  }
-
   const handleNavigateBack = () => {
     navigation.goBack()
+  }
+
+  if (isPodcastFetching) {
+    return <Spinner />
   }
 
   return (
@@ -147,6 +145,7 @@ const Podcast: React.FC = () => {
               episodes={episodes}
               author={podcast.user.nickname}
               onEndReached={handleLoadEpisodes}
+              isEpisodesFetching={isEpisodesFetching}
             />
           </View>
         </>

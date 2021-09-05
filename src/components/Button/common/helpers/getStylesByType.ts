@@ -1,3 +1,4 @@
+import { AppColor } from 'src/common/enums'
 import { ButtonType } from '../enum'
 import { Styles } from '../types'
 
@@ -6,7 +7,7 @@ const getStylesByType = (type: ButtonType): Styles => {
     case ButtonType.PRIMARY: {
       return {
         touchable: {
-          backgroundColor: '#1E1E1E'
+          backgroundColor: AppColor.PRIMARY
         },
         text: {
           color: 'white'
@@ -16,7 +17,7 @@ const getStylesByType = (type: ButtonType): Styles => {
     case ButtonType.SECONDARY: {
       return {
         touchable: {
-          borderColor: '#f3427f',
+          borderColor: AppColor.SECONDARY,
           borderWidth: 2
         },
         text: {
