@@ -3,7 +3,8 @@ import { ScrollView, View } from 'react-native'
 import { useDispatch } from 'react-redux'
 import { useNavigation } from '@react-navigation/native'
 import { NavigationScreen } from 'src/common/enums'
-import { Heading, HeadingType, PlainText } from 'src/components'
+import { Heading, HeadingType, PlainText, Spinner } from 'src/components'
+import { DataStatus } from 'src/common/enums'
 import { useAppSelector } from 'src/hooks'
 import {
   loadSuggestedPodcasts,
@@ -24,19 +25,26 @@ import {
 import { styles } from './styles'
 
 const Home: React.FC = () => {
-  const { user, suggestedPodcasts, recentlyPlayedEpisodes, popularEpisodes } =
-    useAppSelector(({ auth, home }) => ({
-      user: auth.user,
-      suggestedPodcasts: home.suggestedPodcasts,
-      recentlyPlayedEpisodes: home.recentlyPlayedEpisodes,
-      popularEpisodes: home.popular
-    }))
+  const {
+    user,
+    suggestedPodcasts,
+    recentlyPlayedEpisodes,
+    dataStatus,
+    popularEpisodes
+  } = useAppSelector(({ auth, home }) => ({
+    user: auth.user,
+    suggestedPodcasts: home.suggestedPodcasts,
+    recentlyPlayedEpisodes: home.recentlyPlayedEpisodes,
+    popularEpisodes: home.popular,
+    dataStatus: home.dataStatus
+  }))
 
   const dispatch = useDispatch()
   const navigation = useNavigation<PodcastScreenNavigationProp>()
 
   const hasSuggestedPodcasts = Boolean(suggestedPodcasts.length)
   const hasRecentlyPlayedEpisodes = Boolean(recentlyPlayedEpisodes.length)
+  const isLoading = dataStatus === DataStatus.PENDING
 
   useEffect(() => {
     dispatch(loadSuggestedPodcasts())
@@ -46,6 +54,10 @@ const Home: React.FC = () => {
 
   const handleNavigateToEpisode = (author: string, id: number) => {
     navigation.navigate(NavigationScreen.EPISODE, { author, id })
+  }
+
+  if (isLoading) {
+    return <Spinner />
   }
 
   return (
