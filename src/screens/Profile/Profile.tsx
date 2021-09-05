@@ -12,7 +12,7 @@ import PodcastItem from './components'
 import { useAppSelector } from 'src/hooks'
 import { RootState } from 'src/common/types'
 import { resetUser, loadPodcasts } from 'src/store/actions'
-import { Heading, HeadingType, PlainText } from 'src/components'
+import { Heading, HeadingType, PlainText, Spinner } from 'src/components'
 import { Podcast } from 'src/common/types'
 import { DataStatus } from 'src/common/enums'
 import Check from 'src/assets/images/checkMark.svg'
@@ -47,11 +47,7 @@ const Profile: React.FC = () => {
   const isLoading = dataStatus === DataStatus.PENDING
 
   if (!hasUser && isLoading) {
-    return (
-      <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="#f3427f" />
-      </View>
-    )
+    return <Spinner />
   }
 
   const handleOpenMail = async () => {
