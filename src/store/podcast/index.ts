@@ -45,10 +45,7 @@ const podcastSlice = createSlice({
       state.episodes = state.episodes.concat(action.payload.results)
       state.totalCount = action.payload.totalCount
 
-      if (
-        state.episodes.length === state.totalCount ||
-        state.episodes.length > state.totalCount
-      ) {
+      if (state.episodes.length >= state.totalCount) {
         state.hasMoreEpisodes = false
       }
     })

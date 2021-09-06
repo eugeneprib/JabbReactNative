@@ -13,3 +13,4 @@ export {
   addToRecentlyPlayed,
   resetState as resetEpisodeState
 } from './episode/actions'
+export { loadPodcasts, loadMorePodcasts } from './search/actions'
