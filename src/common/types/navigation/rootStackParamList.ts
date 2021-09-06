@@ -11,6 +11,7 @@ type RootStackParamList = {
     playback?: boolean
   }
   [NavigationScreen.TO_TABS_NAVIGATOR]: undefined
+  [NavigationScreen.SEARCH]: undefined
 }
 
 export type { RootStackParamList }
