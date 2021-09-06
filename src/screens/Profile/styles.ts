@@ -8,6 +8,7 @@ type Styles = {
   userInfoItem: ViewStyle
   userInfoItemText: TextStyle
   userInfoItemTextDelete: TextStyle
+  podcastsTitle: TextStyle
   userDataContainer: ViewStyle
   logOutButton: ViewStyle
   userContacts: ViewStyle
@@ -25,6 +26,10 @@ const styles = StyleSheet.create<Styles>({
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 50
+  },
+  podcastsTitle: {
+    fontSize: 18,
+    color: '#090909'
   },
   userInfoContaienr: {
     marginTop: 25,

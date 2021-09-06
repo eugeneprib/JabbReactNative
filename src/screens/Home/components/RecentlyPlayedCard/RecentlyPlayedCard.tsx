@@ -4,14 +4,17 @@ import { useNavigation } from '@react-navigation/native'
 import { Heading, HeadingType, PlainText } from 'src/components'
 import { getFormattedDate, DateFormatType } from 'src/helpers'
 import { NavigationScreen } from 'src/common/enums'
+import { ACTIVE_OPACITY } from 'src/common/constants'
 import { HomeScreenNavigationProp } from 'src/screens/Home/common/types'
 import TimeIcon from 'src/assets/images/time.svg'
 import styles from './styles'
 
 type Props = {
   id: number
+  position: number
   title: string
   author: string
+  podcast: string
   date: string
   source?: string
   style?: ViewStyle
@@ -19,8 +22,10 @@ type Props = {
 
 const RecentlyPlayedCard: React.FC<Props> = ({
   id,
+  position,
   title,
   author,
+  podcast,
   date,
   source,
   style
@@ -28,12 +33,17 @@ const RecentlyPlayedCard: React.FC<Props> = ({
   const navigation = useNavigation<HomeScreenNavigationProp>()
 
   const handlePress = () => {
-    navigation.navigate(NavigationScreen.EPISODE, { id })
+    navigation.navigate(NavigationScreen.EPISODE, {
+      id,
+      position,
+      author,
+      podcast
+    })
   }
 
   return (
     <TouchableOpacity
-      activeOpacity={0.7}
+      activeOpacity={ACTIVE_OPACITY}
       style={[styles.container, style]}
       onPress={handlePress}
     >

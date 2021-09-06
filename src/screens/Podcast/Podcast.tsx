@@ -19,6 +19,7 @@ import {
   resetPodcastState as resetPodcastStateAction
 } from 'src/store/actions'
 import { Heading, HeadingType, PlainText, Spinner } from 'src/components'
+import { ACTIVE_OPACITY } from 'src/common/constants'
 import { EpisodeList, NoPodcast } from './components'
 import BackButton from 'src/assets/images/backButton.svg'
 import CircleIcon from 'src/assets/images/circle.svg'
@@ -96,7 +97,7 @@ const Podcast: React.FC = () => {
               <TouchableOpacity
                 onPress={handleNavigateBack}
                 style={styles.backButton}
-                activeOpacity={0.7}
+                activeOpacity={ACTIVE_OPACITY}
               >
                 <BackButton width={40} />
               </TouchableOpacity>
@@ -136,14 +137,11 @@ const Podcast: React.FC = () => {
             />
           </View>
           <View style={styles.episodesContainer}>
-            <Heading
-              type={HeadingType.MEDIUM}
-              label="Episodes"
-              style={styles.episodesContainerTitle}
-            />
+            <PlainText label="Episodes" style={styles.episodesContainerTitle} />
             <EpisodeList
               episodes={episodes}
               author={podcast.user.nickname}
+              podcast={podcast.name}
               onEndReached={handleLoadEpisodes}
               isEpisodesFetching={isEpisodesFetching}
             />

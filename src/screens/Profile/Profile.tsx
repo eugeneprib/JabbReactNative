@@ -7,18 +7,20 @@ import {
   FlatList,
   ActivityIndicator
 } from 'react-native'
-import { useDispatch } from 'react-redux'
+import { ACTIVE_OPACITY } from 'src/common/constants'
+import { Podcast } from 'src/common/types'
+import Check from 'src/assets/images/checkMark.svg'
+import AtMark from 'src/assets/images/atMark.svg'
+import LogOut from 'src/assets/images/iconmonstr-log-out-16.svg'
 import PodcastItem from './components'
+import styles from './styles'
+
+import { useDispatch } from 'react-redux'
 import { useAppSelector } from 'src/hooks'
 import { RootState } from 'src/common/types'
 import { resetUser, loadPodcasts } from 'src/store/actions'
 import { Heading, HeadingType, PlainText, Spinner } from 'src/components'
-import { Podcast } from 'src/common/types'
 import { DataStatus } from 'src/common/enums'
-import Check from 'src/assets/images/checkMark.svg'
-import AtMark from 'src/assets/images/atMark.svg'
-import LogOut from 'src/assets/images/iconmonstr-log-out-16.svg'
-import styles from './styles'
 
 const Profile: React.FC = () => {
   const dispatch = useDispatch()
@@ -87,7 +89,7 @@ const Profile: React.FC = () => {
               />
             </View>
             <TouchableOpacity
-              activeOpacity={0.7}
+              activeOpacity={ACTIVE_OPACITY}
               style={styles.userInfoItem}
               onPress={handleOpenMail}
             >
@@ -95,7 +97,7 @@ const Profile: React.FC = () => {
               <PlainText style={styles.userInfoItemText} label={user.email} />
             </TouchableOpacity>
             <TouchableOpacity
-              activeOpacity={0.7}
+              activeOpacity={ACTIVE_OPACITY}
               style={styles.userInfoItem}
               onPress={handleLogOut}
             >
@@ -110,7 +112,7 @@ const Profile: React.FC = () => {
       </View>
 
       <View style={styles.userDataContainer}>
-        <Heading type={HeadingType.MEDIUM} label="Podcasts" />
+        <PlainText label="Podcasts" style={styles.podcastsTitle} />
         {podcasts ? (
           <FlatList
             data={podcasts}

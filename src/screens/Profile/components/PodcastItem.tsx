@@ -4,6 +4,7 @@ import { useNavigation } from '@react-navigation/core'
 import { Heading, HeadingType, PlainText } from 'src/components'
 import { PodcastScreenNavigationProp } from 'src/screens/Podcast/common/types'
 import { NavigationScreen } from 'src/common/enums'
+import { ACTIVE_OPACITY } from 'src/common/constants'
 import { Podcast } from 'src/common/types'
 import styles from './styles'
 
@@ -20,7 +21,7 @@ const PodcastItem: React.FC<Props> = ({ podcast }) => {
 
   return (
     <TouchableOpacity
-      activeOpacity={0.7}
+      activeOpacity={ACTIVE_OPACITY}
       style={styles.podcastItem}
       onPress={handleNavigateToPodcast}
     >
