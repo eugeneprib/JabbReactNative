@@ -7,9 +7,9 @@ type RootStackParamList = {
   [NavigationScreen.PODCAST]: { id: number }
   [NavigationScreen.EPISODE]: {
     id: number
-    position: number
     author: string
-    podcast: string
+    position?: number
+    podcast?: string
     playback?: boolean
   }
   [NavigationScreen.TO_TABS_NAVIGATOR]: undefined
