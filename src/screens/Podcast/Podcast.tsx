@@ -10,24 +10,25 @@ import {
 } from 'react-native'
 import { useAppSelector } from 'src/hooks'
 import { DEFAULT_IMAGE_BASE64 } from 'src/common/constants/defaultImage'
-import {
-  DEFAULT_EPISODES_PAGINATION,
-  DEFAULT_EPISODES_LIMIT
-} from './common/constants'
-import { DataStatus, NavigationScreen } from 'src/common/enums'
-import {
-  PodcastScreenRouteProp,
-  PodcastScreenNavigationProp
-} from './common/types'
+import { DataStatus } from 'src/common/enums'
 import {
   loadPodcast as loadPodcastAction,
   loadEpisodesByPodcastId as loadEpisodesByPodcastIdAction,
   resetPodcastState as resetPodcastStateAction
 } from 'src/store/actions'
 import { Heading, HeadingType, PlainText } from 'src/components'
-import { EpisodeList, NoPodcast } from './components'
 import BackButton from 'src/assets/images/backButton.svg'
 import CircleIcon from 'src/assets/images/circle.svg'
+import {
+  DEFAULT_EPISODES_PAGINATION,
+  DEFAULT_EPISODES_LIMIT
+} from './common/constants'
+import {
+  PodcastScreenRouteProp,
+  PodcastScreenNavigationProp
+} from './common/types'
+
+import { EpisodeList, NoPodcast } from './components'
 import styles from './styles'
 
 const Podcast: React.FC = () => {
@@ -65,6 +66,10 @@ const Podcast: React.FC = () => {
     }
   }
 
+  const handleNavigateBack = () => {
+    navigation.goBack()
+  }
+
   useEffect(() => {
     dispatch(loadPodcastAction(Number(route.params.id)))
     handleLoadEpisodes()
@@ -81,10 +86,6 @@ const Podcast: React.FC = () => {
     )
   }
 
-  const handleNavigateToHome = () => {
-    navigation.navigate(NavigationScreen.HOME)
-  }
-
   return (
     <View style={styles.container}>
       {podcast ? (
@@ -96,7 +97,7 @@ const Podcast: React.FC = () => {
               style={styles.podcastBackground}
             >
               <TouchableOpacity
-                onPress={handleNavigateToHome}
+                onPress={handleNavigateBack}
                 style={styles.backButton}
                 activeOpacity={0.7}
               >
