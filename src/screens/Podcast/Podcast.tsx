@@ -10,7 +10,13 @@ import {
   loadEpisodesByPodcastId as loadEpisodesByPodcastIdAction,
   resetPodcastState as resetPodcastStateAction
 } from 'src/store/actions'
-import { Heading, HeadingType, PlainText, Spinner } from 'src/components'
+import {
+  Heading,
+  HeadingType,
+  NotFound,
+  PlainText,
+  Spinner
+} from 'src/components'
 import { ACTIVE_OPACITY } from 'src/common/constants'
 import BackButton from 'src/assets/images/backButton.svg'
 import CircleIcon from 'src/assets/images/circle.svg'
@@ -22,7 +28,7 @@ import {
   PodcastScreenRouteProp,
   PodcastScreenNavigationProp
 } from './common/types'
-import { EpisodeList, NoPodcast } from './components'
+import { EpisodeList } from './components'
 import styles from './styles'
 
 const Podcast: React.FC = () => {
@@ -148,7 +154,7 @@ const Podcast: React.FC = () => {
           </View>
         </>
       ) : (
-        <NoPodcast />
+        <NotFound label="Oops. There is no such podcast" />
       )}
     </View>
   )

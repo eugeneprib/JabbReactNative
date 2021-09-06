@@ -1,12 +1,14 @@
 import React from 'react'
 import { FlatList } from 'react-native'
-import { EpisodeItem, NoEpisodes } from '../'
-import { CLEARANCE_FOR_ADDITIONAL_LOADING } from './common/constants'
-import { RenderItem } from './common/types'
-import { ARRAY_OFFSET } from 'src/common/constants'
+import {
+  ARRAY_OFFSET,
+  CLEARANCE_FOR_ADDITIONAL_LOADING
+} from 'src/common/constants'
 import { Episode } from 'src/common/types'
+import { NotFound, Spinner } from 'src/components'
+import { RenderItem } from './common/types'
 import styles from './styles'
-import { Spinner } from 'src/components'
+import { EpisodeItem } from '../'
 
 type Props = {
   episodes: Episode[]
@@ -21,7 +23,7 @@ const EpisodeList: React.FC<Props> = ({
   author,
   podcast,
   onEndReached,
-  isEpisodesFetching = false
+  isEpisodesFetching
 }) => {
   const keyExtractor = (item: Episode) => item.id.toString()
 
@@ -39,7 +41,11 @@ const EpisodeList: React.FC<Props> = ({
   }
 
   const renderEmptyComponent = () => {
-    return isEpisodesFetching ? <Spinner /> : <NoEpisodes />
+    return isEpisodesFetching ? (
+      <Spinner />
+    ) : (
+      <NotFound label="Oops. There is no episodes here" />
+    )
   }
 
   return (
