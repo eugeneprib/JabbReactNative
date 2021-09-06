@@ -8,7 +8,7 @@ import {
   DEFAULT_EPISODES_PAGINATION,
   DEFAULT_EPISODES_LIMIT
 } from './common/constants'
-import { DataStatus, NavigationScreen } from 'src/common/enums'
+import { DataStatus } from 'src/common/enums'
 import {
   PodcastScreenRouteProp,
   PodcastScreenNavigationProp
@@ -76,8 +76,8 @@ const Podcast: React.FC = () => {
     }
   }, [])
 
-  const handleNavigateToHome = () => {
-    navigation.navigate(NavigationScreen.HOME)
+  const handleNavigateBack = () => {
+    navigation.goBack()
   }
 
   if (isPodcastFetching) {
@@ -95,7 +95,7 @@ const Podcast: React.FC = () => {
               style={styles.podcastBackground}
             >
               <TouchableOpacity
-                onPress={handleNavigateToHome}
+                onPress={handleNavigateBack}
                 style={styles.backButton}
                 activeOpacity={ACTIVE_OPACITY}
               >

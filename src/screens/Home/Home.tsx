@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { ScrollView, View } from 'react-native'
+import { useNavigation } from '@react-navigation/core'
 import { useDispatch } from 'react-redux'
-import { useNavigation } from '@react-navigation/native'
 import { NavigationScreen } from 'src/common/enums'
 import { Heading, HeadingType, PlainText, Spinner } from 'src/components'
 import { DataStatus } from 'src/common/enums'
@@ -52,6 +52,10 @@ const Home: React.FC = () => {
     dispatch(loadPopularEpisodes())
   }, [])
 
+  const handleNavigateToProfile = () => {
+    navigation.navigate(NavigationScreen.MY_PROFILE)
+  }
+
   const handleNavigateToEpisode = (author: string, id: number) => {
     navigation.navigate(NavigationScreen.EPISODE, { author, id })
   }
@@ -74,7 +78,11 @@ const Home: React.FC = () => {
             style={styles.headerText}
           />
         </View>
-        <UserAvatar source={user?.image?.url} style={styles.profile} />
+        <UserAvatar
+          source={user?.image?.url}
+          style={styles.profile}
+          onPress={handleNavigateToProfile}
+        />
       </View>
       {hasSuggestedPodcasts && (
         <View style={styles.block}>
