@@ -1,13 +1,17 @@
 import React, { useEffect } from 'react'
 import { ScrollView, View } from 'react-native'
 import { useDispatch } from 'react-redux'
-import { DataStatus } from 'src/common/enums'
+import { useNavigation } from '@react-navigation/native'
+import { NavigationScreen } from 'src/common/enums'
 import { Heading, HeadingType, PlainText, Spinner } from 'src/components'
+import { DataStatus } from 'src/common/enums'
 import { useAppSelector } from 'src/hooks'
 import {
   loadSuggestedPodcasts,
-  loadRecentlyPlayedEpisodes
+  loadRecentlyPlayedEpisodes,
+  loadPopularEpisodes
 } from 'src/store/actions'
+import { HomeScreenNavigationProp } from './common/types'
 import {
   sliceRecentlyPlayedEpisodes,
   sliceSuggestedPodcasts
@@ -21,15 +25,22 @@ import {
 import { styles } from './styles'
 
 const Home: React.FC = () => {
-  const { user, suggestedPodcasts, recentlyPlayedEpisodes, dataStatus } =
-    useAppSelector(({ auth, home }) => ({
-      user: auth.user,
-      suggestedPodcasts: home.suggestedPodcasts,
-      recentlyPlayedEpisodes: home.recentlyPlayedEpisodes,
-      dataStatus: home.dataStatus
-    }))
+  const {
+    user,
+    suggestedPodcasts,
+    recentlyPlayedEpisodes,
+    dataStatus,
+    popularEpisodes
+  } = useAppSelector(({ auth, home }) => ({
+    user: auth.user,
+    suggestedPodcasts: home.suggestedPodcasts,
+    recentlyPlayedEpisodes: home.recentlyPlayedEpisodes,
+    popularEpisodes: home.popularEpisodes,
+    dataStatus: home.dataStatus
+  }))
 
   const dispatch = useDispatch()
+  const navigation = useNavigation<HomeScreenNavigationProp>()
 
   const hasSuggestedPodcasts = Boolean(suggestedPodcasts.length)
   const hasRecentlyPlayedEpisodes = Boolean(recentlyPlayedEpisodes.length)
@@ -38,7 +49,12 @@ const Home: React.FC = () => {
   useEffect(() => {
     dispatch(loadSuggestedPodcasts())
     dispatch(loadRecentlyPlayedEpisodes())
+    dispatch(loadPopularEpisodes())
   }, [])
+
+  const handleNavigateToEpisode = (author: string, id: number) => {
+    navigation.navigate(NavigationScreen.EPISODE, { author, id })
+  }
 
   if (isLoading) {
     return <Spinner />
@@ -88,17 +104,17 @@ const Home: React.FC = () => {
       <View style={styles.block}>
         <PlainText label="Popular Singles" style={styles.title} />
         <View style={styles.popular}>
-          <PopularSingleCard
-            title="About Knowing Nothing"
-            author="John Snow"
-            source="http://res.cloudinary.com/hmqu8gtpn/image/upload/v1629360713/19/swkh7sxam77huzrowebb.jpg"
-            style={styles.popularFirst}
-          />
-          <PopularSingleCard
-            title="The Last of Us"
-            author="Eugenius"
-            source="http://res.cloudinary.com/hmqu8gtpn/image/upload/v1629475407/2/binrglfxwxztrxjkcoap.png"
-          />
+          {popularEpisodes.map((episode, index) => (
+            <PopularSingleCard
+              id={episode.id}
+              position={index}
+              key={episode.id}
+              title={episode.name}
+              author={episode.user.nickname}
+              source={episode.image?.url}
+              onPress={handleNavigateToEpisode}
+            />
+          ))}
         </View>
       </View>
     </ScrollView>

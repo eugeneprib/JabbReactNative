@@ -7,28 +7,39 @@ import {
 } from 'react-native'
 import { ACTIVE_OPACITY } from 'src/common/constants'
 import { Heading, HeadingType, PlainText } from 'src/components'
+import { DIVISION_REMAINDER, EVEN_RATIO } from './common/constants'
 import styles from './styles'
 
 type Props = {
+  id: number
+  position: number
   title: string
   author: string
   source?: string
   style?: ImageStyle
-  onPress?: () => void
+  onPress: (author: string, id: number) => void
 }
 
 const PopularSingleCard: React.FC<Props> = ({
+  id,
+  position,
   title,
   author,
   source,
   style,
   onPress
 }) => {
+  const isCardRight = Boolean(position % EVEN_RATIO !== DIVISION_REMAINDER)
+
+  const handleNavigateToEpisode = () => {
+    onPress(author, id)
+  }
+
   return (
     <TouchableOpacity
       activeOpacity={ACTIVE_OPACITY}
-      style={[styles.container, style]}
-      onPress={onPress}
+      style={[styles.container, style, isCardRight && styles.cardRight]}
+      onPress={handleNavigateToEpisode}
     >
       <ImageBackground source={{ uri: source }} style={styles.background}>
         <View style={styles.overlay}>

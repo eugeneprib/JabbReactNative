@@ -1,4 +1,4 @@
-import { Image, Shownote, Record } from 'src/common/types'
+import { Image, Shownote, Record, User } from 'src/common/types'
 
 type Episode = {
   id: number
@@ -14,6 +14,7 @@ type Episode = {
   type: string
   shownotes: Shownote[]
   description: string
+  user: User
 }
 
 export type { Episode }

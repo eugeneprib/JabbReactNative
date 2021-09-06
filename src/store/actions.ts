@@ -6,7 +6,8 @@ export {
 } from './podcast/actions'
 export {
   loadSuggestedPodcasts,
-  loadRecentlyPlayedEpisodes
+  loadRecentlyPlayedEpisodes,
+  loadPopularEpisodes
 } from './home/actions'
 export {
   loadEpisodePayload,
