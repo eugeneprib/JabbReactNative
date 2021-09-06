@@ -25,7 +25,7 @@ const TabNavigation: React.FC = () => {
               tabBarHideOnKeyboard: true,
               tabBarIcon: ({ focused }) => (
                 <View style={styles.viewContainer}>
-                  {focused && <ActiveIcon width={24} />}
+                  <ActiveIcon width={20} opacity={focused ? 1 : 0} />
                   <tab.Icon width={20} opacity={focused ? 1 : 0.3} />
                 </View>
               )
