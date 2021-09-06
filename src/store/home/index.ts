@@ -13,14 +13,14 @@ type State = {
   dataStatus: DataStatus
   suggestedPodcasts: Podcast[]
   recentlyPlayedEpisodes: RecentlyPlayedEpisode[]
-  popular: Episode[]
+  popularEpisodes: Episode[]
 }
 
 const initialState: State = {
   dataStatus: DataStatus.IDLE,
   suggestedPodcasts: [],
   recentlyPlayedEpisodes: [],
-  popular: []
+  popularEpisodes: []
 }
 
 const homeSlice = createSlice({
@@ -56,7 +56,7 @@ const homeSlice = createSlice({
     })
     builder.addCase(loadPopularEpisodes.fulfilled, (state, action) => {
       state.dataStatus = DataStatus.FULFILLED
-      state.popular = action.payload.slice(
+      state.popularEpisodes = action.payload.slice(
         FIRST_ARRAY_IDX,
         POPULAR_EPISODES_COUNT
       )

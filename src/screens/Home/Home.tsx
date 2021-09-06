@@ -35,7 +35,7 @@ const Home: React.FC = () => {
     user: auth.user,
     suggestedPodcasts: home.suggestedPodcasts,
     recentlyPlayedEpisodes: home.recentlyPlayedEpisodes,
-    popularEpisodes: home.popular,
+    popularEpisodes: home.popularEpisodes,
     dataStatus: home.dataStatus
   }))
 
