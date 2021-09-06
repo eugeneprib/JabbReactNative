@@ -24,7 +24,8 @@ const styles = StyleSheet.create<Styles>({
   },
   episodeNumber: {
     textAlign: 'center',
-    fontSize: 12
+    fontStyle: 'italic',
+    color: '#555'
   },
   episodeInfo: {
     flex: 0.9,

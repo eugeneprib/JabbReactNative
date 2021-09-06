@@ -137,11 +137,7 @@ const Podcast: React.FC = () => {
             />
           </View>
           <View style={styles.episodesContainer}>
-            <Heading
-              type={HeadingType.MEDIUM}
-              label="Episodes"
-              style={styles.episodesContainerTitle}
-            />
+            <PlainText label="Episodes" style={styles.episodesContainerTitle} />
             <EpisodeList
               episodes={episodes}
               author={podcast.user.nickname}

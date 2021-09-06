@@ -90,7 +90,7 @@ const UserPage: React.FC<Props> = () => {
       </View>
 
       <View style={styles.userDataContainer}>
-        <Heading type={HeadingType.MEDIUM} label="Podcasts" />
+        <PlainText label="Podcasts" style={styles.podcastsTitle} />
         <FlatList
           data={userPageInfo.podcasts}
           renderItem={renderItem}
