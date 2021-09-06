@@ -1,9 +1,12 @@
 import React from 'react'
 import { FlatList } from 'react-native'
 import { useNavigation } from '@react-navigation/core'
-import { ARRAY_OFFSET } from 'src/common/constants'
+import {
+  ARRAY_OFFSET,
+  CLEARANCE_FOR_ADDITIONAL_LOADING
+} from 'src/common/constants'
 import { Podcast } from 'src/common/types'
-import { PodcastCard } from 'src/components'
+import { NotFound, PodcastCard, Spinner } from 'src/components'
 import { NavigationScreen } from 'src/common/enums'
 import { RenderItem } from './common/types'
 import styles from './styles'
@@ -11,10 +14,11 @@ import { SearchScreenNavigationProp } from '../../common/types/SearchScreenNavig
 
 type Props = {
   podcasts: Podcast[]
+  isFetching: boolean
   onLoadMore: () => void
 }
 
-const PodcastList: React.FC<Props> = ({ podcasts, onLoadMore }) => {
+const PodcastList: React.FC<Props> = ({ podcasts, isFetching, onLoadMore }) => {
   const navigation = useNavigation<SearchScreenNavigationProp>()
 
   const keyExtractor = (item: Podcast) => item.id.toString()
@@ -39,10 +43,25 @@ const PodcastList: React.FC<Props> = ({ podcasts, onLoadMore }) => {
     )
   }
 
+  const renderFooterComponent = () => {
+    return isFetching ? <Spinner /> : null
+  }
+
+  const renderEmptyComponent = () => {
+    return isFetching ? (
+      <Spinner />
+    ) : (
+      <NotFound label="Oops. There is no podcasts here" />
+    )
+  }
+
   return (
     <FlatList
-      style={styles.container}
       data={podcasts}
+      style={styles.container}
+      onEndReachedThreshold={CLEARANCE_FOR_ADDITIONAL_LOADING}
+      ListEmptyComponent={renderEmptyComponent}
+      ListFooterComponent={renderFooterComponent}
       renderItem={renderItem}
       keyExtractor={keyExtractor}
       onEndReached={onLoadMore}

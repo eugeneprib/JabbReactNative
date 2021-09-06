@@ -4,19 +4,20 @@ import { View } from 'react-native'
 import { useDispatch } from 'react-redux'
 import { ARRAY_OFFSET } from 'src/common/constants'
 import { useAppSelector } from 'src/hooks'
+import { DataStatus } from 'src/common/enums'
 import { loadMorePodcasts, loadPodcasts } from 'src/store/actions'
 import { INITIAL_PAGE, SEARCH_TIMEOUT } from './common/constants'
 import { PodcastList, SearchInput } from './components'
 import styles from './styles'
 
 const Search: React.FC = () => {
-  const { podcasts, totalPagesCount, currentPageIdx } = useAppSelector(
-    ({ search }) => ({
+  const { podcasts, totalPagesCount, currentPageIdx, dataStatus } =
+    useAppSelector(({ search }) => ({
       podcasts: search.podcasts,
       totalPagesCount: search.totalPagesCount,
-      currentPageIdx: search.currentPageIdx
-    })
-  )
+      currentPageIdx: search.currentPageIdx,
+      dataStatus: search.dataStatus
+    }))
 
   const dispatch = useDispatch()
 
@@ -24,6 +25,7 @@ const Search: React.FC = () => {
   const [debouncedSearch] = useDebounce(search, SEARCH_TIMEOUT)
 
   const hasMorePodcasts = currentPageIdx < totalPagesCount - ARRAY_OFFSET
+  const isPodcastsFetching = dataStatus === DataStatus.PENDING
 
   const handleLoadMore = () => {
     if (hasMorePodcasts) {
@@ -47,7 +49,11 @@ const Search: React.FC = () => {
     <View style={styles.container}>
       <SearchInput value={search} onChange={setSearch} />
       <View style={styles.line} />
-      <PodcastList podcasts={podcasts} onLoadMore={handleLoadMore} />
+      <PodcastList
+        podcasts={podcasts}
+        isFetching={isPodcastsFetching}
+        onLoadMore={handleLoadMore}
+      />
     </View>
   )
 }
