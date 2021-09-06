@@ -11,6 +11,7 @@ import { Spinner } from 'src/components'
 type Props = {
   episodes: Episode[]
   author: string
+  podcast: string
   onEndReached: () => void
   isEpisodesFetching: boolean
 }
@@ -18,6 +19,7 @@ type Props = {
 const EpisodeList: React.FC<Props> = ({
   episodes,
   author,
+  podcast,
   onEndReached,
   isEpisodesFetching = false
 }) => {
@@ -27,6 +29,7 @@ const EpisodeList: React.FC<Props> = ({
     <EpisodeItem
       episode={item}
       author={author}
+      podcast={podcast}
       position={index + ARRAY_OFFSET}
     />
   )

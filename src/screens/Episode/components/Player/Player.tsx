@@ -1,14 +1,19 @@
 import React, { useEffect, useState } from 'react'
-import { View, Pressable } from 'react-native'
+import { View, TouchableOpacity } from 'react-native'
 import TrackPlayer, { useProgress, Capability } from 'react-native-track-player'
 import Slider from '@react-native-community/slider'
 import { PlainText } from 'src/components'
-import { PlayerEpisode } from 'src/common/types/player'
+import { PlayerEpisode } from 'src/common/types'
+import { ACTIVE_OPACITY } from 'src/common/constants'
 import PlayIcon from 'src/assets/images/play.svg'
 import PauseIcon from 'src/assets/images/pause.svg'
 import RewindIcon from 'src/assets/images/rewind.svg'
 import ForwardIcon from 'src/assets/images/forward.svg'
-import { getPlayerTime } from './common/helpers'
+import {
+  getBackwardTime,
+  getForwardTime,
+  getPlayerTime
+} from './common/helpers'
 import {
   DEFAULT_START_TIME,
   TIME_SHIFT_IN_SECONDS,
@@ -58,22 +63,18 @@ const Player: React.FC<Props> = ({ episode, startToPlay = false }) => {
     setPlaying(!isPlaying)
   }
 
-  const onHandleSeekTo = (seconds: number) => {
-    TrackPlayer.seekTo(seconds)
+  const handleRewindForward = () => {
+    TrackPlayer.seekTo(getForwardTime(position, duration))
   }
 
-  const onHandleRewind = () => {
-    TrackPlayer.seekTo(position - TIME_SHIFT_IN_SECONDS)
-  }
-
-  const onHandleForward = () => {
-    TrackPlayer.seekTo(position + TIME_SHIFT_IN_SECONDS)
+  const handleRewindBackward = () => {
+    TrackPlayer.seekTo(getBackwardTime(position))
   }
 
   return (
     <View>
       <View style={styles.sliderWrapper}>
-        <View style={styles.positionWrapper}>
+        <View style={[styles.timeWrapper, styles.timePosition]}>
           <PlainText label={getPlayerTime(position)} style={styles.time} />
         </View>
         <Slider
@@ -84,24 +85,34 @@ const Player: React.FC<Props> = ({ episode, startToPlay = false }) => {
           maximumTrackTintColor={BASE_SLIDER_COLOUR}
           thumbTintColor={BASE_SLIDER_COLOUR}
           value={position}
-          onSlidingComplete={onHandleSeekTo}
+          onSlidingComplete={TrackPlayer.seekTo}
         />
-        <View style={styles.durationWrapper}>
-          <PlainText label={getPlayerTime(duration)} />
+        <View style={[styles.timeWrapper, styles.timeDuration]}>
+          <PlainText label={getPlayerTime(duration)} style={styles.time} />
         </View>
       </View>
       <View style={styles.row}>
-        <Pressable onPress={onHandleRewind} style={styles.jumpButton}>
-          <RewindIcon style={styles.jumpIcon} width={26} height={26} />
-        </Pressable>
-
-        <Pressable onPress={onHandleControlPlayer} style={styles.controlButton}>
-          {isPlaying ? <PauseIcon width={12} /> : <PlayIcon width={12} />}
-        </Pressable>
-
-        <Pressable onPress={onHandleForward} style={styles.jumpButton}>
-          <ForwardIcon style={styles.jumpIcon} width={26} height={26} />
-        </Pressable>
+        <TouchableOpacity
+          activeOpacity={ACTIVE_OPACITY}
+          style={styles.jumpButton}
+          onPress={handleRewindBackward}
+        >
+          <RewindIcon width={16} height={30} />
+        </TouchableOpacity>
+        <TouchableOpacity
+          activeOpacity={ACTIVE_OPACITY}
+          style={styles.controlButton}
+          onPress={onHandleControlPlayer}
+        >
+          {isPlaying ? <PauseIcon width={16} /> : <PlayIcon width={14} />}
+        </TouchableOpacity>
+        <TouchableOpacity
+          activeOpacity={ACTIVE_OPACITY}
+          style={styles.jumpButton}
+          onPress={handleRewindForward}
+        >
+          <ForwardIcon width={16} height={30} />
+        </TouchableOpacity>
       </View>
     </View>
   )

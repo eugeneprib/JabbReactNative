@@ -1,6 +1,7 @@
 import React from 'react'
 import { Image, TouchableOpacity, ViewStyle } from 'react-native'
 import AvatarIcon from 'src/assets/images/user.svg'
+import { ACTIVE_OPACITY } from 'src/common/constants'
 import styles from './styles'
 
 type Props = {
@@ -13,7 +14,7 @@ const UserAvatar: React.FC<Props> = ({ source, style, onPress }) => {
   return (
     <TouchableOpacity
       style={[styles.container, style]}
-      activeOpacity={0.7}
+      activeOpacity={ACTIVE_OPACITY}
       onPress={onPress}
     >
       {source ? (

@@ -1,6 +1,7 @@
 import React from 'react'
 import { ImageBackground, TouchableOpacity, View } from 'react-native'
 import { Heading, HeadingType, PlainText } from 'src/components'
+import { ACTIVE_OPACITY } from 'src/common/constants'
 import PlayIcon from 'src/assets/images/play.svg'
 import styles from './styles'
 
@@ -30,7 +31,7 @@ const SuggestedPodcastCard: React.FC<Props> = ({
           />
           <TouchableOpacity
             style={styles.icon}
-            activeOpacity={0.85}
+            activeOpacity={ACTIVE_OPACITY}
             onPress={onPress}
           >
             <PlayIcon width={12} />

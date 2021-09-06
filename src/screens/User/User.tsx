@@ -1,12 +1,13 @@
 import React from 'react'
 import { View, Image, TouchableOpacity, Linking, FlatList } from 'react-native'
 import { Heading, HeadingType, PlainText } from 'src/components'
+import { ACTIVE_OPACITY } from 'src/common/constants'
 import { Podcast, User } from 'src/common/types'
-import { MockedUser, MockedPodcasts } from './mockedData'
 import Check from 'src/assets/images/checkMark.svg'
 import AtMark from 'src/assets/images/atMark.svg'
 import LogOut from 'src/assets/images/iconmonstr-log-out-16.svg'
 import PodcastItem from './components'
+import { MockedUser, MockedPodcasts } from './mockedData'
 import styles from './styles'
 
 type Props = {
@@ -63,7 +64,7 @@ const UserPage: React.FC<Props> = () => {
               />
             </View>
             <TouchableOpacity
-              activeOpacity={0.7}
+              activeOpacity={ACTIVE_OPACITY}
               style={styles.userInfoItem}
               onPress={handleOpenMail}
             >
@@ -74,7 +75,7 @@ const UserPage: React.FC<Props> = () => {
               />
             </TouchableOpacity>
             <TouchableOpacity
-              activeOpacity={0.7}
+              activeOpacity={ACTIVE_OPACITY}
               style={styles.userInfoItem}
               onPress={handleLogOut}
             >
