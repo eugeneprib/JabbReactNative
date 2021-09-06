@@ -1,12 +1,11 @@
 import React from 'react'
 import { View, Image, TouchableOpacity, Linking, FlatList } from 'react-native'
-import { Heading, HeadingType, PlainText } from 'src/components'
+import { Heading, HeadingType, PlainText, PodcastCard } from 'src/components'
 import { Podcast, User } from 'src/common/types'
-import { MockedUser, MockedPodcasts } from './mockedData'
 import Check from 'src/assets/images/checkMark.svg'
 import AtMark from 'src/assets/images/atMark.svg'
 import LogOut from 'src/assets/images/iconmonstr-log-out-16.svg'
-import PodcastItem from './components'
+import { MockedUser, MockedPodcasts } from './mockedData'
 import styles from './styles'
 
 type Props = {
@@ -30,8 +29,17 @@ const UserPage: React.FC<Props> = () => {
     )
   }
 
-  const renderItem = ({ item }: { item: Podcast }) => (
-    <PodcastItem podcast={item} />
+  const renderItem = ({
+    item: { name, user, createdAt, image }
+  }: {
+    item: Podcast
+  }) => (
+    <PodcastCard
+      title={name}
+      author={user.nickname}
+      date={createdAt}
+      image={image?.url}
+    />
   )
 
   return (
@@ -39,7 +47,6 @@ const UserPage: React.FC<Props> = () => {
       <View>
         <Heading type={HeadingType.LARGE} label="Profile" />
       </View>
-
       <View style={styles.userInfoContaienr}>
         <View>
           <Image
