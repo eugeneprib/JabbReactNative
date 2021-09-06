@@ -11,10 +11,10 @@ import styles from './styles'
 
 type Props = {
   id: number
-  position: number
+  position?: number
   title: string
   author: string
-  podcast: string
+  podcast?: string
   date: string
   source?: string
   style?: ViewStyle
