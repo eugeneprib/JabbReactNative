@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, Image, TouchableOpacity } from 'react-native'
 import { Heading, HeadingType, PlainText } from 'src/components'
+import { ACTIVE_OPACITY } from 'src/common/constants'
 import { Podcast } from 'src/common/types'
 import styles from './styles'
 
@@ -10,7 +11,7 @@ type Props = {
 
 const Item: React.FC<Props> = ({ podcast }) => {
   return (
-    <TouchableOpacity activeOpacity={0.7} style={styles.podcastItem}>
+    <TouchableOpacity activeOpacity={ACTIVE_OPACITY} style={styles.podcastItem}>
       <Image
         width={85}
         height={85}

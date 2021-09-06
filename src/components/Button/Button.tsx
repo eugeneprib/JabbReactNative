@@ -1,6 +1,6 @@
 import React from 'react'
 import { Text, TouchableOpacity, TouchableOpacityProps } from 'react-native'
-import { DEFAULT_TYPE, ACTIVE_OPACITY } from './common/constants'
+import { ACTIVE_OPACITY } from 'src/common/constants'
 import { ButtonType } from './common/enum'
 import { getStylesByType } from './common/helpers'
 import styles from './styles'
@@ -10,7 +10,11 @@ type Props = {
   type?: ButtonType
 } & TouchableOpacityProps
 
-const Button: React.FC<Props> = ({ label, type = DEFAULT_TYPE, ...props }) => {
+const Button: React.FC<Props> = ({
+  label,
+  type = ButtonType.PRIMARY,
+  ...props
+}) => {
   const typeStyles = getStylesByType(type)
 
   return (

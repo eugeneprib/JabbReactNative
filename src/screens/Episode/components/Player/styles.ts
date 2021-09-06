@@ -2,12 +2,12 @@ import { StyleSheet, TextStyle, ViewStyle } from 'react-native'
 
 type Styles = {
   sliderWrapper: ViewStyle
-  positionWrapper: ViewStyle
-  durationWrapper: ViewStyle
+  timeWrapper: ViewStyle
+  timePosition: ViewStyle
+  timeDuration: ViewStyle
   row: ViewStyle
   slider: ViewStyle
   jumpButton: ViewStyle
-  jumpIcon: ViewStyle
   controlButton: ViewStyle
   time: TextStyle
 }
@@ -17,22 +17,24 @@ const styles = StyleSheet.create<Styles>({
     flexDirection: 'row',
     justifyContent: 'space-between'
   },
-  positionWrapper: {
-    width: '15%',
-    alignItems: 'flex-end'
+  timeWrapper: {
+    position: 'absolute'
   },
-  durationWrapper: {
-    width: '15%',
-    alignItems: 'flex-start'
+  timePosition: {
+    left: 0
+  },
+  timeDuration: {
+    right: 0
   },
   row: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    marginTop: 15
   },
   slider: {
-    width: '70%',
-    height: 40
+    width: '100%',
+    height: 45
   },
   jumpButton: {
     width: 36,
@@ -43,21 +45,18 @@ const styles = StyleSheet.create<Styles>({
     alignItems: 'center',
     position: 'relative'
   },
-  jumpIcon: {
-    position: 'absolute',
-    top: 6
-  },
   controlButton: {
-    backgroundColor: '#e1e1e1',
-    width: 46,
-    height: 46,
-    margin: 10,
-    borderRadius: 46,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    width: 58,
+    height: 58,
+    marginHorizontal: 18,
+    backgroundColor: '#EEEEEE',
+    borderRadius: 29
   },
   time: {
-    fontSize: 14
+    fontSize: 10,
+    color: '#C7C7C7'
   }
 })
 
