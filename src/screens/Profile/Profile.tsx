@@ -1,26 +1,17 @@
 import React, { useEffect } from 'react'
-import {
-  View,
-  Image,
-  TouchableOpacity,
-  Linking,
-  FlatList,
-  ActivityIndicator
-} from 'react-native'
+import { View, Image, TouchableOpacity, Linking, FlatList } from 'react-native'
+import { useDispatch } from 'react-redux'
+import { resetUser, loadPodcasts } from 'src/store/actions'
+import { Heading, HeadingType, PlainText, Spinner } from 'src/components'
 import { ACTIVE_OPACITY } from 'src/common/constants'
-import { Podcast } from 'src/common/types'
+import { Podcast, RootState } from 'src/common/types'
+import { DataStatus } from 'src/common/enums'
+import { useAppSelector } from 'src/hooks'
 import Check from 'src/assets/images/checkMark.svg'
 import AtMark from 'src/assets/images/atMark.svg'
 import LogOut from 'src/assets/images/iconmonstr-log-out-16.svg'
 import PodcastItem from './components'
 import styles from './styles'
-
-import { useDispatch } from 'react-redux'
-import { useAppSelector } from 'src/hooks'
-import { RootState } from 'src/common/types'
-import { resetUser, loadPodcasts } from 'src/store/actions'
-import { Heading, HeadingType, PlainText, Spinner } from 'src/components'
-import { DataStatus } from 'src/common/enums'
 
 const Profile: React.FC = () => {
   const dispatch = useDispatch()
