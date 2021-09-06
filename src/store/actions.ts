@@ -1,5 +1,5 @@
 export { signIn, getCurrentUser, resetUser } from './auth/actions'
-export { loadPodcasts } from './profile/action'
+export { loadPodcasts as loadUserPodcasts } from './profile/action'
 export {
   loadPodcast,
   loadEpisodesByPodcastId,
@@ -15,3 +15,4 @@ export {
   addToRecentlyPlayed,
   resetState as resetEpisodeState
 } from './episode/actions'
+export { loadPodcasts, loadMorePodcasts } from './search/actions'

@@ -1,15 +1,16 @@
 import { StyleSheet, ViewStyle } from 'react-native'
 
 type Styles = {
-  nothing: ViewStyle
+  container: ViewStyle
+  item: ViewStyle
 }
 
 const styles = StyleSheet.create<Styles>({
-  nothing: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center'
+  container: {
+    width: '100%'
+  },
+  item: {
+    marginBottom: 13
   }
 })
 

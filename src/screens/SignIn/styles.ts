@@ -30,7 +30,13 @@ const styles = StyleSheet.create<Styles>({
     fontSize: 22
   },
   input: {
-    marginBottom: 17
+    marginBottom: 17,
+    height: 58,
+    paddingHorizontal: 24,
+    fontSize: 15,
+    borderWidth: 1,
+    borderColor: '#E8E8E8',
+    borderRadius: 12
   },
   bottomBlock: {
     alignItems: 'center',

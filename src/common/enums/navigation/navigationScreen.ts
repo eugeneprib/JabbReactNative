@@ -5,7 +5,8 @@ enum NavigationScreen {
   LISTENING = 'Listening',
   MY_PROFILE = 'Profile',
   PODCAST = 'Podcast',
-  EPISODE = 'Episode'
+  EPISODE = 'Episode',
+  SEARCH = 'Search'
 }
 
 export { NavigationScreen }

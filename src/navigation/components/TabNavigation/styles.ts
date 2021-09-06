@@ -7,8 +7,15 @@ type Styles = {
 }
 
 const styles = StyleSheet.create<Styles>({
-  viewContainer: { alignItems: 'center', flexDirection: 'row' },
-  textNavigation: { color: '#000', marginLeft: 10, fontSize: 12 },
+  viewContainer: {
+    alignItems: 'center',
+    flexDirection: 'row'
+  },
+  textNavigation: {
+    color: '#000',
+    marginLeft: 10,
+    fontSize: 12
+  },
   textNavigationWithOpacity: {
     color: '#000',
     marginLeft: 10,

@@ -3,26 +3,31 @@ import { useDispatch } from 'react-redux'
 import { useRoute, useNavigation } from '@react-navigation/native'
 import { View, Image, ImageBackground, TouchableOpacity } from 'react-native'
 import { useAppSelector } from 'src/hooks'
-import { DEFAULT_IMAGE_BASE64 } from 'src/common/constants/defaultImage'
-import {
-  DEFAULT_EPISODES_PAGINATION,
-  DEFAULT_EPISODES_LIMIT
-} from './common/constants'
 import { DataStatus } from 'src/common/enums'
-import {
-  PodcastScreenRouteProp,
-  PodcastScreenNavigationProp
-} from './common/types'
 import {
   loadPodcast as loadPodcastAction,
   loadEpisodesByPodcastId as loadEpisodesByPodcastIdAction,
   resetPodcastState as resetPodcastStateAction
 } from 'src/store/actions'
-import { Heading, HeadingType, PlainText, Spinner } from 'src/components'
-import { ACTIVE_OPACITY } from 'src/common/constants'
-import { EpisodeList, NoPodcast } from './components'
+import {
+  Heading,
+  HeadingType,
+  NotFound,
+  PlainText,
+  Spinner
+} from 'src/components'
+import { ACTIVE_OPACITY, DEFAULT_IMAGE_BASE64 } from 'src/common/constants'
 import BackButton from 'src/assets/images/backButton.svg'
 import CircleIcon from 'src/assets/images/circle.svg'
+import {
+  DEFAULT_EPISODES_PAGINATION,
+  DEFAULT_EPISODES_LIMIT
+} from './common/constants'
+import {
+  PodcastScreenRouteProp,
+  PodcastScreenNavigationProp
+} from './common/types'
+import { EpisodeList } from './components'
 import styles from './styles'
 
 const Podcast: React.FC = () => {
@@ -68,6 +73,10 @@ const Podcast: React.FC = () => {
     }
   }
 
+  const handleNavigateBack = () => {
+    navigation.goBack()
+  }
+
   useEffect(() => {
     dispatch(loadPodcastAction(Number(route.params.id)))
     handleLoadEpisodes()
@@ -75,10 +84,6 @@ const Podcast: React.FC = () => {
       dispatch(resetPodcastStateAction())
     }
   }, [])
-
-  const handleNavigateBack = () => {
-    navigation.goBack()
-  }
 
   if (isPodcastFetching) {
     return <Spinner />
@@ -148,7 +153,7 @@ const Podcast: React.FC = () => {
           </View>
         </>
       ) : (
-        <NoPodcast />
+        <NotFound label="Oops. There is no such podcast" />
       )}
     </View>
   )
