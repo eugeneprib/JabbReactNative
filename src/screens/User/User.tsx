@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, Image, TouchableOpacity, Linking, FlatList } from 'react-native'
 import { Heading, HeadingType, PlainText, PodcastCard } from 'src/components'
+import { ACTIVE_OPACITY } from 'src/common/constants'
 import { Podcast, User } from 'src/common/types'
 import Check from 'src/assets/images/checkMark.svg'
 import AtMark from 'src/assets/images/atMark.svg'
@@ -70,7 +71,7 @@ const UserPage: React.FC<Props> = () => {
               />
             </View>
             <TouchableOpacity
-              activeOpacity={0.7}
+              activeOpacity={ACTIVE_OPACITY}
               style={styles.userInfoItem}
               onPress={handleOpenMail}
             >
@@ -81,7 +82,7 @@ const UserPage: React.FC<Props> = () => {
               />
             </TouchableOpacity>
             <TouchableOpacity
-              activeOpacity={0.7}
+              activeOpacity={ACTIVE_OPACITY}
               style={styles.userInfoItem}
               onPress={handleLogOut}
             >
@@ -94,9 +95,8 @@ const UserPage: React.FC<Props> = () => {
           </View>
         </View>
       </View>
-
       <View style={styles.userDataContainer}>
-        <Heading type={HeadingType.MEDIUM} label="Podcasts" />
+        <PlainText label="Podcasts" style={styles.podcastsTitle} />
         <FlatList
           data={userPageInfo.podcasts}
           renderItem={renderItem}

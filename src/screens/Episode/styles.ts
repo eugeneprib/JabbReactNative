@@ -1,4 +1,4 @@
-import { StyleSheet, TextStyle, ViewStyle } from 'react-native'
+import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from 'react-native'
 
 type Styles = {
   container: ViewStyle
@@ -6,9 +6,10 @@ type Styles = {
   header: ViewStyle
   backButton: ViewStyle
   headerText: TextStyle
-  imageWrapper: ViewStyle
-  image: ViewStyle
-  designationBlock: ViewStyle
+  image: ImageStyle
+  description: ViewStyle
+  authorName: TextStyle
+  podcastName: TextStyle
   episodesName: TextStyle
   playerWrapper: ViewStyle
 }
@@ -17,8 +18,9 @@ const styles = StyleSheet.create<Styles>({
   container: {
     flex: 1,
     alignItems: 'center',
+    justifyContent: 'space-between',
     padding: 25,
-    position: 'relative'
+    paddingBottom: 40
   },
   center: {
     flex: 1,
@@ -27,26 +29,21 @@ const styles = StyleSheet.create<Styles>({
     padding: 25
   },
   header: {
-    flex: 0.1,
     flexDirection: 'row',
-    width: '100%',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    width: '100%',
+    marginBottom: 30
   },
   backButton: {
     position: 'absolute',
-    top: -20,
-    left: 10
+    left: 0
   },
   headerText: {
-    color: '#7E7E7E'
-  },
-  imageWrapper: {
-    flex: 0.4,
-    width: '100%'
+    color: '#484848'
   },
   image: {
-    flex: 0.4,
+    flex: 1,
     width: '100%',
     borderRadius: 20,
     backgroundColor: '#EEE',
@@ -55,20 +52,26 @@ const styles = StyleSheet.create<Styles>({
     overflow: 'hidden',
     marginTop: 15
   },
-  designationBlock: {
-    flexDirection: 'column',
-    flex: 0.25,
-    width: '100%',
+  description: {
+    paddingVertical: 20,
+    paddingHorizontal: 25,
     alignItems: 'center',
-    justifyContent: 'center',
-    paddingTop: 10
+    textAlign: 'center'
+  },
+  authorName: {
+    textAlign: 'center',
+    marginBottom: 12,
+    color: '#4D4D4D'
+  },
+  podcastName: {
+    textAlign: 'center',
+    marginBottom: 12
   },
   episodesName: {
-    marginTop: 10
+    textAlign: 'center',
+    color: '#8D8D8D'
   },
   playerWrapper: {
-    flexDirection: 'column',
-    flex: 0.25,
     width: '100%',
     justifyContent: 'center',
     alignItems: 'center',

@@ -1,17 +1,13 @@
 import { StyleSheet, ViewStyle } from 'react-native'
 
 type Styles = {
-  flatList: ViewStyle
-  flatListFooter: ViewStyle
+  defaultWrapper: ViewStyle
 }
 
 const styles = StyleSheet.create<Styles>({
-  flatList: {
-    flexGrow: 1
-  },
-  flatListFooter: {
-    flex: 1,
-    paddingBottom: 15,
+  defaultWrapper: {
+    flexGrow: 1,
+    height: '100%',
     justifyContent: 'center',
     alignItems: 'center'
   }

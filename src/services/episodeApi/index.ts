@@ -53,6 +53,15 @@ class EpisodeApi {
       }
     )
   }
+
+  public getPopular(): Promise<Episode[]> {
+    return this.#http.load(
+      `${this.#apiPath}${ApiPath.EPISODES}${EpisodesApiPath.POPULAR}`,
+      {
+        method: HttpMethod.GET
+      }
+    )
+  }
 }
 
 export { EpisodeApi }

@@ -1,7 +1,6 @@
 import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from 'react-native'
 
 type Styles = {
-  preloaderWrapper: ViewStyle
   container: ViewStyle
   podcastBackgroundWrapper: ViewStyle
   podcastBackground: ViewStyle
@@ -95,6 +94,7 @@ const styles = StyleSheet.create<Styles>({
   },
   episodesContainerTitle: {
     color: '#444',
+    fontSize: 20,
     marginBottom: 20
   },
   backButton: {
@@ -104,13 +104,6 @@ const styles = StyleSheet.create<Styles>({
   },
   nothing: {
     flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  preloaderWrapper: {
-    flexGrow: 1,
-    height: '100%',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center'

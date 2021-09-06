@@ -1,19 +1,15 @@
 import React, { useEffect } from 'react'
-import {
-  View,
-  ImageBackground,
-  TouchableOpacity,
-  ActivityIndicator
-} from 'react-native'
+import { View, TouchableOpacity, ActivityIndicator, Image } from 'react-native'
 import { useDispatch } from 'react-redux'
 import { useAppSelector } from 'src/hooks'
-import { Heading, HeadingType, PlainText } from 'src/components'
+import { Heading, HeadingType, PlainText, Spinner } from 'src/components'
 import {
   loadEpisodePayload,
   resetEpisodeState,
   addToRecentlyPlayed
 } from 'src/store/actions'
 import { DataStatus } from 'src/common/enums'
+import { ACTIVE_OPACITY } from 'src/common/constants'
 import BackButton from 'src/assets/images/backButton.svg'
 import DefaultImage from 'src/assets/images/defaultImage.svg'
 import {
@@ -30,10 +26,9 @@ import styles from './styles'
 type Props = {
   navigation: EpisodeScreenNavigationProp
   route: EpisodeScreenRouteProp
-  podcastName: string
 }
 
-const Episode: React.FC<Props> = ({ navigation, route, podcastName }) => {
+const Episode: React.FC<Props> = ({ navigation, route }) => {
   const { episode, dataStatus } = useAppSelector(({ episode }) => ({
     episode: episode.data,
     dataStatus: episode.dataStatus
@@ -42,7 +37,7 @@ const Episode: React.FC<Props> = ({ navigation, route, podcastName }) => {
   const dispatch = useDispatch()
 
   const isLoading = dataStatus === DataStatus.PENDING
-  const { id, author, playback } = route.params
+  const { id, position, author, podcast, playback } = route.params
 
   useEffect(() => {
     dispatch(loadEpisodePayload(id))
@@ -54,7 +49,13 @@ const Episode: React.FC<Props> = ({ navigation, route, podcastName }) => {
 
   useEffect(() => {
     if (episode) {
-      const mappedEpisode = mapEpisodeToRecentlyPlayedEpisode(episode, author)
+      const mappedEpisode = mapEpisodeToRecentlyPlayedEpisode(
+        episode,
+        author,
+        podcast,
+        position
+      )
+
       dispatch(addToRecentlyPlayed(mappedEpisode))
     }
   }, [episode])
@@ -64,11 +65,7 @@ const Episode: React.FC<Props> = ({ navigation, route, podcastName }) => {
   }
 
   if (isLoading) {
-    return (
-      <View style={styles.center}>
-        <ActivityIndicator size="large" color="#f3427f" />
-      </View>
-    )
+    return <Spinner />
   }
 
   if (!episode) {
@@ -84,29 +81,36 @@ const Episode: React.FC<Props> = ({ navigation, route, podcastName }) => {
       <View style={styles.header}>
         <TouchableOpacity
           style={styles.backButton}
-          activeOpacity={0.7}
+          activeOpacity={ACTIVE_OPACITY}
           onPress={handleBack}
         >
           <BackButton width={40} />
         </TouchableOpacity>
         <PlainText style={styles.headerText} label="Now Playing" />
       </View>
-
-      <ImageBackground
-        source={{ uri: episode?.image?.url }}
-        resizeMode="cover"
-        style={styles.image}
-      >
-        {!episode.image && <DefaultImage />}
-      </ImageBackground>
-
-      <View style={styles.designationBlock}>
-        <Heading label={podcastName ?? episode.name} type={HeadingType.LARGE} />
-        {podcastName && (
-          <PlainText label={episode.name} style={styles.episodesName} />
-        )}
+      {episode.image ? (
+        <Image
+          source={{ uri: episode.image.url }}
+          resizeMode="cover"
+          style={styles.image}
+        />
+      ) : (
+        <DefaultImage style={styles.image} />
+      )}
+      <View style={styles.description}>
+        <PlainText label={author} style={styles.authorName} />
+        <Heading
+          label={podcast}
+          type={HeadingType.LARGE}
+          numberOfLines={2}
+          style={styles.podcastName}
+        />
+        <PlainText
+          label={`Ep.${position}: ${episode.name}`}
+          numberOfLines={2}
+          style={styles.episodesName}
+        />
       </View>
-
       <View style={styles.playerWrapper}>
         {episode.record ? (
           <Player

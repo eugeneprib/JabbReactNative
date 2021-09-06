@@ -21,6 +21,7 @@ const styles = StyleSheet.create<Styles>({
   overlay: {
     paddingHorizontal: 30,
     paddingVertical: 15,
+    height: 110,
     backgroundColor: 'rgba(0, 0, 0, .5)'
   },
   author: {

@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { View, TouchableOpacity } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
+import { ACTIVE_OPACITY } from 'src/common/constants'
 import { Episode } from 'src/common/types'
 import { getFormattedDate, DateFormatType } from 'src/helpers'
 import { Heading, HeadingType, PlainText } from 'src/components'
@@ -13,19 +14,35 @@ type Props = {
   episode: Episode
   position: number
   author: string
+  podcast: string
 }
 
-const EpisodeItem: React.FC<Props> = ({ episode, position, author }) => {
+const EpisodeItem: React.FC<Props> = ({
+  episode,
+  position,
+  author,
+  podcast
+}) => {
   const navigation = useNavigation<PodcastScreenNavigationProp>()
 
+  const getDefaultNavigationProps = useCallback(() => {
+    return {
+      author,
+      podcast,
+      position,
+      id: episode.id
+    }
+  }, [author, podcast, position, episode.id])
+
   const handleNavigateToEpisode = () => {
-    navigation.navigate(NavigationScreen.EPISODE, { author, id: episode.id })
+    navigation.navigate(NavigationScreen.EPISODE, getDefaultNavigationProps())
   }
 
   const handleNavigateToEpisodeAndPlay = () => {
+    const defaultProps = getDefaultNavigationProps()
+
     navigation.navigate(NavigationScreen.EPISODE, {
-      author,
-      id: episode.id,
+      ...defaultProps,
       playback: true
     })
   }
@@ -33,7 +50,7 @@ const EpisodeItem: React.FC<Props> = ({ episode, position, author }) => {
   return (
     <TouchableOpacity
       style={styles.container}
-      activeOpacity={0.7}
+      activeOpacity={ACTIVE_OPACITY}
       onPress={handleNavigateToEpisode}
     >
       <View style={styles.episodeNumberCont}>
@@ -54,7 +71,7 @@ const EpisodeItem: React.FC<Props> = ({ episode, position, author }) => {
         />
       </View>
       <TouchableOpacity
-        activeOpacity={0.7}
+        activeOpacity={ACTIVE_OPACITY}
         onPress={handleNavigateToEpisodeAndPlay}
       >
         <PlayIcon width={35} />
