@@ -2,6 +2,7 @@ import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from 'react-native'
 
 type Styles = {
   container: ViewStyle
+  cardRight: ViewStyle
   background: ImageStyle
   overlay: ViewStyle
   author: TextStyle
@@ -10,10 +11,14 @@ type Styles = {
 
 const styles = StyleSheet.create<Styles>({
   container: {
-    flex: 1,
+    width: '47%',
     borderRadius: 15,
     backgroundColor: '#EEE',
-    overflow: 'hidden'
+    overflow: 'hidden',
+    marginBottom: 15
+  },
+  cardRight: {
+    marginLeft: 15
   },
   background: {
     justifyContent: 'flex-end',
