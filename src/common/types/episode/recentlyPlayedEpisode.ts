@@ -1,9 +1,9 @@
 type RecentlyPlayedEpisode = {
   id: number
-  position: number
+  position?: number
   title: string
   author: string
-  podcast: string
+  podcast?: string
   date: string
   source: string
 }

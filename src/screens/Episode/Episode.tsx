@@ -100,13 +100,13 @@ const Episode: React.FC<Props> = ({ navigation, route }) => {
       <View style={styles.description}>
         <PlainText label={author} style={styles.authorName} />
         <Heading
-          label={podcast}
+          label={podcast ?? episode.name}
           type={HeadingType.LARGE}
           numberOfLines={2}
           style={styles.podcastName}
         />
         <PlainText
-          label={`Ep.${position}: ${episode.name}`}
+          label={podcast ? `Ep.${position}: ${episode.name}` : ''}
           numberOfLines={2}
           style={styles.episodesName}
         />

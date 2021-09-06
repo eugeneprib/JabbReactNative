@@ -4,8 +4,8 @@ import { DEFAULT_EPISODE_IMAGE } from '../common/constants'
 const mapEpisodeToRecentlyPlayedEpisode = (
   episode: Episode,
   author: string,
-  podcast: string,
-  position: number
+  podcast?: string,
+  position?: number
 ): RecentlyPlayedEpisode => {
   return {
     author,
