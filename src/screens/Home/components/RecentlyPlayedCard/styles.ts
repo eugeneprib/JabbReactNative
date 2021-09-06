@@ -5,7 +5,7 @@ type Styles = {
   image: ImageStyle
   label: TextStyle
   author: TextStyle
-  date: TextStyle
+  date: ViewStyle
   time: TextStyle
 }
 
