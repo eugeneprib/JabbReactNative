@@ -110,7 +110,7 @@ const Home: React.FC = () => {
               position={index}
               key={episode.id}
               title={episode.name}
-              author={'user author'} //{episode.user.nickname}
+              author={episode.user.nickname}
               source={episode.image?.url}
               onPress={handleNavigateToEpisode}
             />
