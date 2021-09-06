@@ -1,8 +1,14 @@
 import React, { useEffect } from 'react'
 import { View, Image, TouchableOpacity, Linking, FlatList } from 'react-native'
 import { useDispatch } from 'react-redux'
-import { resetUser, loadPodcasts } from 'src/store/actions'
-import { Heading, HeadingType, PlainText, Spinner } from 'src/components'
+import { resetUser, loadUserPodcasts } from 'src/store/actions'
+import {
+  Heading,
+  HeadingType,
+  PlainText,
+  Spinner,
+  PodcastCard
+} from 'src/components'
 import { ACTIVE_OPACITY } from 'src/common/constants'
 import { Podcast, RootState } from 'src/common/types'
 import { DataStatus } from 'src/common/enums'
@@ -10,7 +16,6 @@ import { useAppSelector } from 'src/hooks'
 import Check from 'src/assets/images/checkMark.svg'
 import AtMark from 'src/assets/images/atMark.svg'
 import LogOut from 'src/assets/images/iconmonstr-log-out-16.svg'
-import PodcastItem from './components'
 import styles from './styles'
 
 const Profile: React.FC = () => {
@@ -29,7 +34,7 @@ const Profile: React.FC = () => {
   )
 
   useEffect(() => {
-    dispatch(loadPodcasts(Number(user?.id)))
+    dispatch(loadUserPodcasts(Number(user?.id)))
   }, [user?.id])
 
   if (!user) {
@@ -47,8 +52,17 @@ const Profile: React.FC = () => {
     await Linking.openURL(`mailto://${user.email}}`)
   }
 
-  const renderItem = ({ item }: { item: Podcast }) => (
-    <PodcastItem podcast={item} />
+  const renderItem = ({
+    item: { name, user, createdAt, image }
+  }: {
+    item: Podcast
+  }) => (
+    <PodcastCard
+      title={name}
+      author={user.nickname}
+      date={createdAt}
+      image={image?.url}
+    />
   )
 
   return (
@@ -56,7 +70,6 @@ const Profile: React.FC = () => {
       <View>
         <Heading type={HeadingType.LARGE} label="Profile" />
       </View>
-
       <View style={styles.userInfoContaienr}>
         <View>
           <Image
@@ -101,7 +114,6 @@ const Profile: React.FC = () => {
           </View>
         </View>
       </View>
-
       <View style={styles.userDataContainer}>
         <PlainText label="Podcasts" style={styles.podcastsTitle} />
         {podcasts ? (

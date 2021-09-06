@@ -1,11 +1,11 @@
 import { StyleSheet, ViewStyle } from 'react-native'
 
 type Styles = {
-  nothing: ViewStyle
+  container: ViewStyle
 }
 
 const styles = StyleSheet.create<Styles>({
-  nothing: {
+  container: {
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',

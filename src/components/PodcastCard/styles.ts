@@ -1,9 +1,9 @@
-import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from 'react-native'
+import { StyleSheet, ImageStyle, TextStyle, ViewStyle } from 'react-native'
 
 type Styles = {
   container: ViewStyle
   image: ImageStyle
-  label: TextStyle
+  textContainer: TextStyle
   author: TextStyle
   date: ViewStyle
   time: TextStyle
@@ -12,21 +12,22 @@ type Styles = {
 const styles = StyleSheet.create<Styles>({
   container: {
     flexDirection: 'row',
-    alignItems: 'flex-start'
+    borderRadius: 20,
+    overflow: 'hidden',
+    backgroundColor: '#eee'
   },
   image: {
-    width: 80,
-    height: 80,
-    marginRight: 20,
-    borderRadius: 20,
-    backgroundColor: '#EEE'
+    width: 90,
+    height: 90,
+    borderRadius: 20
   },
-  label: {
-    fontSize: 20
+  textContainer: {
+    paddingHorizontal: 15,
+    paddingVertical: 10
   },
   author: {
     fontSize: 12,
-    color: '#7C7C7C'
+    marginTop: 5
   },
   date: {
     flexDirection: 'row',
