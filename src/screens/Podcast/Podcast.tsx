@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux'
 import { useRoute, useNavigation } from '@react-navigation/native'
 import { View, Image, ImageBackground, TouchableOpacity } from 'react-native'
 import { useAppSelector } from 'src/hooks'
-import { DEFAULT_IMAGE_BASE64 } from 'src/common/constants/defaultImage'
 import { DataStatus } from 'src/common/enums'
 import {
   loadPodcast as loadPodcastAction,
@@ -17,7 +16,7 @@ import {
   PlainText,
   Spinner
 } from 'src/components'
-import { ACTIVE_OPACITY } from 'src/common/constants'
+import { ACTIVE_OPACITY, DEFAULT_IMAGE_BASE64 } from 'src/common/constants'
 import BackButton from 'src/assets/images/backButton.svg'
 import CircleIcon from 'src/assets/images/circle.svg'
 import {

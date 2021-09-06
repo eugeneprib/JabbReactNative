@@ -1,33 +1,55 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { View, Image, TouchableOpacity, Linking, FlatList } from 'react-native'
-import { Heading, HeadingType, PlainText, PodcastCard } from 'src/components'
+import { useDispatch } from 'react-redux'
+import { resetUser, loadUserPodcasts } from 'src/store/actions'
+import {
+  Heading,
+  HeadingType,
+  PlainText,
+  Spinner,
+  PodcastCard
+} from 'src/components'
 import { ACTIVE_OPACITY } from 'src/common/constants'
-import { Podcast, User } from 'src/common/types'
+import { Podcast, RootState } from 'src/common/types'
+import { DataStatus } from 'src/common/enums'
+import { useAppSelector } from 'src/hooks'
 import Check from 'src/assets/images/checkMark.svg'
 import AtMark from 'src/assets/images/atMark.svg'
 import LogOut from 'src/assets/images/iconmonstr-log-out-16.svg'
-import { MockedUser, MockedPodcasts } from './mockedData'
 import styles from './styles'
 
-type Props = {
-  podcasts: Podcast[]
-  user: User
-}
+const Profile: React.FC = () => {
+  const dispatch = useDispatch()
 
-const userPageInfo: Props = {
-  podcasts: MockedPodcasts,
-  user: MockedUser
-}
+  const handleLogOut = (): void => {
+    dispatch(resetUser())
+  }
 
-const UserPage: React.FC<Props> = () => {
-  const handleLogOut = () => {
-    return 0
+  const { user, podcasts, dataStatus } = useAppSelector(
+    ({ auth, profile }: RootState) => ({
+      user: auth.user,
+      podcasts: profile.podcasts,
+      dataStatus: profile.dataStatus
+    })
+  )
+
+  useEffect(() => {
+    dispatch(loadUserPodcasts(Number(user?.id)))
+  }, [user?.id])
+
+  if (!user) {
+    return null
+  }
+
+  const hasUser = Boolean(user)
+  const isLoading = dataStatus === DataStatus.PENDING
+
+  if (!hasUser && isLoading) {
+    return <Spinner />
   }
 
   const handleOpenMail = async () => {
-    await Linking.openURL(
-      `mailto://${userPageInfo.user.email}}&subject=abcdefg&body=body`
-    )
+    await Linking.openURL(`mailto://${user.email}}`)
   }
 
   const renderItem = ({
@@ -53,21 +75,21 @@ const UserPage: React.FC<Props> = () => {
           <Image
             width={118}
             height={118}
-            source={{ uri: userPageInfo.user.image?.url }}
+            source={{ uri: user.image?.url }}
             style={styles.image}
           />
         </View>
         <View style={styles.nameContainer}>
           <Heading
             type={HeadingType.MEDIUM}
-            label={`${userPageInfo.user.firstName} ${userPageInfo.user.lastName}`}
+            label={`${user.firstName} ${user.lastName}`}
           />
           <View style={styles.userContacts}>
             <View style={styles.userInfoItem}>
               <Check width={15} />
               <PlainText
                 style={styles.userInfoItemText}
-                label={userPageInfo.user.nickname}
+                label={user.nickname}
               />
             </View>
             <TouchableOpacity
@@ -76,10 +98,7 @@ const UserPage: React.FC<Props> = () => {
               onPress={handleOpenMail}
             >
               <AtMark width={15} />
-              <PlainText
-                style={styles.userInfoItemText}
-                label={userPageInfo.user.email}
-              />
+              <PlainText style={styles.userInfoItemText} label={user.email} />
             </TouchableOpacity>
             <TouchableOpacity
               activeOpacity={ACTIVE_OPACITY}
@@ -97,15 +116,21 @@ const UserPage: React.FC<Props> = () => {
       </View>
       <View style={styles.userDataContainer}>
         <PlainText label="Podcasts" style={styles.podcastsTitle} />
-        <FlatList
-          data={userPageInfo.podcasts}
-          renderItem={renderItem}
-          keyExtractor={(item) => item.name}
-          contentContainerStyle={styles.FlatListContainer}
-        />
+        {podcasts ? (
+          <FlatList
+            data={podcasts}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.name}
+            contentContainerStyle={styles.FlatListContainer}
+          />
+        ) : (
+          <View style={styles.center}>
+            <PlainText label="Oops! There's nothing here." />
+          </View>
+        )}
       </View>
     </View>
   )
 }
 
-export default UserPage
+export default Profile

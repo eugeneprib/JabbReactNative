@@ -10,5 +10,5 @@ export {
 export { ContentType } from './file'
 export { HttpMethod } from './http'
 export { NavigationScreen } from './navigation'
-export { PodcastType, PodcastPeriodicity } from './podcast'
+export { PodcastType, PodcastPeriodicity, PodcastsApiPath } from './podcast'
 export { UserRole } from './user'
