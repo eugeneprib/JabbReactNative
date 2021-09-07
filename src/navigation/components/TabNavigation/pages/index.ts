@@ -1,6 +1,6 @@
 import { ComponentType } from 'react'
 import { SvgProps } from 'react-native-svg'
-import { Home, Podcast, Profile, Search } from 'src/screens'
+import { Home, Listening, Profile, Search } from 'src/screens'
 import { NavigationScreen } from 'src/common/enums'
 import HomeIcon from 'src/assets/images/home.svg'
 import SearchIcon from 'src/assets/images/search.svg'
@@ -26,7 +26,7 @@ export const tabPages: Props[] = [
   },
   {
     name: NavigationScreen.LISTENING,
-    component: Podcast,
+    component: Listening,
     Icon: Play
   },
   {

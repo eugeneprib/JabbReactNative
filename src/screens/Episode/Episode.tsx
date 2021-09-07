@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { View, TouchableOpacity, ActivityIndicator, Image } from 'react-native'
+import { View, TouchableOpacity, Image } from 'react-native'
 import { useDispatch } from 'react-redux'
 import { useAppSelector } from 'src/hooks'
 import { Heading, HeadingType, PlainText, Spinner } from 'src/components'

@@ -14,6 +14,7 @@ type RootStackParamList = {
   [NavigationScreen.TO_TABS_NAVIGATOR]: undefined
   [NavigationScreen.SEARCH]: undefined
   [NavigationScreen.MY_PROFILE]: undefined
+  [NavigationScreen.LISTENING]: undefined
 }
 
 export type { RootStackParamList }

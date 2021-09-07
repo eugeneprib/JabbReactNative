@@ -14,11 +14,7 @@ import {
   getForwardTime,
   getPlayerTime
 } from './common/helpers'
-import {
-  DEFAULT_START_TIME,
-  TIME_SHIFT_IN_SECONDS,
-  BASE_SLIDER_COLOUR
-} from './common/constants'
+import { DEFAULT_START_TIME, BASE_SLIDER_COLOUR } from './common/constants'
 import styles from './styles'
 
 type Props = {
