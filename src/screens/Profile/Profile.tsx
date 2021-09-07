@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import { View, Image, TouchableOpacity, Linking, FlatList } from 'react-native'
 import { useDispatch } from 'react-redux'
-import { useNavigation } from '@react-navigation/core'
 import { resetUser, loadUserPodcasts } from 'src/store/actions'
 import {
   Heading,
