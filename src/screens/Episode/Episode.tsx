@@ -84,7 +84,7 @@ const Episode: React.FC<Props> = ({ navigation, route }) => {
           activeOpacity={ACTIVE_OPACITY}
           onPress={handleBack}
         >
-          <BackButton width={40} />
+          <BackButton width={43} />
         </TouchableOpacity>
         <PlainText style={styles.headerText} label="Now Playing" />
       </View>

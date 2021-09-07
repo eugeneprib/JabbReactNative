@@ -104,7 +104,7 @@ const Podcast: React.FC = () => {
                 style={styles.backButton}
                 activeOpacity={ACTIVE_OPACITY}
               >
-                <BackButton width={40} />
+                <BackButton width={45} />
               </TouchableOpacity>
               <View style={styles.podcastLogoContainer}>
                 <Image
