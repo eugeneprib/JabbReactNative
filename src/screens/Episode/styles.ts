@@ -20,7 +20,8 @@ const styles = StyleSheet.create<Styles>({
     alignItems: 'center',
     justifyContent: 'space-between',
     padding: 25,
-    paddingBottom: 40
+    paddingBottom: 40,
+    backgroundColor: '#fff'
   },
   center: {
     flex: 1,

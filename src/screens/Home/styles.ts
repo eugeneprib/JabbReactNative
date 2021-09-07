@@ -15,7 +15,8 @@ type Styles = {
 
 const styles = StyleSheet.create<Styles>({
   container: {
-    padding: 25
+    padding: 25,
+    backgroundColor: '#fff'
   },
   title: {
     marginBottom: 5,

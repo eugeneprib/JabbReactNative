@@ -9,7 +9,8 @@ const styles = StyleSheet.create<Styles>({
   container: {
     alignItems: 'center',
     height: '100%',
-    padding: 25
+    padding: 25,
+    backgroundColor: '#fff'
   },
   line: {
     width: '90%',

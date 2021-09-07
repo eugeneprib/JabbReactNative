@@ -24,7 +24,8 @@ const styles = StyleSheet.create<Styles>({
   container: {
     flexGrow: 1,
     flexDirection: 'column',
-    paddingBottom: 25
+    paddingBottom: 25,
+    backgroundColor: '#fff'
   },
   podcastBackgroundWrapper: {
     position: 'relative',
