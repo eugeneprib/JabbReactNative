@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { View, Image, TouchableOpacity, Linking, FlatList } from 'react-native'
 import { useDispatch } from 'react-redux'
+import { useNavigation } from '@react-navigation/core'
 import { resetUser, loadUserPodcasts } from 'src/store/actions'
 import {
   Heading,
@@ -11,7 +12,7 @@ import {
 } from 'src/components'
 import { ACTIVE_OPACITY } from 'src/common/constants'
 import { Podcast, RootState } from 'src/common/types'
-import { DataStatus } from 'src/common/enums'
+import { DataStatus, NavigationScreen } from 'src/common/enums'
 import { useAppSelector } from 'src/hooks'
 import Check from 'src/assets/images/checkMark.svg'
 import AtMark from 'src/assets/images/atMark.svg'
@@ -20,6 +21,7 @@ import styles from './styles'
 
 const Profile: React.FC = () => {
   const dispatch = useDispatch()
+  const navigation = useNavigation()
 
   const handleLogOut = (): void => {
     dispatch(resetUser())
@@ -53,18 +55,24 @@ const Profile: React.FC = () => {
   }
 
   const renderItem = ({
-    item: { name, user, createdAt, image }
+    item: { name, user, createdAt, image, id }
   }: {
     item: Podcast
-  }) => (
-    <PodcastCard
-      title={name}
-      author={user.nickname}
-      date={createdAt}
-      image={image?.url}
-      style={styles.podcastItem}
-    />
-  )
+  }) => {
+    const handleNavigateToPodcast = () => {
+      navigation.navigate(NavigationScreen.PODCAST, { id: id })
+    }
+    return (
+      <PodcastCard
+        title={name}
+        author={user.nickname}
+        date={createdAt}
+        image={image?.url}
+        style={styles.podcastItem}
+        onPress={handleNavigateToPodcast}
+      />
+    )
+  }
 
   return (
     <View style={styles.container}>
