@@ -62,6 +62,7 @@ const Profile: React.FC = () => {
       author={user.nickname}
       date={createdAt}
       image={image?.url}
+      style={styles.podcastItem}
     />
   )
 

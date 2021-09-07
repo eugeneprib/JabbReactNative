@@ -1,9 +1,10 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View } from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { NavigationScreen } from 'src/common/enums'
 import { tabPages } from './pages'
 import { tabOptions } from './options'
+import ActiveIcon from 'src/assets/images/activeBar.svg'
 import styles from './styles'
 
 const Tab = createBottomTabNavigator()
@@ -24,16 +25,8 @@ const TabNavigation: React.FC = () => {
               tabBarHideOnKeyboard: true,
               tabBarIcon: ({ focused }) => (
                 <View style={styles.viewContainer}>
-                  <tab.Icon width={17} opacity={focused ? 1 : 0.3} />
-                  <Text
-                    style={
-                      focused
-                        ? styles.textNavigation
-                        : styles.textNavigationWithOpacity
-                    }
-                  >
-                    {tab.name}
-                  </Text>
+                  <ActiveIcon width={20} opacity={focused ? 1 : 0} />
+                  <tab.Icon width={20} opacity={focused ? 1 : 0.3} />
                 </View>
               )
             }}

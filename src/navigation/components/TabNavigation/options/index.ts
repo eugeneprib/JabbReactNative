@@ -3,6 +3,7 @@ export const tabOptions = {
   tabBarShowLabel: false,
   tabBarStyle: {
     backgroundColor: 'rgb(250,250,250)',
-    height: 62
+    height: 58,
+    paddingHorizontal: 18
   }
 }

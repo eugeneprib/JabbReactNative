@@ -15,6 +15,7 @@ type Styles = {
   FlatListContainer: ViewStyle
   loadingContainer: ViewStyle
   center: ViewStyle
+  podcastItem: ViewStyle
 }
 
 const styles = StyleSheet.create<Styles>({
@@ -29,7 +30,8 @@ const styles = StyleSheet.create<Styles>({
   },
   podcastsTitle: {
     fontSize: 18,
-    color: '#090909'
+    color: '#090909',
+    marginBottom: 10
   },
   userInfoContaienr: {
     marginTop: 25,
@@ -83,6 +85,9 @@ const styles = StyleSheet.create<Styles>({
   },
   FlatListContainer: {
     paddingBottom: 160
+  },
+  podcastItem: {
+    marginTop: 13
   }
 })
 
