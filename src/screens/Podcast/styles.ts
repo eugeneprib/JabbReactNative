@@ -28,7 +28,7 @@ const styles = StyleSheet.create<Styles>({
   },
   podcastBackgroundWrapper: {
     position: 'relative',
-    height: 250
+    height: 190
   },
   podcastBackground: {
     flex: 1,
@@ -42,7 +42,7 @@ const styles = StyleSheet.create<Styles>({
     borderRadius: 20
   },
   podcastNameContainer: {
-    marginTop: 5,
+    marginTop: 20,
     alignItems: 'center',
     paddingHorizontal: 35
   },
