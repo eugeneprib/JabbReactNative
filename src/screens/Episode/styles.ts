@@ -19,9 +19,7 @@ const styles = StyleSheet.create<Styles>({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'space-between',
-    padding: 25,
-    paddingBottom: 40,
-    backgroundColor: '#fff'
+    paddingBottom: 40
   },
   center: {
     flex: 1,

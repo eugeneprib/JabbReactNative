@@ -21,8 +21,7 @@ type Styles = {
 const styles = StyleSheet.create<Styles>({
   container: {
     padding: 20,
-    flex: 1,
-    backgroundColor: '#fff'
+    flex: 1
   },
   center: {
     justifyContent: 'center',

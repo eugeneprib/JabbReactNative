@@ -28,6 +28,7 @@ import {
   PodcastScreenNavigationProp
 } from './common/types'
 import { EpisodeList } from './components'
+import globalStyles from 'src/styles/globalStyles'
 import styles from './styles'
 
 const Podcast: React.FC = () => {
@@ -90,7 +91,7 @@ const Podcast: React.FC = () => {
   }
 
   return (
-    <View style={styles.container}>
+    <View style={[globalStyles.container, styles.container]}>
       {podcast ? (
         <>
           <View style={styles.podcastBackgroundWrapper}>
