@@ -9,21 +9,21 @@ type Props = {
   title: string
   author: string
   source?: string
-  onHandleNavigateToPodcast?: () => void
-  onHandleNavigateToEpisode?: () => void
+  onNavigateToPodcast?: () => void
+  onNavigateToEpisode?: () => void
 }
 
 const SuggestedPodcastCard: React.FC<Props> = ({
   title,
   author,
   source,
-  onHandleNavigateToPodcast,
-  onHandleNavigateToEpisode
+  onNavigateToPodcast,
+  onNavigateToEpisode
 }) => {
   return (
     <TouchableOpacity
       activeOpacity={ACTIVE_OPACITY}
-      onPress={onHandleNavigateToPodcast}
+      onPress={onNavigateToPodcast}
     >
       <ImageBackground source={{ uri: source }} style={styles.container}>
         <View style={styles.overlay}>
@@ -38,7 +38,7 @@ const SuggestedPodcastCard: React.FC<Props> = ({
             <TouchableOpacity
               style={styles.icon}
               activeOpacity={ACTIVE_OPACITY}
-              onPress={onHandleNavigateToEpisode}
+              onPress={onNavigateToEpisode}
             >
               <PlayIcon width={12} />
             </TouchableOpacity>

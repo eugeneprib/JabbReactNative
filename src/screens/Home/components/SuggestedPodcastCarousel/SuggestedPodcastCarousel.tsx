@@ -40,8 +40,8 @@ const SuggestedPodcastCarousel: React.FC<Props> = ({ data, screenPadding }) => {
         title={name}
         author={user.nickname}
         source={image?.url}
-        onHandleNavigateToPodcast={handleNavigateToPodcast}
-        onHandleNavigateToEpisode={handleNavigateToEpisode}
+        onNavigateToPodcast={handleNavigateToPodcast}
+        onNavigateToEpisode={handleNavigateToEpisode}
       />
     )
   }
