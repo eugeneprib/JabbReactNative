@@ -3,11 +3,7 @@ import { View, TouchableOpacity, Image } from 'react-native'
 import { useDispatch } from 'react-redux'
 import { useAppSelector } from 'src/hooks'
 import { Heading, HeadingType, PlainText, Spinner } from 'src/components'
-import {
-  loadEpisodePayload,
-  resetEpisodeState,
-  addToRecentlyPlayed
-} from 'src/store/actions'
+import { loadEpisodePayload, addToRecentlyPlayed } from 'src/store/actions'
 import { DataStatus } from 'src/common/enums'
 import { ACTIVE_OPACITY, DEFAULT_IMAGE_BASE64 } from 'src/common/constants'
 import BackButton from 'src/assets/images/backButton.svg'
@@ -28,40 +24,54 @@ type Props = {
 }
 
 const Episode: React.FC<Props> = ({ navigation, route }) => {
-  const { episode, dataStatus } = useAppSelector(({ episode }) => ({
-    episode: episode.data,
-    dataStatus: episode.dataStatus
-  }))
+  const { episode, recentlyPlayedEpisodes, popularEpisodes, dataStatus } =
+    useAppSelector(({ episode, home }) => ({
+      episode: episode.data,
+      recentlyPlayedEpisodes: home.recentlyPlayedEpisodes,
+      popularEpisodes: home.popularEpisodes,
+      dataStatus: episode.dataStatus
+    }))
 
   const dispatch = useDispatch()
 
   const isLoading = dataStatus === DataStatus.PENDING
-  const { id, position, author, podcast, playback } = route.params
+
+  const handleGoBack = () => {
+    navigation.goBack()
+  }
 
   useEffect(() => {
-    dispatch(loadEpisodePayload(id))
-
-    return () => {
-      dispatch(resetEpisodeState())
+    if (route.params?.id) {
+      dispatch(loadEpisodePayload(route.params.id))
     }
-  }, [id])
+  }, [route])
 
   useEffect(() => {
     if (episode) {
       const mappedEpisode = mapEpisodeToRecentlyPlayedEpisode(
         episode,
-        author,
-        podcast,
-        position
+        route.params?.author,
+        route.params?.podcast,
+        route.params?.position
       )
-
       dispatch(addToRecentlyPlayed(mappedEpisode))
     }
   }, [episode])
 
-  const handleBack = () => {
-    navigation.goBack()
-  }
+  useEffect(() => {
+    if (route.params?.id) {
+      return
+    }
+
+    if (recentlyPlayedEpisodes.length) {
+      const [lastRecentlyPlayedEpisode] = recentlyPlayedEpisodes
+      dispatch(loadEpisodePayload(lastRecentlyPlayedEpisode.id))
+      return
+    }
+
+    const [popularEpisode] = popularEpisodes
+    dispatch(loadEpisodePayload(popularEpisode.id))
+  }, [])
 
   if (isLoading) {
     return <Spinner />
@@ -81,7 +91,7 @@ const Episode: React.FC<Props> = ({ navigation, route }) => {
         <TouchableOpacity
           style={styles.backButton}
           activeOpacity={ACTIVE_OPACITY}
-          onPress={handleBack}
+          onPress={handleGoBack}
         >
           <BackButton width={40} />
         </TouchableOpacity>
@@ -93,15 +103,22 @@ const Episode: React.FC<Props> = ({ navigation, route }) => {
         style={styles.image}
       />
       <View style={styles.description}>
-        <PlainText label={author} style={styles.authorName} />
+        <PlainText
+          label={route.params?.author ?? 'Undefined'}
+          style={styles.authorName}
+        />
         <Heading
-          label={podcast ?? episode.name}
+          label={route.params?.podcast ?? episode.name}
           type={HeadingType.LARGE}
           numberOfLines={2}
           style={styles.podcastName}
         />
         <PlainText
-          label={podcast ? `Ep.${position}: ${episode.name}` : ''}
+          label={
+            route.params?.podcast
+              ? `Ep.${route.params.position}: ${episode.name}`
+              : ''
+          }
           numberOfLines={2}
           style={styles.episodesName}
         />
@@ -109,8 +126,8 @@ const Episode: React.FC<Props> = ({ navigation, route }) => {
       <View style={styles.playerWrapper}>
         {episode.record ? (
           <Player
-            episode={mapEpisodeToPlayerEpisode(episode, author)}
-            startToPlay={playback}
+            episode={mapEpisodeToPlayerEpisode(episode, route.params?.author)}
+            startToPlay={route.params?.playback}
           />
         ) : (
           <PlainText label="There's no any record yet." />
