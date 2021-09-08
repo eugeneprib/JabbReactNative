@@ -1,36 +1,29 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { createStackNavigator } from '@react-navigation/stack'
 import { useAppSelector } from 'src/hooks'
-import { secureStorage } from 'src/services'
-import { SignIn, Episode, Podcast } from 'src/screens'
-import { getCurrentUser } from 'src/store/actions'
-import { NavigationScreen, SecureStorageKey } from 'src/common/enums'
+import { SignIn, Podcast, Episode } from 'src/screens'
+import { getCurrentUser, loadToken } from 'src/store/actions'
+import { DataStatus, NavigationScreen } from 'src/common/enums'
 import { RootStackParamList } from 'src/common/types'
 import { TabNavigation } from './components'
 
 const Stack = createStackNavigator<RootStackParamList>()
 
 const StackNavigation: React.FC = () => {
-  const { user } = useAppSelector(({ auth }) => ({
-    user: auth.user
+  const { user, token, dataStatus } = useAppSelector(({ auth }) => ({
+    user: auth.user,
+    token: auth.token,
+    dataStatus: auth.dataStatus
   }))
 
   const dispatch = useDispatch()
 
-  const [isFirstLoading, setIsFirstLoading] = useState(true)
-  const [token, setToken] = useState<string | null>(null)
-
-  const hasToken = Boolean(token)
   const hasUser = Boolean(user)
-
-  const isUserExistsAndNotLoaded = hasToken && !hasUser
+  const isLoading = dataStatus === DataStatus.PENDING
 
   useEffect(() => {
-    secureStorage
-      .getItem(SecureStorageKey.TOKEN)
-      .then(setToken)
-      .then(() => setIsFirstLoading(false))
+    dispatch(loadToken())
   }, [])
 
   useEffect(() => {
@@ -39,7 +32,7 @@ const StackNavigation: React.FC = () => {
     }
   }, [token])
 
-  if (isFirstLoading || isUserExistsAndNotLoaded) {
+  if (isLoading) {
     return null
   }
 

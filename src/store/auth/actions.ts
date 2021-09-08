@@ -17,6 +17,14 @@ const signIn = createAsyncThunk<User, UserSignInPayload, AsyncThunkConfig>(
   }
 )
 
+const loadToken = createAsyncThunk<string | null, undefined, AsyncThunkConfig>(
+  ActionType.LOAD_TOKEN,
+  async (_args, { extra }) => {
+    const { secureStorageService } = extra
+    return await secureStorageService.getItem(SecureStorageKey.TOKEN)
+  }
+)
+
 const getCurrentUser = createAsyncThunk<User, undefined, AsyncThunkConfig>(
   ActionType.LOAD_USER,
   async (_args, { extra }) => {
@@ -33,4 +41,4 @@ const resetUser = createAsyncThunk<void, undefined, AsyncThunkConfig>(
   }
 )
 
-export { signIn, getCurrentUser, resetUser }
+export { signIn, loadToken, getCurrentUser, resetUser }
