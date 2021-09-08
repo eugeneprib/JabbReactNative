@@ -55,8 +55,9 @@ const styles = StyleSheet.create<Styles>({
     borderRadius: 29
   },
   time: {
-    fontSize: 10,
-    color: '#C7C7C7'
+    fontSize: 12,
+    color: '#C7C7C7',
+    fontWeight: '700'
   }
 })
 

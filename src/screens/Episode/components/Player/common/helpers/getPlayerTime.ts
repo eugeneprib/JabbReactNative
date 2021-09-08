@@ -1,9 +1,8 @@
-import * as dateFns from 'date-fns'
 import { DateFormatType, getFormattedDate } from 'src/helpers'
 import {
-  UNIX_TIME_START,
   TIME_SEPARATOR,
-  HOUR_IS_NOT_EXISTS
+  HOUR_IS_NOT_EXISTS,
+  MILLISECONDS_IN_SECOND
 } from '../constants'
 
 const checkHourExist = (hours: string): boolean => {
@@ -12,7 +11,7 @@ const checkHourExist = (hours: string): boolean => {
 
 const getPlayerTime = (timestamp: number): string => {
   const formattedTime = getFormattedDate(
-    String(dateFns.addSeconds(new Date(UNIX_TIME_START), timestamp)),
+    String(new Date(timestamp * MILLISECONDS_IN_SECOND)),
     DateFormatType.HOURS_MINUTES_SECONDS
   )
 
