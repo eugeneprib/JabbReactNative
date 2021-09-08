@@ -1,22 +1,23 @@
-import { DateFormatType, getFormattedDate } from 'src/helpers'
 import {
   TIME_SEPARATOR,
   HOUR_IS_NOT_EXISTS,
-  MILLISECONDS_IN_SECOND
+  MILLISECONDS_IN_SECOND,
+  STRING_ZERO_SYMBOL
 } from '../constants'
 
-const checkHourExist = (hours: string): boolean => {
+const checkHourExist = (hours: string | number): boolean => {
   return hours !== HOUR_IS_NOT_EXISTS
 }
 
-const getPlayerTime = (timestamp: number): string => {
-  const formattedTime = getFormattedDate(
-    String(new Date(timestamp * MILLISECONDS_IN_SECOND)),
-    DateFormatType.HOURS_MINUTES_SECONDS
-  )
+const checkZeroExist = (i: number) => {
+  return i < 10 ? STRING_ZERO_SYMBOL + i : i
+}
 
-  const splittedTime = formattedTime.split(TIME_SEPARATOR)
-  const [hours, minutes, seconds] = splittedTime
+const getPlayerTime = (timestamp: number): string => {
+  const time = new Date(timestamp * MILLISECONDS_IN_SECOND)
+  const hours = checkZeroExist(time.getHours())
+  const minutes = checkZeroExist(time.getMinutes())
+  const seconds = checkZeroExist(time.getSeconds())
 
   const minutesAndSeconds = minutes + TIME_SEPARATOR + seconds
 
