@@ -2,7 +2,7 @@ import React from 'react'
 import { useWindowDimensions } from 'react-native'
 import Carousel from 'react-native-snap-carousel'
 import { useNavigation } from '@react-navigation/native'
-import { Podcast } from 'src/common/types'
+import { SuggestedPodcast } from 'src/common/types'
 import { PodcastScreenNavigationProp } from 'src/screens/Podcast/common/types'
 import { CarouselItem } from './common/types'
 import { NavigationScreen } from 'src/common/enums'
@@ -10,7 +10,7 @@ import { getCarouselItemWidth, getCarouselWidth } from './common/helpers'
 import SuggestedPodcastCard from '../SuggestedPodcastCard'
 
 type Props = {
-  data: Podcast[]
+  data: SuggestedPodcast[]
   screenPadding: number
 }
 
@@ -19,10 +19,18 @@ const SuggestedPodcastCarousel: React.FC<Props> = ({ data, screenPadding }) => {
   const navigation = useNavigation<PodcastScreenNavigationProp>()
 
   const renderCarouselItem = ({
-    item: { name, user, image, id }
+    item: { name, user, image, id, episodes }
   }: CarouselItem) => {
     const handleNavigateToPodcast = () => {
       navigation.navigate(NavigationScreen.PODCAST, { id })
+    }
+
+    const handleNavigateToEpisode = () => {
+      navigation.navigate(NavigationScreen.EPISODE, {
+        id: episodes[0].id,
+        author: user.nickname,
+        playback: true
+      })
     }
 
     return (
@@ -30,7 +38,8 @@ const SuggestedPodcastCarousel: React.FC<Props> = ({ data, screenPadding }) => {
         title={name}
         author={user.nickname}
         source={image?.url}
-        onPress={handleNavigateToPodcast}
+        onHandleNavigateToPodcast={handleNavigateToPodcast}
+        onHandleNavigateToEpisode={handleNavigateToEpisode}
       />
     )
   }

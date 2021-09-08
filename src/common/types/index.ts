@@ -7,7 +7,12 @@ export type {
   PlayerEpisode,
   RecentlyPlayedEpisode
 } from './episode'
-export type { Podcast, PodcastLoadFilter, PodcastQueryPayload } from './podcast'
+export type {
+  Podcast,
+  PodcastLoadFilter,
+  PodcastQueryPayload,
+  SuggestedPodcast
+} from './podcast'
 export type { SignResponse } from './sign'
 export type { User, UserSignInPayload } from './user'
 export type { Record } from './record'

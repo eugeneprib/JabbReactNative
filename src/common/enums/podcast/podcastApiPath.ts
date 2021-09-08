@@ -1,6 +1,7 @@
 enum PodcastsApiPath {
   ROOT = '/',
   $ID = '/:id',
-  USERS = '/users'
+  USERS = '/users',
+  POPULAR = '/popular'
 }
 export { PodcastsApiPath }
