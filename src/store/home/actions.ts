@@ -4,7 +4,7 @@ import {
   AsyncThunkConfig,
   SuggestedPodcast,
   RecentlyPlayedEpisode,
-  Episode
+  PopularEpisode
 } from 'src/common/types'
 import { ActionType } from './common'
 
@@ -33,7 +33,7 @@ const loadRecentlyPlayedEpisodes = createAsyncThunk<
 })
 
 const loadPopularEpisodes = createAsyncThunk<
-  Episode[],
+  PopularEpisode[],
   undefined,
   AsyncThunkConfig
 >(ActionType.LOAD_POPULAR, async (_args, { extra }) => {

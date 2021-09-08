@@ -5,7 +5,8 @@ export type {
   EpisodeQueryPayload,
   LoadEpisodesByPodcastIdPayload,
   PlayerEpisode,
-  RecentlyPlayedEpisode
+  RecentlyPlayedEpisode,
+  PopularEpisode
 } from './episode'
 export type {
   Podcast,
