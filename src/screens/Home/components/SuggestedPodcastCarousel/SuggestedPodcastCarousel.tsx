@@ -25,9 +25,11 @@ const SuggestedPodcastCarousel: React.FC<Props> = ({ data, screenPadding }) => {
       navigation.navigate(NavigationScreen.PODCAST, { id })
     }
 
+    const [firstEpisode] = episodes
+
     const handleNavigateToEpisode = () => {
       navigation.navigate(NavigationScreen.EPISODE, {
-        id: episodes[0].id,
+        id: firstEpisode.id,
         author: user.nickname,
         playback: true
       })
