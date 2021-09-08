@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { View, Image, TouchableOpacity, Linking, FlatList } from 'react-native'
 import { useDispatch } from 'react-redux'
+import { useNavigation } from '@react-navigation/core'
 import { resetUser, loadUserPodcasts } from 'src/store/actions'
 import {
   Heading,
@@ -11,20 +12,15 @@ import {
 } from 'src/components'
 import { ACTIVE_OPACITY } from 'src/common/constants'
 import { Podcast, RootState } from 'src/common/types'
-import { DataStatus } from 'src/common/enums'
+import { DataStatus, NavigationScreen } from 'src/common/enums'
 import { useAppSelector } from 'src/hooks'
 import Check from 'src/assets/images/checkMark.svg'
 import AtMark from 'src/assets/images/atMark.svg'
 import LogOut from 'src/assets/images/iconmonstr-log-out-16.svg'
+import { ProfileScreenNavigationProp } from './common/types'
 import styles from './styles'
 
 const Profile: React.FC = () => {
-  const dispatch = useDispatch()
-
-  const handleLogOut = (): void => {
-    dispatch(resetUser())
-  }
-
   const { user, podcasts, dataStatus } = useAppSelector(
     ({ auth, profile }: RootState) => ({
       user: auth.user,
@@ -33,38 +29,52 @@ const Profile: React.FC = () => {
     })
   )
 
+  const dispatch = useDispatch()
+  const navigation = useNavigation<ProfileScreenNavigationProp>()
+
+  const hasUser = Boolean(user)
+  const isLoading = dataStatus === DataStatus.PENDING
+
+  const handleLogout = (): void => {
+    dispatch(resetUser())
+  }
+
+  const handleOpenMail = async () => {
+    await Linking.openURL(`mailto://${user?.email}}`)
+  }
+
   useEffect(() => {
     dispatch(loadUserPodcasts(Number(user?.id)))
   }, [user?.id])
+
+  const renderItem = ({
+    item: { id, name, user, createdAt, image }
+  }: {
+    item: Podcast
+  }) => {
+    const handleNavigateToPodcast = () => {
+      navigation.navigate(NavigationScreen.PODCAST, { id })
+    }
+
+    return (
+      <PodcastCard
+        title={name}
+        author={user.nickname}
+        date={createdAt}
+        image={image?.url}
+        style={styles.podcastItem}
+        onPress={handleNavigateToPodcast}
+      />
+    )
+  }
 
   if (!user) {
     return null
   }
 
-  const hasUser = Boolean(user)
-  const isLoading = dataStatus === DataStatus.PENDING
-
   if (!hasUser && isLoading) {
     return <Spinner />
   }
-
-  const handleOpenMail = async () => {
-    await Linking.openURL(`mailto://${user.email}}`)
-  }
-
-  const renderItem = ({
-    item: { name, user, createdAt, image }
-  }: {
-    item: Podcast
-  }) => (
-    <PodcastCard
-      title={name}
-      author={user.nickname}
-      date={createdAt}
-      image={image?.url}
-      style={styles.podcastItem}
-    />
-  )
 
   return (
     <View style={styles.container}>
@@ -104,7 +114,7 @@ const Profile: React.FC = () => {
             <TouchableOpacity
               activeOpacity={ACTIVE_OPACITY}
               style={styles.userInfoItem}
-              onPress={handleLogOut}
+              onPress={handleLogout}
             >
               <LogOut width={15} />
               <PlainText
@@ -121,7 +131,6 @@ const Profile: React.FC = () => {
           <FlatList
             data={podcasts}
             renderItem={renderItem}
-            keyExtractor={(item) => item.name}
             contentContainerStyle={styles.FlatListContainer}
           />
         ) : (
