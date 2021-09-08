@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useMemo } from 'react'
 import { View, TouchableOpacity } from 'react-native'
 import TrackPlayer, { useProgress, Capability } from 'react-native-track-player'
 import Slider from '@react-native-community/slider'
@@ -14,11 +14,7 @@ import {
   getForwardTime,
   getPlayerTime
 } from './common/helpers'
-import {
-  DEFAULT_START_TIME,
-  TIME_SHIFT_IN_SECONDS,
-  BASE_SLIDER_COLOUR
-} from './common/constants'
+import { DEFAULT_START_TIME, BASE_SLIDER_COLOUR } from './common/constants'
 import styles from './styles'
 
 type Props = {
@@ -71,11 +67,14 @@ const Player: React.FC<Props> = ({ episode, startToPlay = false }) => {
     TrackPlayer.seekTo(getBackwardTime(position))
   }
 
+  const timeFromPosition = useMemo(() => getPlayerTime(position), [position])
+  const timeFromDuration = useMemo(() => getPlayerTime(duration), [duration])
+
   return (
     <View>
       <View style={styles.sliderWrapper}>
         <View style={[styles.timeWrapper, styles.timePosition]}>
-          <PlainText label={getPlayerTime(position)} style={styles.time} />
+          <PlainText label={timeFromPosition} style={styles.time} />
         </View>
         <Slider
           style={styles.slider}
@@ -88,7 +87,7 @@ const Player: React.FC<Props> = ({ episode, startToPlay = false }) => {
           onSlidingComplete={TrackPlayer.seekTo}
         />
         <View style={[styles.timeWrapper, styles.timeDuration]}>
-          <PlainText label={getPlayerTime(duration)} style={styles.time} />
+          <PlainText label={timeFromDuration} style={styles.time} />
         </View>
       </View>
       <View style={styles.row}>

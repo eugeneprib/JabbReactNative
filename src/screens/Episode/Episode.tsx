@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { View, TouchableOpacity, ActivityIndicator, Image } from 'react-native'
+import { View, TouchableOpacity, Image } from 'react-native'
 import { useDispatch } from 'react-redux'
 import { useAppSelector } from 'src/hooks'
 import { Heading, HeadingType, PlainText, Spinner } from 'src/components'
@@ -9,9 +9,8 @@ import {
   addToRecentlyPlayed
 } from 'src/store/actions'
 import { DataStatus } from 'src/common/enums'
-import { ACTIVE_OPACITY } from 'src/common/constants'
+import { ACTIVE_OPACITY, DEFAULT_IMAGE_BASE64 } from 'src/common/constants'
 import BackButton from 'src/assets/images/backButton.svg'
-import DefaultImage from 'src/assets/images/defaultImage.svg'
 import {
   EpisodeScreenNavigationProp,
   EpisodeScreenRouteProp
@@ -89,15 +88,11 @@ const Episode: React.FC<Props> = ({ navigation, route }) => {
         </TouchableOpacity>
         <PlainText style={styles.headerText} label="Now Playing" />
       </View>
-      {episode.image ? (
-        <Image
-          source={{ uri: episode.image.url }}
-          resizeMode="cover"
-          style={styles.image}
-        />
-      ) : (
-        <DefaultImage style={styles.image} />
-      )}
+      <Image
+        source={{ uri: episode?.image?.url ?? DEFAULT_IMAGE_BASE64 }}
+        resizeMode="cover"
+        style={styles.image}
+      />
       <View style={styles.description}>
         <PlainText label={author} style={styles.authorName} />
         <Heading
