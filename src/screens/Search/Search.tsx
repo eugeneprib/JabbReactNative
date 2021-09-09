@@ -47,7 +47,7 @@ const Search: React.FC = () => {
   }, [debouncedSearch])
 
   return (
-    <View style={globalStyles.container}>
+    <View style={styles.container}>
       <SearchInput value={search} onChange={setSearch} />
       <View style={styles.line} />
       <PodcastList
