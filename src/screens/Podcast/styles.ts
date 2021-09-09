@@ -28,7 +28,7 @@ const styles = StyleSheet.create<Styles>({
   },
   podcastBackgroundWrapper: {
     position: 'relative',
-    height: 190
+    height: 250
   },
   podcastBackground: {
     flex: 1,
