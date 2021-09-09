@@ -4,7 +4,8 @@ import { Http } from 'src/services/http'
 import {
   Episode,
   EpisodeQueryPayload,
-  LoadEpisodesByPodcastIdPayload
+  LoadEpisodesByPodcastIdPayload,
+  PopularEpisode
 } from 'src/common/types'
 
 type Constructor = {
@@ -54,7 +55,7 @@ class EpisodeApi {
     )
   }
 
-  public getPopular(): Promise<Episode[]> {
+  public getPopular(): Promise<PopularEpisode[]> {
     return this.#http.load(
       `${this.#apiPath}${ApiPath.EPISODES}${EpisodesApiPath.POPULAR}`,
       {

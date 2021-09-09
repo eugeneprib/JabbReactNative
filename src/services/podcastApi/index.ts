@@ -2,7 +2,8 @@ import { ApiPath, HttpMethod } from 'src/common/enums'
 import {
   PodcastLoadFilter,
   PodcastQueryPayload,
-  Podcast
+  Podcast,
+  SuggestedPodcast
 } from 'src/common/types'
 import { Http } from 'src/services/http'
 import { PodcastsApiPath } from 'src/common/enums'
@@ -19,6 +20,15 @@ class PodcastApi {
   constructor({ http, apiPath }: Constructor) {
     this.#http = http
     this.#apiPath = apiPath
+  }
+
+  public getPopular(): Promise<SuggestedPodcast[]> {
+    return this.#http.load(
+      `${this.#apiPath}${ApiPath.PODCASTS}${PodcastsApiPath.POPULAR}`,
+      {
+        method: HttpMethod.GET
+      }
+    )
   }
 
   public getByQuery(payload?: PodcastLoadFilter): Promise<PodcastQueryPayload> {

@@ -22,6 +22,7 @@ import {
   SuggestedPodcastCarousel,
   UserAvatar
 } from './components'
+import globalStyles from 'src/styles/globalStyles'
 import { styles } from './styles'
 
 const Home: React.FC = () => {
@@ -65,7 +66,7 @@ const Home: React.FC = () => {
   }
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <ScrollView contentContainerStyle={globalStyles.container}>
       <View style={styles.header}>
         <View>
           <Heading
@@ -88,7 +89,7 @@ const Home: React.FC = () => {
         <View style={styles.block}>
           <SuggestedPodcastCarousel
             data={sliceSuggestedPodcasts(suggestedPodcasts)}
-            screenPadding={Number(styles.container.padding)}
+            screenPadding={Number(globalStyles.container.padding)}
           />
         </View>
       )}

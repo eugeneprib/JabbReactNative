@@ -1,7 +1,6 @@
 import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from 'react-native'
 
 type Styles = {
-  container: ViewStyle
   title: TextStyle
   placeholder: TextStyle
   block: ViewStyle
@@ -14,9 +13,6 @@ type Styles = {
 }
 
 const styles = StyleSheet.create<Styles>({
-  container: {
-    padding: 25
-  },
   title: {
     marginBottom: 5,
     fontSize: 18,

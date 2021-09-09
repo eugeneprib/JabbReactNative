@@ -22,9 +22,9 @@ type Styles = {
 
 const styles = StyleSheet.create<Styles>({
   container: {
-    flexGrow: 1,
-    flexDirection: 'column',
-    paddingBottom: 25
+    padding: 0,
+    paddingBottom: 25,
+    flexGrow: 1
   },
   podcastBackgroundWrapper: {
     position: 'relative',

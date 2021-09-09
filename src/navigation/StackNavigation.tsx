@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { createStackNavigator } from '@react-navigation/stack'
 import { useAppSelector } from 'src/hooks'
-import { SignIn, Podcast, Episode } from 'src/screens'
+import { SignIn, Podcast } from 'src/screens'
 import { getCurrentUser, loadToken } from 'src/store/actions'
 import { DataStatus, NavigationScreen } from 'src/common/enums'
 import { RootStackParamList } from 'src/common/types'
@@ -50,7 +50,6 @@ const StackNavigation: React.FC = () => {
             component={TabNavigation}
           />
           <Stack.Screen name={NavigationScreen.PODCAST} component={Podcast} />
-          <Stack.Screen name={NavigationScreen.EPISODE} component={Episode} />
         </>
       ) : (
         <Stack.Screen name={NavigationScreen.SIGN_IN} component={SignIn} />

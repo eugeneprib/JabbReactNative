@@ -2,20 +2,19 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 import { StorageKey } from 'src/common/enums'
 import {
   AsyncThunkConfig,
-  PodcastQueryPayload,
+  SuggestedPodcast,
   RecentlyPlayedEpisode,
-  Episode
+  PopularEpisode
 } from 'src/common/types'
 import { ActionType } from './common'
 
 const loadSuggestedPodcasts = createAsyncThunk<
-  PodcastQueryPayload,
+  SuggestedPodcast[],
   undefined,
   AsyncThunkConfig
 >(ActionType.LOAD_PODCASTS, async (_args, { extra }) => {
   const { podcastApi } = extra
-  const payload = await podcastApi.getByQuery()
-
+  const payload = await podcastApi.getPopular()
   return payload
 })
 
@@ -34,7 +33,7 @@ const loadRecentlyPlayedEpisodes = createAsyncThunk<
 })
 
 const loadPopularEpisodes = createAsyncThunk<
-  Episode[],
+  PopularEpisode[],
   undefined,
   AsyncThunkConfig
 >(ActionType.LOAD_POPULAR, async (_args, { extra }) => {

@@ -9,36 +9,43 @@ type Props = {
   title: string
   author: string
   source?: string
-  onPress?: () => void
+  onNavigateToPodcast?: () => void
+  onNavigateToEpisode?: () => void
 }
 
 const SuggestedPodcastCard: React.FC<Props> = ({
   title,
   author,
   source,
-  onPress
+  onNavigateToPodcast,
+  onNavigateToEpisode
 }) => {
   return (
-    <ImageBackground source={{ uri: source }} style={styles.container}>
-      <View style={styles.overlay}>
-        <PlainText label={author} style={styles.author} />
-        <View style={styles.description}>
-          <Heading
-            label={title}
-            type={HeadingType.LARGE}
-            style={styles.title}
-            numberOfLines={2}
-          />
-          <TouchableOpacity
-            style={styles.icon}
-            activeOpacity={ACTIVE_OPACITY}
-            onPress={onPress}
-          >
-            <PlayIcon width={12} />
-          </TouchableOpacity>
+    <TouchableOpacity
+      activeOpacity={ACTIVE_OPACITY}
+      onPress={onNavigateToPodcast}
+    >
+      <ImageBackground source={{ uri: source }} style={styles.container}>
+        <View style={styles.overlay}>
+          <PlainText label={author} style={styles.author} />
+          <View style={styles.description}>
+            <Heading
+              label={title}
+              type={HeadingType.LARGE}
+              style={styles.title}
+              numberOfLines={2}
+            />
+            <TouchableOpacity
+              style={styles.icon}
+              activeOpacity={ACTIVE_OPACITY}
+              onPress={onNavigateToEpisode}
+            >
+              <PlayIcon width={12} />
+            </TouchableOpacity>
+          </View>
         </View>
-      </View>
-    </ImageBackground>
+      </ImageBackground>
+    </TouchableOpacity>
   )
 }
 

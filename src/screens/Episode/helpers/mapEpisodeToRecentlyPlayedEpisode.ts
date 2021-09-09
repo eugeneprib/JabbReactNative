@@ -1,9 +1,9 @@
 import { Episode, RecentlyPlayedEpisode } from 'src/common/types'
-import { DEFAULT_EPISODE_IMAGE } from '../common/constants'
+import { DEFAULT_IMAGE_BASE64 } from 'src/common/constants'
 
 const mapEpisodeToRecentlyPlayedEpisode = (
   episode: Episode,
-  author: string,
+  author?: string,
   podcast?: string,
   position?: number
 ): RecentlyPlayedEpisode => {
@@ -14,7 +14,7 @@ const mapEpisodeToRecentlyPlayedEpisode = (
     id: episode.id,
     title: episode.name,
     date: episode.createdAt,
-    source: episode.image?.url ?? DEFAULT_EPISODE_IMAGE
+    source: episode.image?.url ?? DEFAULT_IMAGE_BASE64
   }
 }
 
