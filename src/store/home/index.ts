@@ -1,6 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { DataStatus } from 'src/common/enums'
-import { Podcast, RecentlyPlayedEpisode, Episode } from 'src/common/types'
+import {
+  SuggestedPodcast,
+  RecentlyPlayedEpisode,
+  Episode
+} from 'src/common/types'
 import {
   loadSuggestedPodcasts,
   loadRecentlyPlayedEpisodes,
@@ -10,7 +14,7 @@ import { addToRecentlyPlayed } from '../episode/actions'
 import { FIRST_ARRAY_IDX, POPULAR_EPISODES_COUNT } from 'src/common/constants'
 
 type State = {
-  suggestedPodcasts: Podcast[]
+  suggestedPodcasts: SuggestedPodcast[]
   suggestedPodcastsDataStatus: DataStatus
   recentlyPlayedEpisodes: RecentlyPlayedEpisode[]
   recentlyPlayedEpisodesDataStatus: DataStatus
@@ -36,8 +40,8 @@ const homeSlice = createSlice({
       state.suggestedPodcastsDataStatus = DataStatus.PENDING
     })
     builder.addCase(loadSuggestedPodcasts.fulfilled, (state, action) => {
-      state.suggestedPodcasts = action.payload.results
       state.suggestedPodcastsDataStatus = DataStatus.FULFILLED
+      state.suggestedPodcasts = action.payload
     })
     builder.addCase(loadSuggestedPodcasts.rejected, (state) => {
       state.suggestedPodcastsDataStatus = DataStatus.REJECTED

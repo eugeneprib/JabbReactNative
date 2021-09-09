@@ -18,6 +18,7 @@ import Check from 'src/assets/images/checkMark.svg'
 import AtMark from 'src/assets/images/atMark.svg'
 import LogOut from 'src/assets/images/iconmonstr-log-out-16.svg'
 import { ProfileScreenNavigationProp } from './common/types'
+import globalStyles from 'src/styles/globalStyles'
 import styles from './styles'
 
 const Profile: React.FC = () => {
@@ -77,7 +78,7 @@ const Profile: React.FC = () => {
   }
 
   return (
-    <View style={styles.container}>
+    <View style={[globalStyles.container, styles.container]}>
       <View>
         <Heading type={HeadingType.LARGE} label="Profile" />
       </View>

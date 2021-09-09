@@ -4,7 +4,7 @@ type RootStackParamList = {
   [NavigationScreen.SIGN_IN]: undefined
   [NavigationScreen.HOME]: undefined
   [NavigationScreen.PODCAST]: { id: number }
-  [NavigationScreen.EPISODE]: {
+  [NavigationScreen.EPISODE]?: {
     id: number
     author: string
     position?: number
