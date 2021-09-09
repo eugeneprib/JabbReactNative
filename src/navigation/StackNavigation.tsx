@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 import { createStackNavigator } from '@react-navigation/stack'
 import { useAppSelector } from 'src/hooks'
 import { SignIn, Podcast } from 'src/screens'
-import { loadToken } from 'src/store/actions'
+import { getCurrentUser } from 'src/store/actions'
 import { DataStatus, NavigationScreen } from 'src/common/enums'
 import { RootStackParamList } from 'src/common/types'
 import { TabNavigation } from './components'
@@ -25,7 +25,7 @@ const StackNavigation: React.FC = () => {
   const isLoading = dataStatus === DataStatus.PENDING
 
   useEffect(() => {
-    dispatch(loadToken())
+    dispatch(getCurrentUser())
   }, [])
 
   if (isLoading) {

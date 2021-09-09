@@ -1,4 +1,4 @@
-import { StyleSheet, ViewStyle, TextStyle } from 'react-native'
+import { StyleSheet, ViewStyle } from 'react-native'
 
 type Styles = {
   viewContainer: ViewStyle
