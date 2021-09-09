@@ -30,14 +30,18 @@ const Home: React.FC = () => {
     user,
     suggestedPodcasts,
     recentlyPlayedEpisodes,
-    dataStatus,
-    popularEpisodes
+    popularEpisodes,
+    suggestedPodcastsDataStatus,
+    recentlyPlayedEpisodesDataStatus,
+    popularEpisodesDataStatus
   } = useAppSelector(({ auth, home }) => ({
     user: auth.user,
     suggestedPodcasts: home.suggestedPodcasts,
     recentlyPlayedEpisodes: home.recentlyPlayedEpisodes,
     popularEpisodes: home.popularEpisodes,
-    dataStatus: home.dataStatus
+    suggestedPodcastsDataStatus: home.suggestedPodcastsDataStatus,
+    recentlyPlayedEpisodesDataStatus: home.recentlyPlayedEpisodesDataStatus,
+    popularEpisodesDataStatus: home.popularEpisodesDataStatus
   }))
 
   const dispatch = useDispatch()
@@ -45,7 +49,10 @@ const Home: React.FC = () => {
 
   const hasSuggestedPodcasts = Boolean(suggestedPodcasts.length)
   const hasRecentlyPlayedEpisodes = Boolean(recentlyPlayedEpisodes.length)
-  const isLoading = dataStatus === DataStatus.PENDING
+  const isLoading =
+    suggestedPodcastsDataStatus === DataStatus.PENDING ||
+    recentlyPlayedEpisodesDataStatus === DataStatus.PENDING ||
+    popularEpisodesDataStatus === DataStatus.PENDING
 
   useEffect(() => {
     dispatch(loadSuggestedPodcasts())
