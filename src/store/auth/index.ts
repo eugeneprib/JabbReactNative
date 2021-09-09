@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { DataStatus } from 'src/common/enums'
 import { User } from 'src/common/types'
-import { getCurrentUser, loadToken, resetUser, signIn } from './actions'
+import { getCurrentUser, resetUser, signIn } from './actions'
 
 type State = {
   dataStatus: DataStatus
@@ -30,22 +30,13 @@ const authSlice = createSlice({
     builder.addCase(signIn.rejected, (state) => {
       state.dataStatus = DataStatus.REJECTED
     })
-    builder.addCase(loadToken.pending, (state) => {
-      state.dataStatus = DataStatus.PENDING
-    })
-    builder.addCase(loadToken.fulfilled, (state, action) => {
-      state.dataStatus = DataStatus.FULFILLED
-      state.token = action.payload
-    })
-    builder.addCase(loadToken.rejected, (state) => {
-      state.dataStatus = DataStatus.REJECTED
-    })
     builder.addCase(getCurrentUser.pending, (state) => {
       state.dataStatus = DataStatus.PENDING
     })
     builder.addCase(getCurrentUser.fulfilled, (state, action) => {
+      state.user = action.payload.currentUser
+      state.token = action.payload.token
       state.dataStatus = DataStatus.FULFILLED
-      state.user = action.payload
     })
     builder.addCase(getCurrentUser.rejected, (state) => {
       state.dataStatus = DataStatus.REJECTED

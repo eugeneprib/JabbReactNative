@@ -1,11 +1,14 @@
 import { StyleSheet, ViewStyle } from 'react-native'
 
 type Styles = {
-  viewContainer: ViewStyle
+  spinnerContainer: ViewStyle
 }
 
 const styles = StyleSheet.create<Styles>({
-  viewContainer: { marginBottom: 10 }
+  spinnerContainer: {
+    flexGrow: 1,
+    paddingBottom: 58
+  }
 })
 
 export default styles

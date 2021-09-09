@@ -15,7 +15,7 @@ export type {
   SuggestedPodcast
 } from './podcast'
 export type { SignResponse } from './sign'
-export type { User, UserSignInPayload } from './user'
+export type { User, UserSignInPayload, LoadCurrentUserPayload } from './user'
 export type { Record } from './record'
 export type { Shownote } from './shownote'
 export type { RootStackParamList } from './navigation'

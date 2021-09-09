@@ -1,5 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { AsyncThunkConfig, User, UserSignInPayload } from 'src/common/types'
+import {
+  AsyncThunkConfig,
+  User,
+  UserSignInPayload,
+  LoadCurrentUserPayload
+} from 'src/common/types'
 import { SecureStorageKey } from 'src/common/enums'
 import { ActionType } from './common'
 
@@ -17,21 +22,18 @@ const signIn = createAsyncThunk<User, UserSignInPayload, AsyncThunkConfig>(
   }
 )
 
-const loadToken = createAsyncThunk<string | null, undefined, AsyncThunkConfig>(
-  ActionType.LOAD_TOKEN,
-  async (_args, { extra }) => {
-    const { secureStorageService } = extra
-    return await secureStorageService.getItem(SecureStorageKey.TOKEN)
-  }
-)
+const getCurrentUser = createAsyncThunk<
+  LoadCurrentUserPayload,
+  undefined,
+  AsyncThunkConfig
+>(ActionType.LOAD_USER, async (_args, { extra }) => {
+  const { authApi, secureStorageService } = extra
+  const token = await secureStorageService.getItem(SecureStorageKey.TOKEN)
 
-const getCurrentUser = createAsyncThunk<User, undefined, AsyncThunkConfig>(
-  ActionType.LOAD_USER,
-  async (_args, { extra }) => {
-    const { authApi } = extra
-    return await authApi.getCurrentUser()
-  }
-)
+  const currentUser = token ? await authApi.getCurrentUser() : null
+
+  return { token, currentUser }
+})
 
 const resetUser = createAsyncThunk<void, undefined, AsyncThunkConfig>(
   ActionType.RESET_USER,
@@ -41,4 +43,4 @@ const resetUser = createAsyncThunk<void, undefined, AsyncThunkConfig>(
   }
 )
 
-export { signIn, loadToken, getCurrentUser, resetUser }
+export { signIn, getCurrentUser, resetUser }
