@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/core'
 import React from 'react'
 import {
   View,
@@ -9,6 +10,8 @@ import { ACTIVE_OPACITY } from 'src/common/constants'
 import { Heading, HeadingType, PlainText } from 'src/components'
 import { DIVISION_REMAINDER, EVEN_RATIO } from './common/constants'
 import styles from './styles'
+import { HomeScreenNavigationProp } from '../../common/types'
+import { NavigationScreen } from 'src/common/enums'
 
 type Props = {
   id: number
@@ -17,7 +20,6 @@ type Props = {
   author: string
   source?: string
   style?: ImageStyle
-  onPress: (author: string, id: number) => void
 }
 
 const PopularSingleCard: React.FC<Props> = ({
@@ -26,13 +28,13 @@ const PopularSingleCard: React.FC<Props> = ({
   title,
   author,
   source,
-  style,
-  onPress
+  style
 }) => {
+  const navigation = useNavigation<HomeScreenNavigationProp>()
   const isCardRight = Boolean(position % EVEN_RATIO !== DIVISION_REMAINDER)
 
   const handleNavigateToEpisode = () => {
-    onPress(author, id)
+    navigation.navigate(NavigationScreen.EPISODE, { id, author })
   }
 
   return (

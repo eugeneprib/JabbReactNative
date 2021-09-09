@@ -3,7 +3,7 @@ import { DEFAULT_IMAGE_BASE64 } from 'src/common/constants'
 
 const mapEpisodeToRecentlyPlayedEpisode = (
   episode: Episode,
-  author?: string,
+  author: string,
   podcast?: string,
   position?: number
 ): RecentlyPlayedEpisode => {
