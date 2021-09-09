@@ -13,7 +13,7 @@ type Props = {
   id: number
   position?: number
   title: string
-  author?: string
+  author: string
   podcast?: string
   date: string
   source?: string
@@ -24,7 +24,7 @@ const RecentlyPlayedCard: React.FC<Props> = ({
   id,
   position,
   title,
-  author = '',
+  author,
   podcast,
   date,
   source,
