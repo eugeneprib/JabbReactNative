@@ -9,7 +9,7 @@ const styles = StyleSheet.create<Styles>({
   container: {
     flexGrow: 1,
     padding: 25,
-    paddingBottom: 95,
+    paddingBottom: 90,
     backgroundColor: '#fff'
   },
   line: {
