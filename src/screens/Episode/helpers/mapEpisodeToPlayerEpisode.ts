@@ -6,7 +6,7 @@ import {
 
 const mapEpisodeToPlayerEpisode = (
   episode: Episode,
-  author: string
+  author = 'Undefined'
 ): PlayerEpisode => {
   return {
     id: String(episode.id),
