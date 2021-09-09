@@ -136,7 +136,7 @@ const Podcast: React.FC = () => {
             />
           </View>
           <View style={styles.episodeCounter}>
-            <CircleIcon width={5} />
+            <CircleIcon width={5} style={{ marginTop: 4 }} />
             <PlainText
               label={`${totalCount} Episodes`}
               style={styles.edisodesCount}
