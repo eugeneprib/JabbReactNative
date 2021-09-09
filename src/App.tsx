@@ -12,9 +12,9 @@ const App = (): React.ReactElement => {
   return (
     <NavigationContainer>
       <Provider store={store}>
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView style={styles.statusBar}>
           <StatusBar
-            backgroundColor={styles.container.backgroundColor}
+            backgroundColor={styles.statusBar.backgroundColor}
             barStyle="dark-content"
           />
           <Navigation />

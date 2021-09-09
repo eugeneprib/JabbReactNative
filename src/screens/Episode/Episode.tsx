@@ -20,6 +20,7 @@ import {
   mapEpisodeToRecentlyPlayedEpisode
 } from './helpers'
 import Player from './components/Player'
+import globalStyles from 'src/styles/globalStyles'
 import styles from './styles'
 
 type Props = {
@@ -76,14 +77,14 @@ const Episode: React.FC<Props> = ({ navigation, route }) => {
   }
 
   return (
-    <View style={styles.container}>
+    <View style={[globalStyles.container, styles.container]}>
       <View style={styles.header}>
         <TouchableOpacity
           style={styles.backButton}
           activeOpacity={ACTIVE_OPACITY}
           onPress={handleBack}
         >
-          <BackButton width={40} />
+          <BackButton width={43} />
         </TouchableOpacity>
         <PlainText style={styles.headerText} label="Now Playing" />
       </View>

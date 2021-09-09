@@ -8,6 +8,7 @@ import { DataStatus } from 'src/common/enums'
 import { loadMorePodcasts, loadPodcasts } from 'src/store/actions'
 import { INITIAL_PAGE, SEARCH_TIMEOUT } from './common/constants'
 import { PodcastList, SearchInput } from './components'
+import globalStyles from 'src/styles/globalStyles'
 import styles from './styles'
 
 const Search: React.FC = () => {
@@ -46,7 +47,7 @@ const Search: React.FC = () => {
   }, [debouncedSearch])
 
   return (
-    <View style={styles.container}>
+    <View style={globalStyles.container}>
       <SearchInput value={search} onChange={setSearch} />
       <View style={styles.line} />
       <PodcastList
