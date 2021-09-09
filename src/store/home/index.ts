@@ -10,17 +10,21 @@ import { addToRecentlyPlayed } from '../episode/actions'
 import { FIRST_ARRAY_IDX, POPULAR_EPISODES_COUNT } from 'src/common/constants'
 
 type State = {
-  dataStatus: DataStatus
   suggestedPodcasts: Podcast[]
+  suggestedPodcastsDataStatus: DataStatus
   recentlyPlayedEpisodes: RecentlyPlayedEpisode[]
+  recentlyPlayedEpisodesDataStatus: DataStatus
   popularEpisodes: Episode[]
+  popularEpisodesDataStatus: DataStatus
 }
 
 const initialState: State = {
-  dataStatus: DataStatus.IDLE,
   suggestedPodcasts: [],
+  suggestedPodcastsDataStatus: DataStatus.IDLE,
   recentlyPlayedEpisodes: [],
-  popularEpisodes: []
+  recentlyPlayedEpisodesDataStatus: DataStatus.IDLE,
+  popularEpisodes: [],
+  popularEpisodesDataStatus: DataStatus.IDLE
 }
 
 const homeSlice = createSlice({
@@ -29,40 +33,40 @@ const homeSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(loadSuggestedPodcasts.pending, (state) => {
-      state.dataStatus = DataStatus.PENDING
+      state.suggestedPodcastsDataStatus = DataStatus.PENDING
     })
     builder.addCase(loadSuggestedPodcasts.fulfilled, (state, action) => {
-      state.dataStatus = DataStatus.FULFILLED
       state.suggestedPodcasts = action.payload.results
+      state.suggestedPodcastsDataStatus = DataStatus.FULFILLED
     })
     builder.addCase(loadSuggestedPodcasts.rejected, (state) => {
-      state.dataStatus = DataStatus.REJECTED
+      state.suggestedPodcastsDataStatus = DataStatus.REJECTED
     })
     builder.addCase(loadRecentlyPlayedEpisodes.pending, (state) => {
-      state.dataStatus = DataStatus.PENDING
+      state.recentlyPlayedEpisodesDataStatus = DataStatus.PENDING
     })
     builder.addCase(loadRecentlyPlayedEpisodes.fulfilled, (state, action) => {
-      state.dataStatus = DataStatus.FULFILLED
       state.recentlyPlayedEpisodes = action.payload
+      state.recentlyPlayedEpisodesDataStatus = DataStatus.FULFILLED
     })
     builder.addCase(loadRecentlyPlayedEpisodes.rejected, (state) => {
-      state.dataStatus = DataStatus.REJECTED
+      state.recentlyPlayedEpisodesDataStatus = DataStatus.REJECTED
     })
     builder.addCase(addToRecentlyPlayed.fulfilled, (state, action) => {
       state.recentlyPlayedEpisodes = action.payload
     })
     builder.addCase(loadPopularEpisodes.pending, (state) => {
-      state.dataStatus = DataStatus.PENDING
+      state.popularEpisodesDataStatus = DataStatus.PENDING
     })
     builder.addCase(loadPopularEpisodes.fulfilled, (state, action) => {
-      state.dataStatus = DataStatus.FULFILLED
       state.popularEpisodes = action.payload.slice(
         FIRST_ARRAY_IDX,
         POPULAR_EPISODES_COUNT
       )
+      state.popularEpisodesDataStatus = DataStatus.FULFILLED
     })
     builder.addCase(loadPopularEpisodes.rejected, (state) => {
-      state.dataStatus = DataStatus.REJECTED
+      state.popularEpisodesDataStatus = DataStatus.REJECTED
     })
   }
 })
