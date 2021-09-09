@@ -56,10 +56,6 @@ const Home: React.FC = () => {
     navigation.navigate(NavigationScreen.MY_PROFILE)
   }
 
-  const handleNavigateToEpisode = (author: string, id: number) => {
-    navigation.navigate(NavigationScreen.EPISODE, { author, id })
-  }
-
   if (isLoading) {
     return <Spinner />
   }
@@ -97,7 +93,7 @@ const Home: React.FC = () => {
         {hasRecentlyPlayedEpisodes ? (
           sliceRecentlyPlayedEpisodes(recentlyPlayedEpisodes).map((episode) => (
             <RecentlyPlayedCard
-              {...episode}
+              episode={episode}
               key={episode.id}
               style={styles.recentlyPlayedCard}
             />
@@ -120,7 +116,6 @@ const Home: React.FC = () => {
               title={episode.name}
               author={episode.user.nickname}
               source={episode.image?.url}
-              onPress={handleNavigateToEpisode}
             />
           ))}
         </View>

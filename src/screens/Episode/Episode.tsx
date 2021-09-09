@@ -34,15 +34,16 @@ const Episode: React.FC<Props> = ({ navigation, route }) => {
 
   const dispatch = useDispatch()
 
+  const { id, author = '', podcast, position, playback } = route.params ?? {}
   const isLoading = dataStatus === DataStatus.PENDING
 
-  const handleGoBack = () => {
+  const handleNavigateBack = () => {
     navigation.goBack()
   }
 
   useEffect(() => {
-    if (route.params?.id) {
-      dispatch(loadEpisodePayload(route.params.id))
+    if (id) {
+      dispatch(loadEpisodePayload(id))
     }
   }, [route])
 
@@ -50,16 +51,17 @@ const Episode: React.FC<Props> = ({ navigation, route }) => {
     if (episode) {
       const mappedEpisode = mapEpisodeToRecentlyPlayedEpisode(
         episode,
-        route.params?.author,
-        route.params?.podcast,
-        route.params?.position
+        author,
+        podcast,
+        position
       )
+
       dispatch(addToRecentlyPlayed(mappedEpisode))
     }
   }, [episode])
 
   useEffect(() => {
-    if (route.params?.id) {
+    if (id) {
       return
     }
 
@@ -70,6 +72,8 @@ const Episode: React.FC<Props> = ({ navigation, route }) => {
     }
 
     const [popularEpisode] = popularEpisodes
+
+    navigation.setParams({ author: popularEpisode.user.nickname })
     dispatch(loadEpisodePayload(popularEpisode.id))
   }, [])
 
@@ -91,7 +95,7 @@ const Episode: React.FC<Props> = ({ navigation, route }) => {
         <TouchableOpacity
           style={styles.backButton}
           activeOpacity={ACTIVE_OPACITY}
-          onPress={handleGoBack}
+          onPress={handleNavigateBack}
         >
           <BackButton width={40} />
         </TouchableOpacity>
@@ -103,22 +107,15 @@ const Episode: React.FC<Props> = ({ navigation, route }) => {
         style={styles.image}
       />
       <View style={styles.description}>
-        <PlainText
-          label={route.params?.author ?? 'Undefined'}
-          style={styles.authorName}
-        />
+        <PlainText label={author} style={styles.authorName} />
         <Heading
-          label={route.params?.podcast ?? episode.name}
+          label={podcast ?? episode.name}
           type={HeadingType.LARGE}
           numberOfLines={2}
           style={styles.podcastName}
         />
         <PlainText
-          label={
-            route.params?.podcast
-              ? `Ep.${route.params.position}: ${episode.name}`
-              : ''
-          }
+          label={podcast && position ? `Ep.${position}: ${episode.name}` : ''}
           numberOfLines={2}
           style={styles.episodesName}
         />
@@ -126,8 +123,8 @@ const Episode: React.FC<Props> = ({ navigation, route }) => {
       <View style={styles.playerWrapper}>
         {episode.record ? (
           <Player
-            episode={mapEpisodeToPlayerEpisode(episode, route.params?.author)}
-            startToPlay={route.params?.playback}
+            episode={mapEpisodeToPlayerEpisode(episode, author)}
+            startToPlay={playback}
           />
         ) : (
           <PlainText label="There's no any record yet." />
