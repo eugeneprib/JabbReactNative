@@ -1,4 +1,4 @@
-export { signIn, getCurrentUser, resetUser } from './auth/actions'
+export { signIn, loadToken, getCurrentUser, resetUser } from './auth/actions'
 export { loadPodcasts as loadUserPodcasts } from './profile/action'
 export {
   loadPodcast,
