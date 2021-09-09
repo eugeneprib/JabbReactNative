@@ -22,9 +22,11 @@ const loadToken = createAsyncThunk<string | null, undefined, AsyncThunkConfig>(
   async (_args, { extra, dispatch }) => {
     const { secureStorageService } = extra
     const token = await secureStorageService.getItem(SecureStorageKey.TOKEN)
+
     if (token) {
       await dispatch(getCurrentUser())
     }
+
     return token
   }
 )
