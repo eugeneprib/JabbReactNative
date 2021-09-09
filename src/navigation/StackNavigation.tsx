@@ -1,19 +1,21 @@
 import React, { useEffect } from 'react'
+import { View } from 'react-native'
 import { useDispatch } from 'react-redux'
 import { createStackNavigator } from '@react-navigation/stack'
 import { useAppSelector } from 'src/hooks'
 import { SignIn, Podcast } from 'src/screens'
-import { getCurrentUser, loadToken } from 'src/store/actions'
+import { loadToken } from 'src/store/actions'
 import { DataStatus, NavigationScreen } from 'src/common/enums'
 import { RootStackParamList } from 'src/common/types'
 import { TabNavigation } from './components'
+import { Spinner } from 'src/components'
+import styles from './styles'
 
 const Stack = createStackNavigator<RootStackParamList>()
 
 const StackNavigation: React.FC = () => {
-  const { user, token, dataStatus } = useAppSelector(({ auth }) => ({
+  const { user, dataStatus } = useAppSelector(({ auth }) => ({
     user: auth.user,
-    token: auth.token,
     dataStatus: auth.dataStatus
   }))
 
@@ -26,14 +28,12 @@ const StackNavigation: React.FC = () => {
     dispatch(loadToken())
   }, [])
 
-  useEffect(() => {
-    if (token) {
-      dispatch(getCurrentUser())
-    }
-  }, [token])
-
   if (isLoading) {
-    return null
+    return (
+      <View style={styles.spinnerContainer}>
+        <Spinner />
+      </View>
+    )
   }
 
   return (

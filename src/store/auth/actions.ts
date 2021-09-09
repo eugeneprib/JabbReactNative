@@ -19,9 +19,13 @@ const signIn = createAsyncThunk<User, UserSignInPayload, AsyncThunkConfig>(
 
 const loadToken = createAsyncThunk<string | null, undefined, AsyncThunkConfig>(
   ActionType.LOAD_TOKEN,
-  async (_args, { extra }) => {
+  async (_args, { extra, dispatch }) => {
     const { secureStorageService } = extra
-    return await secureStorageService.getItem(SecureStorageKey.TOKEN)
+    const token = await secureStorageService.getItem(SecureStorageKey.TOKEN)
+    if (token) {
+      await dispatch(getCurrentUser())
+    }
+    return token
   }
 )
 
